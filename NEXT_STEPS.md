@@ -13,6 +13,72 @@ The central research question is:
 
 ---
 
+## Latest validated snapshot — 2026-09-17
+
+The current saved summary and TOI files each contain **940 unique skaters**,
+with no unmatched IDs. Earlier 935/927 counts below are historical findings,
+not the current population. No raw files were changed during this review.
+
+Completed in this milestone:
+- [x] Build and save the player-season dataset with season-aware one-to-one joins
+- [x] Stop the build on invalid IDs, seasons, GP, scoring identities or TOI totals
+- [x] Verify GP and TOI/game agreement between reports
+- [x] Derive per-game and all-strength per-60 rates, retaining all summary players
+- [x] Describe GP, TOI, scoring and rate distributions by position
+- [x] Compare GP and TOI thresholds without choosing a universal eligibility rule
+- [x] Save distribution plots, missingness, extreme-rate and exposure tables
+
+Run from the repository root:
+```sh
+Rscript R/analysis/03_build_player_dataset.R
+Rscript R/analysis/04_descriptive_player_season.R
+```
+
+Results and interpretation: `outputs/descriptive_2025_26/README.md`.
+
+### Immediate next steps, in order
+
+**First priority: review all guides and Markdown documents generated or updated
+on 2026-09-17 before starting more analysis or ingestion work.**
+
+1. [ ] Review the [descriptive results and interpretation](outputs/descriptive_2025_26/README.md):
+   validation findings, position summaries, GP/TOI threshold sensitivity, and
+   limitations of observed scoring rates.
+2. [ ] Review the [NHL acquisition guide](docs/NHL_ACQUISITION.md):
+   refresh commands, pagination checks, metadata, snapshot locations, and how
+   to build from an accepted snapshot.
+3. [ ] Review the [expected-opportunity specification](docs/EXPECTED_OPPORTUNITY.md):
+   proposed seven-day games-played and TOI targets, required historical inputs,
+   baseline assumptions, and evaluation design. Confirm the intended meaning
+   of “expected plays” before implementing the model.
+4. [ ] Review this updated [research roadmap](NEXT_STEPS.md), including the latest
+   milestone and the distinction between current findings and historical notes.
+   Record questions or corrections from the document review before continuing.
+5. [ ] Compare totals, per-game and per-60 results within position, including
+   threshold sensitivity. Choose eligibility based on the research question,
+   not a cutoff that happens to produce attractive results.
+6. [ ] After reviewing the opportunity specification, acquire game-level history
+   and as-of roster data for a held-out baseline. Season aggregates alone cannot
+   validate availability or future opportunity predictions.
+7. [ ] Add timestamped injury/lineup data only after selecting a documented source.
+   Schedule, availability, and player impact are distinct quantities; neither
+   schedule counts nor descriptive scoring rates establish player impact.
+
+### Acquisition milestone completed — 2026-09-17
+
+Direct requests now preserve API total and errors; pagination checks reject
+duplicates, truncated pages and changing totals. Script
+`00_refresh_nhl_snapshots.R` saves paired timestamped snapshots with JSON metadata
+and CSV hashes. Older flat CSVs still lack provenance; new snapshots do not
+overwrite them. Live verification passed: 940 unique skaters and 10 pages per
+report, with matching API totals, passing build validation and verified saved
+file hashes.
+
+The sections below retain the original research roadmap and historical notes;
+the milestone above supersedes their older population counts and open build tasks.
+
+---
+
 ## Current Status
 
 ### Project Setup

@@ -1,0 +1,21 @@
+# Local environments and credentials
+rink-lab.venv/
+.venv/
+__pycache__/
+.env
+.env.*
+!.env.example
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+renv/library/
+renv/staging/
+# Reproducible generated datasets and analysis artifacts
+data/processed/
+outputs/descriptive_2025_26/*.csv
+outputs/descriptive_2025_26/*.png
+outputs/descriptive_2025_26/session_info.txt
+
+# Timestamped source acquisitions (CSV plus provenance sidecars)
+data/raw/nhl/snapshots/
