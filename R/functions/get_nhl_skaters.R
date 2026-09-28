@@ -1,8 +1,10 @@
 # Retrieve season-level skaters directly so API total and transport errors remain
 # visible. fastRhockey's wrapper maps both errors and empty results to NULL and
 # discards total, so it cannot supply independent completion evidence.
-fetch_nhl_skater_page <- function(season, report_type, game_type, page_size, start) {
-  url <- paste0("https://api.nhle.com/stats/rest/en/skater/", report_type)
+fetch_nhl_player_page <- function(season, report_type, game_type, page_size, start,
+                                  population = "skater") {
+  stopifnot(population %in% c("skater", "goalie"))
+  url <- paste0("https://api.nhle.com/stats/rest/en/", population, "/", report_type)
   response <- httr2::request(url) |>
     httr2::req_url_query(
       isAggregate = "false", isGame = "false",
@@ -16,9 +18,16 @@ fetch_nhl_skater_page <- function(season, report_type, game_type, page_size, sta
   jsonlite::fromJSON(httr2::resp_body_string(response), flatten = TRUE)
 }
 
-get_all_nhl_skaters <- function(season, report_type = "summary", game_type = 2,
+fetch_nhl_skater_page <- function(...) fetch_nhl_player_page(...)
+
+# Shared pagination contract; goalie reports do not carry skater positions.
+get_all_nhl_players <- function(season, report_type = "summary", game_type = 2,
                                 page_size = 100,
-                                fetch_page = fetch_nhl_skater_page) {
+                                fetch_page = NULL, population = "skater") {
+  stopifnot(population %in% c("skater", "goalie"))
+  if (is.null(fetch_page)) fetch_page <- function(...) {
+    fetch_nhl_player_page(..., population = population)
+  }
   check <- function(ok, message) if (!isTRUE(ok)) stop(message, call. = FALSE)
   integer_scalar <- function(x) is.numeric(x) && length(x) == 1 &&
     is.finite(x) && x == floor(x)
@@ -49,14 +58,17 @@ get_all_nhl_skaters <- function(season, report_type = "summary", game_type = 2,
     page <- janitor::clean_names(raw$data)
     needed <- min(page_size, expected - start)
     check(nrow(page) == needed, "Page size disagrees with API total; incomplete retrieval")
-    check(all(c("player_id", "season_id", "games_played", "position_code") %in%
+    check(all(c("player_id", "season_id", "games_played") %in%
                 names(page)), "Missing required report columns")
     check(is.numeric(page$player_id) && all(is.finite(page$player_id)) &&
             all(page$player_id == floor(page$player_id)) &&
             all(diff(c(previous_id, page$player_id)) > 0),
           "Duplicate, unordered, or invalid player IDs across pages")
     check(all(page$season_id == as.numeric(season)), "Unexpected season in response")
-    check(all(page$position_code %in% c("C", "L", "R", "D")), "Invalid skater position")
+    if (population == "skater") {
+      check("position_code" %in% names(page) &&
+              all(page$position_code %in% c("C", "L", "R", "D")), "Invalid skater position")
+    }
     check(all(is.finite(page$games_played) & page$games_played >= 1), "Invalid GP")
     pages[[length(pages) + 1]] <- page
     log[[length(log) + 1]] <- data.frame(start = start, rows = nrow(page), total = raw$total)
@@ -69,9 +81,10 @@ get_all_nhl_skaters <- function(season, report_type = "summary", game_type = 2,
   check(nrow(skaters) == expected && !anyDuplicated(skaters$player_id),
         "Final row count or uniqueness check failed")
   attr(skaters, "retrieval_metadata") <- list(
-    source = paste0("https://api.nhle.com/stats/rest/en/skater/", report_type),
+    source = paste0("https://api.nhle.com/stats/rest/en/", population, "/", report_type),
     method = "Direct NHL Stats API via httr2; JSON parsed by jsonlite",
     season_id = season, game_type = game_type, report_type = report_type,
+    population = population,
     isAggregate = FALSE, isGame = FALSE, sort = "playerId ASC",
     started_at_utc = started, completed_at_utc = format(Sys.time(), tz = "UTC", usetz = TRUE),
     page_size = page_size, pages = dplyr::bind_rows(log),
@@ -82,4 +95,10 @@ get_all_nhl_skaters <- function(season, report_type = "summary", game_type = 2,
                       function(x) list(package = x, version = as.character(utils::packageVersion(x))))
   )
   skaters
+}
+
+# Keep existing callers and injected offline fetchers compatible.
+get_all_nhl_skaters <- function(season, report_type = "summary", game_type = 2,
+                                page_size = 100, fetch_page = fetch_nhl_skater_page) {
+  get_all_nhl_players(season, report_type, game_type, page_size, fetch_page, "skater")
 }

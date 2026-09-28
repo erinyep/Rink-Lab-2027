@@ -1,5 +1,37 @@
 # NHL snapshot acquisition
 
+## Fantasy category coverage
+
+Run `Rscript R/analysis/00_refresh_fantasy_snapshots.R 20252026` from the
+repository root. This retrieves skater summary, timeonice and realtime (hits),
+plus a separate goalie summary using the same strict pagination contract.
+It preserves prior snapshots and legacy raw CSVs. Snapshot directories use
+the `fantasy_` prefix under `data/raw/nhl/snapshots/`; observed skater and goalie
+worksheets are saved separately under `data/processed/fantasy/<snapshot>/`.
+
+Validation includes report ID/GP agreement, nonnegative integral hit/goalie
+counts, goalie save and GAA identities (TOI in seconds), and the existing full
+2025–26 skater build checks. Missingness and numeric extremes are recorded in
+`column_audit.csv`; each source CSV has retrieval metadata and an MD5 hash.
+Mismatched report populations stop the run for investigation, not an inner join.
+Goalie SA=SV+GA discrepancies are preserved as source observations and explicitly
+flagged `eligible_for_valuation=FALSE` in processed output; an exception CSV lists
+the affected records. These flags only cover source-count checks, not forecast
+readiness. Never silently reconstruct or correct the NHL counts. The live
+2026-09-28 run retrieved 940 skaters and 98 goalies; 22 goalie rows failed this
+identity, although reported SV% and GAA agreed with their respective denominators.
+Their cause remains unresolved. The complete goalie population is retained.
+Other seasons receive retrieval and fantasy checks but not the currently
+2025–26-specific player-season build validation.
+
+These are retrospective regular-season observations, not as-of preseason
+features, current rosters, ESPN eligibility, injury information, or forecasts.
+ATOI remains a source player average, not a summed fantasy category value.
+An old completed-season snapshot need not be refreshed simply because it is
+old; refresh for corrections or to acquire a consistent expanded report set.
+
+## Original paired summary/TOI acquisition
+
 From the repository root:
 
 ```sh

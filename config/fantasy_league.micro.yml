@@ -1,0 +1,107 @@
+# Transcribed from user-supplied ESPN PDF. Unknowns remain null.
+# Partial configuration; not ready for automatic board export.
+config_status: partial
+season_id: 20262027
+platform: ESPN
+league_name: Micro League
+league_timezone: America/New_York
+format:
+  scoring_type: head_to_head_categories
+  number_of_teams: 6
+  category_win_tie_rule: No tie breakers
+  daily_or_weekly_lineup: daily_individual_scheduled_gametime
+  regular_season_end: null
+  playoff_scoring_weeks: []
+  keeper_or_dynasty_rules: No keepers for 2027 or 2028
+  regular_season_matchups: 23
+  weeks_per_matchup: 1
+  playoff_teams: 4
+  playoff_round_weeks:
+  - 2
+  - 2
+draft:
+  draft_type: snake
+  draft_date: '2026-09-28T20:30:00-04:00'
+  draft_position: null
+  number_of_rounds: null
+  initial_keepers: []
+  adp_source: null
+  adp_as_of_utc: null
+  seconds_per_pick: 90
+  order_rule: Randomized one hour prior to draft time
+roster:
+  active_slots:
+    F: 9
+    C: 0
+    LW: 0
+    RW: 0
+    D: 5
+    UTIL: 1
+    G: 2
+    FLEX: 0
+  bench: 5
+  ir: 1
+  ir_plus: null
+  maximum_player_games: unlimited
+  maximum_goalie_starts: null
+  minimum_goalie_starts_per_matchup: null
+  acquisition_limit:
+    per_7_day_matchup: 7
+    season: unlimited
+  fantasy_position_eligibility_source: ESPN
+  roster_size: 22
+  total_starters: 17
+  maximum_rostered_goalies: 4
+  maximum_goalie_games: unlimited
+  waiver_period_days: 1
+scoring:
+  skater_categories:
+  - name: goals
+    platform_label: G
+  - name: assists
+    platform_label: A
+  - name: plus_minus
+    platform_label: +/-
+  - name: penalty_minutes
+    platform_label: PIM
+  - name: power_play_points
+    platform_label: PPP
+  - name: average_time_on_ice
+    platform_label: ATOI
+  - name: shots_on_goal
+    platform_label: SOG
+  - name: hits
+    platform_label: HIT
+  goalie_categories:
+  - name: wins
+    platform_label: W
+  - name: goals_against_average
+    platform_label: GAA
+  - name: save_percentage
+    platform_label: SV%
+  skater_point_weights: {}
+  goalie_point_weights: {}
+  bonus_rules: []
+  penalty_rules: []
+modeling:
+  forecast_cutoff_utc: null
+  projection_horizon: null
+  optimization_objective: null
+  permitted_historical_sources: []
+  availability_source: null
+  platform_eligibility_source: null
+  adp_data_source: null
+  random_seed: null
+  risk_preference: null
+source:
+  document: League Settings - Micro League - ESPN Fantasy Hockey.pdf
+  printed_at: 2026-09-28 09:51 (timezone not printed)
+  league_id: 745879168
+  espn_season_id: 2027
+unresolved:
+- Draft position not supplied; randomized at 19:30 EDT.
+- Minimum goalie starts not shown; do not assume zero.
+- ATOI roster aggregation and denominator need verification.
+- UTIL allowed positions and player eligibility need verification.
+- Category directions and ratio handling not explicitly printed.
+- Exact playoff dates not shown.

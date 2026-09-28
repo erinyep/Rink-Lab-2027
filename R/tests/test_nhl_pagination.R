@@ -31,3 +31,14 @@ for (name in names(cases)) {
   cat(name, "rejected:", conditionMessage(result), "\n")
 }
 cat("Pagination tests passed\n")
+
+# Goalies share pagination/ID checks but do not have skater position codes.
+goalie_page <- function(...) list(total = 1, data = data.frame(
+  playerId = 1, seasonId = 20252026, gamesPlayed = 2))
+g <- get_all_nhl_players("20252026", population = "goalie", fetch_page = goalie_page)
+stopifnot(nrow(g) == 1,
+          attr(g, "retrieval_metadata")$population == "goalie",
+          grepl("/goalie/summary$", attr(g, "retrieval_metadata")$source))
+bad <- tryCatch(get_all_nhl_skaters("20252026", fetch_page = goalie_page), error = identity)
+stopifnot(inherits(bad, "error"))
+cat("Goalie population and skater position contracts passed\n")

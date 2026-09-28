@@ -13,6 +13,128 @@ The central research question is:
 
 ---
 
+## Fantasy strategy review — 2026-09-28
+
+Reviewed the [draft strategy](docs/FANTASY_DRAFT_STRATEGY.md),
+[variable dictionary](docs/FANTASY_VARIABLE_DICTIONARY.md), and
+[league template](config/fantasy_league.example.yml). These are design documents;
+no fantasy forecasts, backtests, or rankings have been implemented. The existing
+processed dataset is a single 2025–26 skater season, not a historical evaluation
+panel. The broader research roadmap below remains applicable.
+
+Research question for the first fantasy milestone:
+
+> Do multi-season, exposure-weighted skater rates improve held-out season event
+> forecasts over last-season totals and a simple rate × projected-GP baseline?
+
+### Review findings to resolve
+
+- Preserve the separation of opportunity, event forecasts, league scoring,
+  replacement, and market price. The proposed full board is a long-term output,
+  not the acceptance criterion for the first baseline.
+- Historical facts retrieved today are not historical as-of snapshots. Record
+  retrieval time separately from event time; document retrospective corrections
+  and unavailable roster/injury/eligibility history. Do not claim a strict as-of
+  backtest when the necessary vintages are absent.
+- The template uses null for unknown settings. Before a validator is implemented,
+  distinguish unknown, explicitly unlimited, and not applicable; zero slots or
+  an explicitly empty keeper list must remain valid when confirmed.
+- The pick-urgency expression is illustrative. Its cliff and opportunity-cost
+  terms need the same utility units, and can overlap with replacement value.
+  Test a candidate-now/alternative-next comparison before adopting this score.
+  Auction drafts require budget and nomination rules, not next-pick survival.
+- Define allowed positions for UTIL/FLEX and the scope of limits (per player,
+  roster, week, or season). Slot names and numeric caps alone are insufficient
+  to verify a feasible lineup.
+
+### Next implementation steps
+
+1. [ ] Capture actual league settings and draft deadline in a working config.
+   Confirm scoring, slots, eligibility, lineup locks, limits, keeper rules and
+   draft type. Keep the example unconfigured; do not infer platform defaults.
+2. [ ] Build a source/coverage inventory for the scored events, opportunity,
+   goalie outcomes, platform eligibility and ADP. Identify which historical
+   cutoffs are reconstructible. League-independent historical work can proceed
+   while settings are pending; league valuation cannot.
+3. [ ] Acquire and validate a small multi-season regular-season panel with
+   explicit provenance. Choose training, tuning and held-out target seasons
+   before modeling; every target season needs earlier feature history. Preserve
+   players without next-season appearances and distinguish verified zero GP
+   from missing coverage. Report rookies and sparse-history fallbacks separately.
+4. [ ] Implement `R/analysis/05_fantasy_projection_baseline.R` for a limited
+   skater event forecast comparison. Start with G, A and SOG, deriving P=G+A;
+   add actual scored categories as their inputs pass validation. An aggregate
+   baseline is a research deliverable, not fulfillment of the final board gates.
+   Use all-strength rates until matching strength-level counts and TOI exist.
+5. [ ] Save held-out GP/event MAE and bias, population/missingness reports and
+   baseline comparisons by position and history. Fit shrinkage and choose
+   history weights using training/validation data only. Do not report predictive
+   quantiles until their construction and coverage have been evaluated.
+6. [ ] Add separate goalie baselines if the league includes goalies, then test
+   exact league scoring and feasible replacement using hand-worked examples.
+   Keep ADP survival, joint scenarios and draft updates as subsequent milestones.
+
+### League settings received — 2026-09-28
+
+The user supplied the ESPN Micro League settings PDF. Transcribed settings are
+in [config/fantasy_league.micro.yml](config/fantasy_league.micro.yml), marked
+partial because unprinted rules remain unknown. Six teams; H2H each category;
+snake draft September 28 at 8:30 PM EDT, order randomized at 7:30 PM EDT.
+Active slots: 9 F, 5 D, 1 UTIL, 2 G; five bench spots, one IR, maximum four
+rostered goalies. Daily individual game-time locks; seven acquisitions per
+seven-day matchup; no skater/goalie games-played maximum.
+
+Skater categories: G, A, +/-, PIM, PPP, ATOI, SOG, HIT.
+Goalie categories: W, GAA, SV%. No keepers for 2027 or 2028.
+
+Before the fantasy refresh, the saved processed CSV was inspected: 940 rows and unique player IDs for
+20252026. Seven of eight skater category inputs are present with no missing
+values; hits are absent. This is a coverage check, not a new full validation.
+Goalie forecasts and platform eligibility are not provided by this skater table.
+ATOI is an average and needs verified ESPN aggregation, not summed player rates.
+
+Tonight's next deliverable is a clearly labeled historical category worksheet,
+with hits/goalie coverage resolved or flagged before any complete draft board.
+Draft position can be added when available. Confirm goalie minimum starts,
+ATOI aggregation and UTIL eligibility; the PDF does not settle those details.
+
+### Fantasy acquisition completed — 2026-09-28
+
+Extended the existing pagination pipeline to support separate goalie reports.
+Run `Rscript R/analysis/00_refresh_fantasy_snapshots.R 20252026` to reproduce
+summary, TOI, realtime (hits), and goalie acquisitions. The live snapshot is
+`data/raw/nhl/snapshots/fantasy_20252026_20260928T145951Z`;
+historical worksheets are in the matching `data/processed/fantasy/` directory.
+All three skater reports contain 940 matching IDs and GP; the existing full
+skater build validation passed. All eight skater category inputs are now present.
+The goalie report contains 98 unique IDs, but 22 rows fail SA=SV+GA. Preserve
+these source values and block affected rows from valuation pending investigation;
+see `goalie_validation_exceptions.csv`. SV% and GAA denominator checks passed.
+Pagination tests (including goalie-specific coverage) passed; source file hashes
+were independently verified. Existing raw snapshots were preserved.
+Compared with the September 17 summary snapshot, four player rows changed;
+no player IDs were added or removed. The reason for those source changes has
+not been established.
+
+Saved work and handoff:
+- `config/fantasy_league.micro.yml`: transcribed league rules and unresolved inputs.
+- `R/functions/get_nhl_skaters.R`: shared skater/goalie retrieval with compatible skater calls.
+- `R/analysis/00_refresh_fantasy_snapshots.R`: reproducible four-report refresh and exports.
+- `R/tests/test_nhl_pagination.R`: existing pagination cases plus goalie population checks.
+- `docs/NHL_ACQUISITION.md`: commands, validation behavior and goalie exceptions.
+- `data/processed/fantasy/fantasy_20252026_20260928T145951Z/`: local
+  `historical_skaters.csv`, `historical_goalies.csv`, and
+  `goalie_validation_exceptions.csv`. These and the raw timestamped snapshot
+  are intentionally Git-ignored generated data, saved locally but not committed.
+  Re-running acquisition can reflect later source corrections; preserve the
+  local snapshot separately if the exact retrieved version is needed elsewhere.
+
+Next: investigate the goalie count discrepancy, verify ESPN ATOI aggregation,
+and build the historical category worksheet. Current injuries, ESPN eligibility,
+and draft-market information remain separate inputs. Additional historical
+seasons are still needed for a backtested projection model; this acquisition
+does not establish a forecast.
+
 ## Latest validated snapshot — 2026-09-17
 
 The current saved summary and TOI files each contain **940 unique skaters**,
