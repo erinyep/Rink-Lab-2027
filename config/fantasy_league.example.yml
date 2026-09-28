@@ -1,0 +1,76 @@
+# Rink Lab fantasy league configuration — TEMPLATE ONLY.
+# Fill this with real platform settings before any ranking/model run.
+# null and [] values below are intentionally UNSET, not suggested defaults.
+# Never interpret this example as a usable league configuration.
+config_status: unconfigured
+season_id: 20262027
+platform: null
+league_name: null
+league_timezone: null
+
+format:
+  scoring_type: null       # e.g. head_to_head_categories | roto | fantasy_points
+  number_of_teams: null
+  category_win_tie_rule: null
+  daily_or_weekly_lineup: null
+  regular_season_end: null
+  playoff_scoring_weeks: []
+  keeper_or_dynasty_rules: null
+
+draft:
+  draft_type: null         # snake | auction | other
+  draft_date: null
+  draft_position: null
+  number_of_rounds: null
+  initial_keepers: []
+  adp_source: null
+  adp_as_of_utc: null
+
+roster:
+  active_slots:
+    C: null
+    LW: null
+    RW: null
+    D: null
+    G: null
+    UTIL: null
+    FLEX: null
+  bench: null
+  ir: null
+  ir_plus: null
+  maximum_player_games: null
+  maximum_goalie_starts: null
+  minimum_goalie_starts_per_matchup: null
+  acquisition_limit: null
+  fantasy_position_eligibility_source: null
+
+scoring:
+  # For category formats, enter actual platform category names, direction,
+  # tie behavior and any per-category weights. Use a list of mappings such as
+  # {name: shots_on_goal, direction: higher, weight: 1} only after verifying rules.
+  skater_categories: []
+  goalie_categories: []
+  # For points formats, enter actual event keys and numeric values.
+  skater_point_weights: {}
+  goalie_point_weights: {}
+  bonus_rules: []
+  penalty_rules: []
+
+modeling:
+  forecast_cutoff_utc: null
+  projection_horizon: null  # full_season | weekly | playoff
+  optimization_objective: null
+  permitted_historical_sources: []
+  availability_source: null
+  platform_eligibility_source: null
+  adp_data_source: null
+  random_seed: null
+  # Prediction-specific risk preferences must be explicitly chosen;
+  # do not bury them in an opaque "upside score".
+  risk_preference: null
+
+# Required input validation:
+# 1. Reject this file unless config_status has been explicitly set to configured.
+# 2. Verify scoring_type, counted category/point rules, slots, games/goalie limits.
+# 3. Verify fantasy eligibility source and date, draft economics and as-of cutoff.
+# 4. Fail rather than emit a plausible-looking board from missing league rules.
