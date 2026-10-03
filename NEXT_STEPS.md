@@ -13,6 +13,58 @@ The central research question is:
 
 ---
 
+## ESPN Fantasy connection milestone — 2026-10-03
+
+A read-only connection to the private ESPN Micro League is now working through
+`espn-api`, with credentials kept only in the local `.env`. The connector uses
+the macOS system trust store via `truststore` so Homebrew Python can validate
+ESPN's HTTPS certificate chain without disabling SSL verification.
+
+The first timestamped league snapshot completed successfully:
+
+- Raw snapshot: `data/raw/espn/snapshots/espn_2027_20261003T160748Z`
+- Processed crosswalk: `data/processed/espn/espn_2027_20261003T160748Z`
+- Teams: 6
+- Rostered players: 132
+- Available players: 1,560
+- Current matchups: 3
+- Matchup/category rows: 108
+- ESPN→NHL crosswalk: 1,017 matched, 674 unmatched, 1 ambiguous
+
+Current ESPN tooling:
+
+- `src/fantasy/espn_client.py`: authenticated read-only league connection
+- `src/fantasy/espn_snapshot.py`: normalized timestamped snapshot pipeline
+- `scripts/test_espn_connection.py`: connection smoke test
+- `scripts/refresh_espn_snapshot.py`: live league refresh command
+- `docs/ESPN_CONNECTION.md`: credentials, setup, and snapshot documentation
+- `requirements-espn.txt`: isolated connector dependencies
+
+### Resume here when ESPN/fantasy work restarts
+
+1. [ ] Build a latest-snapshot report that automatically selects the newest ESPN
+   snapshot and prints all six team rosters plus ESPN position eligibility.
+2. [ ] Measure ESPN→NHL crosswalk coverage specifically for the 132 rostered
+   players, list every unmatched or ambiguous rostered player, and fix high-value
+   crosswalk gaps before broad free-agent cleanup. Never force an ambiguous match.
+3. [ ] Identify the user's fantasy team in the snapshot and produce a concise
+   current-roster view with lineup slot, eligibility, NHL team, injury status,
+   and NHL player ID where matched.
+4. [ ] Validate current H2H category extraction, including category names,
+   directionality, ratio handling, and ESPN's ATOI aggregation behavior.
+5. [ ] Filter the available-player pool to NHL-matched, fantasy-relevant players
+   and build the first waiver/add-drop candidate report. Keep performance
+   projection separate from current ESPN totals and ownership context.
+6. [ ] Add league-aware replacement value/FVAR only after the projection baseline
+   is validated; then use matchup state, remaining schedule, roster eligibility,
+   and the seven-acquisition limit for weekly streaming decisions.
+
+This is intentionally paused after establishing reliable live data acquisition.
+The next ESPN milestone is analysis of the latest snapshot, not more connection
+or authentication work.
+
+---
+
 ## Minnesota defense-pair ad hoc analysis — 2026-09-29
 
 Completed a descriptive 2025–26 regular-season study: how often did each Wild
