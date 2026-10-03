@@ -11,6 +11,13 @@ import os
 from pathlib import Path
 from typing import Any, Iterable
 
+import truststore
+
+# Use the operating system trust store for HTTPS before importing clients that
+# rely on requests/urllib3. This is especially useful on macOS Homebrew Python,
+# where the default certifi bundle may not contain the locally trusted issuer.
+truststore.inject_into_ssl()
+
 from dotenv import load_dotenv
 from espn_api.hockey import League
 
