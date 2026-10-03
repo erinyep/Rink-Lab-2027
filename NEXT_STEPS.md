@@ -13,6 +13,30 @@ The central research question is:
 
 ---
 
+## Minnesota defense-pair ad hoc analysis — 2026-09-29
+
+Completed a descriptive 2025–26 regular-season study: how often did each Wild
+defense pair appear together, and what share of team goals occurred with them?
+See [full pair/scorer report](outputs/min_defense_pairs_2025_26/README.md) and
+`src/analysis/min_defense_pairs.py` for reproducible acquisition and analysis.
+All 82 games, 247 source files, 14 defensemen and 67 observed combinations are
+included without usage thresholds. The denominator is 268 non-shootout goals;
+205 had two defensemen, 59 had one, two had three, and two had none. Three-D
+goals credit every co-present pair, so pair shares are not a partition.
+Showings mean continuous shared shift intervals; games and minutes are also
+reported. Official HTML on-ice lists determine goal attribution independently
+of shift boundaries. All game scores reconciled with API goal events and HTML
+reports; shift totals and source hashes passed validation. Three exact duplicate
+defense shift intervals were deduplicated for usage, preserving raw sources.
+
+Local source snapshot: `data/raw/nhl/snapshots/min_pairs_20252026_20260929T192759Z`.
+Five processed CSVs and coverage metadata are in
+`data/processed/min_defense_pairs_2025_26/`. These generated datasets are ignored
+by Git. The report and script are retained. Goal shares reflect exposure and
+all-strength context; they do not establish pair skill. A follow-up question
+is whether differences persist after separating five-on-five usage from special
+teams and accounting for shared minutes and teammate/opponent context.
+
 ## Fantasy strategy review — 2026-09-28
 
 Reviewed the [draft strategy](docs/FANTASY_DRAFT_STRATEGY.md),
