@@ -23,15 +23,15 @@ ESPN_SWID={private-swid-value}
 
 The connector also accepts `LEAGUE_ID` as an alias for `ESPN_LEAGUE_ID`, `ESPN_YEAR` for `ESPN_SEASON_ID`, and `SWID` for `ESPN_SWID`.
 
-## Install dependencies
+## Install ESPN dependencies
 
 From the repository root and inside the Rink Lab virtual environment:
 
 ```sh
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-espn.txt
 ```
 
-The ESPN connector uses `espn-api` for Fantasy Hockey and `python-dotenv` to read the local `.env` file.
+Use `requirements-espn.txt` for the connector rather than reinstalling the full frozen `requirements.txt`. The general requirements snapshot contains older environment pins that may not be installable under the current Python version, while the ESPN connector only requires `espn-api` and `python-dotenv`.
 
 ## Test the connection
 
@@ -75,10 +75,10 @@ Confirm the league and season IDs first. If they are correct, refresh `ESPN_S2` 
 
 ### Package/import error
 
-Re-run:
+Run:
 
 ```sh
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-espn.txt
 ```
 
 and confirm the script is being run with the same Python interpreter / virtual environment used for Rink Lab.
