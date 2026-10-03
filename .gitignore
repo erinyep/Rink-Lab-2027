@@ -19,3 +19,4 @@ outputs/descriptive_2025_26/session_info.txt
 
 # Timestamped source acquisitions (CSV plus provenance sidecars)
 data/raw/nhl/snapshots/
+data/raw/espn/snapshots/
