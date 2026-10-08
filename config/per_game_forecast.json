@@ -1,0 +1,18 @@
+{
+  "target_season": 20262027,
+  "history_seasons": [20212022, 20222023, 20232024, 20242025, 20252026],
+  "development_season": 20232024,
+  "validation_season": 20242025,
+  "test_season": 20252026,
+  "lookback_seasons": 3,
+  "decay_grid": [0.5, 0.75, 1.0],
+  "event_prior_games_grid": [5, 20, 60],
+  "shooting_prior_shots_grid": [50, 200, 800],
+  "toi_prior_games": 10,
+  "selection_categories": ["goals", "assists", "shots"],
+  "selection_metric": "mean validation player MAE relative to last-season-rate MAE over G, A, SOG",
+  "evaluation_scope": "retrospective season-average production conditional on playing; not a strict historical as-of or individual-game backtest",
+  "current_season_update": "provisional: observed current-season counts receive weight 1; historical decay is unchanged",
+  "availability_model": "not yet fitted; no assumed probability of playing",
+  "goalie_model": "not yet fitted; source-count exceptions must be resolved first"
+}

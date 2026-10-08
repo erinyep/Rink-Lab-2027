@@ -2,7 +2,7 @@
 
 Rink Lab uses a **read-only local connection** to ESPN Fantasy Hockey. ESPN does not expose a normal public API key for private leagues, so the connection uses the `espn_s2` and `SWID` browser cookies from a currently logged-in ESPN session.
 
-Connection status: **verified locally on 2026-10-03**.
+Connection status: **refreshed and validated locally on 2026-10-06**.
 
 ## Security
 
@@ -94,12 +94,16 @@ The refresh script also writes:
 data/processed/espn/espn_<season>_<UTC timestamp>/espn_nhl_crosswalk.csv
 ```
 
-It uses the most recent local `historical_skaters.csv` and `historical_goalies.csv` under `data/processed/fantasy/` when those files exist.
+It uses the newest local `historical_skaters.csv` and `historical_goalies.csv`
+for each saved season under `data/processed/fantasy/`. Candidate identities are
+deduplicated by NHL ID and normalized name, preferring the most recent season.
+A partial current season therefore does not erase players absent from its table.
 
 The first-pass match is conservative:
 
 1. exact normalized player name;
-2. if the name maps to multiple NHL IDs, exact team is used as a tiebreaker;
+2. if the name maps to multiple NHL IDs, exact position, then exact team, is used
+   as a tiebreaker (e.g. the two Elias Petterssons at C and D);
 3. ambiguous and unmatched rows remain explicitly flagged rather than guessed.
 
 Review unresolved rows before using the crosswalk for modeling.
@@ -111,7 +115,21 @@ A snapshot is rejected if:
 - fantasy-team IDs are duplicated;
 - rostered ESPN player IDs are missing or duplicated;
 - available-player ESPN IDs are missing or duplicated;
-- the same ESPN player appears both rostered and available.
+- the same ESPN player appears both rostered and available without the explicit
+  pending-drop source status described below.
+
+Roster entries now preserve `roster_entry_status`, `pool_status`, and
+`pool_on_team_id`. ESPN can retain `FUTURE_DROP` in today's scoring roster while
+the pool already says `WAIVERS` with `onTeamId=0`. This exact combination is an
+explained overlap, not a reason to delete one of the records. It is recorded in
+`pending_drop_overlap_ids`, and forecast exports mark it for review. Any other
+overlap still fails validation. The October 6 snapshot contained this case for
+Owen Tippett: 134 scoring-roster entries plus 1,566 available entries represent
+1,699 unique players. Do not interpret scoring-roster presence alone as ownership.
+
+Available-player ownership percentages are read from both supported response
+shapes (direct pool entries and nested `playerPoolEntry`), preserving missing
+values rather than interpreting them as zero.
 
 The metadata records whether the available-player query reached its configured limit.
 

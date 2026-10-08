@@ -4,6 +4,12 @@ Status: **implementation roadmap**
 Target season: **2026-27**  
 Prepared: **2026-10-03**
 
+Implementation update: **2026-10-06**. The read-only ESPN pipeline and initial
+per-game rate comparison now exist. See [the methodology](PER_GAME_FORECAST.md)
+and [results](../outputs/per_game_forecast/README.md). The roadmap below remains
+the implementation sequence; current game availability and goalie forecasts
+are still pending.
+
 ## Purpose
 
 Adapt the most useful modeling ideas from Nate Silver and Joseph George's 2026 ELWAY NFL forecast to Rink Lab without copying NFL-specific assumptions.
@@ -26,10 +32,12 @@ Rink Lab already has:
 - fantasy-category acquisition for skaters and goalies;
 - league settings captured for the ESPN Micro League;
 - a fantasy decision specification emphasizing opportunity, event rates, uncertainty, replacement value, and market context;
-- no fitted multi-season fantasy forecast yet;
-- no production ESPN Fantasy integration yet.
+- an evaluated multi-season conditional per-game skater baseline;
+- timestamped read-only ESPN league state and an NHL identity crosswalk.
 
-The current fantasy work is therefore a strong design specification, but the forecast, backtest, replacement-value engine, and live league-state layer still need to be implemented.
+The conditional rate layer has a retrospective season-level evaluation. The
+game-level availability backtest, goalie models, and replacement-value engine
+still need to be implemented.
 
 ---
 
@@ -168,11 +176,12 @@ This is a later-stage feature. Do not build the simulation layer before simpler 
 
 # Workstream A — ESPN Fantasy connection
 
-## Why it is still needed
+## Original requirements and current status
 
-Yes: the ESPN connection still needs to be built.
-
-The repo currently has ESPN league settings captured manually, but ESPN eligibility and live league state are still treated as separate inputs. The current Python dependency file also does not include a dedicated ESPN Fantasy client.
+The read-only connection is implemented in `src/fantasy/espn_client.py` and
+`src/fantasy/espn_snapshot.py`; setup and validations are documented in
+`docs/ESPN_CONNECTION.md`, with dependencies in `requirements-espn.txt`.
+The following requirements continue to define its scope.
 
 Because the draft has already occurred, the ESPN connection is now most valuable for **in-season roster management**, not just draft preparation.
 
@@ -494,24 +503,28 @@ Do not let simulated future results recursively change a player's intrinsic tale
 
 ## Milestone 1 — ESPN read-only connection
 
-- [ ] Build authenticated read-only ESPN retrieval.
-- [ ] Save a timestamped league snapshot locally.
-- [ ] Validate six teams and roster counts.
-- [ ] Pull the user's current roster and free-agent pool.
-- [ ] Preserve ESPN eligibility.
-- [ ] Create ESPN-to-NHL player-ID crosswalk coverage report.
-- [ ] Document credentials and setup without committing secrets.
+- [x] Build authenticated read-only ESPN retrieval.
+- [x] Save a timestamped league snapshot locally.
+- [x] Validate six teams and roster counts (scoring roster versus ownership remains explicit).
+- [x] Pull all team rosters and the available-player pool.
+- [x] Preserve ESPN eligibility.
+- [x] Create ESPN-to-NHL player-ID crosswalk coverage report.
+- [x] Document credentials and setup without committing secrets.
 
 **Acceptance criterion:** Rink Lab can reproducibly identify who is on each team, who is available, and each player's ESPN eligibility from a timestamped snapshot.
 
 ## Milestone 2 — Multi-season skater baseline
 
-- [ ] Acquire multiple historical seasons.
-- [ ] Predefine training/validation/test seasons.
-- [ ] Build naive prior-season baseline.
-- [ ] Build multi-season exposure-weighted baseline.
-- [ ] Add shrinkage.
+- [x] Acquire multiple historical seasons.
+- [x] Predefine training/validation/test seasons.
+- [x] Build naive prior-season baseline.
+- [x] Build multi-season exposure-weighted baseline.
+- [x] Add shrinkage and expose its component weights.
 - [ ] Compare held-out G, A, SOG and GP forecasts.
+
+G/A/SOG conditional per-game means have been compared; GP/participation remains
+pending. The more complex process model is preserved as a candidate; the default
+was selected on validation, not on whichever model won the test season.
 
 **Acceptance criterion:** at least one shrunken or multi-season baseline is compared honestly with naive alternatives on a held-out season.
 

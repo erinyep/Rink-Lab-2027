@@ -13,3 +13,12 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 - Explore player archetypes and similarities
 - Study NCAA-to-NHL player translation
 - Develop better measures of player contribution beyond traditional box scores
+
+## Current forecast work
+
+The first conditional per-game skater baseline is implemented, with refreshed
+NHL/ESPN snapshots and a chronological season-level evaluation. See the
+[forecast guide](docs/PER_GAME_FORECAST.md),
+[initial results](outputs/per_game_forecast/README.md), and
+[next tasks](NEXT_STEPS.md). Participation, goalie starts, and fantasy lineup
+optimization remain later milestones.

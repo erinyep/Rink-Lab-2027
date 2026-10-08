@@ -1,11 +1,17 @@
 # Expected opportunity: proposed first baseline
 
+Implementation update, 2026-10-06: the
+[per-game baseline](PER_GAME_FORECAST.md) now supplies conditional event/TOI
+means and a live seven-day schedule-only reference. The participation and
+rolling-TOI models below remain the next tasks; their probabilities have not
+been fitted or inferred from ESPN injury labels.
+
 Research question: Given information available at a forecast cutoff, how many
 NHL games and all-strength minutes will a skater play over the next seven days?
 
 This is a proposed working definition of “expected plays,” not a settled choice
-of outcome. Games and TOI describe opportunity; shots or other actions would
-require a separate event-rate model. No predictive model is fitted yet.
+of outcome. Games and TOI describe opportunity; shots or other actions require
+the separate event-rate layer. No participation model is fitted yet.
 
 ## Unit and timing
 

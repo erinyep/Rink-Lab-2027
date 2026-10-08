@@ -132,15 +132,31 @@ def _team_rows(league: Any) -> list[dict[str, Any]]:
 
 
 def _roster_rows(league: Any) -> list[dict[str, Any]]:
+    # SDK Player objects discard roster-entry status. A FUTURE_DROP can still
+    # appear in today's scoring roster while the pool already lists WAIVERS.
+    # Preserve both source meanings instead of treating this as current ownership.
+    data = league.espn_request.league_get(params={
+        "view": ["mRoster", "mTeam"], "scoringPeriodId": league.current_week,
+    })
+    team_names = {_team_id(team): _team_name(team) for team in league.teams}
+    source_teams = data.get("teams", [])
+    if {team.get("id") for team in source_teams} != set(team_names):
+        raise RuntimeError("ESPN roster response team coverage differs from league")
     rows: list[dict[str, Any]] = []
-    for team in league.teams:
-        for player in getattr(team, "roster", []) or []:
-            row = _player_row(player)
+    for team in source_teams:
+        if "entries" not in team.get("roster", {}):
+            raise RuntimeError("ESPN team missing roster entries")
+        for entry in team["roster"]["entries"]:
+            pool = entry.get("playerPoolEntry", {})
+            row = _player_row(Player(entry))
             row.update(
                 {
-                    "fantasy_team_id": _team_id(team),
-                    "fantasy_team_name": _team_name(team),
+                    "fantasy_team_id": team["id"],
+                    "fantasy_team_name": team_names[team["id"]],
                     "availability_status": "ROSTERED",
+                    "roster_entry_status": entry.get("status"),
+                    "pool_status": pool.get("status"),
+                    "pool_on_team_id": pool.get("onTeamId"),
                 }
             )
             rows.append(row)
@@ -184,7 +200,7 @@ def _available_rows(league: Any, limit: int) -> list[dict[str, Any]]:
         player = Player(entry)
         row = _player_row(player)
 
-        pool = entry.get("playerPoolEntry", {}) if isinstance(entry, dict) else {}
+        pool = entry.get("playerPoolEntry", entry) if isinstance(entry, dict) else {}
         player_payload = pool.get("player", {}) if isinstance(pool, dict) else {}
         ownership = player_payload.get("ownership", {}) if isinstance(player_payload, dict) else {}
 
@@ -284,15 +300,18 @@ def _latest_file(pattern: str) -> Path | None:
 
 
 def _nhl_index() -> tuple[dict[str, list[dict[str, str]]], list[str]]:
-    source_files = [
-        path
-        for path in (
-            _latest_file("*/historical_skaters.csv"),
-            _latest_file("*/historical_goalies.csv"),
-        )
-        if path is not None
-    ]
+    # Keep the newest snapshot of each season. A partial current season cannot
+    # replace the identity coverage of past seasons. Never count the same NHL ID
+    # twice as two distinct candidates merely because it appears in two seasons.
+    latest_by_season: dict[tuple[str, str], Path] = {}
+    for filename in ("historical_skaters.csv", "historical_goalies.csv"):
+        for path in sorted((REPO_ROOT / "data/processed/fantasy").glob(f"*/{filename}")):
+            parts = path.parent.name.split("_")
+            if len(parts) == 3 and parts[0] == "fantasy":
+                latest_by_season[(parts[1], filename)] = path
+    source_files = sorted(latest_by_season.values(), reverse=True)
     index: dict[str, list[dict[str, str]]] = {}
+    seen: set[tuple[str, str]] = set()
 
     for path in source_files:
         for row in _read_nhl_players(path):
@@ -313,10 +332,15 @@ def _nhl_index() -> tuple[dict[str, list[dict[str, str]]], list[str]]:
             )
             if not name or not player_id:
                 continue
+            key = (_normalize_name(name), player_id)
+            if key in seen:
+                continue
+            seen.add(key)
             candidate = {
                 "nhl_player_id": player_id,
                 "nhl_name": name,
                 "nhl_team": team or "",
+                "position": row.get("position_code") or ("G" if "goalie_full_name" in row else ""),
                 "source_file": str(path.relative_to(REPO_ROOT)),
             }
             index.setdefault(_normalize_name(name), []).append(candidate)
@@ -363,12 +387,21 @@ def _crosswalk_rows(
             method = "exact_normalized_name"
             status = "matched"
         elif len(candidates) > 1:
+            position = {
+                "Center": "C", "Left Wing": "L", "Right Wing": "R",
+                "Defense": "D", "Defenseman": "D", "Goalie": "G",
+            }.get(player.get("primary_position"), player.get("primary_position"))
+            position_candidates = [c for c in candidates if c.get("position") == position]
             team_candidates = [
                 candidate
                 for candidate in candidates
                 if _team_matches(player.get("nhl_team"), candidate.get("nhl_team"))
             ]
-            if len(team_candidates) == 1:
+            if len(position_candidates) == 1:
+                chosen = position_candidates[0]
+                method = "exact_normalized_name_and_position"
+                status = "matched"
+            elif len(team_candidates) == 1:
                 chosen = team_candidates[0]
                 method = "exact_normalized_name_and_team"
                 status = "matched"
@@ -403,6 +436,16 @@ def _validate(
     team_ids = [row["team_id"] for row in teams]
     roster_ids = [row["espn_player_id"] for row in rosters]
     available_ids = [row["espn_player_id"] for row in available]
+    overlap = set(roster_ids) & set(available_ids)
+    roster_by_id = {row["espn_player_id"]: row for row in rosters}
+    available_by_id = {row["espn_player_id"]: row for row in available}
+    explained = {
+        player_id for player_id in overlap
+        if roster_by_id[player_id].get("roster_entry_status") == "FUTURE_DROP"
+        and roster_by_id[player_id].get("pool_status") == "WAIVERS"
+        and roster_by_id[player_id].get("pool_on_team_id") == 0
+        and available_by_id[player_id].get("availability_status") == "WAIVERS"
+    }
 
     checks = {
         "team_count_positive": len(teams) > 0,
@@ -413,12 +456,14 @@ def _validate(
             value not in (None, "") for value in available_ids
         ),
         "available_player_ids_unique": len(available_ids) == len(set(available_ids)),
-        "rostered_and_available_disjoint": not (set(roster_ids) & set(available_ids)),
+        "roster_available_overlap_explained": overlap == explained,
     }
 
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
-        raise RuntimeError("ESPN snapshot validation failed: " + ", ".join(failed))
+        overlap = sorted(set(roster_ids) & set(available_ids))
+        raise RuntimeError("ESPN snapshot validation failed: " + ", ".join(failed)
+                           + (f"; overlapping ESPN player IDs: {overlap}" if overlap else ""))
     return checks
 
 
@@ -437,6 +482,8 @@ def create_espn_snapshot(
 
     teams = _team_rows(league)
     rosters = _roster_rows(league)
+    for team in teams:
+        team["roster_count"] = sum(row["fantasy_team_id"] == team["team_id"] for row in rosters)
     available = _available_rows(league, available_limit)
     matchups, categories = _matchup_rows(league)
     validations = _validate(teams, rosters, available)
@@ -487,6 +534,9 @@ def create_espn_snapshot(
             "injured",
             "acquisition_type",
             "availability_status",
+            "roster_entry_status",
+            "pool_status",
+            "pool_on_team_id",
         ],
     )
     outputs["available_players.csv"] = _write_csv(
@@ -585,6 +635,8 @@ def create_espn_snapshot(
         "current_matchup_period": getattr(league, "currentMatchupPeriod", None),
         "team_count": len(teams),
         "rostered_player_count": len(rosters),
+        "pending_drop_overlap_ids": sorted({row["espn_player_id"] for row in rosters}
+                                            & {row["espn_player_id"] for row in available}),
         "available_player_count": len(available),
         "available_player_limit": available_limit,
         "available_limit_reached": len(available) >= available_limit,

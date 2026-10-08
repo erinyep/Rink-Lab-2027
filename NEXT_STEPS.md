@@ -13,6 +13,51 @@ The central research question is:
 
 ---
 
+## Per-game forecast baseline — 2026-10-06
+
+Implemented the first ELWAY-inspired rate comparison; see
+[methodology and commands](docs/PER_GAME_FORECAST.md) and
+[results](outputs/per_game_forecast/README.md). This supersedes older statements
+below that no historical forecast or ESPN snapshot exists. It does not mark the
+full opportunity/goalie/replacement pipeline complete.
+
+- Refreshed official NHL summary, TOI, realtime and separate goalie reports for
+  2021–22 through 2026–27. The current season contains 617 reported skaters and
+  53 goalies; one current goalie source-count identity exception remains flagged.
+- Validated all six skater seasons, retaining every player. Frozen split:
+  development 2023–24, selection 2024–25, held-out evaluation 2025–26.
+- Compared last-completed-season rates, recency-weighted history, and a visible
+  minutes × event-rate model with shooting-conversion shrinkage. Validation
+  narrowly selected the weighted baseline; preserve the process model as a
+  candidate rather than choosing it after inspecting test results.
+- Held-out evaluation includes 820 returning skaters. The selected model's
+  goals/assists MAE is approximately 5% lower than the last-season baseline;
+  shots MAE is effectively unchanged. These are season-average per-game errors,
+  not evidence of individual-game accuracy, calibrated intervals, or causal skill.
+- Refreshed ESPN: six teams, 134 scoring-roster entries, 1,566 available entries.
+  All 117 rostered skaters receive conditional forecasts; 17 goalies remain
+  unmodeled. Preserve the documented pending-drop roster/waiver overlap.
+- Added current-season updates and rookie shrinkage fallbacks, both provisional
+  until evaluated at game cutoffs. Exported upcoming skater/game conditional means
+  and the seven-day schedule-only reference. Participation probabilities and
+  unconditional game expectations remain unknown.
+
+### Next implementation tasks, in order
+
+1. [ ] Acquire game-level skater events/TOI and historical roster eligibility with
+   source coverage checks. Distinguish missed appearances from missing coverage;
+   today's ESPN roster cannot reconstruct historical eligibility.
+2. [ ] Implement and evaluate the existing
+   [participation and rolling-TOI specification](docs/EXPECTED_OPPORTUNITY.md),
+   using non-overlapping chronological train/validation/test game windows.
+3. [ ] Evaluate the current-season updating rule and no-history fallback at those
+   cutoffs, then multiply calibrated appearance probability by conditional event
+   means. Add opponent/role effects only against this baseline.
+4. [ ] Resolve goalie count exceptions and verify ESPN ATOI/category aggregation,
+   then fit separate goalie-start and goalie-rate baselines.
+5. [ ] Add uncertainty, feasible replacement and matchup decisions only after the
+   preceding gates; retain all roster/identity/data limitations in exports.
+
 ## Minnesota defense-pair ad hoc analysis — 2026-09-29
 
 Completed a descriptive 2025–26 regular-season study: how often did each Wild
