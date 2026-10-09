@@ -267,3 +267,38 @@ are Monte Carlo estimates. Mean, modal guess, provisional p10/p90 and empty
 actual/error/exact-match fields are exported for each team/model/category.
 This is an unconfirmed lineup scenario; a fitted lineup/participation/team model
 and chronological validation remain separate research work in NEXT_STEPS.md.
+
+## Separate goalie baseline and opponent candidate
+
+`scripts/build_goalie_game_forecasts.py --simulation <frozen_pregame_run>`
+uses the existing official rosters/schedule plus latest saved goalie seasons
+2023–24 through current observations and verified current-season team boxscores.
+It blocks issuance after first puck drop. It excludes flagged count-identity
+player-seasons from event-rate fitting, preserves them in an audit, shrinks
+save probability toward valid past league history and SA/60 toward league
+exposure. Rates do not establish intrinsic shot-stopping talent.
+
+Start shares use current-team observed starts plus one per roster goalie. The
+opponent trial blends ten-game-shrunken own team shots allowed and opponent shots
+for. Saves/GA/SA are coherent conditional 60-minute simulations; team-win support
+is an unvalidated proxy, not calibrated goalie decision probability. No confirmed
+starter feed, pull/relief/OT model or shot-quality adjustment is present. GAA and
+SV% fantasy aggregation must use total GA/TOI and SV/SA, never summed ratios.
+See [the October 9 goalie readout](../outputs/per_game_forecast/october_9_goalie_readout.md).
+
+## Late opponent SOG and injury-status trial
+
+`build_opponent_skater_trial.py --simulation <run> --espn-snapshot <fresh_snapshot>`
+freezes a separate conditional SOG model before puck drop. Twenty-game-shrunken
+current team SF and opponent SA relative to league SF enter as a geometric-mean
+factor on the original player SOG baseline. This is an unvalidated trial; it lacks
+historical team priors, schedule adjustment and role changes. Other means remain
+unchanged. A new lineup audit uses fresh injury labels rather than rewriting
+original frozen selections. Team scenario estimates are not unconditional means.
+
+`build_goalie_game_forecasts.py --injury-context <pregame_injury_context.csv>`
+uses those same fresh labels. A shared normalized status rule excludes OUT/IR/
+SUSPENSION from start shares and trial skater selection. DTD/UNKNOWN remain
+uncertain, not confirmed active. All-blocked goalie sets retain unknown shares.
+Conditional production means remain available even for excluded players; changing
+their means to zero would confuse inability to appear with production if playing.

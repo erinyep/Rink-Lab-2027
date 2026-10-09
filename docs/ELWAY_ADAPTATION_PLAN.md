@@ -4,7 +4,16 @@ Status: **implementation roadmap**
 Target season: **2026-27**  
 Prepared: **2026-10-03**
 
-Implementation update: **2026-10-06**. The read-only ESPN pipeline and initial
+Implementation update: **2026-10-09**. A separate provisional goalie history
+baseline, start-share heuristic and opponent-shot-volume trial now exist; see
+[goalie implementation and limits](../outputs/per_game_forecast/october_9_goalie_readout.md).
+Count-exception rows are retained but excluded from goalie rate fitting; their
+source discrepancies remain unresolved. Neither goalie model is validated.
+The NHL opponent matters through attacking shot generation, the defending
+team's shot suppression and goalie shot stopping; this is distinct from opposing
+fantasy rosters. Skater opponent adjustments remain unimplemented.
+
+Earlier update: **2026-10-06**. The read-only ESPN pipeline and initial
 per-game rate comparison now exist. See [the methodology](PER_GAME_FORECAST.md)
 and [results](../outputs/per_game_forecast/README.md). The roadmap below remains
 the implementation sequence; current game availability and goalie forecasts
@@ -540,7 +549,7 @@ was selected on validation, not on whichever model won the test season.
 ## Milestone 4 — Complete league categories and goalies
 
 - [ ] Resolve goalie validation exceptions.
-- [ ] Add goalie projection baseline.
+- [x] Add separate provisional goalie projection baseline (2026-10-09); chronological validation remains outstanding.
 - [ ] Add HIT, PIM, PPP, +/-, and ATOI handling.
 - [ ] Verify exact ESPN ATOI aggregation and category directions.
 

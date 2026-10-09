@@ -1,5 +1,9 @@
 # October 9 simulations and exact model status
 
+Later pregame addition: [separate goalie forecasts and opponent-context trial](october_9_goalie_readout.md).
+The skater simulation run documented below remains frozen; its goalie exclusions
+describe that original run, not the separately added goalie artifacts.
+
 Simulation artifact created at **2026-10-09T19:51:20.131895+00:00**, before first puck drop. All **4** October 9 regular-season games are verified against the official schedule. 178 official-roster skater/game entries receive draws for both models; 1 entries without model history remain explicitly listed.
 
 ## October 8: what the default actually did

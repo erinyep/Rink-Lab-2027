@@ -1,6 +1,46 @@
 # Per-game forecast status — October 9, 2026
 
+## Start here: consolidated October 9 files
+
+Use one folder: `data/processed/forecasts/october_9_review/`.
+
+- [Player projections and simulation summaries](../../data/processed/forecasts/october_9_review/simulation_summary.csv)
+- [Team projections, whole-number guesses and actuals](../../data/processed/forecasts/october_9_review/team_projected_vs_actual.csv)
+- [Goalie projections and simulations](../../data/processed/forecasts/october_9_review/goalie_projected_vs_actual.csv)
+- [Game/team coverage](../../data/processed/forecasts/october_9_review/game_team_coverage.csv)
+- [Reading guide](../../data/processed/forecasts/october_9_review/README.md)
+
+Player primary forecast: `model_projection_if_plays`. Team primary forecast:
+`projection_mean`; integer guess: `whole_number_guess`. Filter team rows to
+`lineup_version=refreshed_injury_trial` for the latest scenario and compare
+models within that version. Actuals remain blank until final results.
+
+Default, calibrated and opponent-SOG player models are together. Goalies remain
+in a separate table because their rates and start assumptions differ. Latest
+injury labels are explicit; original issue labels and source runs are preserved.
+This consolidated view derives aggregates from frozen pregame inputs and does
+not claim every newly assembled team row was issued as a pregame forecast.
+
+<details>
+<summary>Individual readouts and archived source-run links</summary>
+
 Current milestone: [October 9 simulations, model status and next work](october_9_simulation_readout.md).
+
+Late pregame additions, frozen around 6:55 PM EDT:
+[opponent/team-form SOG trial](../../data/processed/forecasts/opponent_sog_trial_2026-10-09_20261009T225456Z/player_sog_forecasts.csv),
+[refreshed-injury team SOG scenario](../../data/processed/forecasts/opponent_sog_trial_2026-10-09_20261009T225456Z/team_sog_scenario.csv),
+and [revised goalie forecasts](../../data/processed/forecasts/goalies_2026-10-09_20261009T225533Z/goalie_game_forecasts.csv).
+ESPN injury labels refreshed at 6:53:52 PM EDT. Goalies with saved OUT/IR/
+SUSPENSION labels now receive zero trial start shares. Individual conditional
+means are retained; these are not unconditional appearance-adjusted projections.
+See NEXT_STEPS.md for the exact trial formula, chronology and remaining limits.
+
+Added before puck drop: [October 9 goalie baseline and opponent-context trial](october_9_goalie_readout.md).
+All 18 official-roster goalies across four games have provisional full-60-minute
+start forecasts and simulations. Start shares are uncalibrated, starters are
+unconfirmed, and flagged source-count rows are excluded from rate fitting.
+The NHL-opponent shot-volume adjustment is a separate goalie candidate; frozen
+skater predictions remain unchanged.
 
 October 9 trial: [team means, whole-number guesses and eventual actuals](../../data/processed/forecasts/team_trial_2026-10-09_20261009T201330Z/team_projected_vs_actual.csv),
 [probabilities for each exact total](../../data/processed/forecasts/team_trial_2026-10-09_20261009T201330Z/team_exact_total_probabilities.csv),
@@ -11,7 +51,7 @@ modeling is deferred explicitly in NEXT_STEPS.md. Actual fields remain blank
 until final results; team goals must exclude shootout deciding goals.
 
 - Default: recency-weighted history (decay 0.5), provisional current-season updates
-  and a labeled rookie fallback. No appearance probabilities or goalie forecasts.
+  and a labeled rookie fallback. No calibrated appearance probabilities.
 - Experimental candidate: shots ×0.92588 and assists ×0.96229, fitted only on
   October 6–7 with shrinkage toward no correction; October 8 evaluated without
   refitting. Modest MAE improvements do not justify default promotion.
@@ -22,12 +62,14 @@ until final results; team goals must exclude shootout deciding goals.
   rows; all 642 skaters reconcile across ten cumulative categories. PPP and ESPN
   ratio denominators are validated. Source goalie exceptions remain flagged.
 - Outstanding: prior-season game/roster eligibility history, chronological
-  participation and rolling-TOI evaluation, calibrated distributions and goalie
-  models. PIM, plus/minus and continuous TOI are not simulated.
+  participation and rolling-TOI evaluation, calibrated distributions and validation
+  of the new goalie models. PIM, plus/minus and continuous skater TOI are not simulated.
 
 Latest follow-up: [October 8 projected versus actual and refreshed data](october_8_readout.md).
 Earlier follow-up: [October 6–7 game readout and October 8 refreshed forecasts](october_6_7_readout.md).
 Model follow-up: [October 6–7 diagnosis and experimental changes](october_6_7_model_recommendations.md).
+</details>
+
 ## Archived initial results — October 6, 2026
 
 The original snapshot and season-level results below are preserved as history.

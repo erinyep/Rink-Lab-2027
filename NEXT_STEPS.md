@@ -13,6 +13,78 @@ The central research question is:
 
 ---
 
+## Consolidated October 9 reading view — 2026-10-09
+
+Primary reader-facing folder: `data/processed/forecasts/october_9_review/`.
+Four tables: `simulation_summary.csv`, `team_projected_vs_actual.csv`,
+`goalie_projected_vs_actual.csv`, and `game_team_coverage.csv`, with README and
+provenance manifest. All models share one player table; goalie simulations and
+rate projections share one goalie table. Latest injury labels are explicit,
+without overwriting original issue labels or frozen source runs.
+
+Team rows distinguish original and refreshed-injury lineup scenarios. Added
+refreshed-lineup aggregates derive from frozen pregame means and lineup rules;
+their consolidation time is not a new pregame issue time. Compare models within
+the same lineup version. Actual fields remain blank until evaluation. Regenerate
+with `scripts/consolidate_october_9.py`; it blocks overwriting populated actuals.
+Use this consolidated view for the next postgame comparison rather than editing
+the many frozen source folders. All prior research gates remain outstanding.
+
+## Late October 9 pregame opponent SOG trial and injury correction — 2026-10-09
+
+Frozen around 6:55 PM EDT before first puck drop. Refreshed ESPN status completed
+at 22:53:52 UTC. Added a separate SOG trial for all four games, 178 modeled official
+roster skaters, and a refreshed 18-skater team scenario for every team:
+`data/processed/forecasts/opponent_sog_trial_2026-10-09_20261009T225456Z/`.
+Formula: baseline SOG × sqrt(shrunken own SF/league SF × shrunken opponent
+SA/league SF), with 20 league-average pseudo-games for each team rate. Adjustment
+range: −1.75% to +1.86%. Fixed unvalidated assumptions, no prior-season team
+priors or schedule-strength correction. Own-team form can double-count historical
+player context; test incremental value. Other player means remain unchanged.
+
+Injury audit: individual conditional-if-plays means correctly retain unavailable
+players, but they are not unconditional forecasts. Team scenarios block saved
+OUT/IR/SUSPENSION statuses. Previously goalie start shares did not block these
+labels; fixed with a shared normalized status rule and renormalization. Fresh
+IR labels set Hellebuyck and Korpisalo start shares to zero. If every candidate
+is blocked, shares remain unknown rather than inventing a starter. DTD/UNKNOWN
+and ACTIVE are not confirmed dressed lineups; roster-membership and participation
+models remain incomplete. Original frozen artifacts are preserved.
+
+Revised goalie artifact:
+`data/processed/forecasts/goalies_2026-10-09_20261009T225533Z/`.
+Twenty-one Python tests pass, including injury exclusion and all-blocked unknowns.
+For evaluation use the explicitly versioned late trials alongside the original
+models; do not silently substitute a new lineup while attributing all error changes
+to the rate adjustment. Next: confirmed starter/lineup vintages, sparse-history
+shrinkage, prior-season attack/defense priors and schedule-adjusted chronological
+validation. No calibrated participation probabilities or injury recovery model.
+
+## Added October 9 pregame goalie baseline — 2026-10-09
+
+See the [goalie readout](outputs/per_game_forecast/october_9_goalie_readout.md).
+New artifact: `data/processed/forecasts/goalies_2026-10-09_20261009T224516Z/`.
+All four games/eight teams/18 official-roster goalies have separate historical
+and opponent-context full-60-minute forecasts, SA/SV/GA simulations, provisional
+start shares and team-win support proxies. All ESPN-rostered goalie rates are
+exported even for teams not scheduled tonight. Fixed initial priors: 200 shots,
+600 goalie minutes, ten team-context games and one start pseudo-count per goalie.
+
+Excluded inconsistent player-season goalie rows from event-rate fitting, retained
+all source values in an audit, and used valid completed-season league priors for
+missing history. This is an explicit provisional alternative to source repair,
+not resolution of the goalie data exceptions. Starts are used as separate role
+observations. Twenty Python tests pass, including save-count identities and
+exception exclusion. Original skater and team-scenario artifacts remain frozen.
+
+Next: evaluate goalie SA/SV/GA conditional errors and start-share Brier scores
+after tonight's final games; separate relief/partial starts from the full-60
+scenario. Acquire confirmed starter vintages and prior-season role coverage,
+validate prior strength and team/opponent effects chronologically, resolve count
+exceptions and implement goalie decision/OT/pull logic. Start shares and win
+proxies are uncalibrated. Historical save percentage is not opponent-adjusted
+shot-quality talent. Add skater opponent effects as a separate future candidate.
+
 ## Current resume point: October 9 pregame simulations — 2026-10-09
 
 Completed the [October 9 simulation/status readout](outputs/per_game_forecast/october_9_simulation_readout.md),
@@ -85,8 +157,9 @@ and official player-summed hits, with lineup error separated from rate error.
 4. [ ] Fit a negative-binomial alternative using training/validation only, then
    assess held-out probabilities/interval coverage. Add joint category/team
    dependence only after marginal distributions pass checks.
-5. [ ] Resolve goalie count exceptions and minimum-start rules, evaluate separate
-   start/rate forecasts, then feasible replacement and lineup decisions.
+5. [ ] Resolve goalie count exceptions and minimum-start rules, chronologically
+   validate the new provisional goalie start/rate and opponent-context baselines,
+   then feasible replacement and lineup decisions.
 
 These are unresolved research gates, not completed merely by producing draws.
 

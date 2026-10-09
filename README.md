@@ -16,6 +16,10 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
+For October 9, start with the [consolidated results guide](data/processed/forecasts/october_9_review/README.md)
+or [forecast status](outputs/per_game_forecast/README.md). The derived reading
+folder groups players, team totals and goalies while preserving frozen source runs.
+
 The conditional per-game skater baseline, frozen game comparisons, and seeded
 integer simulations are implemented. The live default remains recency-weighted
 history; the pooled shot/assist calibration remains experimental. All 65 completed
@@ -23,6 +27,8 @@ current-season games through October 8 are archived and reconciled with season
 reports. See the
 [forecast guide](docs/PER_GAME_FORECAST.md),
 [current status and readouts](outputs/per_game_forecast/README.md), and
-[next tasks](NEXT_STEPS.md). Participation, goalie starts, and fantasy lineup
-optimization remain later milestones. Simulation ranges are provisional, not
+[next tasks](NEXT_STEPS.md). Separate provisional goalie rates/start shares and
+an opponent-shot-volume trial now exist; confirmed starters, chronological goalie
+validation, participation and fantasy lineup optimization remain later milestones.
+Simulation ranges are provisional, not
 calibrated predictive intervals; the October 9 readout records every covered game.

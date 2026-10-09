@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 from src.fantasy.per_game import require
 from src.fantasy.simulation import simulate_counts
+from src.fantasy.availability import excluded_by_status
 
 
 def select_lineup(players):
@@ -21,11 +22,11 @@ def select_lineup(players):
 Do not infer actual scratches from this heuristic. Retain all selection reasons.
     """
     result=players.copy()
-    blocked={'OUT','INJURY_RESERVE','SUSPENSION','IR'}
-    result['eligible_for_trial']=~result.injury_status.fillna('UNKNOWN').isin(blocked) & result.has_forecast
+    blocked=result.injury_status.map(excluded_by_status)
+    result['eligible_for_trial']=~blocked & result.has_forecast
     result['selected_for_trial']=False
     result['selection_reason']=np.where(result.has_forecast,'outside_trial_lineup','missing_model_history')
-    result.loc[result.injury_status.isin(blocked),'selection_reason']='excluded_by_saved_injury_label'
+    result.loc[blocked,'selection_reason']='excluded_by_saved_injury_label'
     for position,slots in [('F',12),('D',6)]:
         candidates=result[result.eligible_for_trial & (result.position_group==position)]
         ordered=candidates.sort_values(['played_last_team_game','toi_minutes_per_game','player_id'],ascending=[False,False,True])
