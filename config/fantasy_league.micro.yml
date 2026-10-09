@@ -98,10 +98,16 @@ source:
   printed_at: 2026-09-28 09:51 (timezone not printed)
   league_id: 745879168
   espn_season_id: 2027
+observed_ratio_checks:
+  snapshot: espn_2027_20261009T192520Z
+  teams_checked: 6
+  average_time_on_ice: total_skater_toi_seconds / skater_games_played
+  goals_against_average: goals_against * 3600 / goalie_toi_seconds
+  save_percentage: saves / shots_against
+  scope: Empirical identities passed for this snapshot; historical lineup eligibility remains unavailable.
 unresolved:
 - Draft position not supplied; randomized at 19:30 EDT.
 - Minimum goalie starts not shown; do not assume zero.
-- ATOI roster aggregation and denominator need verification.
 - UTIL allowed positions and player eligibility need verification.
 - Category directions and ratio handling not explicitly printed.
 - Exact playoff dates not shown.

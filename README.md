@@ -16,9 +16,13 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
-The first conditional per-game skater baseline is implemented, with refreshed
-NHL/ESPN snapshots and a chronological season-level evaluation. See the
+The conditional per-game skater baseline, frozen game comparisons, and seeded
+integer simulations are implemented. The live default remains recency-weighted
+history; the pooled shot/assist calibration remains experimental. All 65 completed
+current-season games through October 8 are archived and reconciled with season
+reports. See the
 [forecast guide](docs/PER_GAME_FORECAST.md),
-[initial results](outputs/per_game_forecast/README.md), and
+[current status and readouts](outputs/per_game_forecast/README.md), and
 [next tasks](NEXT_STEPS.md). Participation, goalie starts, and fantasy lineup
-optimization remain later milestones.
+optimization remain later milestones. Simulation ranges are provisional, not
+calibrated predictive intervals; the October 9 readout records every covered game.

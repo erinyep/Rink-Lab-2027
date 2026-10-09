@@ -177,6 +177,7 @@ Each run writes `data/processed/forecasts/per_game_<season>_<UTC timestamp>/`:
 | `process_components_provisional.csv` | Inspectable ELWAY-inspired shrinkage candidate |
 | `espn_player_forecasts.csv` | All roster/available records with identity and forecast status |
 | `scheduled_skater_game_forecasts.csv` | Conditional skater/game means with unknown participation |
+| `today_skater_game_forecasts.csv` | Scheduled rows for the build date in America/New_York |
 | `seven_day_schedule_reference.csv` | Optimistic schedule-only totals, no lineup constraints |
 | `validation_model_selection.csv` | All candidate scores on validation only |
 | `evaluation_metrics.csv` | Development, validation, test metrics and strata |
@@ -194,3 +195,60 @@ build the documented participation and rolling-TOI baseline, evaluate current
 updates at chronological game cutoffs, then connect event rates to participation.
 Goalies, calibrated uncertainty, strength-specific roles, replacement value, and
 lineup optimization retain their later milestones in the ELWAY plan.
+
+## Frozen October 6–7 game diagnostic
+
+See the [October 8 readout](../outputs/per_game_forecast/october_6_7_readout.md)
+for exact reproduction commands and refreshed forecast links.
+`scripts/evaluate_recent_games.py` acquires official final boxscores, preserves
+raw payloads and hashes, validates identities/scoring, flags team-shot exceptions,
+and joins the frozen scheduled forecasts. `--raw-snapshot` supports offline reuse
+without overwriting source payloads. Metrics exclude absent players and blank
+forecasts because the model estimates production conditional on playing.
+Artifact creation must precede puck drop; schedule cutoff alone is insufficient.
+This diagnostic does not choose new settings or establish availability accuracy.
+
+## October 8 comparison and current game history
+
+See [October 8 results](../outputs/per_game_forecast/october_8_readout.md).
+`evaluate_recent_games.py --no-readout` exports generic date-specific diagnostics.
+ESPN aliases with identical forecasts are retained in an audit and deduplicated
+by NHL player/game for evaluation. Conflicting alias forecasts block evaluation.
+`compare_october_8_models.py` verifies the frozen candidate hashes, joins the
+original October 8 forecasts and actuals on identical appearances, adds
+last-season/process comparators from the original pregame panel, and audits
+current ESPN ratio denominators. It never refits the calibration factors.
+
+`acquire_current_game_history.py --through 2026-10-09 --reuse <snapshots>`
+validates complete schedule date coverage and acquires every final regular-season
+boxscore. `complete_fantasy_game_stats.py --boxscore-snapshots <snapshot>` acquires
+official scoring summaries and reconciles scoring before deriving PP assists and
+PPP. It preserves separate goalie start/win/SA/SV/GA/TOI rows and count exceptions.
+`audit_current_game_history.py --fantasy-games <directory> --forecast <directory>`
+reconciles aggregated games with current season observations without repairing
+source discrepancies. Prior-season game history and historical roster eligibility
+remain missing. Raw data and generated exports remain Git-ignored.
+
+## Integer conditional simulations
+
+`scripts/simulate_game_date.py --date 2026-10-09 --forecast <run>` verifies
+every regular-season game on the requested NHL schedule date and acquires all
+eight teams' official current rosters. It blocks a claimed complete pregame run
+if any game has started, is postponed or lacks normal schedule status. A second
+cutoff check ensures the run finishes before first puck drop. Skaters lacking
+model history are retained in a coverage export rather than dropped.
+
+The simulator draws 10,000 outcomes per modeled player/game for both the default
+and frozen calibration candidate, using seed 20261009 and stable player/game keys.
+SOG is Poisson; goals are binomial conditional on SOG; assists and hits are Poisson;
+points=G+A; PPP is binomial conditional on points. This preserves basic count
+identities but does not fit team dependence, roles, overdispersion or correlated
+fantasy categories. Poisson NLL, at-least-one Brier scores and residual diagnostics
+on October 8 are reported without fitting new dispersion parameters.
+
+Mean projections remain decimals. The summary exports integer simulation
+quantiles, marginal at-least-one probabilities conditional on playing and a
+100-draw sample export. Quantiles are provisional distribution summaries, not
+calibrated predictive intervals. Participation remains unknown; goalie outcomes,
+PIM, plus/minus and continuous TOI are outside this simulation. The manifest
+records inputs, hashes, cutoffs, seed, draw count and model assumptions.

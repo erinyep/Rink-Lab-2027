@@ -9,6 +9,7 @@ import itertools
 import json
 from pathlib import Path
 import sys
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -153,6 +154,10 @@ def main():
     schedule = {"status": "no_schedule_snapshot"}
     if schedules and (out / "espn_player_forecasts.csv").exists():
         schedule = export_schedule_reference(out / "espn_player_forecasts.csv", schedules[-1], out)
+        scheduled = pd.read_csv(out / "scheduled_skater_game_forecasts.csv")
+        local_dates = pd.to_datetime(scheduled.start_time_utc, utc=True).dt.tz_convert("America/New_York").dt.date
+        today = datetime.now(ZoneInfo("America/New_York")).date()
+        scheduled[local_dates == today].to_csv(out / "today_skater_game_forecasts.csv", index=False)
     manifest = dict(created_at_utc=datetime.now(timezone.utc).isoformat(), config=config,
                     selected_on_validation=chosen, best_process=best_process,
                     source_snapshots=sources, espn=espn, schedule=schedule, evaluation_population=coverage,

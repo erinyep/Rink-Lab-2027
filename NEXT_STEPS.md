@@ -13,6 +13,139 @@ The central research question is:
 
 ---
 
+## Current resume point: October 9 pregame simulations — 2026-10-09
+
+Completed the [October 9 simulation/status readout](outputs/per_game_forecast/october_9_simulation_readout.md),
+which also explains default October 8 performance, the candidate and improvement
+priorities. All four games (SEA–DET, NYR–WSH, PIT–CBJ, ANA–WPG) and all eight
+official roster lists are verified. Simulated 178 of 179 roster skater/game
+entries; one lacks history and is explicitly retained. Official roster inclusion
+does not establish that a player dresses. No GP or TOI threshold was applied.
+
+- Refreshed NHL season reports and schedule around 3:45 PM EDT; refreshed ESPN
+  completed before final forecast/simulation creation around 3:51 PM EDT. Exact
+  UTC retrieval/build times are in manifests and the readout. Data remain 642
+  observed skaters and 60 appeared goalies; 134 fantasy roster entries and 1,570
+  available entries. Cumulative game/season reconciliation passed again.
+- Default and frozen candidate receive 10,000 seeded conditional simulations
+  per player/game. SOG/assists/hits are Poisson; goals are binomial conditional
+  on shots, points=G+A, PPP is binomial conditional on points. Preserved
+  conditional means, injury labels, count identities and missing model coverage.
+- Stored summary quantiles/probabilities and 100 whole-number example draws per
+  player/model. These are provisional, not calibrated predictive intervals.
+  PIM, +/−, TOI, participation and goalie outcomes are not simulated.
+- Scored fixed Poisson assumptions on all 351 October 8 appearances. One each
+  of assists/SOG/HIT had positive actuals with zero forecast means, yielding
+  infinite full NLL. Failures are reported, not excluded. Positive-mean residual
+  diagnostics suggest checking extra variance but cannot select dispersion here.
+- Latest frozen run:
+  `data/processed/forecasts/simulation_2026-10-09_20261009T195119Z/`.
+  Forecast inputs: `data/processed/forecasts/per_game_20262027_20261009T195052Z/`.
+  Raw roster/schedule context:
+  `data/raw/nhl/snapshots/simulation_context_20261009T194825Z/`.
+- Seventeen Python tests and existing R pagination/population tests passed;
+  simulation count identities, expected means, reproducibility and impossible
+  outcome diagnostics are tested. Source/output hashes are recorded.
+
+### Active next tasks (older dated entries below are historical)
+
+1. [ ] Evaluate the frozen October 9 run only after all four games are final,
+   comparing identical appearances, probabilities, log scores and interval
+   coverage. Preserve unavailable/absent rows and game/date clustering.
+2. [ ] Add and chronologically validate position-prior shrinkage for sparse and
+   zero-count histories as a separate candidate; the current multiplicative
+   correction cannot fix zero-mean support failures. Do not refit on October 8
+   and still call it untouched.
+3. [ ] Acquire prior-season game logs and historical roster eligibility. Current
+   season logs are complete, but participation and rolling TOI are not fitted.
+   Establish non-overlapping game train/validation/test windows before tuning
+   current-season updates, TOI response and rookie priors.
+4. [ ] Fit a negative-binomial alternative using training/validation only, then
+   assess held-out probabilities/interval coverage. Add joint category/team
+   dependence only after marginal distributions pass checks.
+5. [ ] Resolve goalie count exceptions and minimum-start rules, evaluate separate
+   start/rate forecasts, then feasible replacement and lineup decisions.
+
+These are unresolved research gates, not completed merely by producing draws.
+
+## October 8 evaluation and full current-season game archive — 2026-10-09
+
+Completed the [October 8 readout](outputs/per_game_forecast/october_8_readout.md)
+without refitting the October 6–7 calibration candidate. Ten games, 351 matched
+appearances and 68 scoring-roster appearances. Baseline/candidate SOG MAE:
+1.1092/1.0908; assists MAE: 0.4185/0.4141. Candidate totals undershot both
+categories and assist bias worsened. Keep weighted history as the live default;
+one-night gains do not establish stable superiority.
+
+- Refreshed NHL season reports, schedule and ESPN around 3:25 PM EDT. Current
+  observations: 642 skaters, 60 appeared goalies (one source-count exception),
+  134 scoring-roster entries, 1,570 available entries; 116 skaters forecasted,
+  18 goalies remain unmodeled.
+- Acquired all 65 final current-season regular-season boxscores through October
+  8 (four October 9 games still pending). Stored 2,340 skater/game rows and 260
+  goalie/game rows, including unused backups. Official scoring summaries fill
+  PP assists and PPP; skater G/A and PP goals reconcile with boxscores.
+- All 642 cumulative skater IDs match latest season reports across GP, G, A,
+  points, SOG, HIT, PIM, +/−, PPP and TOI. Preserved one game-level goalie
+  SA=SV+GA exception and undefined zero-TOI backup ratios.
+- All 18 ESPN snapshot ratio checks passed: ATOI=TTOI seconds/GP,
+  GAA=GA×3600/goalie TOI seconds, SV%=SV/SA. This settles the observed snapshot
+  arithmetic, not historical eligibility or unknown minimum goalie starts.
+- Detected duplicate ESPN identities for Legault and Agozzino. Retained alias
+  rows in audits, checked forecast agreement, and counted each NHL player/game
+  once during evaluation. No October 8 skater team-shot exceptions.
+
+Next: acquire prior-season game and roster-eligibility history, define chronological
+train/validation/test windows, evaluate rolling TOI and participation, and assess
+calibration over more dates. October 8 is now observed evaluation data; do not
+retune using it and still label it untouched. Frozen factors remain unchanged.
+
+## October 6–7 model diagnosis and experimental calibration — 2026-10-09
+
+Completed the [diagnosis and recommendations](outputs/per_game_forecast/october_6_7_model_recommendations.md)
+before reading October 8 outcomes. Shot overprediction decomposed into 10.45
+shots associated with TOI error and 30.45 remaining rate residual. Fantasy
+roster TOI was slightly low, so a blanket ice-time reduction is unsupported.
+
+Added a separate, unvalidated pooled SOG/assist calibration candidate with
+200 pseudo expected events anchored at ratio 1: SOG ×0.92588, assists ×0.96229.
+Goals remain unchanged; points are recomputed. Preserved baseline columns,
+unknown participation, and injury review flags. Settings and calibration dates
+are frozen in `config/game_calibration_candidate.json`. October 8 candidate
+forecasts are a retrospective reconstruction from saved pregame features,
+not a forecast issued before the games. Live baseline remains unchanged.
+
+Next: evaluate unchanged baseline and frozen candidate on identical October 8
+appearances before further tuning. Extend chronological evaluation and eligibility
+coverage before promotion; do not interpret six games as 213 independent trials.
+
+## October 6–7 game review and refreshed forecasts — 2026-10-08
+
+Completed the first frozen game-level diagnostic; see the
+[readout](outputs/per_game_forecast/october_6_7_readout.md). Acquired all 12
+regular-season final boxscores (432 skater/game rows). Only six games had saved
+pregame scheduled forecasts: the October 6 artifact was created after six games
+had started. Never reconstruct those earlier predictions with refreshed totals.
+
+- Evaluated 213 appearances: predicted/actual G 38.84/37, A 66.03/56,
+  SOG 351.91/311. This is a small conditional-production diagnostic, not tuning
+  evidence or proof of game-level calibration. Retained absent and unresolved rows.
+- Flagged Florida's October 6 sum of skater SOG (29) versus team SOG (30);
+  preserved source counts and reported the exception. Cause remains unresolved.
+- Refreshed current-season NHL summary/TOI/realtime and separate goalie reports,
+  schedule and ESPN at approximately 4:30 PM EDT. Skater validation passed:
+  630 skaters; 56 goalies with one count exception. ESPN: 134 scoring-roster
+  entries, 116 forecasted skaters and 18 unmodeled goalies; 1,568 available entries.
+- Rebuilt unchanged baseline and exported October 8 forecasts for ten games,
+  with conditional means and preserved injury labels. Exact snapshots, coverage,
+  and rerun commands are in the readout. Generated data remain Git-ignored.
+- Existing 11 Python tests and R pagination/population checks passed; the
+  review also ran successfully offline from preserved boxscores.
+
+Next: extend frozen chronological game-level comparisons; investigate predicted
+versus observed TOI and SOG/minute before adjusting shot rates. The participation,
+rolling-TOI and chronological update-validation tasks below remain outstanding.
+
 ## Per-game forecast baseline — 2026-10-06
 
 Implemented the first ELWAY-inspired rate comparison; see

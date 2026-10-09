@@ -1,4 +1,28 @@
-s# Initial per-game forecast results — October 6, 2026
+# Per-game forecast status — October 9, 2026
+
+Current milestone: [October 9 simulations, model status and next work](october_9_simulation_readout.md).
+
+- Default: recency-weighted history (decay 0.5), provisional current-season updates
+  and a labeled rookie fallback. No appearance probabilities or goalie forecasts.
+- Experimental candidate: shots ×0.92588 and assists ×0.96229, fitted only on
+  October 6–7 with shrinkage toward no correction; October 8 evaluated without
+  refitting. Modest MAE improvements do not justify default promotion.
+- Simulations: seeded whole-number conditional draws for SOG, G, A, points, HIT
+  and PPP for all October 9 games. Goals≤shots, points=G+A, PPP≤points. Official
+  rosters are not confirmed dressed lineups; injury labels remain visible.
+- Data: all 65 final games through October 8, 2,340 skater/game and 260 goalie/game
+  rows; all 642 skaters reconcile across ten cumulative categories. PPP and ESPN
+  ratio denominators are validated. Source goalie exceptions remain flagged.
+- Outstanding: prior-season game/roster eligibility history, chronological
+  participation and rolling-TOI evaluation, calibrated distributions and goalie
+  models. PIM, plus/minus and continuous TOI are not simulated.
+
+Latest follow-up: [October 8 projected versus actual and refreshed data](october_8_readout.md).
+Earlier follow-up: [October 6–7 game readout and October 8 refreshed forecasts](october_6_7_readout.md).
+Model follow-up: [October 6–7 diagnosis and experimental changes](october_6_7_model_recommendations.md).
+## Archived initial results — October 6, 2026
+
+The original snapshot and season-level results below are preserved as history.
 
 The first baseline is implemented and evaluated. **Recency-weighted historical
 rates are the default**, selected on 2024–25 validation. The more structured

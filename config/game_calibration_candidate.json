@@ -1,0 +1,40 @@
+{
+  "version": "pooled_calibration_v1_experimental",
+  "calibration_dates": [
+    "2026-10-06",
+    "2026-10-07"
+  ],
+  "factors": {
+    "shots": {
+      "multiplier": 0.9258805675244984,
+      "predicted_events": 351.9070363105759,
+      "observed_events": 311.0,
+      "player_games": 213,
+      "prior_expected_events": 200
+    },
+    "assists": {
+      "multiplier": 0.9622877492662557,
+      "predicted_events": 66.03269156777684,
+      "observed_events": 56.0,
+      "player_games": 213,
+      "prior_expected_events": 200
+    }
+  },
+  "prior_rationale": "Fixed conservative 200 pseudo expected events anchored at ratio 1; not tuned.",
+  "untouched_categories": [
+    "goals",
+    "hits",
+    "penalty_minutes",
+    "pp_points",
+    "plus_minus",
+    "toi_minutes"
+  ],
+  "evaluation_date": "2026-10-08",
+  "status": "frozen_before_inspecting_october_8_results",
+  "limitations": [
+    "Six games share team/game context; 213 appearances are not independent games.",
+    "Corrections fit on October 6\u20137 are not out-of-sample improvements.",
+    "October 8 candidate is reconstructed retrospectively from saved pregame features, not issued pregame.",
+    "Multipliers calibrate marginal means; no coherent joint goals/shots distribution is fitted."
+  ]
+}
