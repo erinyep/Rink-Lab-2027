@@ -252,3 +252,18 @@ quantiles, marginal at-least-one probabilities conditional on playing and a
 calibrated predictive intervals. Participation remains unknown; goalie outcomes,
 PIM, plus/minus and continuous TOI are outside this simulation. The manifest
 records inputs, hashes, cutoffs, seed, draw count and model assumptions.
+
+## Provisional team-total trial
+
+`scripts/build_team_total_trial.py --simulation <run> --game-stats <skater_game_stats.csv>`
+adds a separate pregame team scenario. It assumes 12F/6D, prioritizing eligible
+last-game appearances and filling by predicted baseline TOI, with saved OUT/IR/
+SUSPENSION exclusions. It verifies prior-game dates and blocks creation after
+first puck drop. It preserves all lineup selections/exclusions in an audit.
+The sums use 10,000 coherent within-player draws, independently across players.
+The whole-number guess is the analytical Poisson marginal mode (lower mode on
+ties), not stochastic rounding or a histogram maximum. Exact-total probabilities
+are Monte Carlo estimates. Mean, modal guess, provisional p10/p90 and empty
+actual/error/exact-match fields are exported for each team/model/category.
+This is an unconfirmed lineup scenario; a fitted lineup/participation/team model
+and chronological validation remain separate research work in NEXT_STEPS.md.

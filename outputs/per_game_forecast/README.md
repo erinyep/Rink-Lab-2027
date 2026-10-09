@@ -2,6 +2,14 @@
 
 Current milestone: [October 9 simulations, model status and next work](october_9_simulation_readout.md).
 
+October 9 trial: [team means, whole-number guesses and eventual actuals](../../data/processed/forecasts/team_trial_2026-10-09_20261009T201330Z/team_projected_vs_actual.csv),
+[probabilities for each exact total](../../data/processed/forecasts/team_trial_2026-10-09_20261009T201330Z/team_exact_total_probabilities.csv),
+and [assumed lineup audit](../../data/processed/forecasts/team_trial_2026-10-09_20261009T201330Z/trial_lineup_audit.csv).
+This assumes an unconfirmed 12F/6D lineup for each team, using last-game
+appearances and predicted TOI with injury exclusions. Full participation/team
+modeling is deferred explicitly in NEXT_STEPS.md. Actual fields remain blank
+until final results; team goals must exclude shootout deciding goals.
+
 - Default: recency-weighted history (decay 0.5), provisional current-season updates
   and a labeled rookie fallback. No appearance probabilities or goalie forecasts.
 - Experimental candidate: shots ×0.92588 and assists ×0.96229, fitted only on

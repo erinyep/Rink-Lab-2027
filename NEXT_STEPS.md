@@ -49,6 +49,28 @@ does not establish that a player dresses. No GP or TOI threshold was applied.
 
 ### Active next tasks (older dated entries below are historical)
 
+October 9 team-total trial added before puck drop:
+`data/processed/forecasts/team_trial_2026-10-09_20261009T201330Z/`.
+All eight teams/four games have default and candidate totals for G/A/SOG/HIT/
+points/PPP, decimal means, an analytical modal whole-number guess, simulated
+exact-total probabilities and provisional ranges. Actual/error/exact-match fields
+remain blank until final games. The scenario assumes 12F/6D: eligible last-game
+appearances first, then predicted baseline TOI; saved OUT/IR/SUSPENSION labels
+excluded, DTD/UNKNOWN retained. Every roster player and selection reason is
+retained in a lineup audit. This is an unconfirmed lineup scenario, not a valid
+unconditional team forecast. It does not replace the frozen individual run.
+
+Implementation: `scripts/build_team_total_trial.py`; 18 Python tests pass.
+Team goals exclude shootout deciding goals and goalie scoring contributions.
+No cross-player dependence or team goal/assist accounting constraint is fitted.
+
+Full team implementation remains a separate next step: acquire timestamped
+announced/projected lineups and scratches; model correlated participation, allow
+11F/7D as well as 12F/6D, cover no-history players, incorporate role/opponent
+context and team/player scoring dependence. Validate means, exact-count
+probabilities and intervals chronologically. Compare non-shootout team goals
+and official player-summed hits, with lineup error separated from rate error.
+
 1. [ ] Evaluate the frozen October 9 run only after all four games are final,
    comparing identical appearances, probabilities, log scores and interval
    coverage. Preserve unavailable/absent rows and game/date clustering.
