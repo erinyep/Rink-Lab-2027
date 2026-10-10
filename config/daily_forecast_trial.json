@@ -1,0 +1,12 @@
+{
+  "version": "daily_usage_context_v1",
+  "models": ["default", "candidate", "opponent_form_sog_trial", "calibrated_opponent_sog_trial", "usage_shot_context_trial"],
+  "draws": 10000,
+  "recent_window_games": 5,
+  "toi_prior_games": 10,
+  "rate_prior_minutes": 200,
+  "team_prior_games": 20,
+  "status": "fixed_experimental_assumptions_not_tuned_on_october_9",
+  "new_model_scope": "SOG and conditional TOI only; other means follow candidate",
+  "promotion": "none_pending_chronological_validation"
+}

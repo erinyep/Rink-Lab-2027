@@ -16,6 +16,11 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
+October 10: [today's projections and reading guide](outputs/per_game_forecast/README.md).
+Five skater models and two goalie scenarios cover all 14 games, with 11 issued
+before puck drop and three explicitly labeled late. Stats are cut off before
+October 10; availability is timestamped at retrieval.
+
 For October 9, start with the [consolidated results guide](data/processed/forecasts/october_9_review/README.md)
 or [forecast status](outputs/per_game_forecast/README.md). The derived reading
 folder groups players, team totals and goalies while preserving frozen source runs.

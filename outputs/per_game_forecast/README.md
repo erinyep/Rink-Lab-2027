@@ -1,4 +1,27 @@
-# Per-game forecast status — October 9, 2026
+# Per-game forecast status — October 10, 2026
+
+## Tonight: October 10 projections
+
+[Readout and team shot comparison](2026-10-10_pregame_readout.md)
+
+- [Player projections — one row per player/model](../../data/processed/forecasts/daily_2026-10-10_20261010T203436Z/player_projections.csv)
+- [Team projections — shots for/against and other categories](../../data/processed/forecasts/daily_2026-10-10_20261010T203436Z/team_projections.csv)
+- [Goalie projections](../../data/processed/forecasts/daily_2026-10-10_20261010T203436Z/goalie_projections.csv)
+- [Reading guide](../../data/processed/forecasts/daily_2026-10-10_20261010T203436Z/README.md)
+
+Filter `issue_timing=pregame` for tonight's eleven games that had not started at
+issuance, then choose `model`. Player means are conditional on playing; inspect
+injury and assumed-lineup labels. Three earlier games are retained as late rows.
+All five skater models are present; default remains the baseline. Montreal's
+team scenario contains one unidentified defense replacement using a position prior.
+
+## October 9 results
+
+[October 9 results and expected-shot readout](october_9_results_readout.md):
+all four games evaluated. Consolidated files now contain actuals and errors,
+plus MoneyPuck postgame xOnGoal and xGoals for/against in the team table.
+Fourth model `calibrated_opponent_sog_trial` is now included as a retrospective
+experiment. See [feature/source priorities](../../docs/SHOT_FORECAST_FEATURES.md).
 
 ## Start here: consolidated October 9 files
 
@@ -13,7 +36,8 @@ Use one folder: `data/processed/forecasts/october_9_review/`.
 Player primary forecast: `model_projection_if_plays`. Team primary forecast:
 `projection_mean`; integer guess: `whole_number_guess`. Filter team rows to
 `lineup_version=refreshed_injury_trial` for the latest scenario and compare
-models within that version. Actuals remain blank until final results.
+models within that version. Actuals are populated for final October 9 results;
+players without positive TOI retain missing conditional outcomes.
 
 Default, calibrated and opponent-SOG player models are together. Goalies remain
 in a separate table because their rates and start assumptions differ. Latest

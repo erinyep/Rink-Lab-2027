@@ -13,6 +13,93 @@ The central research question is:
 
 ---
 
+## October 10 daily release — 2026-10-10
+
+Primary readout: `outputs/per_game_forecast/2026-10-10_pregame_readout.md`.
+Reader bundle: `data/processed/forecasts/daily_2026-10-10_20261010T203436Z/`.
+Use the wide `player_projections.csv`, `team_projections.csv`, and
+`goalie_projections.csv`; detailed simulations/audits remain in the same folder.
+
+Refreshed NHL season reports, schedule, rosters, ESPN league availability,
+69-game history through October 9, complete fantasy scoring/goalie details,
+2,484 game-level strength-specific TOI rows, and ESPN season projection benchmark.
+Current season reports include October 10 activity, so model current rates are
+rebuilt from games strictly before October 10. Fourteen games are retained;
+three already-started games are explicitly late, eleven are pregame.
+
+Five skater models issued: default, candidate, opponent_form_sog_trial,
+calibrated_opponent_sog_trial, and usage_shot_context_trial. The fifth uses
+last-five-game TOI/rate with fixed completed-history priors and team context
+combining prior-season SOG and lagged 5v5 xOnGoal. No settings were optimized on
+October 9. Nine NHL/MoneyPuck shot-disputed games are quarantined from current
+chance updates. Original opponent/hybrid formulas remain separate comparisons.
+
+Roster candidates now include prior-game players absent from the current roster,
+with explicit review labels; missing player history receives completed-season
+position priors. Montreal and Philadelphia team scenarios each require one
+unidentified defense replacement; production is included transparently without
+an invented NHL ID. Player and team coverage remains visible. Sparse count
+constraints PPP<=G+A and goals<=shots are applied with before/after audit fields.
+
+Goalie pipeline now uses supplied cutoff-safe game history for current rates,
+separate completed-season priors, injury exclusions, and per-game issue timing.
+Full-60 projections remain conditional; starts/duration/pulls are not calibrated.
+
+Next: score the eleven prospective games on matching populations; test PP/EV
+deployment and rest features, which are currently contextual columns. Validate
+calibration, usage, raw opponent and xOnGoal effects separately over later games.
+Current EDGE aggregates are excluded because a prior-date cutoff is unavailable.
+Confirmed lineups/starters, calibrated participation and goalie-duration models
+remain research tasks. No baseline promotion. Thirty-eight Python tests pass.
+
+## Combined calibration/opponent trial — 2026-10-10
+
+Added `calibrated_opponent_sog_trial` to the consolidated player/team tables
+with `scripts/build_hybrid_trial.py`. Candidate shot and assist calibration is
+retained; SOG also receives the frozen opponent/form factor. Goals and other
+means remain candidate values. This fourth model was created after observing
+October 9: retrospective exploratory results, never an issued pregame forecast.
+Shot MAE on 143 common appearances: candidate 1.048, hybrid 1.050, default
+1.058, opponent 1.059. Team MAE on identical refreshed lineup scenarios:
+hybrid 7.816, candidate 7.823, opponent 8.862, default 8.870. No promotion.
+
+Missing context receives a flagged neutral factor; a missing player SOG mean
+requires a documented pregame prior. Jake O’Brien now has a SOG-only prior from
+the frozen process model's past-position prior. Other categories/participation
+remain unknown. Actual CBJ skater Damon Severson was absent from the saved
+official roster context; repair roster acquisition/coverage prospectively,
+without inserting postgame participants into a claimed pregame lineup.
+Valid zero-rate estimates are preserved; sparse-history shrinkage remains a
+separate validation question. Source shot-count disagreements remain flags.
+
+Feature/source priorities: `docs/SHOT_FORECAST_FEATURES.md`. Next validation
+should isolate calibration, opponent context, TOI/participation and strength
+state features through chronological ablations with game-cluster uncertainty.
+
+## October 9 evaluation and expected-shot acquisition — 2026-10-10
+
+Completed all four final games with NHL boxscores and scoring summaries. Filled
+the four consolidated tables; preserved frozen forecasts and a pre-evaluation
+archive. Read `outputs/per_game_forecast/october_9_results_readout.md`.
+143/144 positive-TOI skaters have simulation forecasts. Candidate shot MAE was
+1.048 versus default 1.058; opponent trial 1.059. Keep default until a larger
+chronological comparison supports promotion. Team lineup overlap is 139/144;
+address lineups, TOI and rookie fallback before increasing opponent strength.
+
+Acquired MoneyPuck's published team game history and October 9 xOnGoalFor,
+xOnGoalAgainst, xGoalsFor and xGoalsAgainst. These describe observed chances,
+not pregame predictions. Source shot counts differ from NHL for CBJ (45/47)
+and WPG (16/17); discrepancies are retained and official NHL team SOG is scored.
+Player shot outcomes use individual skater stats, which need not sum to the
+official team totals. New script: `scripts/evaluate_october_9.py`.
+
+Next: build cutoff-safe lagged MoneyPuck features by strength state with
+prior-season shrinkage. Compare raw SOG, unblocked attempts, xOnGoal and xGoals
+in chronological held-out windows. Reconcile source gaps before interpreting
+chance rates. Improve goalie starter probabilities, duration/pull assumptions
+and team/goalie shot reconciliation; evaluate starter and relief roles separately.
+Do not feed October 9 postgame chance measures into October 9 predictions.
+
 ## Consolidated October 9 reading view — 2026-10-09
 
 Primary reader-facing folder: `data/processed/forecasts/october_9_review/`.

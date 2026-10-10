@@ -16,7 +16,7 @@ from src.fantasy.simulation import simulate_counts
 from src.fantasy.availability import excluded_by_status
 
 
-def select_lineup(players):
+def select_lineup(players, require_full_lineup=True):
     """Trial 12F/6D scenario: last appearance first, then baseline predicted TOI.
 
 Do not infer actual scratches from this heuristic. Retain all selection reasons.
@@ -31,7 +31,8 @@ Do not infer actual scratches from this heuristic. Retain all selection reasons.
         candidates=result[result.eligible_for_trial & (result.position_group==position)]
         ordered=candidates.sort_values(['played_last_team_game','toi_minutes_per_game','player_id'],ascending=[False,False,True])
         selected=ordered.head(slots)
-        require(len(selected)==slots,f'Insufficient {position} coverage for an 18-skater scenario')
+        if require_full_lineup:
+            require(len(selected)==slots,f'Insufficient {position} coverage for an 18-skater scenario')
         result.loc[selected.index,'selected_for_trial']=True
         result.loc[selected.index,'selection_reason']=np.where(selected.played_last_team_game,
             'last_game_appearance_in_trial','replacement_by_predicted_toi')
