@@ -16,6 +16,11 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
+October 12: [latest model results and adjustments](outputs/per_game_forecast/recent_results_2026-10-12.md).
+The 11-game prospective comparison favors candidate overall, while default
+performs better on fantasy-rostered players. All recent completed games and
+forecast timing limitations are documented.
+
 October 10: [today's projections and reading guide](outputs/per_game_forecast/README.md).
 Five skater models and two goalie scenarios cover all 14 games, with 11 issued
 before puck drop and three explicitly labeled late. Stats are cut off before

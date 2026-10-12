@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--raw-snapshot', type=Path, help='Resume/read an existing acquisition without overwriting source files')
     parser.add_argument('--current-forecast', type=Path, help='Include refreshed forecasts in the Markdown readout')
     parser.add_argument('--no-readout', action='store_true', help='Export generic game diagnostics without the October 6–7 report')
+    parser.add_argument('--completed-only', action='store_true', help='Skip scheduled/live games, recording them in acquisition metadata')
     args = parser.parse_args()
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     raw = args.raw_snapshot or Path('data/raw/nhl/snapshots') / f'game_review_{stamp}'
@@ -45,6 +46,10 @@ def main():
     schedule = fetch('schedule/' + min(args.dates), 'schedule.json')
     games = [g for d in schedule['gameWeek'] if d['date'] in args.dates for g in d['games']
              if g['gameType'] == 2]
+    unfinished = [g['id'] for g in games if g['gameState'] not in ['OFF','FINAL']]
+    if args.completed_only:
+        games = [g for g in games if g['gameState'] in ['OFF','FINAL']]
+    require(games, 'No games available for evaluation')
     require(set(args.dates) <= {d['date'] for d in schedule['gameWeek']}, 'Incomplete date coverage')
     observed, coverage = [], []
     for game in games:
@@ -79,7 +84,8 @@ def main():
             matchup=box['awayTeam']['abbrev'] + ' @ ' + box['homeTeam']['abbrev'],
             score=f"{box['awayTeam']['score']}-{box['homeTeam']['score']}", actual_skater_rows=len(game_rows)))
     if not (raw / 'metadata.json').exists():
-        (raw / 'metadata.json').write_text(json.dumps(dict(sources=sources, dates=args.dates), indent=2) + '\n')
+        (raw / 'metadata.json').write_text(json.dumps(dict(sources=sources, dates=args.dates,
+            completed_only=args.completed_only, unfinished_game_ids=unfinished), indent=2) + '\n')
     out = Path('data/processed/forecasts') / f'game_review_{stamp}'
     out.mkdir(parents=True, exist_ok=False)
     actual = pd.DataFrame(observed)

@@ -1,6 +1,21 @@
-# Per-game forecast status — October 10, 2026
+# Per-game forecast status — October 12, 2026
 
-## Tonight: October 10 projections
+## Latest results: before October 12 evening games
+
+[Full recent-results readout](recent_results_2026-10-12.md)
+
+Eighteen completed games reviewed: October 10–11 and today's Florida–Buffalo
+matinee. The five-model prospective comparison is 11 October 10 games; late
+projections and older saved default forecasts are reported separately.
+Candidate improved all-skater/team SOG error, while default was better on the
+78 fantasy-rostered appearances. Keep default for fantasy decisions while
+testing role-sensitive calibration. The full readout covers other categories,
+goalies, ownership groups, uncertainty, and recommended adjustments.
+
+Next scheduled games: Ottawa–New Jersey at 7 PM Eastern and Vegas–Minnesota
+at 8 PM Eastern. This evaluation does not issue new October 12 forecasts.
+
+## Archived October 10 projections
 
 [Readout and team shot comparison](2026-10-10_pregame_readout.md)
 
@@ -9,7 +24,7 @@
 - [Goalie projections](../../data/processed/forecasts/daily_2026-10-10_20261010T203436Z/goalie_projections.csv)
 - [Reading guide](../../data/processed/forecasts/daily_2026-10-10_20261010T203436Z/README.md)
 
-Filter `issue_timing=pregame` for tonight's eleven games that had not started at
+Filter `issue_timing=pregame` for the eleven October 10 games that had not started at
 issuance, then choose `model`. Player means are conditional on playing; inspect
 injury and assumed-lineup labels. Three earlier games are retained as late rows.
 All five skater models are present; default remains the baseline. Montreal's

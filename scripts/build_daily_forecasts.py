@@ -144,7 +144,7 @@ def main():
                 usage=recent_shot_usage(hist,pid,a.date,float(pr.shots_per_game) if pr is not None else prior.loc[group,'shots'],float(pr.toi_minutes_per_game) if pr is not None and pr.toi_minutes_per_game>0 else prior.loc[group,'toi_minutes'],window=cfg['recent_window_games'],toi_prior_games=cfg['toi_prior_games'],rate_prior_minutes=cfg['rate_prior_minutes'])
                 identity=dict(game_id=gid,date=a.date,team=team,opponent=opp,start_time_utc=start,**p,injury_status=status,
                     fantasy_team_name=espn.loc[pid].get('fantasy_team_name',np.nan) if pid in espn.index else np.nan,
-                    fallback='none' if known else 'past_position_prior',participation_probability=np.nan)
+                    fallback=str(rates.loc[pid,'fallback']) if known else 'past_position_prior',participation_probability=np.nan)
                 rest=(pd.Timestamp(a.date)-pd.Timestamp(last.game_date.iloc[0])).days if len(last) else np.nan
                 recent_toi=toi[toi.player_id==pid].sort_values(['game_date','game_id']).tail(cfg['recent_window_games'])
                 pp=float(recent_toi.pp_toi_seconds.mean()/60) if len(recent_toi) else np.nan

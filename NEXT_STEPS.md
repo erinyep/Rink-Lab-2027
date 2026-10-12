@@ -13,6 +13,43 @@ The central research question is:
 
 ---
 
+## Recent-results review before October 12 evening games — 2026-10-12
+
+Read `outputs/per_game_forecast/recent_results_2026-10-12.md`. Retrieved all
+86 completed regular-season games through October 11 plus the final October 12
+Florida–Buffalo game in a separate recent-game snapshot. All 18 newly completed
+games October 10–12 have an older saved default forecast; October 11 lacks a
+newly issued multi-model/goalie run. Evaluate that baseline with its October 9
+issue date, not as reconstructed new-model performance.
+
+Primary five-model comparison: October 10's eleven pregame games, 396/396 skater
+appearances, 22 teams and 22 starters. SOG MAE: default 1.0662, candidate 1.0514,
+opponent 1.0664, combined 1.0516, usage 1.0543. Team SOG MAE: 3.751, 3.455,
+3.763, 3.531 and 3.523 respectively. Candidate improves 9/11 games; usage 5/11.
+Game-cluster bootstrap accompanies the readout; separate late-game metrics.
+
+Important subgroup reversal: on 78 saved fantasy-rostered appearances, default
+shot MAE is 1.376 versus candidate 1.411; default predicted 199.11/216 actual
+shots, candidate 184.35/216. Do not strengthen blanket SOG calibration or
+promote candidate for fantasy decisions based on pooled league performance.
+Test pregame shot-rate, TOI/PP-role and position calibration strata using future
+holdouts, not fantasy ownership as a hockey mechanism. Usage TOI MAE improves
+2.266 to 2.115 minutes; isolate TOI/rate/context effects in future experiments.
+Goalie opponent trial has mixed results: starter saves MAE 3.932 versus 4.027,
+but slightly worse SA and GA. No broad goalie-model promotion.
+
+Reusable `scripts/evaluate_daily_forecasts.py` writes separate evaluated
+artifacts and preserves frozen forecasts. `scripts/write_recent_model_readout.py`
+reproduces the readout. Older evaluator supports `--completed-only` and records
+unfinished game IDs. A display-only rookie fallback-label bug was corrected for
+future daily runs; the frozen underlying rates already used position shrinkage.
+
+Before the next release: refresh availability/starter information, retain default
+and candidate comparison, and improve lineup assumptions. Only 377/395 named
+skaters in the pregame lineup scenarios appeared, although player forecasting
+coverage was complete. October 12 predictions have not been newly issued by
+this evaluation task; first remaining game starts 7 PM Eastern.
+
 ## October 10 daily release — 2026-10-10
 
 Primary readout: `outputs/per_game_forecast/2026-10-10_pregame_readout.md`.
