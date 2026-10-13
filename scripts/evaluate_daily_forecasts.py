@@ -260,22 +260,67 @@ def coverage_table(source, wide, skaters, goalies):
         modeled_ids = set(candidates.player_id)
         selected_ids = set(candidates[candidates.selected_for_trial.eq(True)].player_id)
         actual_ids = set(actual.player_id)
-        gs = goalies[(goalies.game_id == gid) & (goalies.team == team)]
+        gs = goalies[(goalies.game_id == gid) & (goalies.team == team)] if not goalies.empty else None
         row.update(actual_skaters=len(actual_ids), actual_skaters_with_forecast=len(actual_ids & modeled_ids),
                    actual_skaters_without_forecast=len(actual_ids - modeled_ids),
                    missing_actual_skater_ids=";".join(map(str, sorted(actual_ids - modeled_ids))),
                    selected_lineup_actual_overlap=len(actual_ids & selected_ids),
                    selected_identified_nonparticipants=len(selected_ids - actual_ids),
                    modeled_nonparticipants=len(modeled_ids - actual_ids),
-                   actual_goalie_appearances=gs[gs.actual_toi_seconds.gt(0)].player_id.nunique(),
-                   forecast_goalies_observed_in_boxscore=gs[gs.observed_in_boxscore].player_id.nunique(),
+                   goalie_forecast_status='issued' if gs is not None else 'not_issued',
+                   actual_goalie_appearances=gs[gs.actual_toi_seconds.gt(0)].player_id.nunique() if gs is not None else np.nan,
+                   forecast_goalies_observed_in_boxscore=gs[gs.observed_in_boxscore].player_id.nunique() if gs is not None else np.nan,
                    goalie_count_exceptions=gs[gs.actual_toi_seconds.gt(0) &
-                       ~gs.actual_count_identity_ok.eq(True)].player_id.nunique())
+                       ~gs.actual_count_identity_ok.eq(True)].player_id.nunique() if gs is not None else np.nan)
         rows.append(row)
     return pd.DataFrame(rows)
 
 
-def evaluate(bundle, actuals, boxscores, output_root):
+def reading_views(bundle, players, teams):
+    """Derive missing wide views from frozen means; never create new forecasts."""
+    if (bundle / 'player_projections.csv').exists():
+        wide = pd.read_csv(bundle / 'player_projections.csv')
+    else:
+        keys = ['game_id','player_id','model']
+        values = players.pivot(index=keys,columns='category',values='model_projection_if_plays').rename(
+            columns={c:'expected_'+c+'_if_plays' for c in CATEGORIES}).reset_index()
+        labels = [c for c in ['player_name','team','opponent','fantasy_team_name','injury_status','issue_timing','start_time_utc'] if c in players]
+        wide = players[keys+labels].drop_duplicates(keys).merge(values,on=keys,validate='one_to_one')
+        lineup = pd.read_csv(bundle/'inputs/lineup_audit.csv')
+        wide = wide.merge(lineup[['game_id','player_id','selected_for_trial','selection_reason']],
+                          on=['game_id','player_id'],validate='many_to_one')
+    if (bundle / 'team_projections.csv').exists():
+        twide = pd.read_csv(bundle / 'team_projections.csv')
+    else:
+        keys = ['game_id','team','model']
+        values = teams.pivot(index=keys,columns='category',values='projection_mean').add_prefix('expected_').reset_index()
+        labels = [c for c in ['opponent','issue_timing','start_time_utc','lineup_status','identified_skaters','unidentified_replacement_skaters'] if c in teams]
+        twide = teams[keys+labels].drop_duplicates(keys).merge(values,on=keys,validate='one_to_one')
+        shots = teams[teams.category.eq('shots')][keys+['opponent_projection_mean','whole_number_guess']].rename(
+            columns={'opponent_projection_mean':'expected_shots_against','whole_number_guess':'shots_whole_number_guess'})
+        twide = twide.merge(shots,on=keys,validate='one_to_one')
+    return wide,twide
+
+
+def load_goalie_source(bundle, external_source, audit):
+    if external_source is None:
+        p=bundle/'goalie_projections.csv'
+        return pd.read_csv(p) if p.exists() else None
+    external_source=Path(external_source)
+    gm=verify_manifest_files(external_source,audit)
+    for source in gm.get('sources',[]):
+        verify_hash(Path(source['file']),source['sha256'],audit)
+    forecasts=pd.read_csv(external_source/'goalie_game_forecasts.csv')
+    summary=pd.read_csv(external_source/'goalie_simulation_summary.csv')
+    keys=['game_id','player_id','model']
+    for category in ['shots_against','saves','goals_against']:
+        cols=['simulation_p10','simulation_median','simulation_p90']
+        piece=summary[summary.category.eq(category)][keys+cols].rename(columns={c:category+'_'+c for c in cols})
+        forecasts=forecasts.merge(piece,on=keys,validate='one_to_one')
+    return forecasts
+
+
+def evaluate(bundle, actuals, boxscores, output_root, goalie_source=None):
     bundle, actuals, boxscores, output_root = map(Path, [bundle, actuals, boxscores, output_root])
     manifest, hash_audit = verify_inputs(bundle, actuals, boxscores)
     frozen_hash = digest(bundle / "manifest.json")
@@ -300,8 +345,16 @@ def evaluate(bundle, actuals, boxscores, output_root):
     fantasy = players[players.fantasy_team_name.fillna("").astype(str).str.strip().ne("")]
     fantasy_metrics = summarize_errors(fantasy, "model_projection_if_plays")
     teams, tm = score_teams(pd.read_csv(bundle / "team_projected_vs_actual.csv"), sk, boxes)
-    goalies, gm, starts = score_goalies(pd.read_csv(bundle / "goalie_projections.csv"), gl)
-    wide = pd.read_csv(bundle / "player_projections.csv")
+    extra_audit=[]
+    goalie_forecasts=load_goalie_source(bundle,goalie_source,extra_audit)
+    if extra_audit:hash_audit=pd.concat([hash_audit,pd.DataFrame(extra_audit)],ignore_index=True).drop_duplicates()
+    goalie_issued = goalie_forecasts is not None
+    if goalie_issued:
+        require(set(goalie_forecasts.game_id)==ids,'Goalie source must cover exactly the bundle games')
+        goalies, gm, starts = score_goalies(goalie_forecasts, gl)
+    else:
+        goalies, gm, starts = pd.DataFrame(),pd.DataFrame(),pd.DataFrame()
+    wide,team_wide = reading_views(bundle,player_forecasts,teams)
     actual_wide = sk[sk.toi_seconds > 0][["game_id", "player_id"] + CATEGORIES].rename(
         columns={c: "actual_" + c for c in CATEGORIES})
     wide = wide.merge(actual_wide, on=["game_id", "player_id"], how="left", validate="many_to_one")
@@ -314,7 +367,6 @@ def evaluate(bundle, actuals, boxscores, output_root):
     game_timing = players[["game_id", "issue_timing"]].drop_duplicates()
     require(not game_timing.game_id.duplicated().any(), "Mixed skater timing within game")
     unmodeled = unmodeled.merge(game_timing, on="game_id", how="left", validate="many_to_one")
-    team_wide = pd.read_csv(bundle / "team_projections.csv")
     values = teams.pivot(index=["game_id", "team", "model"], columns="category", values="actual").add_prefix("actual_").reset_index()
     team_wide = team_wide.merge(values, on=["game_id", "team", "model"], validate="one_to_one")
     for category in sorted(teams.category.unique()):
@@ -328,8 +380,9 @@ def evaluate(bundle, actuals, boxscores, output_root):
     frames = dict(simulation_summary=players, player_projections=wide, player_metrics=pm,
                   fantasy_player_metrics=fantasy_metrics,
                   team_projected_vs_actual=teams, team_projections=team_wide, team_metrics=tm,
-                  goalie_projections=goalies, goalie_metrics=gm, goalie_starter_scores=starts,
                   game_team_coverage=coverage, unmodeled_actual_skaters=unmodeled, source_hash_audit=hash_audit)
+    if goalie_issued:
+        frames.update(goalie_projections=goalies,goalie_metrics=gm,goalie_starter_scores=starts)
     for name, frame in frames.items():
         frame.to_csv(out / (name + ".csv"), index=False)
     require(digest(bundle / "manifest.json") == frozen_hash, "Frozen bundle changed during evaluation")
@@ -339,6 +392,9 @@ def evaluate(bundle, actuals, boxscores, output_root):
         actuals=str(actuals), actuals_manifest_sha256=digest(actuals / "manifest.json"),
         boxscores=str(boxscores), boxscores_metadata_sha256=digest(boxscores / "metadata.json"),
         games=len(ids), game_issue_timing=game_timing.to_dict("records"),
+        goalie_forecast_status='issued_and_evaluated' if goalie_issued else 'not_issued_not_scored',
+        external_goalie_source=str(goalie_source) if goalie_source else None,
+        external_goalie_manifest_sha256=digest(Path(goalie_source)/'manifest.json') if goalie_source else None,
         source_hash_exceptions=hash_audit[hash_audit.status.ne("verified")].to_dict("records"),
         scoring_notes=["Pregame and late rows scored separately; no pooled headline metrics.",
             "Player means scored only against positive-TOI appearances; absent players retain missing outcomes.",
@@ -350,8 +406,9 @@ def evaluate(bundle, actuals, boxscores, output_root):
         files={p.name: digest(p) for p in out.glob("*.csv")},
         evaluation_code_sha256=digest(Path(__file__)))
     (out / "manifest.json").write_text(json.dumps(evaluated, indent=2) + "\n")
-    (out / "README.md").write_text(f"# {manifest['date']} forecast results\n\n"
-        "Start with player_projections.csv, team_projections.csv and goalie_projections.csv. "
+    (out / "README.md").write_text(f"# {manifest['date']} forecast results\n\n" +
+        ("Start with player_projections.csv, team_projections.csv and goalie_projections.csv. " if goalie_issued else
+         "Start with player_projections.csv and team_projections.csv. No goalie projections were issued for this bundle. ") +
         "Filter issue_timing=pregame for the prospective comparison; late_not_pregame is separate.\n\n"
         "Player/team metrics compare identical available observations across frozen models. "
         "Missing player actuals mean no positive-TOI appearance, not a scored zero. "
@@ -368,8 +425,9 @@ def main():
     parser.add_argument("--actuals", type=Path, required=True)
     parser.add_argument("--boxscores", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, default=Path("data/processed/forecasts"))
+    parser.add_argument('--goalie-source',type=Path,help='Separately issued goalie run, verified and evaluated without modifying the skater bundle')
     args = parser.parse_args()
-    out = evaluate(args.bundle, args.actuals, args.boxscores, args.output_root)
+    out = evaluate(args.bundle, args.actuals, args.boxscores, args.output_root,args.goalie_source)
     print("Evaluated bundle:", out)
     metrics = pd.read_csv(out / "player_metrics.csv")
     print(metrics[metrics.category.eq("shots")][["issue_timing", "model", "rows_scored", "mae", "bias"]].to_string(index=False))

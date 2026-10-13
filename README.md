@@ -16,6 +16,11 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
+October 13: [October 12 night results](outputs/per_game_forecast/2026-10-12_results_readout.md).
+Candidate led the two-game shot comparison; default still edges it over the
+combined fantasy-rostered sample. Frozen sources and evaluated reading views
+are linked in the report, including separately issued goalie forecasts.
+
 October 12: [latest model results and adjustments](outputs/per_game_forecast/recent_results_2026-10-12.md).
 The 11-game prospective comparison favors candidate overall, while default
 performs better on fantasy-rostered players. All recent completed games and

@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 from scripts.evaluate_daily_forecasts import (CATEGORIES, score_players, score_teams,
-    score_goalies, verify_hash, digest, validate_timing)
+    score_goalies, verify_hash, digest, validate_timing, reading_views, load_goalie_source)
 
 
 def timing(late=False):
@@ -23,6 +23,19 @@ def skater(pid, seconds, shots):
 
 
 class DailyEvaluationTests(unittest.TestCase):
+    def test_incomplete_bundle_reading_views_preserve_frozen_means(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'inputs').mkdir()
+            pd.DataFrame([dict(game_id=1,player_id=10,selected_for_trial=True,selection_reason='prior_game')]).to_csv(root/'inputs/lineup_audit.csv',index=False)
+            players=pd.DataFrame([dict(game_id=1,player_id=10,model='default',team='AAA',opponent='BBB',category=c,model_projection_if_plays=float(i),**timing()) for i,c in enumerate(CATEGORIES)])
+            teams=pd.DataFrame([dict(game_id=1,team='AAA',opponent='BBB',model='default',category='shots',projection_mean=30.,opponent_projection_mean=25.,whole_number_guess=29,**timing())])
+            wide,tw=reading_views(root,players,teams)
+            self.assertEqual(wide.expected_shots_if_plays.iloc[0],2.)
+            self.assertTrue(wide.selected_for_trial.iloc[0])
+            self.assertEqual(tw.expected_shots_against.iloc[0],25.)
+            self.assertIsNone(load_goalie_source(root,None,[]))
+            self.assertFalse((root/'player_projections.csv').exists())
+
     def test_absent_and_zero_toi_players_remain_unknown_and_timing_separate(self):
         forecasts = pd.DataFrame([dict(game_id=1, player_id=p, model="default", category="shots",
             model_projection_if_plays=2., actual=np.nan, whole_number_guess=2,

@@ -13,6 +13,163 @@ The central research question is:
 
 ---
 
+## Resume here: October 13 Frozen Frenzy projections
+
+**Paused before issuance at the owner's request. No October 13 projections or
+input refreshes were run as part of this handoff.** Confirm the official NHL
+October 13 schedule and earliest start when resuming; do not assume a game count
+or that every game starts in the evening. Use NHL game dates across midnight UTC.
+
+### Findings to carry forward
+
+- Read [October 12 results](outputs/per_game_forecast/2026-10-12_results_readout.md)
+  and [October 10/11 review](outputs/per_game_forecast/recent_results_2026-10-12.md).
+  October 12's prospective sample is only two games: candidate SOG MAE 1.006
+  versus default 1.055 per player, and 3.611 versus 5.805 per team. All models
+  missed the exact team SOG count in all four team observations.
+- Keep **default as baseline**, candidate as the leading all-player/team SOG
+  challenger, and all five existing skater models for comparison. On 96 combined
+  October 10/12 fantasy-player appearances, default still leads candidate
+  (SOG MAE 1.311 versus 1.325). Do not apply another blanket shot reduction or
+  increase opponent-factor strength based on these outcomes.
+- Usage improved October 12 TOI MAE from 2.278 to 2.066 minutes, but its shot
+  forecasts did not beat candidate. Later isolate TOI-only, rate-only and
+  context-only changes, plus position/PP-role calibration, on future holdouts.
+  Fantasy ownership is an evaluation subgroup, not a hockey skill feature.
+- Keep both goalie models. Opponent context improved saves MAE from 5.076 to
+  4.041 on four starters, but worsened GA error. Start shares are provisional;
+  full-60-minute forecasts do not model pulls/empty-net time. Evaluate goalie
+  outcomes separately from team totals.
+- The immediate problem is input freshness and lineup assumptions: October 12
+  injuries were about 50 hours old and MoneyPuck lacked recent games. All 72
+  evening skater appearances had forecasts, but assumed named lineups matched
+  only 70. Refresh inputs before drawing conclusions about stronger adjustments.
+  NHL fitting history ended October 11; no October 12 outcomes entered fitting.
+
+### Ordered checklist for the next session
+
+1. **Finish small release prerequisites first.** Extract the existing MoneyPuck
+   download logic in `scripts/evaluate_october_9.py` into a standalone acquisition
+   command; do not run the old evaluation merely to download data. Save a new
+   immutable snapshot with URL, retrieval timestamp and hash. Generalize
+   `scripts/finalize_daily_bundle.py`: its date, game counts, history counts and
+   Montreal/Philadelphia replacement text still describe October 10. Derive
+   them from the new manifest/coverage tables. Run the relevant tests after fixes.
+2. **Refresh availability and statistical inputs.** Run the commands below in
+   order, recording each printed output path. Refresh ESPN injuries/ownership
+   close to issuance and check lineup/starter information. Acquire every final
+   game through October 12, complete fantasy/goalie scoring details, and refresh
+   EV/PP/SH TOI and the ESPN projection benchmark. The history script supports
+   `--reuse`, but a full fetch also picks up source corrections. Never edit raw
+   snapshots manually or substitute current season totals containing target-day
+   results for cutoff-safe game history.
+3. **Refresh and validate MoneyPuck separately.** The official source already
+   used is `https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv`.
+   Inspect each team's latest eligible game, paired rows, missingness and NHL
+   shot-count disagreements; retain the existing quarantine/neutral-fallback
+   flags. A new download timestamp alone does not establish current coverage.
+   If publication lags, document the actual cutoff and affected teams. Do not
+   silently reuse `team_games_20261010T201108Z` as a fresh input.
+4. **Build and finalize together, before puck drop.** Use the existing frozen
+   model settings in `config/daily_forecast_trial.json` and the commands below.
+   Build all five skater models and both goalie models, then finalize the three
+   reader tables. Do not refit or promote a model while issuing this comparison.
+5. **Check the release.** Match every official scheduled game ID and both teams;
+   inspect missing players, fallback/replacement labels, injury exclusions and
+   provisional starter shares. Check duplicate IDs, missing means, all model
+   populations, goalie SA = saves + GA, and team SF = opponent SA. Confirm
+   statistical inputs are strictly before October 13, injury timestamps are
+   current, and every claimed pregame forecast was actually issued before that
+   game's start. Keep already-started games explicitly late. Record source
+   hashes, leave outcomes blank, and preserve the final issued bundle unchanged.
+6. **Publish the local handoff.** Link `player_projections.csv`,
+   `team_projections.csv`, `goalie_projections.csv` and the dated readout from
+   `outputs/per_game_forecast/README.md`; document any source lag. Keep generated
+   datasets local under the existing ignore rules. Update this checklist with
+   actual issuance time, paths and coverage once the run is complete.
+
+Commands for later, from repository root. Set the uppercase path variables to
+the outputs of the preceding steps; these are templates, not an unattended
+runner. `MONEYPUCK_SNAPSHOT` requires the standalone refresh step above.
+
+```sh
+rink-lab.venv/bin/python scripts/refresh_forecast_inputs.py --seasons 20262027
+rink-lab.venv/bin/python scripts/acquire_current_game_history.py --through 2026-10-12
+# Set BOXSCORE_HISTORY to the newly printed raw history directory.
+rink-lab.venv/bin/python scripts/complete_fantasy_game_stats.py \
+  --boxscore-snapshots "${BOXSCORE_HISTORY:?set refreshed raw history path}"
+# Set GAME_HISTORY to the newly printed enriched fantasy history directory.
+rink-lab.venv/bin/python scripts/acquire_game_toi.py --before 2026-10-13 \
+  --season 20262027 --boxscore-snapshot "$BOXSCORE_HISTORY"
+# Set GAME_TOI to the new player_game_toi.csv; ESPN_SNAPSHOT to fresh ESPN raw data.
+rink-lab.venv/bin/python scripts/export_espn_projection_benchmark.py \
+  --espn-snapshot "${ESPN_SNAPSHOT:?set refreshed ESPN path}" \
+  --out "${ESPN_BENCHMARK:?set a new processed benchmark CSV path}"
+
+rink-lab.venv/bin/python scripts/build_daily_forecasts.py --date 2026-10-13 \
+  --template-forecast data/processed/forecasts/per_game_20262027_20261009T195052Z \
+  --game-history "${GAME_HISTORY:?set enriched history path}" \
+  --boxscore-history "$BOXSCORE_HISTORY" \
+  --moneypuck-snapshot "${MONEYPUCK_SNAPSHOT:?set refreshed MoneyPuck path}" \
+  --game-toi "${GAME_TOI:?set refreshed TOI CSV path}" \
+  --espn-benchmark "$ESPN_BENCHMARK"
+# Set DAILY_BUNDLE to the newly printed daily_2026-10-13_* directory.
+rink-lab.venv/bin/python scripts/build_goalie_game_forecasts.py \
+  --simulation "${DAILY_BUNDLE:?set new daily bundle path}" \
+  --injury-context "$DAILY_BUNDLE/inputs/pregame_injury_context.csv" \
+  --game-history "$GAME_HISTORY" --boxscore-history "$BOXSCORE_HISTORY" \
+  --output-root "$DAILY_BUNDLE/inputs"
+# Set GOALIE_BUNDLE to that command's output; fix finalizer wording before use.
+rink-lab.venv/bin/python scripts/finalize_daily_bundle.py \
+  --bundle "$DAILY_BUNDLE" --goalies "${GOALIE_BUNDLE:?set new goalie bundle path}"
+```
+
+After games finish, acquire final boxscores/fantasy details and use
+`scripts/evaluate_daily_forecasts.py --bundle <issued-bundle> --actuals
+<enriched-actuals> --boxscores <raw-boxscores>` to create a separate evaluation.
+The evaluator now supports missing wide views and an explicit `--goalie-source`
+for separately issued goalies, without rewriting frozen forecasts. Generalize
+the October 12-specific narrative in `scripts/write_daily_evaluation_readout.py`
+before reusing it for a later date. Compare common positive-TOI appearances,
+fantasy subsets and goalie starters separately; report pregame-only headline
+errors, bias, count accuracy and interval coverage with game-level uncertainty.
+
+Resume prompt: **“Run the October 13 Frozen Frenzy checklist in NEXT_STEPS;
+refresh inputs, freeze all games before their starts, finalize all five skater
+and both goalie models, and link the player/team/goalie projections.”**
+
+## October 12 night evaluation — 2026-10-13
+
+Read `outputs/per_game_forecast/2026-10-12_results_readout.md`. Discovered and
+verified the subsequently issued skater run `daily_2026-10-12_20261012T225309Z`
+and separate goalie run `goalies_2026-10-12_20261012T225455Z`. Both preceded the
+two evening games. Florida–Buffalo was already final and remains a late-only
+diagnostic. This supersedes the earlier review's statement that no new October
+12 run had yet been issued.
+
+Primary sample: 72/72 skater appearances, four teams, four goalies. SOG MAE:
+default 1.0554, candidate 1.0061, opponent 1.0643, combined 1.0128, usage 1.0281.
+Team SOG MAE: 5.8045, 3.6113, 6.2190, 4.0605, 4.3153 respectively. Candidate
+also wins the 18 fantasy-rostered appearances (0.9547 vs default 1.0273), but
+default remains slightly better over the combined 96 October 10/12 fantasy
+appearances (1.3108 vs 1.3253). Continue comparison; no promotion from two games.
+Usage TOI MAE improves 2.278 to 2.066 minutes. Goalies: opponent saves MAE
+4.041 vs baseline 5.076, but GA error slightly worse. Four starts are too few
+to validate an across-the-board goalie change.
+
+Evaluation output: `data/processed/forecasts/daily_evaluation_2026-10-12_20261013T125524789050Z/`.
+Wide tables derived from frozen long tables because the original bundle was
+not finalized. Evaluator now accepts explicit `--goalie-source` and supports
+missing wide views or absent goalie forecasts without inventing projections.
+All recorded source hashes verified. Original forecasts remain immutable.
+
+Input problem: injuries were from October 10 (~50 hours old); MoneyPuck also
+lacked the more recent updates. Before another daily issuance, refresh these
+sources and enforce/document freshness, confirm available lineup/starter info,
+and finalize the skater/goalie bundle together. Statistical inputs themselves
+ended October 11 and contained no target-day outcomes. Named lineup overlap
+was 70/72. Readout generator: `scripts/write_daily_evaluation_readout.py`.
+
 ## Recent-results review before October 12 evening games — 2026-10-12
 
 Read `outputs/per_game_forecast/recent_results_2026-10-12.md`. Retrieved all

@@ -1,6 +1,25 @@
-# Per-game forecast status — October 12, 2026
+# Per-game forecast status — October 13, 2026
 
-## Latest results: before October 12 evening games
+October 13 projections are pending. The [Frozen Frenzy restart checklist](../../NEXT_STEPS.md#resume-here-october-13-frozen-frenzy-projections)
+records the findings, required input refreshes, release fixes and commands for
+the next session. No October 13 forecasts were run for this handoff.
+
+## Latest: October 12 night results
+
+[Full October 12 results](2026-10-12_results_readout.md)
+
+- [Player-by-player projected versus actual](../../data/processed/forecasts/daily_evaluation_2026-10-12_20261013T125524789050Z/player_projections.csv)
+- [Team projected versus actual](../../data/processed/forecasts/daily_evaluation_2026-10-12_20261013T125524789050Z/team_projections.csv)
+- [Goalie projected versus actual](../../data/processed/forecasts/daily_evaluation_2026-10-12_20261013T125524789050Z/goalie_projections.csv)
+
+Filter `issue_timing=pregame` for Ottawa–New Jersey and Vegas–Minnesota.
+Candidate led all-player, team and fantasy-player shot accuracy that night;
+default still has slightly lower combined October 10/12 fantasy-player error.
+Florida–Buffalo's late forecasts remain separate. All original frozen files
+are preserved. The run used roughly 50-hour-old injury labels, a priority to
+correct before the next issuance.
+
+## Earlier review: before October 12 evening games
 
 [Full recent-results readout](recent_results_2026-10-12.md)
 
@@ -12,8 +31,8 @@ Candidate improved all-skater/team SOG error, while default was better on the
 testing role-sensitive calibration. The full readout covers other categories,
 goalies, ownership groups, uncertainty, and recommended adjustments.
 
-Next scheduled games: Ottawa–New Jersey at 7 PM Eastern and Vegas–Minnesota
-at 8 PM Eastern. This evaluation does not issue new October 12 forecasts.
+That review preceded Ottawa–New Jersey and Vegas–Minnesota. Their later-issued
+forecasts and final evaluations are linked above.
 
 ## Archived October 10 projections
 
