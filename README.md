@@ -16,6 +16,19 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
+October 16: [Weekly model performance, player/team inputs and visuals](outputs/per_game_forecast/week_2026-10-12/README.md).
+Review covers 32 final October 12–15 games with explicit forecast coverage,
+all-category metrics, player/team SOG contribution tables and defense opportunity
+proxies. A single command now acquires actuals, re-evaluates issued models and
+publishes the review. See [next steps](NEXT_STEPS.md) for pregame automation and
+prospective feature-validation priorities.
+
+October 14: [October 13 results and model recommendations](outputs/per_game_forecast/2026-10-13_results_readout.md).
+All 16 games checked against October 9-issued default forecasts; 558/575 skater
+appearances covered. No October 13 challenger/goalie slate was issued. The
+readout separates this evaluation from the pooled October 10/12 five-model
+comparison and prioritizes daily issuance, roster coverage and role/usage tests.
+
 October 13: [October 12 night results](outputs/per_game_forecast/2026-10-12_results_readout.md).
 Candidate led the two-game shot comparison; default still edges it over the
 combined fantasy-rostered sample. Frozen sources and evaluated reading views

@@ -1,10 +1,48 @@
-# Per-game forecast status — October 13, 2026
+# Per-game forecast status — October 16, 2026
 
-October 13 projections are pending. The [Frozen Frenzy restart checklist](../../NEXT_STEPS.md#resume-here-october-13-frozen-frenzy-projections)
-records the findings, required input refreshes, release fixes and commands for
-the next session. No October 13 forecasts were run for this handoff.
+## Latest: weekly performance, inputs and visuals
 
-## Latest: October 12 night results
+[October 12–15 review, charts and next steps](week_2026-10-12/README.md)
+
+32 final games; 1,119/1,151 appearances covered by the older baseline. Only
+October 12 has prospective challenger forecasts this week. All five skater and
+both goalie models are scored where issued, with coverage gaps explicit.
+
+- [All-category model metrics](week_2026-10-12/model_metrics.csv)
+- [Player forecast contributions and realized error changes](week_2026-10-12/player_contributions.csv)
+- [Team contribution diagnostics](week_2026-10-12/team_contributions.csv)
+- [Team defense opportunity proxies](week_2026-10-12/defense_opportunity.csv)
+
+Largest SOG forecast movements: calibration, shot rate, matchup, then TOI.
+These are sequential effects, not independent predictive importance. Defense
+inputs are now saved by future daily runs as context pending validation.
+The weekly runner refreshes actuals, re-evaluates frozen models and publishes
+tables/charts; see [the roadmap](../../NEXT_STEPS.md) for its command.
+
+Newly retrieved October 13 shot corrections change covered actual SOG from
+862 to 863; the earlier readout below preserves its original source snapshot.
+
+## Latest: October 13 results
+
+[Full October 13 review and recommendations](2026-10-13_results_readout.md)
+
+All 16 games reviewed against default forecasts issued October 9. The planned
+October 13 daily run was not issued, so there are no new challenger/goalie
+predictions or team simulations to score for that night. Coverage is 558 of 575
+positive-TOI skater appearances; shot MAE is 1.014. The readout also pools the
+earlier October 10/12 five-model comparison, clearly separated from October 13.
+
+- [Player projected versus actual](../../data/processed/forecasts/october_13_review_20261014T135613Z/player_projected_vs_actual.csv)
+- [Matched-player team diagnostics](../../data/processed/forecasts/october_13_review_20261014T135613Z/team_matched_player_diagnostics.csv)
+- [Unmodeled appearances](../../data/processed/forecasts/october_13_review_20261014T135613Z/unmodeled_actual_skaters.csv)
+
+Filter players to `scoring_status=positive_toi`. Team sums select actual
+participants after the games and are not issued team projections. All nine
+player categories, fantasy-team results and goalie actuals are linked in the
+readout. See [next work](../../NEXT_STEPS.md#october-13-review-completed--2026-10-14)
+for daily issuance fixes and the proposed role/usage tests.
+
+## October 12 night results
 
 [Full October 12 results](2026-10-12_results_readout.md)
 

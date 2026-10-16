@@ -13,7 +13,117 @@ The central research question is:
 
 ---
 
-## Resume here: October 13 Frozen Frenzy projections
+## Weekly review and defense opportunity inputs — 2026-10-16
+
+Read [October 12–15 weekly review](outputs/per_game_forecast/week_2026-10-12/README.md).
+All 32 final games and 1,151 positive-TOI appearances reviewed; 1,119 have older
+October 9 baseline forecasts and 32 are missing. Only two games this week have
+issued five-model and goalie trials. All nine skater/team categories and three
+goalie count categories are exported; missing challenger forecasts are never
+reconstructed. Official boxscores and scoring summaries refreshed through
+October 15: 118 season games. All frozen daily trials re-evaluated using those
+actuals, preserving prior evaluations and predictions.
+
+Source corrections since October 14: October 13 shots changed for Zach Benson
+1→0, Dylan Cozens 1→2, Brady Skjei 2→3. Covered actual SOG becomes 863 instead
+of 862; baseline MAE becomes 1.015. Earlier readouts remain archived snapshots.
+
+Published two charts, all-team defense proxies and player/team SOG contribution
+tables. Biggest mean absolute forecast movement in the scored October 10/12
+usage trial comes from calibration (0.120 SOG), recent shot rate (0.111), matchup
+(0.068), then TOI (0.036). These are sequential accounting effects, not causal
+importance or independently validated feature gains. Signed realized player
+error changes are included. Rest, PP/EV context and ESPN benchmarks currently
+have no fitted forecast effect. Candidate remains the leading overall SOG
+challenger; preserve default and the fantasy subgroup comparison.
+
+`src/fantasy/diagnostics.py` now computes date-exclusive D shots/game, team shot
+share, assist credits/game and shots/60 summed D-player minutes. Future daily
+builds save `defense_opportunity_context.csv`; no D coefficient is fitted or
+applied yet. This is direct defensemen production, not measured chance creation
+or pair effects. Next, acquire NHL play-by-play for D attempts, strength-specific
+exposure and D-involved sequences leading to shots/chances. Define distinct
+opportunities explicitly before modeling them; use past-only shrinkage and
+future-game D-only ablations alongside TOI-only/rate-only/context-only trials.
+
+Postgame automation: `scripts/update_weekly_review.py` runs official acquisition,
+scoring validation, re-evaluation of specified frozen bundles, tables and charts
+in one command. It stops on errors and requires a new output directory. Example:
+
+```sh
+rink-lab.venv/bin/python scripts/update_weekly_review.py \
+  --start 2026-10-12 --end 2026-10-15 \
+  --baseline data/processed/forecasts/per_game_20262027_20261009T195052Z \
+  --evaluations \
+    data/processed/forecasts/daily_evaluation_2026-10-10_20261016T172526291855Z \
+    data/processed/forecasts/daily_evaluation_2026-10-12_20261016T172526055112Z \
+  --out outputs/per_game_forecast/week_2026-10-12_next_refresh
+```
+
+Priorities: (1) finish fresh, complete pregame issuance and date-aware finalizer;
+(2) define/acquire stronger D opportunity measures; (3) freeze component ablations
+on unseen games with game-cluster uncertainty and role/fantasy checks; (4) add
+scheduled execution, retries, freshness gates and alerts once the runner is
+credential-free and reliable. No unattended schedule is enabled in this update.
+
+## October 13 review completed — 2026-10-14
+
+Read [October 13 results and recommendations](outputs/per_game_forecast/2026-10-13_results_readout.md).
+All 16 final games, scoring summaries and goalie actuals are acquired. The
+October 13 daily run was never issued in this workspace: only the default
+forecasts saved October 9 cover this date. No challenger, goalie or team
+simulation was recreated after results. Keep these aged baseline results
+separate from the October 10/12 five-model prospective comparison.
+
+Coverage: 575 positive-TOI skater appearances, 558 covered, 17 missing and one
+additional zero-TOI boxscore row. All nine conditional means are present for
+covered appearances. Default SOG MAE 1.0135; predicted 896.51 versus 862 actual.
+Goals 99.46/109, assists 166.07/192, PPP 58.26/59. Defensemen account for 31.26
+of the 34.51 excess predicted shots; forwards are close in aggregate. Treat
+position/role differences as a new hypothesis, not fitted correction factors.
+Saved fantasy cohort: 105 appearances, SOG MAE 1.2575; Quinn's 17 players total
+39.36 predicted/33 actual. Saved ownership and injuries are from October 9.
+
+Earlier prospective trial evidence is now pooled: 13 October 10/12 games,
+468 matched skater appearances, 26 team observations and 96 fantasy appearances.
+Candidate/default shot MAE 1.0445/1.0646; team MAE 3.4791/4.0672. Candidate
+improves 11/13 games; paired game-bootstrap delta -0.0201, exploratory 95%
+interval [-0.0314, -0.0086]. Default retains a small fantasy MAE edge
+(1.3108/1.3253); that difference is uncertain. Usage improves TOI MAE from
+2.2681 to 2.1078. Opponent-only adds no clear benefit. Across 26 goalie starts,
+opponent saves MAE 3.949 versus baseline 4.188, but GA MAE worsens 1.231 to
+1.264. October 13 has 32 starter/34 active goalie actuals but no forecasts.
+
+Next session, in order:
+
+1. Finish the standalone MoneyPuck acquisition and date-aware finalizer, then
+   orchestrate refresh, skaters, goalies, finalization and coverage checks in one
+   command. Require/record injury freshness, actual source cutoff and all game
+   IDs. Set the next target date explicitly; the October 13 commands below are
+   archived templates and must not be reused as a purported pregame issuance.
+2. Use official rosters plus recent participants and flagged position priors to
+   address the missing-player audit. Keep participation separate from conditional
+   rates; do not sum every ESPN-pool player as a playing lineup.
+3. Keep default as the baseline and candidate as the leading all-player/team
+   challenger. No new blanket shot cut or stronger opponent factor. Isolate
+   TOI-only, shot-rate-only and context-only variants on future unseen games;
+   test EV/PP exposure and position/role calibration with shrinkage.
+4. Improve goalie starter and duration modeling. Keep full-start forecasts,
+   actual starts, relief and empty-net time distinct. Validate shot-volume and
+   GA effects separately rather than promoting the entire goalie trial.
+5. Continue paired chronological evaluations with MAE, RMSE, bias, game-cluster
+   uncertainty and discrete probability calibration. Player shot intervals
+   currently cover 92–93%; discreteness prevents interpreting this alone as
+   proof of excessive dispersion. October 13 exact-count accuracy is unavailable
+   because no saved integer guesses were issued.
+
+Readout generator: `scripts/write_october_13_review.py`; artifact bundle:
+`data/processed/forecasts/october_13_review_20261014T135613Z/`.
+NHL actuals: `data/processed/forecasts/fantasy_game_details_20261014T135057Z/`.
+Team sums in this review condition on actual participants and are diagnostics,
+not frozen pregame team forecasts. Forecast data/settings were preserved.
+
+## Archived plan: October 13 Frozen Frenzy projections (not executed)
 
 **Paused before issuance at the owner's request. No October 13 projections or
 input refreshes were run as part of this handoff.** Confirm the official NHL

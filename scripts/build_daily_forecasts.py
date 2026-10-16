@@ -15,6 +15,7 @@ import truststore
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.fantasy.per_game import forecast, TARGETS, require
 from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means
+from src.fantasy.diagnostics import defense_opportunity
 from src.fantasy.availability import excluded_by_status
 from src.fantasy.simulation import simulate_counts
 from src.fantasy.shot_context import load_nhl_team_games, build_shot_context, matchup_shot_factors
@@ -83,6 +84,8 @@ def main():
     panel=pd.read_csv(a.template_forecast/'validated_player_seasons.csv')
     panel=panel[panel.season_id<season]
     current=current_from_games(hist,a.date,season)
+    # Context-only until a chronological ablation validates predictive value.
+    defense_opportunity(hist,a.date).to_csv(out/'defense_opportunity_context.csv',index=False)
     panel=pd.concat([panel,current],ignore_index=True)
     require(not panel.duplicated(['player_id','season_id']).any(),'Duplicate player season')
     params={k:v for k,v in template['selected_on_validation'].items() if k!='score'}
@@ -225,7 +228,7 @@ def main():
             'Poisson intervals assume conditional independence across players and are not calibrated.'])
     manifest['files']={p.name:sha(p) for p in out.glob('*.csv')}
     manifest['input_manifest_sha256']=sha(inputs/'manifest.json')
-    manifest['code_sha256']={str(p):sha(p) for p in [Path(__file__),Path('src/fantasy/daily.py'),Path('src/fantasy/shot_context.py'),Path('config/daily_forecast_trial.json')]}
+    manifest['code_sha256']={str(p):sha(p) for p in [Path(__file__),Path('src/fantasy/daily.py'),Path('src/fantasy/diagnostics.py'),Path('src/fantasy/shot_context.py'),Path('config/daily_forecast_trial.json')]}
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print('Daily bundle:',out)
     print(frames['game_team_coverage'].groupby('issue_timing').game_id.nunique().to_string())
