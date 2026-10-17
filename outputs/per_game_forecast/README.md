@@ -1,5 +1,7 @@
 # Per-game forecast status — October 17, 2026
 
+[All NHL matchup predictions](../../docs/games/README.md) · [Live NHL view](https://erinyep.github.io/Rink-Lab-2027/games/)
+
 [Quinn’s daily report and interactive charts](../../reports/today/README.md)
 
 ## Today: October 17 league-aware projections

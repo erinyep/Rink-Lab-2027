@@ -64,6 +64,23 @@ preview. Enable Pages once from `main` → `/docs`; see
 and local generated datasets remain ignored. Today’s acquisition lock now
 sets new-add usable starts to zero after the first scheduled game.
 
+### All-NHL matchup reading view — October 17
+
+[All 14 NHL game predictions](docs/games/README.md) now pair the existing frozen
+team forecasts against official away/home identities. Each card compares goal
+means, provisional goal/shot ranges, scoring edge, assumed shot leaders and
+separate full-start goalie scenarios. All five skater models and both goalie
+variants remain selectable. Thirteen pregame games show by default; late-issued
+NJD–WSH is separately labeled. No model refit or new win-probability claim.
+
+The live report is at `https://erinyep.github.io/Rink-Lab-2027/games/`; GitHub
+Pages is enabled. The daily runner also generates an NHL view inside each local
+bundle. Regenerate the reviewed Pages copy explicitly with
+`scripts/build_nhl_outlook.py --bundle <issued-bundle>` before committing it.
+59 unit tests and Chrome model/filter/chart/goalie/mobile checks pass.
+Goal models still need fitted opponent/goalie adjustments and prospective
+calibration; current scoring leans are comparisons of conditional means.
+
 ### 1. Make daily forecasts reliable
 
 - [x] Finish standalone MoneyPuck acquisition and the date-aware daily finalizer.

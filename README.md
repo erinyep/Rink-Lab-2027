@@ -18,6 +18,12 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
+## Today’s NHL game predictions
+
+[All Saturday NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+projected goals, shots, scoring leans and goalie scenarios for all 28 teams.
+[Reading guide](docs/games/README.md).
+
 ## Today’s fantasy report
 
 [Quinn’s local report and roster alerts](reports/today/README.md).

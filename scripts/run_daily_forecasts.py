@@ -71,6 +71,7 @@ def main():
         '--game-history', games, '--boxscore-history', boxes, '--output-root', bundle / 'inputs')
     run('finalize_daily_bundle.py', '--bundle', bundle, '--goalies', goalies)
     run('validate_daily_bundle.py', '--bundle', bundle)
+    run('build_nhl_outlook.py','--bundle',bundle,'--out',bundle/'nhl_outlook')
     report_config=ROOT/'config/fantasy_report.json'
     report_team=args.report_team_id
     if report_team is None and report_config.exists():

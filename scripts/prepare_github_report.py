@@ -33,7 +33,9 @@ def main():
     payload=json.dumps(data,separators=(',',':'),allow_nan=False)
     (args.out/'report.json').write_text(payload+'\n')
     template=Path('templates/fantasy_today.html').read_text()
-    (args.out/'index.html').write_text(template.replace('__REPORT_DATA__',payload.replace('</','<\\/')))
+    rendered=template.replace('__REPORT_DATA__',payload.replace('</','<\\/'))
+    rendered=rendered.replace('<body><main>','<body><main><nav><a href="../games/index.html">All NHL game predictions</a> · <strong>Your fantasy team</strong></nav>',1)
+    (args.out/'index.html').write_text(rendered)
     for key,filename in [('roster','roster.csv'),('streamers','streamer_watchlist.csv'),('goalies','goalies.csv'),('schedule','roster_schedule.csv'),('matchup','category_gaps.csv')]:
         rows=data[key]
         with (args.out/filename).open('w',newline='') as f:

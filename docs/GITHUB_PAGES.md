@@ -3,7 +3,12 @@
 The published snapshot contains the displayed report fields and CSV downloads.
 Credentials, raw ESPN snapshots and local data directories remain excluded.
 
-Enable hosting once at:
+Pages is now enabled. Reports:
+
+- [All NHL games](https://erinyep.github.io/Rink-Lab-2027/games/)
+- [Quinn’s fantasy team](https://erinyep.github.io/Rink-Lab-2027/report/)
+
+For a new repository, enable hosting once at:
 https://github.com/erinyep/Rink-Lab-2027/settings/pages
 
 1. Under **Build and deployment**, select **Deploy from a branch**.
@@ -26,3 +31,11 @@ Commit `docs/report/` after reviewing the new snapshot. Pushing changes to `main
 updates the site after Pages is enabled. No ESPN credentials belong in GitHub.
 
 [GitHub Pages publishing documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+
+Build the NHL view from a reviewed frozen bundle with:
+
+```sh
+rink-lab.venv/bin/python scripts/build_nhl_outlook.py --bundle <issued-bundle>
+```
+
+This packages existing forecasts; it never retroactively issues missing predictions.
