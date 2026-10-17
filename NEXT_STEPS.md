@@ -1,5 +1,158 @@
 # Rink Lab — Next Steps
 
+## Active plan — 2026-10-17
+
+Make the next phase answer: **Which start/sit, add/drop or streaming decision
+improves our actual fantasy matchup?** Keep the hockey research foundation;
+connect forecasts to league scoring, usable starts and concise recommendations.
+This checklist supersedes the priorities in the historical notes below.
+
+### Working local baseline — October 17
+
+Python 3.12 environment and six NHL season snapshots rebuilt on this machine.
+[Today's public-data forecasts](outputs/per_game_forecast/2026-10-17_daily_2026-10-17_20261017T171641Z_pregame_readout.md)
+cover 13 games pregame and one late game; all 120 final games through October 16
+and 4,319 positive-TOI appearances validated. Five skater models and two goalie
+scenarios are finalized. The one-command runner passed an end-to-end public-mode
+run; 49 unit tests pass. Issued bundles are retained separately.
+
+Completed: standalone MoneyPuck acquisition, date-aware finalizer, explicit
+public-only mode, ESPN freshness gate, and refresh/build/finalize orchestration.
+Fixed positive-TOI coverage validation without discarding zero-minute source rows.
+
+**ESPN connected — October 17, 1:30 p.m. Eastern:** local credentials verified;
+read-only refresh returned six teams, 134 rostered and 1,572 available players.
+[New league-aware bundle](outputs/per_game_forecast/2026-10-17_daily_2026-10-17_20261017T173051Z_pregame_readout.md)
+issued for 13 pregame games and one late game. The full refresh/build/finalize/
+validation runner passed with fresh ownership, injuries and an ESPN benchmark.
+Earlier public-only bundles remain frozen. Lineups/starters remain provisional;
+optimized start/sit and transaction recommendations are still pending.
+Transfer historical `data/raw/` and `data/processed/` from the other machine to
+retain older prospective evaluations. See [local setup](docs/LOCAL_SETUP.md).
+Remaining priorities: release validation/freshness automation, permanent
+scoreboard, exact scoring and usable-start value. No unattended schedule enabled.
+
+### Daily category report working — October 17
+
+[Quinn’s report and interactive charts](reports/today/README.md) now combine the
+frozen default forecasts with verified H2H category scoring, roster eligibility,
+individual-game lineup locks and a next-period roster audit. Charts show saved
+category gaps, selectable conditional skater means, and the roster schedule;
+streamers sort by category with one-start active-slot feasibility. SVG export,
+CSV downloads and source hashes are included. 54 unit tests pass; Chrome checks
+passed for charts, controls, mobile overflow and SVG downloads.
+
+User-reported Byram → Pionk move is reflected accurately: ESPN retains Byram as
+FUTURE_DROP today and includes Pionk in scoring period 20. Today's saved roster
+has no unlocked benched skater with a game. Do not assume Pionk can start today.
+The calendar uses the next-period roster for later dates as a static scenario.
+
+There is no fantasy-points objective in this category league. Compare category
+tradeoffs, keeping ATOI, GAA and SV% exposure-weighted. The daily runner now
+builds the report for team 5 via `config/fantasy_report.json`; public-only mode
+skips it. Reports are timestamped local artifacts, not live dashboards.
+Remaining work: verify effective transaction dates and daily acquisition usage,
+extend slot feasibility to future days and attainable replacement/drop choices,
+then log prospective decisions and outcomes in the permanent scoreboard. No
+category-win probabilities or automatic transaction recommendations are issued.
+
+### GitHub report packaging — October 17
+
+A reviewed static report is packaged under `docs/report/` with a README SVG
+preview. Enable Pages once from `main` → `/docs`; see
+[GitHub Pages setup](docs/GITHUB_PAGES.md). Credentials, raw source snapshots
+and local generated datasets remain ignored. Today’s acquisition lock now
+sets new-add usable starts to zero after the first scheduled game.
+
+### 1. Make daily forecasts reliable
+
+- [x] Finish standalone MoneyPuck acquisition and the date-aware daily finalizer.
+- [ ] Generalize date-specific postgame evaluation/readout text.
+- [x] Run refresh → skater/goalie forecasts → finalization → coverage checks in
+  one command with an explicit target date. Record source cutoffs, freshness,
+  hashes, game IDs and issuance times; label late games separately.
+- [ ] Address missing players using official rosters and recent participants.
+  Keep probability of playing separate from production conditional on playing;
+  keep goalie starts, relief and expected duration distinct.
+- [ ] Add scheduled execution, retries and alerts after the credential-free
+  runner and freshness gates are reliable.
+
+### 2. Build one permanent prospective scoreboard
+
+- [ ] Create an append-only prediction/result history and derived
+  `model_scoreboard.csv` (Parquet if useful). Preserve issued predictions and
+  version actuals/source corrections rather than rewriting history.
+- [ ] Key records by model/version, issuance, game and player/team; retain input
+  cutoffs, forecast timing, ownership snapshot and coverage/missingness flags.
+- [ ] Report MAE, RMSE, bias, coverage and probability calibration for the season
+  and rolling 7/30-day windows. Compare matched pregame samples with paired
+  game-cluster uncertainty.
+- [ ] Break out forwards, defensemen, goalies, fantasy-rostered players, waiver
+  candidates and shot-volume groups. Keep aged baseline and late forecasts
+  distinct from fresh prospective comparisons.
+
+Evidence to carry forward: in the October 10/12 trial (13 games, 468 matched
+skater appearances), candidate/default SOG MAE was 1.0445/1.0646 and team MAE
+3.4791/4.0672. Default retained a small, uncertain fantasy-subgroup edge
+(1.3108/1.3253). Keep default as baseline and candidate as challenger; these
+results do not justify promotion or blanket corrections.
+
+### 3. Define fantasy value and ship a concise daily view
+
+- [x] Validate exact category scoring, roster slots/eligibility and saved
+  roster/waiver/schedule inputs; do not invent a points total for H2H categories.
+- [ ] Resolve daily acquisition usage and effective transaction dates; evaluate
+  category-aware decision gains in the scoreboard.
+- [ ] Estimate replacement value by eligible slot and **usable** starts under
+  lineup constraints. Rank start/sit and streamer choices by incremental matchup
+  points, accounting for the displaced player and transaction limits.
+- [x] Create `reports/today/` with roster/availability actions, category charts,
+  streamer slot fit and downloads. Label conditional forecasts and source times.
+- [ ] Add validated incremental category value and concise start/sit tradeoffs
+  when feasible alternatives exist; keep transaction gates explicit.
+- [ ] Keep detailed diagnostics in `reports/model_health/`, reviewed weekly.
+  Log recommendations and alternatives as issued, then evaluate realized
+  decision gains against the saved baseline choice.
+
+### 4. Improve opportunity and role before adding model complexity
+
+- [ ] Model EV/PP/SH minutes, PP role and participation explicitly, using
+  past-only rolling usage and shrunk player-rate estimates.
+- [ ] Acquire and validate NHL play-by-play: attempts, strength-state exposure,
+  shot locations and defensible rush/rebound or sequence features. Use ixG only
+  from a documented source/model; do not treat current D production proxies as
+  measured chance creation.
+- [ ] Test position × role interactions and fitted team/opponent, rest and
+  home/away effects. Check player totals against expected team opportunity.
+  Saved context fields are not evidence of fitted predictive value.
+- [ ] Freeze TOI-only, rate-only and context-only ablations on unseen games;
+  assess fantasy and position subgroups before adopting changes.
+
+### 5. Add challengers, distributions and matchup simulation
+
+- [ ] After the feature pipeline is validated, compare one boosted-tree
+  challenger with the interpretable baseline using chronological holdouts and
+  prospective issuance. Test count models such as Poisson/negative binomial.
+- [ ] Calibrate count probabilities and predictive ranges; evaluate goalie
+  shot-volume and goals-allowed effects separately. Existing simulation ranges
+  remain provisional until validated.
+- [ ] Once joint forecasts and roster constraints are credible, simulate the
+  remaining matchup and compare legal transactions by expected points or win
+  probability under the league's actual scoring format. Account for shared
+  game/team uncertainty rather than assuming independent player outcomes.
+
+### Defer
+
+More manual calibration constants, elaborate defense proxies, bespoke long
+postmortems, conclusions from tiny model shootouts, and marginal all-NHL MAE
+optimization without fantasy benefit. NCAA translation, player similarity and
+exotic tracking features remain longer-term research tracks.
+
+## Historical milestones and reference plans
+
+Retained for provenance and commands. Dates and unfinished checklists below are
+historical; use the active plan above to choose new work.
+
 ## Project Goal
 
 Build a reproducible hockey analytics research environment using R and Python

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-17",
+  "report_created_at": "Oct 17, 2:11 PM ET",
+  "source_report_sha256": "b8e5a8ab1a12e8e76a2d1a5b0a8b7f889f2ea8379e1f78c2a83f0003b692386f",
+  "scope": "Displayed fantasy report fields only; no credentials, raw API snapshots or local filesystem paths.",
+  "files": {
+    "goalies.csv": "b7208f9eec96593eff7dd29081bf7c75cee69179763e075a5f7c301e41a4b308",
+    "index.html": "8e4f18116366bb91aebc47abc5262feeb4805761fb3ea4369c5790d30cd6de73",
+    "report.json": "d288fb51814c5363ead5ed81debe40a972ffcdbb86f5b021b0e07655fdd20efd",
+    "roster.csv": "a287a9e0ae4148d3ac36f5b20f51f2faa340d4b1bbc5d2a0d3933929bdde5cbc",
+    "category_gaps.csv": "b9d359948176278d188dd98c51da6254873b4192946a53ff6f3cdfdf8f5e2480",
+    "streamer_watchlist.csv": "f9ca02c917dc77540cf596cfd678793cbbbfff415b1b6830a958fac3719e7133",
+    "roster_schedule.csv": "2b703d68f5d6f1ceb175d2f0d75d4a9cd1a90a8b7a5f7a88c1bb17d9a1250076"
+  }
+}

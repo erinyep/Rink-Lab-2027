@@ -51,3 +51,13 @@ def recent_shot_usage(history, player_id, target_date, prior_shots, prior_toi,
     return dict(recent_games=len(h), recent_shots=float(h.shots.sum()),
         recent_toi_minutes=float(h.toi_minutes.sum()),usage_toi_minutes=float(toi),
         usage_shots_per_minute=float(rate),usage_shots_before_context=float(toi*rate))
+
+
+def validate_exposure_population(history, exposure):
+    """Compare actual playing appearances; retain zero-minute source rows in history."""
+    keys = ['game_id', 'player_id']
+    for frame in [history, exposure]:
+        require(not frame.duplicated(keys).any(), 'Duplicate exposure/history identity')
+        require(frame.toi_seconds.notna().all() and frame.toi_seconds.ge(0).all(), 'Invalid exposure seconds')
+    played = lambda frame: set(frame.loc[frame.toi_seconds.gt(0), keys].itertuples(index=False, name=None))
+    require(played(history) == played(exposure), 'Positive-TOI/boxscore population differs')

@@ -21,3 +21,6 @@ outputs/descriptive_2025_26/session_info.txt
 data/raw/nhl/snapshots/
 data/raw/espn/snapshots/
 data/raw/moneypuck/snapshots/
+
+# Generated local fantasy reports; reusable templates and index remain tracked
+reports/today/*/

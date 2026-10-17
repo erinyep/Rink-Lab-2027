@@ -1,6 +1,26 @@
-# Per-game forecast status — October 16, 2026
+# Per-game forecast status — October 17, 2026
 
-## Latest: weekly performance, inputs and visuals
+[Quinn’s daily report and interactive charts](../../reports/today/README.md)
+
+## Today: October 17 league-aware projections
+
+[Today's readout](2026-10-17_daily_2026-10-17_20261017T173552Z_pregame_readout.md)
+
+Issued around 1:36 p.m. Eastern: 13 pregame games; New Jersey–Washington is
+explicitly late. ESPN is connected to Micro League on this machine. Ownership
+and injury labels refreshed around 1:35 p.m. Eastern; official statistical
+history ends October 16. Five skater models and two goalie scenarios validated.
+Lineups and goalie starts remain unconfirmed; means condition on playing.
+
+- [Players](../../data/processed/forecasts/daily_2026-10-17_20261017T173552Z/player_projections.csv) — filter `model=default`, `issue_timing=pregame` and `fantasy_team_name`; check `injury_status`.
+- [Teams](../../data/processed/forecasts/daily_2026-10-17_20261017T173552Z/team_projections.csv)
+- [Goalies](../../data/processed/forecasts/daily_2026-10-17_20261017T173552Z/goalie_projections.csv)
+- [Setup and daily runner](../../docs/LOCAL_SETUP.md)
+
+[Earlier public-only issuance](2026-10-17_daily_2026-10-17_20261017T171641Z_pregame_readout.md)
+is retained with its original unknown injury/ownership coverage.
+
+## Weekly performance, inputs and visuals
 
 [October 12–15 review, charts and next steps](week_2026-10-12/README.md)
 
