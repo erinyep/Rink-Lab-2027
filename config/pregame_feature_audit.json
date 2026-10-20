@@ -1,0 +1,16 @@
+{
+  "version": "oct20_screen_v1",
+  "target_date": "2026-10-20",
+  "training_start": "2026-10-05",
+  "training_end": "2026-10-12",
+  "holdout_start": "2026-10-13",
+  "holdout_end": "2026-10-19",
+  "team_prior_games": 20,
+  "ridge_penalty": 20,
+  "bootstrap_draws": 2000,
+  "seed": 20261020,
+  "pbp_features": ["own_defense_attempt_share", "own_followup_attempts_after_defense_per_game", "opponent_defense_attempt_share"],
+  "quality_features": ["own_defense_xg_per_game", "own_defense_expected_rebounds_per_game", "own_team_xg_per_game"],
+  "decision": "Retrospective feasibility screen only; no automatic promotion. Compare feature variants to the intercept-adjusted control on identical games. All variants issued separately for tonight.",
+  "source_limit": "Current corrected downloads with game-date cutoffs, not historical as-of source vintages; historical lineups/market quotes are not reconstructed."
+}

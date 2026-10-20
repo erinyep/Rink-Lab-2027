@@ -127,3 +127,7 @@ and incremental out-of-sample benefit.
 Finish scheduled execution after the one-command runner has a reliable local
 runtime, secret handling, idempotence, retries, freshness gates and failure alerts.
 No unattended job or external trade execution is enabled here.
+
+## First incremental-value screen completed
+
+[October 20 feature evidence](../outputs/per_game_forecast/feature_evidence_2026-10-20/README.md) trains through October 12 and tests 51 October 13–19 games. D and shot-quality inputs do not improve team SOG MAE against a bias-adjusted control in this specified screen. This is a corrected-data retrospective test, not evidence that the sources never help. All variants are frozen separately for tonight; main forecasts remain unchanged. Archive source vintages and score future games before promotion.

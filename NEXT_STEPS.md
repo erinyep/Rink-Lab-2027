@@ -1,5 +1,17 @@
 # Rink Lab — Next Steps
 
+## Feature evidence completed before October 20 games
+
+[Report and per-player/team contribution tables](outputs/per_game_forecast/feature_evidence_2026-10-20/README.md) · [Published searchable evidence](https://erinyep.github.io/Rink-Lab-2027/evidence/).
+
+- Existing usage-trial SOG accounting reconciles 498 candidate players, 395 selected players and 22 team means (one unidentified Colorado replacement). TOI/rate/calibration/matchup contributions are ordered forecast movements, not causal or independent importance.
+- Saved October 10/12 cohort: 468 appearances across 13 games. Calibration contributes the clearest overall SOG improvement (-0.018 MAE); fantasy subgroup instead worsens +0.022 at this ordered stage. Recent rate and matchup changes do not show a reliable aggregate gain. No per-player predictive importance established.
+- Fixed-design retrospective screen: train October 5–12 (50 games), hold out October 13–19 (51 games). Team SOG MAE: bias control 4.621, PBP D 4.634, shot quality 4.823, both 4.813. All incremental benefit intervals cross zero. Quarantines preserved; missing features use training-only imputation. Corrected current downloads are not historical as-of vintages.
+- Four experimental team-volume variants refitted through October 19 and frozen before puck drop for all 11 October 20 games, with coefficient/sample-size/contribution tables. No replacement of main models. Config: `config/pregame_feature_audit.json`; producer: `scripts/publish_feature_evidence.py`.
+- After acquiring final actuals, score without refitting: `scripts/evaluate_feature_evidence.py --evidence outputs/per_game_forecast/feature_evidence_2026-10-20 --actuals <refreshed-actuals> --out <new-evaluation-directory>`. It rejects late trials and scores identical completed games for every variant; missing finals stay unscored.
+- Next: accumulate prospective performance, archive daily source vintages, inspect fantasy/role subgroups, and acquire shift-based deployment before D-pair/PP claims. These tests address SOG, not all categories or goalie performance.
+
+
 October 20 publication refresh: GitHub Pages matchup and fantasy views now use today's 11-game frozen bundle. Root links/date labels and category SVG were refreshed; October 17 pages are archived under `docs/archive/2026-10-17/`. Fantasy report handles nonfinite ESPN goalie rates as unavailable; no transactions performed.
 
 Latest completed milestone: [October 20 season audit and issuance](#season-to-date-audit-pregame-release-and-defense-events--2026-10-20). All 140 finals acquired; 11-game pregame bundle issued. The October 17 reports below are preserved historical context.

@@ -24,6 +24,10 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 projected goals, shots, scoring leans and goalie scenarios for all 22 teams.
 [Reading guide](docs/games/README.md).
 
+## What is driving the forecasts?
+
+[Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). The first 51-game team holdout does not show a gain from new defense/shot-quality inputs; existing models remain in place.
+
 ## Today’s fantasy report
 
 [Quinn’s local report and roster alerts](reports/today/README.md).

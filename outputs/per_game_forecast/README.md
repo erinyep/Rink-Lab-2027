@@ -1,5 +1,7 @@
 # Per-game forecast status — October 20, 2026
 
+[October 20 feature evidence and contribution tables](feature_evidence_2026-10-20/README.md): existing components scored on saved games, new D/quality variants screened on a 51-game retrospective holdout, all variants frozen separately for tonight.
+
 ## Latest season review and today's pregame release
 
 [Season performance through October 19](season_through_2026-10-19/README.md)
