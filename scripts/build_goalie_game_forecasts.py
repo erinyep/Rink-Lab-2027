@@ -191,6 +191,11 @@ def main():
     stamp=issued_at.strftime('%Y%m%dT%H%M%SZ')
     out=args.output_root/f'goalies_{sim["date"]}_{stamp}'
     out.mkdir(parents=True,exist_ok=False)
+    # Finalization adds reader views to the parent manifest. Preserve the exact
+    # skater-build manifest used here instead of a circular mutable hash link.
+    parent_copy=out/'skater_parent_manifest.json'
+    parent_copy.write_bytes((args.simulation/'manifest.json').read_bytes())
+    sources[0]=dict(file=str(parent_copy),sha256=sha256(parent_copy))
     pd.DataFrame(rows).to_csv(out/'goalie_game_forecasts.csv',index=False)
     pd.DataFrame(summary).to_csv(out/'goalie_simulation_summary.csv',index=False)
     invalid.to_csv(out/'excluded_goalie_source_rows.csv',index=False)

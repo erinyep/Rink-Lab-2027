@@ -16,6 +16,14 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Current forecast work
 
+October 20: [Season-to-date model review](outputs/per_game_forecast/season_through_2026-10-19/README.md)
+covers 140 final games with explicit saved-forecast gaps. New official PBP,
+MoneyPuck shot-quality and public Kalshi source audits support the
+[data-source strategy](docs/DATA_SOURCE_STRATEGY.md). A complete
+[October 20 pregame slate](outputs/per_game_forecast/2026-10-20_20261020T125723Z_pregame_readout.md)
+was issued through the new validated skater/goalie runner. No D-context
+coefficient or market blend is promoted.
+
 October 16: [Weekly model performance, player/team inputs and visuals](outputs/per_game_forecast/week_2026-10-12/README.md).
 Review covers 32 final October 12–15 games with explicit forecast coverage,
 all-category metrics, player/team SOG contribution tables and defense opportunity

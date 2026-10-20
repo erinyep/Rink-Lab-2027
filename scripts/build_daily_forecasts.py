@@ -16,6 +16,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.fantasy.per_game import forecast, TARGETS, require
 from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means
 from src.fantasy.diagnostics import defense_opportunity
+from src.fantasy.play_by_play import lagged_defense_context, lagged_shot_quality
 from src.fantasy.availability import excluded_by_status
 from src.fantasy.simulation import simulate_counts
 from src.fantasy.shot_context import load_nhl_team_games, build_shot_context, matchup_shot_factors
@@ -42,6 +43,8 @@ def main():
     ap.add_argument('--game-toi',type=Path,required=True)
     ap.add_argument('--espn-benchmark',type=Path,required=True)
     ap.add_argument('--raw-context',type=Path)
+    ap.add_argument('--defense-pbp',type=Path,help='Verified PBP context; no fitted effect')
+    ap.add_argument('--moneypuck-shots',type=Path,help='Verified lagged D shot quality; no fitted effect')
     a=ap.parse_args()
     cfg=json.loads(Path('config/daily_forecast_trial.json').read_text())
     template=verify(a.template_forecast); verify(a.game_history)
@@ -75,7 +78,11 @@ def main():
     toi=pd.read_csv(a.game_toi)
     require((toi.game_date<a.date).all() and (toi.season_id==season).all(),'TOI cutoff/season invalid')
     require(not toi.duplicated(['game_id','player_id']).any(),'Duplicate TOI records')
-    require(set(zip(toi.game_id,toi.player_id))==set(zip(hist.game_id,hist.player_id)),'TOI/boxscore population differs')
+    # NHL TOI report describes participants; boxscores can retain zero-TOI rows.
+    # Preserve those rows in history/audit, but compare the same exposure cohort.
+    participants=hist[hist.toi_seconds.gt(0)]
+    hist[hist.toi_seconds.le(0)].to_csv(out/'zero_toi_history_audit.csv',index=False)
+    require(set(zip(toi.game_id,toi.player_id))==set(zip(participants.game_id,participants.player_id)),'TOI/boxscore participant population differs')
     require(np.allclose(toi.ev_toi_seconds+toi.pp_toi_seconds+toi.sh_toi_seconds,toi.toi_seconds),'TOI component mismatch')
     bench=pd.read_csv(a.espn_benchmark)
     bench=bench[bench.nhl_player_id.notna() & bench.projection_status.eq('available_season_average_benchmark')].copy()
@@ -86,6 +93,13 @@ def main():
     current=current_from_games(hist,a.date,season)
     # Context-only until a chronological ablation validates predictive value.
     defense_opportunity(hist,a.date).to_csv(out/'defense_opportunity_context.csv',index=False)
+    if a.defense_pbp:
+        verify(a.defense_pbp)
+        lagged_defense_context(pd.read_csv(a.defense_pbp/'defense_team_games.csv'),
+            pd.read_csv(a.defense_pbp/'source_audit.csv'),a.date).to_csv(out/'defense_pbp_context.csv',index=False)
+    if a.moneypuck_shots:
+        verify(a.moneypuck_shots)
+        lagged_shot_quality(pd.read_csv(a.moneypuck_shots/'defense_shot_quality_team_games.csv'),a.date).to_csv(out/'defense_shot_quality_context.csv',index=False)
     panel=pd.concat([panel,current],ignore_index=True)
     require(not panel.duplicated(['player_id','season_id']).any(),'Duplicate player season')
     params={k:v for k,v in template['selected_on_validation'].items() if k!='score'}
@@ -221,6 +235,10 @@ def main():
         seed=int(a.date.replace('-','')),draws=cfg['draws'],config=cfg,calibration=cal,game_history=str(a.game_history),boxscore_history=str(a.boxscore_history),
         moneypuck_snapshot=str(a.moneypuck_snapshot),moneypuck_sha256=mpmeta['sha256'],injuries_as_of_utc=espn_info['retrieved_at_utc'],
         additional_sources={str(a.game_toi):sha(a.game_toi),str(a.espn_benchmark):sha(a.espn_benchmark)},
+        defense_pbp_source=str(a.defense_pbp) if a.defense_pbp else None,
+        defense_pbp_manifest_sha256=sha(a.defense_pbp/'manifest.json') if a.defense_pbp else None,
+        moneypuck_shots_source=str(a.moneypuck_shots) if a.moneypuck_shots else None,
+        moneypuck_shots_manifest_sha256=sha(a.moneypuck_shots/'manifest.json') if a.moneypuck_shots else None,
         game_issue_timing=frames['game_team_coverage'][['game_id','issue_timing']].drop_duplicates().to_dict('records'),
         limitations=['Current statistical inputs end before target day. Current rosters/injuries are retrieved at issuance; late rows are not historical pregame forecasts.',
             'No models promoted; added usage/context assumptions remain unvalidated.', 'Lineups and goalie starts are provisional; conditional forecasts are not participation forecasts.',
@@ -228,7 +246,7 @@ def main():
             'Poisson intervals assume conditional independence across players and are not calibrated.'])
     manifest['files']={p.name:sha(p) for p in out.glob('*.csv')}
     manifest['input_manifest_sha256']=sha(inputs/'manifest.json')
-    manifest['code_sha256']={str(p):sha(p) for p in [Path(__file__),Path('src/fantasy/daily.py'),Path('src/fantasy/diagnostics.py'),Path('src/fantasy/shot_context.py'),Path('config/daily_forecast_trial.json')]}
+    manifest['code_sha256']={str(p):sha(p) for p in [Path(__file__),Path('src/fantasy/daily.py'),Path('src/fantasy/diagnostics.py'),Path('src/fantasy/play_by_play.py'),Path('src/fantasy/shot_context.py'),Path('config/daily_forecast_trial.json')]}
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print('Daily bundle:',out)
     print(frames['game_team_coverage'].groupby('issue_timing').game_id.nunique().to_string())

@@ -1,4 +1,30 @@
-# Per-game forecast status — October 16, 2026
+# Per-game forecast status — October 20, 2026
+
+## Latest season review and today's pregame release
+
+[Season performance through October 19](season_through_2026-10-19/README.md)
+audits all 140 final games. Baselines cover 2,422/5,039 appearances in 69 games;
+the fair five-model daily comparison remains 13 games. No missing forecast was
+reconstructed after results. Candidate leads all-player/team SOG; default retains
+the small saved fantasy-player edge.
+
+- [All daily-model categories and fantasy subgroup](season_through_2026-10-19/model_metrics.csv)
+- [Every final game and forecast coverage](season_through_2026-10-19/game_coverage.csv)
+- [New defense PBP context](season_through_2026-10-19/defense_context.csv)
+- [MoneyPuck shot quality, Kalshi coverage and source audits](season_through_2026-10-19/source_quality.md)
+- [October 20 pregame release](2026-10-20_20261020T125723Z_pregame_readout.md)
+- [Latest player projections](../../data/processed/forecasts/daily_2026-10-20_20261020T125723Z/player_projections.csv)
+- [Latest team projections](../../data/processed/forecasts/daily_2026-10-20_20261020T125723Z/team_projections.csv)
+- [Latest goalie projections](../../data/processed/forecasts/daily_2026-10-20_20261020T125723Z/goalie_projections.csv)
+
+Today's 11-game bundle contains all five skater/two goalie models and fresh
+cutoff-safe inputs. Lineups/starters remain scenarios; Colorado needs one
+unidentified replacement. Both PBP and shot-quality context are saved, without
+fitted forecast effects. Acquisitions and generated forecast tables remain local;
+compact reports/audits/figures are published.
+
+See [source priorities](../../docs/DATA_SOURCE_STRATEGY.md) and the new issuance
+command in [NEXT_STEPS](../../NEXT_STEPS.md). No unattended schedule is enabled.
 
 ## Latest: weekly performance, inputs and visuals
 

@@ -1,0 +1,39 @@
+{
+  "created_at_utc": "2026-10-20T12:57:08.757869+00:00",
+  "through": "2026-10-19",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261020T124014Z",
+  "actuals_sha256": "a21b10d62fbb78698da87f1e5271fcca530cae54cff02246bfd7e4e7a5799a0f",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261020T123935Z",
+  "defense_pbp": "data/processed/forecasts/defense_pbp_20261020T124200206801Z",
+  "evaluations": [
+    "data/processed/forecasts/daily_evaluation_2026-10-10_20261020T125706500289Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-12_20261020T125707666581Z"
+  ],
+  "baseline_selection": "latest saved pregame snapshot per game; no performance selection",
+  "hash_checks": 158,
+  "files": {
+    "baseline_metrics.csv": "06c60369202ffaad51f1320752ec01de150173903808c58d6b31dc3778e77d65",
+    "defense_shot_quality_context.csv": "e7ffc7144e0925af4f0e8cb2a4dcba9d2e6ddd9aa1a4a80751c429ecefbbf141",
+    "archived_opponent_metrics.csv": "3a6efa97ee6cdada780d4aecd91be66e4e5bac9d0bdfc45f4da413bcbb1a8d58",
+    "saved_run_inventory.csv": "3a524181af5561a1d55f61c109e6b22dd05d17257f03d71800b885d748332c13",
+    "source_quality.md": "25ac21373e5311bfa868fa7b0e5ff4241a4cc2bd4f26513b4a2c0b749e259ad8",
+    "archived_goalie_metrics.csv": "84902e29a27eda4fb762cd27720f879ac6b445d98a80a5736b01aa2f4f203342",
+    "game_cluster_uncertainty.csv": "89619de1177ca05aaf0e2ee244327a9a78d9c436741d153e37c01f2a3035ac26",
+    "archived_issued_simulation_metrics.csv": "e9dabbeae39f28262228f1f8629389403d80bc6d77e0ca689ac6cad83c5ec132",
+    "moneypuck_shots_source_audit.csv": "2ccb3bd93c543a8ea99dacb7373dba70b2c30d4957ec4ac697a8242e07a3485d",
+    "README.md": "a10859a2a424be150dab9086ad7dec362bc8e2de1662f7b9bfb799fefbb89121",
+    "game_coverage.csv": "888ab79195273e6432ed309505361acc226e46f63f8a04d8e262ee93a951f8b3",
+    "kalshi_series_coverage.csv": "c0f32db9c0982837045f0f83b60b66d8df7da2862c5e58d1381bad1a69e8cdf7",
+    "defense_context.csv": "54984a190e8acb868d562bb356f4acc86b59bf9bb3893608daa2409c69032ae3",
+    "nhl_pbp_source_audit.csv": "78c3d2e997d4adcbb8fec2e677d4560ccbe38e428e9b6c96fa9b0d27f26094c2",
+    "baseline_by_date.csv": "e91e094d1c9d4c40995674bc86be5ca5988f5ddf51d992b28f62161e9edc991b",
+    "model_metrics.csv": "34bfc132777e45163ffef4806f7c812d1877cc6fb8a6d2fe9888079d139f3270",
+    "season_coverage.png": "3c39312eb0585e7fc3d593de56dd12c06c10d7554383900b2f9e109a17ecabeb",
+    "defense_shot_quality.png": "5b84e0d2fe29a87ddeda1d0b12cb378887cdc26f3fb25683a22190386798d392"
+  },
+  "source_quality_inputs": {
+    "data/processed/forecasts/defense_pbp_20261020T124200206801Z": "789e23282fd193f99bbee9b18145f49b1d93eb7fb39233952259d962cbf54a3a",
+    "data/processed/forecasts/moneypuck_shots_20261020T125337267012Z": "f389bbc753eaf5c6fb846f08e72a6c42750a1f5dbe95a7688e0a4f1f2cd20434",
+    "data/processed/forecasts/hockey_20261020T125052071185Z": "0543144c768bc44b3e8a88f55dfbede06a271bdf7f03928e2148afb765ac276a"
+  }
+}

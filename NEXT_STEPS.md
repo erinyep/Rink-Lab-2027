@@ -13,6 +13,90 @@ The central research question is:
 
 ---
 
+## Season-to-date audit, pregame release and defense events — 2026-10-20
+
+Read [season results through October 19](outputs/per_game_forecast/season_through_2026-10-19/README.md)
+and [source quality/shot-quality chart](outputs/per_game_forecast/season_through_2026-10-19/source_quality.md).
+All 140 final regular-season games acquired and validated: 5,039 positive-TOI
+skater appearances. Saved season-rate baselines cover 2,422 appearances in 69
+games; 71 games lack a saved baseline. The prospective five-model daily sample
+remains 13 October 10/12 games, not 140. Older October 9 issued simulations,
+opponent SOG and goalie trials are re-evaluated separately; postgame reconstructions
+remain excluded. Baseline SOG MAE over covered appearances is 1.043, bias +0.092.
+This selects the latest saved pregame snapshot per whole game and represents a
+changing issuance policy, not a fixed-version full-season backtest.
+
+Daily trial candidate/default player SOG MAE remains 1.044/1.065 and team MAE
+3.479/4.067. Default retains the saved fantasy-player edge, 1.311/1.325.
+Opponent goalie saves improve 4.188→3.949 but GA worsens 1.231→1.264.
+Continue comparison without promotion or new blanket calibration.
+
+Completed now:
+
+- Acquired official NHL PBP for 140 games: 16,025 attempts, no missing shooter
+  positions/coordinates. Two team-game SOG disagreements quarantine both games.
+  New all-strength/5v5 inputs include D attempts, unblocked attempts, SOG,
+  near-net attempts, D scoring involvement and 10-second teammate followups.
+  Followups are temporal associations, not passes, possession chains or causal
+  creation. No D-pair or on-ice rate claim without shifts.
+- Standalone MoneyPuck team refresh covers all 140 games. Acquired published
+  shot data: 11,613 unblocked events, 124 original fields. Forty-nine games have
+  an official SOG disagreement and are quarantined for shot-quality summaries.
+  Derived missing-position fallback uses same-game NHL boxscores (164 missing
+  raw positions, zero unresolved). Credit MoneyPuck.com; raw files unchanged.
+- Future daily builds save lagged PBP and optional D xG/expected-rebound context,
+  with explicit cutoff/quarantine/sample sizes. No coefficients fitted.
+- Public read-only Kalshi snapshot across seven requested NHL series assesses
+  coverage/spreads/volume. Quotes remain unmapped and unused by forecasts; this
+  cannot reconstruct historical pregame markets. No orders/account access.
+- Fixed issuance's zero-TOI population mismatch, replaced hard-coded October 10
+  finalization text, added full-release timing/freshness/coverage/category/count
+  checks, preserved immutable goalie parent provenance, and enabled repeated
+  dated releases without overwriting prior bundles.
+
+Latest [October 20 pregame release](outputs/per_game_forecast/2026-10-20_20261020T125723Z_pregame_readout.md):
+11 games, 22 teams, 2,490 player/model rows, 110 team/model rows and 102
+goalie/model rows, released 12:57:39.690935 UTC (8:57 AM EDT; consult manifest for exact
+completion). All five skater/two goalie models are present. Colorado has one
+unidentified lineup replacement; other lineups and all starter shares remain
+provisional. Original forecasts/actual fields preserved. Earlier October 20
+release checks are retained as separate artifacts; use this latest bundle:
+`data/processed/forecasts/daily_2026-10-20_20261020T125723Z/`.
+
+Single-command future issuance (set target date explicitly):
+
+```sh
+rink-lab.venv/bin/python scripts/issue_daily_forecasts.py \
+  --date 2026-10-21 \
+  --template-forecast data/processed/forecasts/per_game_20262027_20261009T195052Z
+```
+
+This refreshes official finals, scoring, TOI, ESPN, MoneyPuck teams/shots and
+PBP, builds skaters and goalies, then finalizes only if every scheduled game is
+still at least ten minutes away, retrievals/injuries are at most six hours old,
+and preceding-day history is complete. MoneyPuck lag requires an explicit
+`--allow-context-lag` exception and remains visible. `--prepared-inputs <JSON>`
+reuses freshly acquired input paths; that build/finalize path was exercised end
+to end, with the refresh subcommands also run individually. No scheduler enabled.
+Morning issuance does not verify evening lineups; run again nearer puck drop.
+
+Next experiments, in order:
+
+1. Resolve MoneyPuck/NHL shot revisions before depending on broader xG features;
+   retain quarantines and test coverage bias from missing games/teams.
+2. Acquire/validate NHL shifts for D-pair minutes, linemates and PP deployment.
+   No event-level passing/entry claim from standard PBP alone.
+3. Freeze TOI-only, rate-only, matchup-only and D-context-only variants on unseen
+   games. Use paired game uncertainty, role/fantasy subgroups and calibration;
+   test shot quality/rebound inputs only after source and exposure checks.
+4. Map Kalshi contracts/rules to NHL IDs, collect actual pregame quote histories,
+   depth and last-trade times, and evaluate market-only versus model-only before
+   blending. Do not equate winner probability with expected SOG.
+5. Schedule the runner on an available host with retries, idempotence, secret
+   handling and failure alerts. Keep personal ESPN credentials/snapshots local.
+
+Full source recommendations and official links: [data-source strategy](docs/DATA_SOURCE_STRATEGY.md).
+
 ## Weekly review and defense opportunity inputs — 2026-10-16
 
 Read [October 12–15 weekly review](outputs/per_game_forecast/week_2026-10-12/README.md).
