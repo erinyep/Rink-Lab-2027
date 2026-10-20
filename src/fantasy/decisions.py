@@ -92,3 +92,16 @@ def acquisition_window_open(game_starts, as_of):
     if not game_starts:
         raise ValueError('Cannot establish acquisition deadline without scheduled games')
     return as_of < min(game_starts)
+
+
+def category_comparison(category, own, opponent, lower_is_better=False):
+    """Missing/nonfinite ESPN rates are unavailable, never an invented lead."""
+    import math
+    own = float(own) if math.isfinite(float(own)) else None
+    opponent = float(opponent) if math.isfinite(float(opponent)) else None
+    if category == 'ATOI':
+        own = own / 60 if own is not None else None
+        opponent = opponent / 60 if opponent is not None else None
+    delta = None if own is None or opponent is None else (opponent-own if lower_is_better else own-opponent)
+    status = 'unavailable' if delta is None else 'tied' if abs(delta)<1e-9 else 'ahead' if delta>0 else 'behind'
+    return dict(category=category,own=own,opponent=opponent,advantage=delta,lower_is_better=lower_is_better,status=status)

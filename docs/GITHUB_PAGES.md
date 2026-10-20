@@ -19,12 +19,12 @@ https://github.com/erinyep/Rink-Lab-2027/settings/pages
 Until Pages is enabled, GitHub shows HTML source. The repository README includes
 a static chart preview that GitHub can display directly.
 
-This is a saved October 17 report, not a live feed. Refresh local forecast/report
+This is a saved October 20 report, not a live feed. Refresh local forecast/report
 inputs before publishing a later snapshot. Repackage explicitly with:
 
 ```sh
 rink-lab.venv/bin/python scripts/prepare_github_report.py \
-  --report reports/today/2026-10-17_quinn_publishing
+  --report reports/today/2026-10-20_quinn_publishing_v2
 ```
 
 Commit `docs/report/` after reviewing the new snapshot. Pushing changes to `main`
@@ -39,3 +39,5 @@ rink-lab.venv/bin/python scripts/build_nhl_outlook.py --bundle <issued-bundle>
 ```
 
 This packages existing forecasts; it never retroactively issues missing predictions.
+
+The [October 17 matchup archive](archive/2026-10-17/games/index.html) and [fantasy report archive](archive/2026-10-17/report/index.html) preserve the earlier snapshot.

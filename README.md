@@ -20,8 +20,8 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 ## Today’s NHL game predictions
 
-[All Saturday NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
-projected goals, shots, scoring leans and goalie scenarios for all 28 teams.
+[Tuesday, October 20 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+projected goals, shots, scoring leans and goalie scenarios for all 22 teams.
 [Reading guide](docs/games/README.md).
 
 ## Today’s fantasy report
@@ -31,7 +31,7 @@ projected goals, shots, scoring leans and goalie scenarios for all 28 teams.
 [Interactive browser report](https://erinyep.github.io/Rink-Lab-2027/report/)
 (requires the [one-time Pages setup](docs/GITHUB_PAGES.md)).
 
-![October 17 category comparison](docs/report/category-gaps.svg)
+![October 20 category comparison](docs/report/category-gaps.svg)
 
 ## Current forecast work
 

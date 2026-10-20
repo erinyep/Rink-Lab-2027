@@ -35,3 +35,5 @@ Use publication_safe for conservative comparative evidence; declared_pregame dep
 14 goalie/model rows remain unresolved. IDs use exact normalized full names on the official same-game NHL PBP goalie roster. [Mapping and observed roles](published_october_17_goalie_mapping.csv) retain every candidate; headline counts use actual starters with valid count identities only. The public export contains saves and GA means, so no unexported per-player/SA forecast is invented.
 
 Next: transfer the immutable raw and processed October 17 forecast bundle to enable full player evaluation, fantasy subgroups and issue-time/source verification. The existing interactive matchup and category-report work is preserved.
+
+[Archived October 17 matchup snapshot](../../../docs/archive/2026-10-17/games/README.md) preserves the evaluated exports after the current Pages view advances.

@@ -1,9 +1,16 @@
 import unittest
 from datetime import datetime, timezone
-from src.fantasy.decisions import fit_lineup, category_rules, dominates, acquisition_window_open
+from src.fantasy.decisions import fit_lineup, category_rules, dominates, acquisition_window_open, category_comparison
 
 
 class DecisionsTests(unittest.TestCase):
+    def test_uninitialized_goalie_rate_is_not_an_invented_advantage(self):
+        row=category_comparison('GAA',2.4,float('inf'),True)
+        self.assertIsNone(row['opponent'])
+        self.assertIsNone(row['advantage'])
+        self.assertEqual(row['status'],'unavailable')
+        self.assertEqual(category_comparison('GAA',2.4,3.1,True)['status'],'ahead')
+
     def test_acquisitions_close_at_first_game_even_for_later_players(self):
         first=datetime(2026,10,17,17,tzinfo=timezone.utc)
         late=datetime(2026,10,17,23,tzinfo=timezone.utc)

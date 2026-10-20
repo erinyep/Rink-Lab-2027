@@ -4,6 +4,7 @@ import argparse
 import csv
 import hashlib
 import json
+from html import escape
 from pathlib import Path
 
 
@@ -36,6 +37,26 @@ def main():
     rendered=template.replace('__REPORT_DATA__',payload.replace('</','<\\/'))
     rendered=rendered.replace('<body><main>','<body><main><nav><a href="../games/index.html">All NHL game predictions</a> · <strong>Your fantasy team</strong></nav>',1)
     (args.out/'index.html').write_text(rendered)
+    # Regenerate the README preview from the same snapshot as the interactive page.
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 {80+37*len(data["matchup"])}" font-family="system-ui,sans-serif" role="img" aria-label="Saved category comparison">',
+           '<rect width="100%" height="100%" fill="white"/>',
+           f'<text x="18" y="28" font-size="18">Category comparison — {escape(data["date"])}</text>',
+           '<text x="18" y="49" font-size="12" fill="#536874">You: teal · Opponent: gold · Saved standings, not forecasts</text>']
+    for i, row in enumerate(data['matchup']):
+        y = 78 + i*37
+        if row['own'] is None or row['opponent'] is None:
+            svg.append(f'<text x="18" y="{y+4}" font-size="13">{escape(row["category"])} · unavailable (no finite saved rate)</text>')
+            continue
+        low, high = min(0,row['own'],row['opponent']), max(1,row['own'],row['opponent'])
+        x = lambda value: 115 + 240*(value-low)/(high-low)
+        label = escape(row['category']) + (' ↓' if row['lower_is_better'] else '')
+        svg += [f'<text x="18" y="{y+4}" font-size="13">{label}</text>',
+                f'<line x1="115" x2="355" y1="{y}" y2="{y}" stroke="#d5e1e6"/>',
+                f'<circle cx="{x(row["opponent"]):.2f}" cy="{y}" r="5" fill="#ce8722"/>',
+                f'<circle cx="{x(row["own"]):.2f}" cy="{y}" r="5" fill="#087e83"/>',
+                f'<text x="380" y="{y+4}" font-size="12">{row["own"]:.3f} / {row["opponent"]:.3f}</text>',
+                f'<text x="565" y="{y+4}" font-size="12">{escape(row["status"])}</text>']
+    (args.out/'category-gaps.svg').write_text('\n'.join(svg+['</svg>'])+'\n')
     for key,filename in [('roster','roster.csv'),('streamers','streamer_watchlist.csv'),('goalies','goalies.csv'),('schedule','roster_schedule.csv'),('matchup','category_gaps.csv')]:
         rows=data[key]
         with (args.out/filename).open('w',newline='') as f:

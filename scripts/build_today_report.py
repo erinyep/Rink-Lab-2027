@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 import pandas as pd
-from src.fantasy.decisions import active_slots, category_rules, fit_lineup, dominates, acquisition_window_open
+from src.fantasy.decisions import active_slots, category_rules, fit_lineup, dominates, acquisition_window_open, category_comparison
 from src.fantasy.availability import excluded_by_status
 from src.fantasy.schedule import normalize_team, LEGACY_TEAM_ALIASES
 from scripts.validate_daily_bundle import validate
@@ -138,10 +138,7 @@ def main():
     for c in cats:
         a=ownmatch[ownmatch.category.eq(c['name'])];b=other[other.category.eq(c['name'])]
         if len(a)!=1 or len(b)!=1:raise ValueError('Missing scored matchup category')
-        av=float(a.score.iloc[0]);bv=float(b.score.iloc[0]);delta=(bv-av) if c['lower_is_better'] else (av-bv)
-        if c['name']=='ATOI':av/=60;bv/=60;delta/=60
-        gaps.append(dict(category=c['name'],own=av,opponent=bv,advantage=delta,lower_is_better=c['lower_is_better'],
-                         status='tied' if abs(delta)<1e-9 else 'ahead' if delta>0 else 'behind'))
+        gaps.append(category_comparison(c['name'], a.score.iloc[0], b.score.iloc[0], c['lower_is_better']))
     gs=ownmatch[ownmatch.category.eq('GS')]
     minimum=rules['scoringSettings'].get('statQualificationMinimum',{}).get('limitValue')
     goalie_note=f"Saved goalie starts: {gs.score.iloc[0]:g}; minimum {minimum:g}." if len(gs)==1 and minimum is not None else 'Goalie qualification unavailable.'
@@ -181,7 +178,7 @@ def main():
         'The captured acquisition limit is one per scoring period, but the available counters cover whole matchups; '
         'remaining daily allowance is unverified. Streamers are a watchlist, not an ADD instruction.')
     if not add_window:
-        transaction_note="Today's add/drop window closed at the first scheduled NHL game. New acquisitions cannot contribute today; streamer rows are future planning only. Individual lineup swaps remain possible until each player's game. Pionk appears in the next-period roster."
+        transaction_note="Today's add/drop window closed at the first scheduled NHL game. New acquisitions cannot contribute today; streamer rows are future planning only. Individual lineup swaps remain possible until each player's game."
     calendar_frame=pd.DataFrame(calendar).drop_duplicates()
     own_calendar=own[['espn_player_id','player_name','schedule_team','lineup_slot','injury_status']].merge(calendar_frame,left_on='schedule_team',right_on='team',how='left')
     if args.future_roster:

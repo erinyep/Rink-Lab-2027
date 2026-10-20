@@ -1,47 +1,20 @@
-# Today — Quinn Short for Quinnificent
+# Today — Quinn Short for Quinnificent — October 20, 2026
 
-[Open the interactive report](2026-10-17_quinn_publishing/index.html)
-(open the HTML file in a browser if your editor shows source).
-[Text summary](2026-10-17_quinn_publishing/README.md).
+[Interactive local report](2026-10-20_quinn_publishing_v2/index.html) · [Text summary](2026-10-20_quinn_publishing_v2/README.md) · [Published report](https://erinyep.github.io/Rink-Lab-2027/report/)
 
-The report includes category-gap comparisons, a category-selectable skater chart,
-a streamer table with active-slot fit, goalie scenarios, and a roster calendar.
-Charts can be saved as SVG. Data, CSVs and the provenance manifest are linked
-inside the report. It is a local snapshot; it does not update automatically.
+Today's report uses the October 20 frozen 11-game forecasts, ESPN roster/standings captured this morning, and refreshed league rules/next-period roster. The next-period roster has no additions or removals. One saved goalie start is recorded against a three-start minimum. An opponent GAA is unavailable because ESPN supplied a nonfinite rate; it is not treated as an advantage.
 
-The refreshed ESPN source records Byram as today's `FUTURE_DROP` and Pionk in
-the next scoring period's roster. The calendar uses today's roster for today,
-then holds the next-period roster constant as a schedule scenario.
+The report flags Gavin McKenna for an available Forward slot after benching off-day/injury-excluded players; confirm he dresses before acting. No lineup changes or transactions were performed. Streamers remain a watchlist, and remaining daily acquisition allowance is unverified.
 
-No unlocked benched skater has a game today. The saved matchup has PPP tied,
-assists +2 and SOG +39. Five saved goalie starts satisfy the three-start minimum;
-GAA and SV% trail. These are current category standings, not win probabilities.
-Today’s add/drop window has closed. Further acquisitions are future planning
-only; remaining daily allowance is unverified. No roster transactions were performed by this report.
+Charts, category comparisons and the roster calendar are saved snapshots, not live updates. Historical October 17 pages are preserved under `docs/archive/2026-10-17/`.
 
 ## Rebuild
 
-The league-aware daily runner now also builds the report for the team in
-`config/fantasy_report.json`. Use `--report-team-id` to override it.
-Public-only runs skip the fantasy report.
-
-To rebuild from the current saved inputs into a new, unused directory:
+The league-aware runner `scripts/run_daily_forecasts.py` builds dated reports for the team in `config/fantasy_report.json`. Public-only runs skip the fantasy report. To publish a reviewed report:
 
 ```sh
-rink-lab.venv/bin/python scripts/build_today_report.py \
-  --bundle data/processed/forecasts/daily_2026-10-17_20261017T173552Z \
-  --rules data/raw/espn/snapshots/rules_2027_20261017T173603569187Z \
-  --future-roster data/raw/espn/snapshots/future_roster_2027_20261017T173632652100Z \
-  --team-id 5 \
-  --out reports/today/2026-10-17_quinn_new
+rink-lab.venv/bin/python scripts/prepare_github_report.py \
+  --report reports/today/2026-10-20_quinn_publishing_v2
 ```
 
-Refresh the sources after transactions or before relying on a later slate.
-Dated generated report directories are local and gitignored, as are source data.
-
-## Useful visuals to add later
-
-In `reports/model_health/`, add weekly error/bias trends by model and fantasy
-subgroup, plus probability calibration after the permanent scoreboard exists.
-Those charts should use prospective history rather than reconstructed forecasts.
-The older machine's frozen history is still needed for the previous trials.
+Refresh inputs after roster changes; dated generated directories and private source data remain gitignored.

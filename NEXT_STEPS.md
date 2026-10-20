@@ -1,5 +1,7 @@
 # Rink Lab — Next Steps
 
+October 20 publication refresh: GitHub Pages matchup and fantasy views now use today's 11-game frozen bundle. Root links/date labels and category SVG were refreshed; October 17 pages are archived under `docs/archive/2026-10-17/`. Fantasy report handles nonfinite ESPN goalie rates as unavailable; no transactions performed.
+
 Latest completed milestone: [October 20 season audit and issuance](#season-to-date-audit-pregame-release-and-defense-events--2026-10-20). All 140 finals acquired; 11-game pregame bundle issued. The October 17 reports below are preserved historical context.
 
 ## Active plan — 2026-10-17
