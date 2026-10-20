@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means
+from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means, validate_exposure_population
 
 
 class DailyTests(unittest.TestCase):
@@ -15,6 +15,14 @@ class DailyTests(unittest.TestCase):
         u=recent_shot_usage(h,1,'2026-10-10',2,10)
         self.assertEqual(u['recent_games'],1)
         self.assertAlmostEqual(u['usage_shots_before_context'],2)
+
+    def test_zero_minute_boxscore_row_does_not_require_exposure(self):
+        h=self.history()
+        h.loc[1,'toi_seconds']=0
+        validate_exposure_population(h,h.iloc[:1].copy())
+        self.assertEqual(len(h),2)
+        with self.assertRaisesRegex(ValueError,'population differs'):
+            validate_exposure_population(self.history(),h.iloc[:1].copy())
 
     def test_no_recent_history_uses_prior(self):
         u=recent_shot_usage(self.history(),99,'2026-10-10',3,20)

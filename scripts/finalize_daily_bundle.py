@@ -96,6 +96,7 @@ def main():
         "Start with player_projections.csv, team_projections.csv and goalie_projections.csv. Player means condition on playing; "
         "selected_for_trial is an assumed lineup, not a confirmed roster. Goalies condition on a full start; start shares are provisional. "
         "Default remains baseline; other models remain trials.\n\n"
+        f"Availability: {m.get('availability_status','timestamped_espn_labels')}. Public-only mode has unknown injuries and no ownership.\n\n"
         "## Unidentified lineup replacements\n\n"+(table(replacements) if len(replacements) else "None.")+"\n\n"
         "Source coverage/discrepancies: team_context.csv. Release checks: manifest.json. Actuals remain blank. "
         "Evaluate results separately and preserve this bundle.\n")

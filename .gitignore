@@ -22,3 +22,6 @@ data/raw/nhl/snapshots/
 data/raw/espn/snapshots/
 data/raw/moneypuck/snapshots/
 data/raw/kalshi/snapshots/
+
+# Generated local fantasy reports; reusable templates and index remain tracked
+reports/today/*/

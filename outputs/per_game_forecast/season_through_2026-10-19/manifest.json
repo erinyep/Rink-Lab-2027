@@ -17,15 +17,19 @@
     "archived_opponent_metrics.csv": "3a6efa97ee6cdada780d4aecd91be66e4e5bac9d0bdfc45f4da413bcbb1a8d58",
     "saved_run_inventory.csv": "3a524181af5561a1d55f61c109e6b22dd05d17257f03d71800b885d748332c13",
     "source_quality.md": "25ac21373e5311bfa868fa7b0e5ff4241a4cc2bd4f26513b4a2c0b749e259ad8",
+    "published_october_17_goalie_mapping.csv": "aa06d2ab495589e77d4b9262fa4fdd05c19e2239c95ebb4b1c7f6662b18ac278",
     "archived_goalie_metrics.csv": "84902e29a27eda4fb762cd27720f879ac6b445d98a80a5736b01aa2f4f203342",
     "game_cluster_uncertainty.csv": "89619de1177ca05aaf0e2ee244327a9a78d9c436741d153e37c01f2a3035ac26",
     "archived_issued_simulation_metrics.csv": "e9dabbeae39f28262228f1f8629389403d80bc6d77e0ca689ac6cad83c5ec132",
+    "published_october_17_goalie_metrics.csv": "e1d8ca07b5652bde2fec3a19c6d4f3189aa333b52415d1e69b38e4f4584436e5",
     "moneypuck_shots_source_audit.csv": "2ccb3bd93c543a8ea99dacb7373dba70b2c30d4957ec4ac697a8242e07a3485d",
-    "README.md": "a10859a2a424be150dab9086ad7dec362bc8e2de1662f7b9bfb799fefbb89121",
+    "published_october_17_metrics.csv": "5e38190b5ede63c8e063f54c889d784a3ac350dd7fa496b6caf4200705888edc",
+    "README.md": "096109d7d4f500e8ff0f6bcdb442c5eaea99982d493ae4e7f1bf02dab4d86e44",
     "game_coverage.csv": "888ab79195273e6432ed309505361acc226e46f63f8a04d8e262ee93a951f8b3",
     "kalshi_series_coverage.csv": "c0f32db9c0982837045f0f83b60b66d8df7da2862c5e58d1381bad1a69e8cdf7",
     "defense_context.csv": "54984a190e8acb868d562bb356f4acc86b59bf9bb3893608daa2409c69032ae3",
     "nhl_pbp_source_audit.csv": "78c3d2e997d4adcbb8fec2e677d4560ccbe38e428e9b6c96fa9b0d27f26094c2",
+    "published_october_17.md": "65295de0024c633a4ee505c8495f647d3c0609e5dff82c25af59f0beec7570fb",
     "baseline_by_date.csv": "e91e094d1c9d4c40995674bc86be5ca5988f5ddf51d992b28f62161e9edc991b",
     "model_metrics.csv": "34bfc132777e45163ffef4806f7c812d1877cc6fb8a6d2fe9888079d139f3270",
     "season_coverage.png": "3c39312eb0585e7fc3d593de56dd12c06c10d7554383900b2f9e109a17ecabeb",
@@ -35,5 +39,11 @@
     "data/processed/forecasts/defense_pbp_20261020T124200206801Z": "789e23282fd193f99bbee9b18145f49b1d93eb7fb39233952259d962cbf54a3a",
     "data/processed/forecasts/moneypuck_shots_20261020T125337267012Z": "f389bbc753eaf5c6fb846f08e72a6c42750a1f5dbe95a7688e0a4f1f2cd20434",
     "data/processed/forecasts/hockey_20261020T125052071185Z": "0543144c768bc44b3e8a88f55dfbede06a271bdf7f03928e2148afb765ac276a"
+  },
+  "published_outlook_source": {
+    "path": "docs/games",
+    "manifest_sha256": "b941eb14f83b582a011dd88efd488130ee40b1d5aecc56fba1a6b5bc63e78e32",
+    "forecast_issued_utc": "2026-10-17T17:36:04.427312+00:00",
+    "view_created_utc": "2026-10-17T19:48:34.711496+00:00"
   }
 }

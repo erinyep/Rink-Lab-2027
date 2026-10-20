@@ -14,7 +14,7 @@ import pandas as pd
 import truststore
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.fantasy.per_game import forecast, TARGETS, require
-from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means
+from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means, validate_exposure_population
 from src.fantasy.diagnostics import defense_opportunity
 from src.fantasy.play_by_play import lagged_defense_context, lagged_shot_quality
 from src.fantasy.availability import excluded_by_status
@@ -41,7 +41,9 @@ def main():
     ap.add_argument('--boxscore-history',type=Path,required=True)
     ap.add_argument('--moneypuck-snapshot',type=Path,required=True)
     ap.add_argument('--game-toi',type=Path,required=True)
-    ap.add_argument('--espn-benchmark',type=Path,required=True)
+    ap.add_argument('--espn-benchmark',type=Path)
+    ap.add_argument('--without-espn',action='store_true',help='Public-data mode: no injury or fantasy ownership coverage')
+    ap.add_argument('--max-injury-age-hours',type=float,default=6)
     ap.add_argument('--raw-context',type=Path)
     ap.add_argument('--defense-pbp',type=Path,help='Verified PBP context; no fitted effect')
     ap.add_argument('--moneypuck-shots',type=Path,help='Verified lagged D shot quality; no fitted effect')
@@ -78,13 +80,12 @@ def main():
     toi=pd.read_csv(a.game_toi)
     require((toi.game_date<a.date).all() and (toi.season_id==season).all(),'TOI cutoff/season invalid')
     require(not toi.duplicated(['game_id','player_id']).any(),'Duplicate TOI records')
-    # NHL TOI report describes participants; boxscores can retain zero-TOI rows.
-    # Preserve those rows in history/audit, but compare the same exposure cohort.
-    participants=hist[hist.toi_seconds.gt(0)]
     hist[hist.toi_seconds.le(0)].to_csv(out/'zero_toi_history_audit.csv',index=False)
-    require(set(zip(toi.game_id,toi.player_id))==set(zip(participants.game_id,participants.player_id)),'TOI/boxscore participant population differs')
+    validate_exposure_population(hist,toi)
     require(np.allclose(toi.ev_toi_seconds+toi.pp_toi_seconds+toi.sh_toi_seconds,toi.toi_seconds),'TOI component mismatch')
-    bench=pd.read_csv(a.espn_benchmark)
+    require(a.without_espn or a.espn_benchmark is not None,'ESPN benchmark required unless --without-espn')
+    bench=(pd.DataFrame(columns=['nhl_player_id','projection_status','espn_projected_sog_per_game'])
+           if a.without_espn else pd.read_csv(a.espn_benchmark))
     bench=bench[bench.nhl_player_id.notna() & bench.projection_status.eq('available_season_average_benchmark')].copy()
     require(not bench.nhl_player_id.duplicated().any(),'Duplicate NHL benchmark')
     bench=bench.set_index('nhl_player_id')
@@ -113,13 +114,19 @@ def main():
     rates.to_csv(inputs/'current_per_game_forecast.csv',index=False)
     panel.to_csv(inputs/'validated_player_seasons.csv',index=False)
     current.to_csv(inputs/'current_observed_stats.csv',index=False)
-    espn_info=attach_espn(rates,inputs,Path('data/raw/espn/snapshots'),Path('data/processed/espn'),season)
+    espn_info=({'status':'disabled_public_data_only','retrieved_at_utc':None} if a.without_espn else
+        attach_espn(rates,inputs,Path('data/raw/espn/snapshots'),Path('data/processed/espn'),season))
+    if not a.without_espn:
+        require('retrieved_at_utc' in espn_info,'No ESPN snapshot; refresh it or explicitly use --without-espn')
+        age=(datetime.now(timezone.utc)-datetime.fromisoformat(espn_info['retrieved_at_utc'])).total_seconds()/3600
+        require(0<=age<=a.max_injury_age_hours,'ESPN injury snapshot is stale or future-dated; refresh before issuance')
     fm=dict(template);fm['created_at_utc']=datetime.now(timezone.utc).isoformat()
     fm['current_season_source']=dict(game_history=str(a.game_history),before_date=a.date)
     fm['espn']=espn_info;fm['files']={p.name:sha(p) for p in inputs.glob('*.csv')}
     (inputs/'manifest.json').write_text(json.dumps(fm,indent=2)+'\n')
     rates=rates.set_index('player_id')
-    espn=pd.read_csv(inputs/'espn_player_forecasts.csv')
+    espn=(pd.DataFrame(columns=['nhl_player_id','pool','injury_status','player_name','fantasy_team_name'])
+          if a.without_espn else pd.read_csv(inputs/'espn_player_forecasts.csv'))
     espn=espn[espn.nhl_player_id.notna()].sort_values('pool',ascending=False).drop_duplicates('nhl_player_id').set_index('nhl_player_id')
     injuries=espn[['injury_status','player_name']].reset_index().rename(columns={'nhl_player_id':'player_id'})
     injuries['status_retrieved_at_utc']=espn_info['retrieved_at_utc']
@@ -234,7 +241,8 @@ def main():
     manifest=dict(created_at_utc=created.isoformat(),date=a.date,games=len(games),forecast=str(inputs),raw_context=str(raw),sources=sources,
         seed=int(a.date.replace('-','')),draws=cfg['draws'],config=cfg,calibration=cal,game_history=str(a.game_history),boxscore_history=str(a.boxscore_history),
         moneypuck_snapshot=str(a.moneypuck_snapshot),moneypuck_sha256=mpmeta['sha256'],injuries_as_of_utc=espn_info['retrieved_at_utc'],
-        additional_sources={str(a.game_toi):sha(a.game_toi),str(a.espn_benchmark):sha(a.espn_benchmark)},
+        additional_sources={str(source):sha(source) for source in [a.game_toi,a.espn_benchmark] if source is not None},
+        availability_status=espn_info['status'] if a.without_espn else 'timestamped_espn_labels_not_confirmed_lineups',
         defense_pbp_source=str(a.defense_pbp) if a.defense_pbp else None,
         defense_pbp_manifest_sha256=sha(a.defense_pbp/'manifest.json') if a.defense_pbp else None,
         moneypuck_shots_source=str(a.moneypuck_shots) if a.moneypuck_shots else None,

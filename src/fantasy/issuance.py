@@ -16,8 +16,13 @@ def validate_release(manifest, games, players, teams, goalies, context, now,
     require(all(g['gameState'] in {'FUT','PRE'} for g in games), 'Game already started or final')
     starts=pd.to_datetime([g['startTimeUTC'] for g in games],utc=True)
     require((starts>now+timedelta(minutes=lead_minutes)).all(), 'Insufficient lead time')
-    age=(now-pd.Timestamp(manifest['injuries_as_of_utc'])).total_seconds()/3600
-    require(0<=age<=max_age_hours, 'Stale or future injury snapshot')
+    public_only=manifest.get('availability_status')=='disabled_public_data_only'
+    if public_only:
+        require(players.injury_status.eq('UNKNOWN').all() and goalies.injury_status.eq('UNKNOWN').all(),
+                'Public mode must expose unknown injuries')
+    else:
+        age=(now-pd.Timestamp(manifest['injuries_as_of_utc'])).total_seconds()/3600
+        require(0<=age<=max_age_hours, 'Stale or future injury snapshot')
     require(pd.Timestamp(manifest['created_at_utc'])<=now, 'Future bundle timestamp')
     team_keys={(g['id'],g[k]['abbrev']) for g in games for k in ['homeTeam','awayTeam']}
     models=set(manifest['config']['models'])

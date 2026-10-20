@@ -80,6 +80,13 @@ class IssuanceTests(unittest.TestCase):
         args=self.sample(); args[2]=args[2][args[2].category.ne('hits')]
         with self.assertRaisesRegex(ValueError,'Incomplete player categories'): validate_release(*args)
 
+    def test_public_mode_requires_unknown_injuries(self):
+        args=self.sample(); args[0].update(availability_status='disabled_public_data_only',injuries_as_of_utc=None)
+        args[2]['injury_status']='UNKNOWN'; args[4]['injury_status']='UNKNOWN'
+        validate_release(*args)
+        args[4].loc[0,'injury_status']='ACTIVE'
+        with self.assertRaisesRegex(ValueError,'unknown injuries'): validate_release(*args)
+
 
 class ShotQualityTests(unittest.TestCase):
     def test_quality_excludes_target_day_and_quarantined_sources(self):

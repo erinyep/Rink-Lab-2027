@@ -14,6 +14,25 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 - Study NCAA-to-NHL player translation
 - Develop better measures of player contribution beyond traditional box scores
 
+## Local setup
+
+[Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
+
+## Today’s NHL game predictions
+
+[All Saturday NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+projected goals, shots, scoring leans and goalie scenarios for all 28 teams.
+[Reading guide](docs/games/README.md).
+
+## Today’s fantasy report
+
+[Quinn’s local report and roster alerts](reports/today/README.md).
+
+[Interactive browser report](https://erinyep.github.io/Rink-Lab-2027/report/)
+(requires the [one-time Pages setup](docs/GITHUB_PAGES.md)).
+
+![October 17 category comparison](docs/report/category-gaps.svg)
+
 ## Current forecast work
 
 October 20: [Season-to-date model review](outputs/per_game_forecast/season_through_2026-10-19/README.md)

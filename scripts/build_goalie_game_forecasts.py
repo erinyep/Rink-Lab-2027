@@ -72,8 +72,10 @@ def main():
               args.boxscore_history/'metadata.json']]
     for name in ['game_team_coverage.csv','simulation_summary.csv']:
         require(sha256(args.simulation/name)==sim['files'][name], 'Skater simulation source hash mismatch')
-    require(sha256(forecast/'espn_player_forecasts.csv')==fm['files']['espn_player_forecasts.csv'],
-            'ESPN forecast source hash mismatch')
+    public_only=fm['espn'].get('status')=='disabled_public_data_only'
+    if not public_only:
+        require(sha256(forecast/'espn_player_forecasts.csv')==fm['files']['espn_player_forecasts.csv'],
+                'ESPN forecast source hash mismatch')
     team_coverage=pd.read_csv(args.simulation/'game_team_coverage.csv')
     skaters=pd.read_csv(args.simulation/'simulation_summary.csv')
     starts_by_game=skaters[['game_id','start_time_utc']].drop_duplicates()
@@ -131,7 +133,8 @@ def main():
             goals_for=(g.goals_for.sum()+10*league_goals)/(len(g)+10))
     for team in set(team_coverage.team):
         context.setdefault(team,dict(games=0,shots_for=league_shots,shots_against=league_shots,goals_for=league_goals))
-    espn=pd.read_csv(forecast/'espn_player_forecasts.csv')
+    espn=(pd.DataFrame(columns=['primary_position','nhl_player_id','pool','injury_status','fantasy_team_name'])
+          if public_only else pd.read_csv(forecast/'espn_player_forecasts.csv'))
     espn=espn[espn.primary_position.isin(['Goalie','G']) & espn.nhl_player_id.notna()].sort_values('pool',ascending=False).drop_duplicates('nhl_player_id').set_index('nhl_player_id')
     injury_context=pd.read_csv(args.injury_context).set_index('player_id') if args.injury_context else None
     require(injury_context is None or not injury_context.index.duplicated().any(),'Duplicate injury-context identity')
@@ -210,6 +213,7 @@ def main():
     pd.DataFrame(context).T.reset_index(names='team').to_csv(out/'opponent_context.csv',index=False)
     (out/'manifest.json').write_text(json.dumps(dict(created_at_utc=issued_at.isoformat(),sources=sources,
         date=sim['date'],skater_simulation=str(args.simulation),games=int(team_coverage.game_id.nunique()),
+        availability_status=sim.get('availability_status','timestamped_espn_labels'),
         game_history=str(args.game_history),boxscore_history=str(args.boxscore_history),
         history_last_game_date=str(appearances.game_date.max()),
         excluded_target_or_future_role_rows=excluded_role_rows,

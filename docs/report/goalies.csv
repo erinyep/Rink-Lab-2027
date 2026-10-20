@@ -1,0 +1,3 @@
+player_name,lineup_slot,injury_status,start_share_provisional,saves_if_full_start,goals_against_if_full_start,save_percentage_projection
+Dylan Garand,Goalie,ACTIVE,0.8333333333,25.2363395473,2.3908113735,0.9134615299
+Juuse Saros,Goalie,ACTIVE,0.875,26.6525263452,3.0673294072,0.8967919147

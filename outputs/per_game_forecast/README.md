@@ -4,7 +4,7 @@
 
 [Season performance through October 19](season_through_2026-10-19/README.md)
 audits all 140 final games. Baselines cover 2,422/5,039 appearances in 69 games;
-the fair five-model daily comparison remains 13 games. No missing forecast was
+the full-player five-model daily comparison remains 13 games, with 12 additional publication-safe team/goalie games from October 17 scored separately. No missing forecast was
 reconstructed after results. Candidate leads all-player/team SOG; default retains
 the small saved fantasy-player edge.
 
@@ -26,7 +26,29 @@ compact reports/audits/figures are published.
 See [source priorities](../../docs/DATA_SOURCE_STRATEGY.md) and the new issuance
 command in [NEXT_STEPS](../../NEXT_STEPS.md). No unattended schedule is enabled.
 
-## Latest: weekly performance, inputs and visuals
+[All NHL matchup predictions](../../docs/games/README.md) · [Live NHL view](https://erinyep.github.io/Rink-Lab-2027/games/)
+
+[Quinn’s daily report and interactive charts](../../reports/today/README.md)
+
+## Today: October 17 league-aware projections
+
+[Today's readout](2026-10-17_daily_2026-10-17_20261017T173552Z_pregame_readout.md)
+
+Issued around 1:36 p.m. Eastern: 13 pregame games; New Jersey–Washington is
+explicitly late. ESPN is connected to Micro League on this machine. Ownership
+and injury labels refreshed around 1:35 p.m. Eastern; official statistical
+history ends October 16. Five skater models and two goalie scenarios validated.
+Lineups and goalie starts remain unconfirmed; means condition on playing.
+
+- [Players](../../data/processed/forecasts/daily_2026-10-17_20261017T173552Z/player_projections.csv) — filter `model=default`, `issue_timing=pregame` and `fantasy_team_name`; check `injury_status`.
+- [Teams](../../data/processed/forecasts/daily_2026-10-17_20261017T173552Z/team_projections.csv)
+- [Goalies](../../data/processed/forecasts/daily_2026-10-17_20261017T173552Z/goalie_projections.csv)
+- [Setup and daily runner](../../docs/LOCAL_SETUP.md)
+
+[Earlier public-only issuance](2026-10-17_daily_2026-10-17_20261017T171641Z_pregame_readout.md)
+is retained with its original unknown injury/ownership coverage.
+
+## Weekly performance, inputs and visuals
 
 [October 12–15 review, charts and next steps](week_2026-10-12/README.md)
 

@@ -1,6 +1,6 @@
 # Season-to-date review through 2026-10-19
 
-140 final regular-season games, 5,039 positive-TOI skater appearances; 2,422 have saved baseline means. 71 games have no saved baseline forecast. Daily challenger comparison covers 13 pregame games. No missing predictions are reconstructed.
+140 final regular-season games, 5,039 positive-TOI skater appearances; 2,422 have saved baseline means. 71 games have no saved baseline forecast. The full-player daily challenger comparison covers 13 pregame games. An additional October 17 published export supplies 12 conservatively publication-safe team/goalie games; its full player bundle is unavailable locally. No missing predictions are reconstructed.
 
 ## Coverage
 
@@ -68,3 +68,7 @@ A single command now refreshes inputs, builds all five skater/two goalie models 
 ## Additional source audit
 
 [MoneyPuck shot quality, Kalshi coverage and source discrepancies](source_quality.md).
+
+## Newer repository evidence
+
+[October 17 published team and goalie evaluation](published_october_17.md) adds 12 publication-safe games beyond the locally restored bundles. Team SOG MAE is 4.200 candidate versus 4.392 default; goalie saves MAE is 4.298 trial versus 4.249 baseline, reversing the earlier saves advantage. GA MAE improves 1.366→1.334. Keep these exported cohorts separate and continue without promotion. Full player evaluation requires transferring the original October 17 bundle.
