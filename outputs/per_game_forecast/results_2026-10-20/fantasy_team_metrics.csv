@@ -1,0 +1,31 @@
+fantasy_team_name,model,players,games,sog_mae,sog_bias
+Bedardians of the Galaxy,calibrated_opponent_sog_trial,14,8,1.6121368340063391,-0.9139279298802279
+Bedardians of the Galaxy,candidate,14,8,1.6261690895474417,-0.9337987246510483
+Bedardians of the Galaxy,default,14,8,1.58359559038685,-0.7455210431328051
+Bedardians of the Galaxy,opponent_form_sog_trial,14,8,1.560527531088406,-0.7240595334437652
+Bedardians of the Galaxy,usage_shot_context_trial,14,8,1.5797073005314293,-0.9481470731122162
+Geekie Squad,calibrated_opponent_sog_trial,13,9,1.4287790014430652,0.11190032842779549
+Geekie Squad,candidate,13,9,1.4423516680331876,0.11739224556044928
+Geekie Squad,default,13,9,1.4700109366208123,0.3176852337736408
+Geekie Squad,opponent_form_sog_trial,13,9,1.4544852523534522,0.3117536727005561
+Geekie Squad,usage_shot_context_trial,13,9,1.3193669266521404,0.10639263515164868
+"Judge, Juraj and Executioner",calibrated_opponent_sog_trial,13,8,1.5691152223332938,-0.629468173403051
+"Judge, Juraj and Executioner",candidate,13,8,1.5803634185173743,-0.6638957810172383
+"Judge, Juraj and Executioner",default,13,8,1.5344544575044923,-0.4830417594704598
+"Judge, Juraj and Executioner",opponent_form_sog_trial,13,8,1.522305810499021,-0.44585812172954076
+"Judge, Juraj and Executioner",usage_shot_context_trial,13,8,1.732857950402112,-0.5648586601879231
+Le Tang Clan,calibrated_opponent_sog_trial,16,7,1.3151758270926441,-0.3788434631794079
+Le Tang Clan,candidate,16,7,1.3178108580639998,-0.3757612375191435
+Le Tang Clan,default,16,7,1.2951919135992134,-0.19069982558691212
+Le Tang Clan,opponent_form_sog_trial,16,7,1.2941856657734814,-0.19402879237633852
+Le Tang Clan,usage_shot_context_trial,16,7,1.4075600109841966,-0.44725266038296285
+Parker's Perfect Team,calibrated_opponent_sog_trial,13,9,1.2157830820666864,-0.2574779812830361
+Parker's Perfect Team,candidate,13,9,1.2210407544262762,-0.28861573402223456
+Parker's Perfect Team,default,13,9,1.240382812402045,-0.08387736921078724
+Parker's Perfect Team,opponent_form_sog_trial,13,9,1.2453729775166613,-0.05024694879657462
+Parker's Perfect Team,usage_shot_context_trial,13,9,1.1566403332772688,-0.21842131664883013
+Quinn Short for Quinnificent,calibrated_opponent_sog_trial,14,8,1.2763360894633418,-0.6668645961887741
+Quinn Short for Quinnificent,candidate,14,8,1.272603465733302,-0.6769571826301223
+Quinn Short for Quinnificent,default,14,8,1.26583584155705,-0.5081450429313968
+Quinn Short for Quinnificent,opponent_form_sog_trial,14,8,1.2698672726735054,-0.49724451558980626
+Quinn Short for Quinnificent,usage_shot_context_trial,14,8,1.2784229379037213,-0.6242706094106408

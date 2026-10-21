@@ -1,5 +1,18 @@
 # Rink Lab — Next Steps
 
+## First prospective feature evaluation — October 21, 2026
+
+[October 20 results](outputs/per_game_forecast/results_2026-10-20/README.md) · [Published results](https://erinyep.github.io/Rink-Lab-2027/results/).
+
+- Acquired official final boxscores/scoring summaries through October 20 (151 season finals); all 11 October 20 games complete. Main and new feature release hashes verified against unchanged pregame artifacts; no refit or best-run selection.
+- Main models: individual SOG calibrated-opponent MAE 1.037 vs default 1.051 on 396 appearances; paired difference -0.014, exploratory 95% interval [-0.025,-0.005]. Opponent-only leads team SOG (4.775 vs default 4.898) and fantasy SOG (1.388 vs 1.395 on 83 appearances), but those paired intervals include zero.
+- New team feature trials: bias control 5.792, D-only 5.344, shot quality 5.574, both 5.342. D-only paired change -0.449, 95% interval [-0.949,+0.056]; all feature intervals cross zero. This reverses the retrospective point estimate but is not stable evidence or an improvement over the main team model. Keep cohorts separate.
+- Goalie opponent context improves saves 6.440→6.152 and GA 0.913→0.890 across 22 starts; paired intervals cross zero. Save intervals cover only 59.1%. Starter Brier 0.429 vs uniform 0.553; shared provisional probability model, not two independent improvements.
+- All 396 actual skaters have forecasts, but selected lineup overlap is only 369/395: 26 selected identified players absent; 27 actual players outside the selected identified lineup. One Colorado replacement was unidentified. Retain all 102 modeled nonparticipants as missing conditional outcomes, not zeros.
+- Saved-input component diagnostics: TOI -0.0048 MAE, recent rate +0.0120, calibration -0.0107, matchup -0.0096. Ordered/interacting SOG accounting, not causal importance or stable player attribution. D/F/fantasy splits and per-player outcomes published.
+- No models promoted. Repeat the frozen experiment on unseen slates; prioritize near-game lineup/starter confirmation and interval calibration. Report all fantasy categories and goalie duration separately. Producer: `scripts/publish_daily_protocol_review.py` (October 20 first-test readout); generic frozen-trial scoring remains `scripts/evaluate_feature_evidence.py`.
+
+
 ## Feature evidence completed before October 20 games
 
 [Report and per-player/team contribution tables](outputs/per_game_forecast/feature_evidence_2026-10-20/README.md) · [Published searchable evidence](https://erinyep.github.io/Rink-Lab-2027/evidence/).

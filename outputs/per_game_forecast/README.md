@@ -1,4 +1,8 @@
-# Per-game forecast status — October 20, 2026
+# Per-game forecast status — October 21, 2026
+
+## Latest evaluation — October 20 finals
+
+[Results and protocol readout](results_2026-10-20/README.md) · [Interactive results](https://erinyep.github.io/Rink-Lab-2027/results/). All 11 frozen pregame games scored, with 396 skater appearances and 22 starts. New D measures beat their research control but trail the best existing main team model; no model promotion. Main player/team/fantasy/goalie metrics, paired uncertainty, components, interval coverage and lineup misses are separate.
 
 [October 20 feature evidence and contribution tables](feature_evidence_2026-10-20/README.md): existing components scored on saved games, new D/quality variants screened on a 51-game retrospective holdout, all variants frozen separately for tonight.
 

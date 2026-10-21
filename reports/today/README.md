@@ -1,4 +1,6 @@
-# Today — Quinn Short for Quinnificent — October 20, 2026
+# Saved report — Quinn Short for Quinnificent — October 20, 2026
+
+[October 20 model results](../../outputs/per_game_forecast/results_2026-10-20/README.md) · [Published results](https://erinyep.github.io/Rink-Lab-2027/results/)
 
 [Interactive local report](2026-10-20_quinn_publishing_v2/index.html) · [Text summary](2026-10-20_quinn_publishing_v2/README.md) · [Published report](https://erinyep.github.io/Rink-Lab-2027/report/)
 

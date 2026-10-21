@@ -5,7 +5,7 @@
   "scope": "Displayed fantasy report fields only; no credentials, raw API snapshots or local filesystem paths.",
   "files": {
     "goalies.csv": "93d1a415fb2caee4444a9f343611e11c71874838b6a5b60dc503ffe9886ec839",
-    "index.html": "e565606bf3e878b82a242f51418445cda7996e34d0d08533c98e7257bb3c766b",
+    "index.html": "037ab4560d69494280648f172567582bb360c2c6d21f8c6a8d73a0a5b1cf33c4",
     "report.json": "2487bf8ca413a996a87c8b07e62aaaae6bda3a057a0bc72377507c71776a38ac",
     "roster.csv": "7fcf0e58856042d44ef776008403e5d34e34cf81d2a8260bc086c27ae5f73636",
     "category-gaps.svg": "fd89baeea2d44ffde58a2888b080e88d4db800ee2b13afaf28a0db1235ab30b7",

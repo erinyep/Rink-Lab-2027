@@ -5,6 +5,12 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## Latest model results — October 20 games
+
+[Interactive results and player/team audits](https://erinyep.github.io/Rink-Lab-2027/results/) · [Full readout](outputs/per_game_forecast/results_2026-10-20/README.md).
+
+First prospective feature test: D-only team SOG MAE improves 5.792→5.344 against its frozen control, but remains behind the existing opponent-shots model (4.775). Feature uncertainty still includes no gain. Calibrated opponent context leads all-player SOG; opponent-only leads fantasy SOG. All 11 games and 396 player appearances scored without refitting. No promotion after one slate.
+
 ## Research Goals
 
 - Explore NHL player performance through descriptive statistics
@@ -18,7 +24,7 @@ repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
-## Today’s NHL game predictions
+## Latest saved NHL predictions — October 20
 
 [Tuesday, October 20 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
 projected goals, shots, scoring leans and goalie scenarios for all 22 teams.
@@ -28,7 +34,7 @@ projected goals, shots, scoring leans and goalie scenarios for all 22 teams.
 
 [Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). The first 51-game team holdout does not show a gain from new defense/shot-quality inputs; existing models remain in place.
 
-## Today’s fantasy report
+## Latest saved fantasy report — October 20
 
 [Quinn’s local report and roster alerts](reports/today/README.md).
 
