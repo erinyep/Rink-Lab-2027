@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 import pandas as pd
-from src.fantasy.decisions import active_slots, category_rules, fit_lineup, dominates, acquisition_window_open, category_comparison
+from src.fantasy.decisions import active_slots, category_rules, fit_lineup, dominates, acquisition_window_open, category_comparison, goalie_qualification
 from src.fantasy.availability import excluded_by_status
 from src.fantasy.schedule import normalize_team, LEGACY_TEAM_ALIASES
 from scripts.validate_daily_bundle import validate
@@ -37,6 +37,7 @@ def main():
     parser.add_argument('--bundle',required=True,type=Path)
     parser.add_argument('--rules',required=True,type=Path)
     parser.add_argument('--future-roster',type=Path)
+    parser.add_argument('--espn-snapshot',type=Path,help='Refresh roster/categories while preserving frozen forecast means')
     parser.add_argument('--team-id',type=int,required=True)
     parser.add_argument('--out',type=Path,required=True)
     args=parser.parse_args()
@@ -44,7 +45,9 @@ def main():
     m=json.loads((args.bundle/'manifest.json').read_text())
     fm=json.loads((args.bundle/'inputs/manifest.json').read_text())
     if fm['espn'].get('status')=='disabled_public_data_only':raise ValueError('League-aware inputs required')
-    snapshot=Path(fm['espn']['snapshot'])
+    snapshot=args.espn_snapshot or Path(fm['espn']['snapshot'])
+    snapshot_meta=json.loads((snapshot/'metadata.json').read_text())
+    ownership_as_of=snapshot_meta['retrieval_completed_at_utc']
     rules_path=args.rules/'rules.json'
     rm=json.loads((args.rules/'metadata.json').read_text())
     if sha(rules_path)!=rm['files']['rules.json']:raise ValueError('Rules hash mismatch')
@@ -54,7 +57,7 @@ def main():
     now=datetime.now(timezone.utc)
     if now.astimezone(ZoneInfo('America/New_York')).date().isoformat()!=m['date']:
         raise ValueError('Today report requires a bundle for the current Eastern date')
-    age=(now-datetime.fromisoformat(m['injuries_as_of_utc'])).total_seconds()/3600
+    age=(now-datetime.fromisoformat(ownership_as_of)).total_seconds()/3600
     if not 0<=age<=6:raise ValueError('Refresh ownership/injuries before building today report')
     roster=read_verified(snapshot,'rosters.csv');available=read_verified(snapshot,'available_players.csv')
     matches=read_verified(snapshot,'matchup_categories.csv');teams=read_verified(snapshot,'teams.csv')
@@ -100,10 +103,10 @@ def main():
     own.loc[own.schedule_team.isna(),'decision_state']='unresolved team mapping'
     own.loc[own.has_game,'decision_state']='upcoming'
     own.loc[own.has_game & own.blocked,'decision_state']='injury exclusion'
-    own.loc[own.has_game & own.is_goalie,'decision_state']='starter unconfirmed'
+    own.loc[own.has_game & own.is_goalie & ~own.blocked,'decision_state']='starter unconfirmed'
     own.loc[own.locked,'decision_state']='game locked'
     own.loc[own.has_game & ~own.is_goalie & own.player_id.isna(),'decision_state']='forecast missing'
-    own['start_local']=own.start_time_utc.map(lambda t:pd.Timestamp(t).tz_convert('America/New_York').strftime('%-I:%M %p') if pd.notna(t) else '')
+    own['start_local']=own.schedule_team.map(lambda t:pd.Timestamp(fixtures[t]['startTimeUTC']).tz_convert('America/New_York').strftime('%-I:%M %p') if t in fixtures else '')
     # Locked active players consume their actual saved slot. Off-day or blocked,
     # unlocked players can be benched; this is a lineup scenario, not a transaction.
     baseline=[]
@@ -140,9 +143,14 @@ def main():
         if len(a)!=1 or len(b)!=1:raise ValueError('Missing scored matchup category')
         gaps.append(category_comparison(c['name'], a.score.iloc[0], b.score.iloc[0], c['lower_is_better']))
     gs=ownmatch[ownmatch.category.eq('GS')]
-    minimum=rules['scoringSettings'].get('statQualificationMinimum',{}).get('limitValue')
-    goalie_note=f"Saved goalie starts: {gs.score.iloc[0]:g}; minimum {minimum:g}." if len(gs)==1 and minimum is not None else 'Goalie qualification unavailable.'
-    goalie_note+=' Goalie starts are unconfirmed. Additional starts can help W while changing GAA and SV%; no automatic start/sit call from the full-start means.'
+    qualification_rule=rules['scoringSettings'].get('statQualificationMinimum',{})
+    minimum=qualification_rule.get('limitValue') if qualification_rule.get('statId')==0 else None
+    qualification=goalie_qualification(float(gs.score.iloc[0]) if len(gs)==1 else None,minimum,caps.get('Goalie',0),own.to_dict('records'))
+    goalie_note=qualification['summary']
+    if qualification['active_names']:
+        goalie_note+=' Upcoming active goalies: '+', '.join(qualification['active_names'])+'. Starts remain unconfirmed.'
+    if qualification['bench_names']:
+        goalie_note+=' Benched with a game: '+', '.join(qualification['bench_names'])+'; bench starts do not count toward your matchup.'
     actions.append(goalie_note)
     future_rows=[];future_note='Next-period transaction roster was not supplied.'
     if args.future_roster:
@@ -171,7 +179,7 @@ def main():
     watch=watch.sort_values(['open_slot_fit','expected_pp_points_if_plays','expected_assists_if_plays'],ascending=False)
     goalie=pd.read_csv(args.bundle/'goalie_projections.csv')
     goalie=goalie[goalie.model.eq('goalie_history_baseline') & goalie.player_id.isin(own.nhl_player_id)]
-    goalie=goalie.merge(own[['nhl_player_id','lineup_slot']],left_on='player_id',right_on='nhl_player_id',validate='one_to_one')
+    goalie=goalie.drop(columns=['injury_status'],errors='ignore').merge(own[['nhl_player_id','lineup_slot','injury_status','start_local']],left_on='player_id',right_on='nhl_player_id',validate='one_to_one')
     acq=rules['acquisitionSettings']
     transaction_note=('This is a category league: there is no single fantasy-points total. '
         'Lineup changes lock at each NHL game. Check the next-period roster above before treating an acquisition as available today. '
@@ -188,9 +196,9 @@ def main():
         future_calendar=future_calendar.drop(columns='nhl_team').merge(calendar_frame[calendar_frame.date.gt(m['date'])],left_on='schedule_team',right_on='team',how='left')
         own_calendar=pd.concat([current_calendar,future_calendar],ignore_index=True)
     payload=dict(team=name,date=m['date'],future_roster_supplied=bool(args.future_roster),created_at=now.astimezone(ZoneInfo('America/New_York')).strftime('%b %-d, %-I:%M %p ET'),
-        acquisition_open_today=add_window,injuries_as_of=m['injuries_as_of_utc'],opponent=other.team_name.iloc[0],categories=cats,slots=caps,
+        acquisition_open_today=add_window,injuries_as_of=ownership_as_of,forecast_injuries_as_of=m['injuries_as_of_utc'],opponent=other.team_name.iloc[0],categories=cats,slots=caps,
         actions=actions,roster=records(own.drop(columns='eligible')),matchup=gaps,streamers=records(watch.drop(columns='eligible')),
-        goalies=records(goalie),comparisons=comparisons,transaction_note=transaction_note,future_note=future_note,
+        goalies=records(goalie),goalie_qualification=qualification,comparisons=comparisons,transaction_note=transaction_note,future_note=future_note,
         schedule=records(own_calendar),future_roster=future_rows,
         limitations=['Conditional means assume the player dresses; ACTIVE and lineup selection do not confirm participation.',
                      'Matchup scores are the saved ESPN snapshot, not live scores or final projected results.',

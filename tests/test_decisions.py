@@ -1,9 +1,31 @@
 import unittest
 from datetime import datetime, timezone
-from src.fantasy.decisions import fit_lineup, category_rules, dominates, acquisition_window_open, category_comparison
+from src.fantasy.decisions import fit_lineup, category_rules, dominates, acquisition_window_open, category_comparison, goalie_qualification
 
 
 class DecisionsTests(unittest.TestCase):
+    def test_matchup_start_minimum_is_not_active_slot_capacity(self):
+        def goalie(name, team, slot='Goalie', **kw):
+            return dict(player_name=name,schedule_team=team,lineup_slot=slot,is_goalie=True,
+                        has_game=True,blocked=False,locked=False,**kw)
+        roster=[goalie('Garand','NYR'),goalie('Wallstedt','MIN'),goalie('Saros','NSH','Bench')]
+        result=goalie_qualification(2,3,2,roster)
+        self.assertEqual(result['needed'],1)
+        self.assertEqual([r['total'] for r in result['scenarios']],[2,3,4])
+        self.assertEqual([r['minimum_met'] for r in result['scenarios']],[False,True,True])
+        self.assertEqual(result['bench_names'],['Saros'])
+        roster[1]['blocked']=True
+        self.assertEqual(len(goalie_qualification(2,3,2,roster)['scenarios']),2)
+        roster[0]['locked']=True
+        self.assertEqual(len(goalie_qualification(2,3,2,roster)['scenarios']),1)
+
+    def test_goalie_scenarios_respect_same_team_and_missing_scores(self):
+        roster=[dict(player_name=str(i),schedule_team='NYR',lineup_slot='Goalie',is_goalie=True,
+                     has_game=True,blocked=False,locked=False) for i in range(2)]
+        self.assertEqual(len(goalie_qualification(3,3,2,roster)['scenarios']),2)
+        self.assertEqual(goalie_qualification(3,3,2,roster)['needed'],0)
+        self.assertEqual(goalie_qualification(float('nan'),3,2,roster)['scenarios'],[])
+
     def test_uninitialized_goalie_rate_is_not_an_invented_advantage(self):
         row=category_comparison('GAA',2.4,float('inf'),True)
         self.assertIsNone(row['opponent'])

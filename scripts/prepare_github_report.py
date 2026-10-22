@@ -24,7 +24,7 @@ def main():
     fields={
         'roster':['player_name','lineup_slot','injury_status','decision_state','start_local','is_goalie','has_game','locked','blocked']+means,
         'streamers':['player_name','primary_position','start_local','open_slot_fit','historical_gp','usable_starts_today','team','opponent']+means,
-        'goalies':['player_name','lineup_slot','injury_status','start_share_provisional','saves_if_full_start','goals_against_if_full_start','save_percentage_projection'],
+        'goalies':['player_name','lineup_slot','injury_status','start_local','start_share_provisional','saves_if_full_start','goals_against_if_full_start','save_percentage_projection'],
         'schedule':['player_name','date','opponent'],
         'future_roster':['player_name'],
     }
@@ -35,7 +35,7 @@ def main():
     (args.out/'report.json').write_text(payload+'\n')
     template=Path('templates/fantasy_today.html').read_text()
     rendered=template.replace('__REPORT_DATA__',payload.replace('</','<\\/'))
-    rendered=rendered.replace('<body><main>','<body><main><nav><a href="../games/index.html">All NHL game predictions</a> · <strong>Your fantasy team</strong> · <a href="../evidence/">Feature evidence and player contributions</a> · <a href="../results/">Model results</a></nav>',1)
+    rendered=rendered.replace('<body><main>','<body><main><nav><a href="../games/index.html">All NHL game predictions</a> · <strong>Your fantasy team</strong> · <a href="../evidence/">Feature evidence and player contributions</a> · <a href="../results/">Model results</a> · <a href="../history/model-priorities-2026-10-22.md">Performance-based model priorities</a></nav>',1)
     (args.out/'index.html').write_text(rendered)
     # Regenerate the README preview from the same snapshot as the interactive page.
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 {80+37*len(data["matchup"])}" font-family="system-ui,sans-serif" role="img" aria-label="Saved category comparison">',

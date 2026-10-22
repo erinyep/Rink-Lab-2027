@@ -7,6 +7,29 @@ SKATER_CATEGORIES = {
     29: ('SOG', 'shots'), 31: ('HIT', 'hits'), 38: ('PPP', 'pp_points'),
 }
 GOALIE_CATEGORIES = {1: 'W', 10: 'GAA', 11: 'SV%'}
+
+
+def goalie_qualification(starts, minimum, slots, roster):
+    """Separate cumulative matchup starts from simultaneous active slots.
+
+    Upcoming team games are opportunities, not calibrated start probabilities.
+    Bench, injured and already-locked goalies cannot supply an assumed new start.
+    Two goalies from one NHL team cannot both start the same game.
+    """
+    import math
+    if starts is None or minimum is None or not all(math.isfinite(float(v)) for v in [starts, minimum]):
+        return dict(summary='Matchup goalie-start qualification unavailable.', scenarios=[], active_names=[], bench_names=[])
+    active = [r for r in roster if r['is_goalie'] and r['lineup_slot'] == 'Goalie'
+              and r['has_game'] and not r['blocked'] and not r['locked']]
+    bench = [r['player_name'] for r in roster if r['is_goalie'] and r['lineup_slot'] == 'Bench' and r['has_game']]
+    maximum = min(slots, len({r['schedule_team'] for r in active}))
+    needed = max(0, minimum-starts)
+    summary = (f'Matchup goalie starts: {starts:g} of {minimum:g} minimum recorded. '
+               + (f'{needed:g} more qualifying start(s) needed this matchup. ' if needed else 'Minimum already met. ')
+               + f'You have {slots} active goalie slots at a time; the minimum accumulates across the matchup.')
+    return dict(recorded=starts, minimum=minimum, needed=needed, active_slots=slots,
+        active_names=[r['player_name'] for r in active], bench_names=bench, summary=summary,
+        scenarios=[dict(additional_starts=n, total=starts+n, minimum_met=starts+n >= minimum) for n in range(maximum+1)])
 SLOT_NAMES = {0:'Center',1:'Left Wing',2:'Right Wing',3:'Forward',
               4:'Defense',5:'Goalie',6:'Util',7:'Bench',8:'IR'}
 

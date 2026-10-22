@@ -1,5 +1,11 @@
 # Rink Lab — Next Steps
 
+## October 22 matchup clarification and model priorities
+
+Refreshed ESPN roster/categories at 5:04 p.m. Eastern without changing frozen predictions. The fantasy report now separates 2 active goalie slots from the cumulative 3-start matchup minimum, shows conditional 2/3/4-start outcomes, names active versus benched goalies, and displays goalie game times. Saved matchup comparison is 6 categories ahead, 4 behind, 1 tied, subject to qualification. Explicit roster-snapshot overrides preserve both source timestamps.
+
+[Performance-based priorities](docs/history/model-priorities-2026-10-22.md): prioritize goalie start/duration and interval calibration; retain calibrated opponent as the all-player SOG challenger, default for fantasy, and separate frozen defense trials. Do not turn small-subgroup point estimates or one-night diagnostics into arbitrary model corrections. 77 tests pass, including cumulative-start/active-slot, bench exclusion, injury/lock and same-team scenario checks.
+
 ## October 22 pregame release and permanent history
 
 - Issued all 12 October 22 games before puck drop: 544 skaters across five models, 58 goalie candidates across two models, 24 teams. Strict freshness/coverage/hash checks passed without a context-lag exception. [Readout](outputs/per_game_forecast/2026-10-22_20261022T204633Z_pregame_readout.md).
