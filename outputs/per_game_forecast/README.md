@@ -1,4 +1,14 @@
-# Per-game forecast status — October 21, 2026
+# Per-game forecast status — October 22, 2026
+
+- [Tonight’s 12-game pregame release](2026-10-22_20261022T204633Z_pregame_readout.md)
+- [Matchups](../../docs/games/README.md) · [Fantasy report](../../reports/today/README.md)
+- [Frozen defense/quality trials](feature_evidence_2026-10-22/README.md)
+- [Season review through October 21](season_through_2026-10-21/README.md): 153 finals, 5,507 positive-TOI appearances; daily comparison remains 24 games.
+- [Permanent prediction history and rolling scoreboard](scoreboard_2026-10-22/README.md)
+
+All five skater and two goalie models passed strict pregame validation. Latest inputs include official history/TOI through October 21, fresh ESPN ownership and categories, MoneyPuck team games, audited PBP and shot quality. No model promotion; lineups/starters remain provisional. Tonight is unscored. Prior releases below are historical.
+
+## Previous status — October 21, 2026
 
 ## Expanded performance across saved dates
 

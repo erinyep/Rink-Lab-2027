@@ -1,7 +1,6 @@
 {
-  "created_at_utc": "2026-10-20T19:46:21.854910+00:00",
-  "target_date": "2026-10-20",
-  "status": "experimental_no_promotion",
+  "created_at_utc": "2026-10-22T20:50:15.232346+00:00",
+  "target_date": "2026-10-22",
   "config": {
     "version": "oct20_screen_v1",
     "target_date": "2026-10-20",
@@ -26,34 +25,19 @@
     "decision": "Retrospective feasibility screen only; no automatic promotion. Compare feature variants to the intercept-adjusted control on identical games. All variants issued separately for tonight.",
     "source_limit": "Current corrected downloads with game-date cutoffs, not historical as-of source vintages; historical lineups/market quotes are not reconstructed."
   },
-  "training_games": 50,
-  "holdout_games": 51,
+  "status": "frozen_parameters_new_prospective_slate",
   "source_manifests": {
-    "data/processed/forecasts/daily_2026-10-20_20261020T125723Z/manifest.json": "6363657677ba4485f495a0c98d86fb2145a48323ce1c3ae8af4a447b7b5467c8",
-    "data/processed/forecasts/fantasy_game_details_20261020T124014Z/manifest.json": "a21b10d62fbb78698da87f1e5271fcca530cae54cff02246bfd7e4e7a5799a0f",
-    "data/processed/forecasts/defense_pbp_20261020T124200206801Z/manifest.json": "789e23282fd193f99bbee9b18145f49b1d93eb7fb39233952259d962cbf54a3a",
-    "data/processed/forecasts/moneypuck_shots_20261020T125337267012Z/manifest.json": "f389bbc753eaf5c6fb846f08e72a6c42750a1f5dbe95a7688e0a4f1f2cd20434"
-  },
-  "code_sha256": {
-    "scripts/publish_feature_evidence.py": "7b56129b449d553106da58f502d12a0a7a7624d066a4958916997777d2c65c0e",
-    "src/fantasy/feature_screen.py": "15078b927c69ebde376d8e0107732655eb11ad289fe9f2a5a6775b0e13c54b0b",
-    "src/fantasy/diagnostics.py": "ebe31b628735e502893b9c52f02ca51a8659a552db99e78b0aff6a5a85109d31",
-    "scripts/evaluate_feature_evidence.py": "e60d3a12ca5d7a3a9f8989043fd453be004cbff9c414df7a524886973669c4b7",
-    "config/pregame_feature_audit.json": "264edc29fbdc8ab30258d3dfa3b7e1d02870791f1445d9c2000db73b3120b655"
+    "data/processed/forecasts/daily_2026-10-22_20261022T204633Z/manifest.json": "71ccc7f36c260b1a6baeea283c67f0d91c916c592adb82151706a78533b1b51c",
+    "outputs/per_game_forecast/feature_evidence_2026-10-20/manifest.json": "a86326fa268d1b1b3e924397f9c298e30d702143ee287dfcc4e90e28b169e636",
+    "data/processed/forecasts/fantasy_game_details_20261022T204519Z/manifest.json": "7cfc80f2186c52278d7774fdf26c78485d5a4196233b936e582c304cacdb724b",
+    "data/processed/forecasts/defense_pbp_20261022T204602080672Z/manifest.json": "2b42a234313ee71bf997b68afecbdca726481e76d5c80fa87c41f0eb697cc471",
+    "data/processed/forecasts/moneypuck_shots_20261022T204616193555Z/manifest.json": "9eadd50ffef3311c64c0f827f23d8588bf908e7d215ba5a7cc0f886ee41971dd"
   },
   "files": {
-    "historical_component_rows.csv": "1e3d7b79d3b441067e01511ca2a54b125d3c989e9c94d3db4acd4ba86e81ca49",
-    "feature_evidence.png": "add375b658426c64a7c6f03fc97288d5fa23610dfeae53b8cade53045c8ec5da",
-    "index.html": "561259521f7044db3af2ef15b490cf62f202c18f3bf61f4690638d4c8b0e8638",
-    "component_performance.csv": "9cac305e7ba7c72b4665f1eb170197880ee687886b3a32fa39a5a55dbadd7744",
-    "player_contributions.csv": "b1c8dabbbc71131c27c032ca1dec14b40fc41066eb434198b96c8a34c1541510",
-    "historical_team_features.csv": "e004b9415109e44013f8fdba7381578cc42c588d32b31c4b2d9a8c9efce5629f",
-    "heldout_uncertainty.csv": "b86f7d95ff1a4d16365a47e7173abee728116348dd7460637cd199ce3ac44b20",
-    "heldout_metrics.csv": "fa919d63350830b69e57c8723dcc340378470d51d2816ae85128ba24bbca56c3",
-    "README.md": "ebb48796137f298cc22e727c74f33cba245fbb6bc91c8c79444e49d99caa689d",
-    "tonight_experimental_team_forecasts.csv": "383554e75304b59d5f7549869b625d9cebe75c9e17745ee911f9963630544d2c",
-    "heldout_predictions.csv": "2dd2dbfcd9f31f8b2996133d4a0e78a5d904297e22c1a028fe43c0f4939d0ffe",
-    "team_contributions.csv": "04441d45b2f7558ec7e20242a54d2b9b3b2d12d1c7226dcbc98ec2435857680e",
-    "fitted_models.json": "3ec58bc1eac01308562c6a22e64337c1cc2dff4bc994c0a33067271ffe9b0a05"
+    "index.html": "129e652989f4a94884ae43ae27f53d200c52403ed983b3c9e5178de26150b1d0",
+    "player_contributions.csv": "f10d338eff7b1e86e5639a8e9525fa53bb256b562599d7626705ccde301054b2",
+    "README.md": "bfd1ff8c4ca985b374073473917f48fe6fbb393acdbc009492f4e62c2c08d063",
+    "tonight_experimental_team_forecasts.csv": "44ce1419639f74d10a9d2bfe0ff5b1bb667595173b58c3ea20b01881d27cf115",
+    "fitted_models.json": "85fd24b56c149a86e7c735989bd6766a35b76f067f9336d9065537a313ed28fa"
   }
 }

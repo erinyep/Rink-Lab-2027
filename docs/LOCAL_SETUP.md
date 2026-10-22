@@ -26,18 +26,18 @@ but cannot recreate old pregame issuances after the games.
 
 ## Daily forecasts on this machine
 
-The October 17 setup rebuilt the season baseline and downloaded official final
-game/scoring/TOI history through October 16, plus MoneyPuck history. The template is:
+The October 22 refresh acquired official final game/scoring/TOI history through
+October 21, plus MoneyPuck history. The available validated template on this machine is:
 
-`data/processed/forecasts/per_game_20262027_20261017T171239Z`
+`data/processed/forecasts/per_game_20262027_20261009T195052Z`
 
 After `.env` is transferred, this command refreshes ESPN, final games, ice time,
 MoneyPuck, schedule and rosters, then issues skaters, goalies and reading tables:
 
 ```sh
 rink-lab.venv/bin/python scripts/run_daily_forecasts.py \
-  --date 2026-10-17 \
-  --template-forecast data/processed/forecasts/per_game_20262027_20261017T171239Z
+  --date 2026-10-22 \
+  --template-forecast data/processed/forecasts/per_game_20262027_20261009T195052Z
 ```
 
 Set the target date explicitly for future slates. Each run stops on failure and
@@ -75,3 +75,8 @@ Use the newly printed template path when invoking the daily runner. Rebuilding
 uses current source corrections; it does not restore the other machine's issued
 forecast history. See [ESPN connection](ESPN_CONNECTION.md) and
 [NHL acquisition](NHL_ACQUISITION.md) for source and validation details.
+
+Both issuance runners now register finalized predictions in the append-only local
+`data/processed/prediction_history/` archive. After evaluating a new actuals vintage,
+run `scripts/update_prediction_history.py --review <season-review> --bundle <latest-issued-bundle> --out <new-scoreboard-directory>`.
+This preserves previous result vintages and produces season/7-day/30-day count-error metrics.

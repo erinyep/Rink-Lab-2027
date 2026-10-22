@@ -1,0 +1,12 @@
+category,own,opponent,advantage,lower_is_better,status
+PPP,3.0,1.0,2.0,False,ahead
+SV%,0.93548387,0.0,0.93548387,False,ahead
+ATOI,16.45,19.8944444445,-3.4444444445,False,behind
+G,1.0,2.0,-1.0,False,behind
+SOG,24.0,12.0,12.0,False,ahead
+A,3.0,3.0,0.0,False,tied
++/-,-6.0,3.0,-9.0,False,behind
+HIT,8.0,3.0,5.0,False,ahead
+W,1.0,0.0,1.0,False,ahead
+PIM,2.0,2.0,0.0,False,tied
+GAA,2.0,,,True,unavailable

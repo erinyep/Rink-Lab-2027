@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-10-21T21:38:30.198699+00:00",
+  "date": "2026-10-20",
+  "games": 11,
+  "status": "prospective_evaluation_no_refit_no_promotion",
+  "source_manifests": {
+    "data/processed/forecasts/daily_evaluation_2026-10-20_20261021T213518768681Z/manifest.json": "7b664fed0edd796dab1abc3deb9c8dea05618f95b33e817fc83b17fd562da45d",
+    "outputs/per_game_forecast/results_2026-10-20/feature_trials/manifest.json": "c49469cb34558f2f47c04d3be7d2aef9cdb7214829fa9487e39c831aa06123fe",
+    "outputs/per_game_forecast/feature_evidence_2026-10-20/manifest.json": "a86326fa268d1b1b3e924397f9c298e30d702143ee287dfcc4e90e28b169e636",
+    "data/processed/forecasts/daily_2026-10-20_20261020T125723Z/manifest.json": "6363657677ba4485f495a0c98d86fb2145a48323ce1c3ae8af4a447b7b5467c8"
+  },
+  "code_sha256": {
+    "scripts/publish_daily_protocol_review.py": "80501480732fb517c2c84e50c1882ed3645b28b3bd647172aeb85212cfead07f"
+  },
+  "files": {
+    "team_metrics.csv": "d6baede8f340a8fd083f9a321914ebc51e8f725562f66090b7ded46c23f7bd77",
+    "team_paired_uncertainty.csv": "abf14a01a8f3c0ad91601c6f9004ec7573e988b69f1608976b74237d578fdbb0",
+    "coverage.csv": "b574a515541609fa0a9e5fc9ff7eaacde05bd7fddc624572450469c2b8630ddc",
+    "index.html": "b7b9d40b7f534ca914ffef49bd8b2f99cd21b8d447316ef998fed7b1f84da60b",
+    "component_performance.csv": "8300aea7a4753ac1f3a1caf7dba6a657e879fb668ede99757b977f6bc94305c8",
+    "sog_calibration_bins.csv": "7f9382607caeaa46bc3f0c84ee54e42d83ca3410e6ba4d30226e270f9632c362",
+    "fantasy_team_metrics.csv": "68f6aa58860c41923b81de09035175f0fb1185e7945a40c321afdccb883836f5",
+    "player_metrics.csv": "9a0c568daf8724f192a25cf0288527530a4952a9ecc12171224f6c273d223127",
+    "goalie_starter_metrics.csv": "9b8be1122024ddc520b42e92d237b49a4f823564bc96b2c2ba4d8a6544bd79f5",
+    "README.md": "b44552d10f56be7b1962d8ee1db3b4a7536598c8939b7e43f5bba90041dc2a07",
+    "team_results.csv": "89214bf8d2d9ad6902e70a44b5c679706e13084ef7b18280ea07d0633fe5fb68",
+    "source_hash_audit.csv": "de1269a9ba96a556dc61208cb409c7ce6bee30dee197721c1d8cead75b8d1827",
+    "model_results.png": "6a7a9cf5254f9274f570e51d2eb022d658db8950e57b92cc6a4c696bcf54ff65",
+    "fantasy_metrics.csv": "d22f51d09d30562647c008cc2d507406a8e0bb75a3ccfe4711ce46384bf649a2",
+    "goalie_metrics.csv": "3e9fb772388db084c2ae555ae2a781de37633b5c516690b9506fc1e50cab0009",
+    "player_component_results.csv": "6dfb77c2224f4a4b95dc2b245929030c77b400351d4962553f2dbf233775004c",
+    "player_results.csv": "4078368814d4c2ec6465e17eb7adb334015c76a868ccd2e5dacd84686134a4d9",
+    "player_paired_uncertainty.csv": "c8cc1c99e01a8a32b3b03162dd00c19da27e54d9c8936f4d5e7e45dbd714fcc2",
+    "goalie_paired_uncertainty.csv": "1592925991dbdc0e52b80703aaa7927f4bdba9312b7d69d97b64b3957acf0219",
+    "feature_trials/coverage.csv": "98c116b4c583995b0041fb6c06f9db3bcd2bde76bb6216d310216c3e69d316a6",
+    "feature_trials/metrics.csv": "4a0fcf658e78c81a9ad168079730f57ccd34a483c7896652ce423604a1c62708",
+    "feature_trials/paired_uncertainty.csv": "2ad30e64951775d721e8ba41f9ba5c283e2081e22101b429291cc9b05402996d",
+    "feature_trials/manifest.json": "c49469cb34558f2f47c04d3be7d2aef9cdb7214829fa9487e39c831aa06123fe",
+    "feature_trials/scored_predictions.csv": "37bf8a4da762dd6552c55d75fb18e9ae5b15e28fbebb7064220d7b37956ae9aa"
+  },
+  "source_review_manifest_sha256": "b70519afbee36b31f43f05f50c5cc75ce95cf6686239fff9ccd2d009669450fd"
+}

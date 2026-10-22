@@ -31,6 +31,8 @@ def main():
     ap.add_argument('--prepared-inputs',type=Path)
     ap.add_argument('--allow-context-lag',action='store_true')
     a=ap.parse_args(); target=str(a.date)
+    if not (a.template_forecast/'manifest.json').is_file():
+        ap.error('Template missing; select an existing validated per_game forecast before acquisition')
     if a.prepared_inputs:
         inputs=json.loads(a.prepared_inputs.read_text())
     else:
@@ -57,6 +59,9 @@ def main():
         '--output-root',str(Path(bundle)/'inputs')],'Goalie output:')
     flags=['--allow-context-lag'] if a.allow_context_lag else []
     run('finalize_daily_bundle.py',['--bundle',bundle,'--goalies',goalie,*flags])
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+    from src.fantasy.history import archive_snapshot
+    archive_snapshot(bundle,Path('data/processed/prediction_history'),'predictions')
     print('Issued bundle:',bundle)
 
 

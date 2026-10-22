@@ -1,64 +1,10 @@
 {
-  "created_at_utc": "2026-10-21T22:43:49.192574+00:00",
-  "through": "2026-10-20",
-  "actuals": "data/processed/forecasts/fantasy_game_details_20261021T213457Z",
-  "actuals_sha256": "7b63db904eff99a5c7d14ba4fd6d0469f531495effe144376230511f38efe1cb",
-  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261021T213445Z",
-  "defense_pbp": "data/processed/forecasts/defense_pbp_20261020T124200206801Z",
-  "evaluations": [
-    "data/processed/forecasts/daily_evaluation_2026-10-10_20261021T224345765973Z",
-    "data/processed/forecasts/daily_evaluation_2026-10-12_20261021T224346934516Z",
-    "data/processed/forecasts/daily_evaluation_2026-10-20_20261021T224347849745Z"
-  ],
-  "baseline_selection": "latest saved pregame snapshot per game; no performance selection",
-  "hash_checks": 158,
+  "created_at_utc": "2026-10-22T20:51:10.090063+00:00",
+  "through": "2026-10-21",
+  "scope": "Current landing page, current review and scoreboard; older root exports remain October 20 research",
   "files": {
-    "baseline_metrics.csv": "06c60369202ffaad51f1320752ec01de150173903808c58d6b31dc3778e77d65",
-    "forecast_cohorts.csv": "d8016b51bf5be54a8397b0b9f6774a86cbf9d8504f8881f6cff22a14c97d96e9",
-    "coverage_by_date.csv": "e8a99021843f539a766a21a467458563bfd9b9735369cac11fce9f05f2ee7b13",
-    "index.html": "90836f273167d01f05c4fe4f5247804e672be4e9f9b9e099f6a49a14af37487a",
-    "archived_opponent_metrics.csv": "3a6efa97ee6cdada780d4aecd91be66e4e5bac9d0bdfc45f4da413bcbb1a8d58",
-    "combined_goalie_export_metrics.csv": "efcbf39873c96e036213d4b383f918c595f00337b9d686407ac93f49a040d297",
-    "saved_run_inventory.csv": "3a524181af5561a1d55f61c109e6b22dd05d17257f03d71800b885d748332c13",
-    "published_october_17_goalie_mapping.csv": "aa06d2ab495589e77d4b9262fa4fdd05c19e2239c95ebb4b1c7f6662b18ac278",
-    "multi_date.md": "e72318600279c3b5f9504423856b11faaf5331b03e1071d9b8c897f6c479bafb",
-    "archived_goalie_metrics.csv": "84902e29a27eda4fb762cd27720f879ac6b445d98a80a5736b01aa2f4f203342",
-    "pooled_goalie_uncertainty.csv": "1dad86ad81cd907961856113ab19f704bc28492978c83389d7cdca967d9e2fc0",
-    "game_cluster_uncertainty.csv": "9a1446f4111a4f0359ecfd2b066ac942391b78aece1d43f5ffc48275e1ab4810",
-    "archived_issued_simulation_metrics.csv": "e9dabbeae39f28262228f1f8629389403d80bc6d77e0ca689ac6cad83c5ec132",
-    "published_october_17_goalie_metrics.csv": "e1d8ca07b5652bde2fec3a19c6d4f3189aa333b52415d1e69b38e4f4584436e5",
-    "multi_date_performance.png": "78b8d14d77d906d342d87ba578c08c5db53931cadde5487295ad69f2ea4fceac",
-    "leave_one_date_out_sog.csv": "dc2e55b4062e339052a477ba45e23c27253c64745663bd045d4e69be198afb97",
-    "published_october_17_metrics.csv": "5e38190b5ede63c8e063f54c889d784a3ac350dd7fa496b6caf4200705888edc",
-    "README.md": "89b1e8be6255c7f2c97c524723819972595f95f97b58589462ff491dc7cfb0f5",
-    "game_coverage.csv": "d8ffb4c6b0f4ea4233cc6f46532b35d51a8414e99a93ded7ee28ead164d10bc1",
-    "model_metrics_by_date.csv": "468b91e8b92ffac8ffcb0f884134705e9696d6358a7a8df729cc7f6f82c2e995",
-    "defense_context.csv": "34e3458799d48dad371064c5015b3d6feb3e919276e81810ae05cffb24c8ed82",
-    "published_october_17.md": "4090986d7fc5e9effe61a91ef005fae1961a2e9ee53b4108b7ecc1c08d81ec6c",
-    "paired_player_sog_by_date.csv": "19061ea386beb466b4051f38208432a79d0e73ea018c48ed4fea5115da77437f",
-    "baseline_by_date.csv": "e91e094d1c9d4c40995674bc86be5ca5988f5ddf51d992b28f62161e9edc991b",
-    "combined_team_export_metrics.csv": "cd3a50844e4ebbbf64056453964851de8bdf988e1bf07a30e736a5c345bc6262",
-    "model_metrics.csv": "1fa563b8e935d0f77b54427b4d0caa25d92badcf22cb48979c4b1df1998bb9f2",
-    "season_coverage.png": "3faa1b47eb69e33c72ebb42b7a4515b800c337ff81ac0c7872b8697aef9dd441",
-    "pooled_team_sog_uncertainty.csv": "b3c5ac658ef9bd3ff45920d6e6f9818de37d256fceebdbd234ca58d2d51dad56"
+    "index.html": "d0982d2771c01cdb9e8218ad5af5bf5bc546baf14697a59a65b88a91be71016a"
   },
-  "published_outlook_source": {
-    "path": "docs/archive/2026-10-17/games",
-    "manifest_sha256": "b941eb14f83b582a011dd88efd488130ee40b1d5aecc56fba1a6b5bc63e78e32",
-    "forecast_issued_utc": "2026-10-17T17:36:04.427312+00:00",
-    "view_created_utc": "2026-10-17T19:48:34.711496+00:00"
-  },
-  "multi_date_extension": {
-    "created_at_utc": "2026-10-21T22:45:32.806173+00:00",
-    "full_dates": [
-      "2026-10-10",
-      "2026-10-12",
-      "2026-10-20"
-    ],
-    "daily_games": 24,
-    "player_appearances": 864,
-    "export_only_games": 12,
-    "code_sha256": "2c7ed4ffd712a9d0bce91bcb6e5f6314435ae8bb7447a2f76d8d85af9ef63465"
-  },
-  "source_review_manifest_sha256": "c68530453e43600105b1bb8c4795e1143386aecd0997f506fb50c10f2b05ea93"
+  "review_manifest_sha256": "e55cac3704e18aa331fa8b8a468b55d974396b82ce5d6733206971fae3eaf57b",
+  "scoreboard_manifest_sha256": "faf6d97ef262f1ea7efd6e9dcb850f8ee768a11560bb10c97e9bf1f652d067a2"
 }

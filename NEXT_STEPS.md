@@ -1,5 +1,17 @@
 # Rink Lab — Next Steps
 
+## October 22 pregame release and permanent history
+
+- Issued all 12 October 22 games before puck drop: 544 skaters across five models, 58 goalie candidates across two models, 24 teams. Strict freshness/coverage/hash checks passed without a context-lag exception. [Readout](outputs/per_game_forecast/2026-10-22_20261022T204633Z_pregame_readout.md).
+- Refreshed official history through October 21: 153 finals and 5,507 positive-TOI appearances, complete TOI joins. ESPN refreshed at 4:45 p.m. Eastern; rules/next-period roster also refreshed. Quinn has two saved goalie starts against a three-start minimum; no pending next-period roster changes. Daily acquisition usage remains unresolved.
+- Updated matchup, fantasy, feature-trial and history pages; preserved October 20 under `docs/archive/2026-10-20/`. October 20 completed results remain dated; October 21 adds no saved daily-model games.
+- Continued four feature variants on October 22 using the exact frozen October 20 coefficients with fresh past-only inputs, no refit or promotion. [Trial](outputs/per_game_forecast/feature_evidence_2026-10-22/README.md). PBP has two team-game SOG disagreements; 55 MoneyPuck shot-quality games remain quarantined. Main team-volume source covers all 153 games.
+- Implemented content-addressed append-only prediction/actual/evaluation snapshots and a canonical-vintage season/7-day/30-day scoreboard. [History](outputs/per_game_forecast/scoreboard_2026-10-22/README.md). Full daily bundles only; older/export-only cohorts remain separate. Mutation detection, idempotent registration and corrected-actual version preservation tested.
+- Fixed issuance preflight to reject a missing template before network acquisition. The October 17 setup template is absent on this machine; used the available October 9 template with matching selected parameters and freshly rebuilt current-season inputs.
+
+Next: acquire October 22 finals, evaluate the exact frozen main and feature releases, and append the new results vintage. Extend the scoreboard with interval/probability calibration and role subgroups; retain paired uncertainty in detailed reviews. Confirm near-game lineups/starters, resolve usable starts and daily transaction limits before recommendation optimization. Unattended scheduling remains disabled.
+
+
 ## Expanded multi-date performance review — October 21, 2026
 
 [Research report](outputs/per_game_forecast/season_through_2026-10-20/multi_date.md) · [Published history](https://erinyep.github.io/Rink-Lab-2027/history/).

@@ -1,0 +1,2 @@
+source,model,category,rows,games,predicted_total,actual_total,mae,bias,rmse
+data/processed/forecasts/opponent_sog_trial_2026-10-09_20261009T225456Z,opponent_form_sog_trial,shots,143,4,224.6208178418376,213.0,1.059491395919063,0.08126446043243087,1.3793437006024063

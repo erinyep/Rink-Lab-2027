@@ -80,6 +80,9 @@ def main():
     flags=['--allow-context-lag'] if args.allow_context_lag else []
     run('finalize_daily_bundle.py', '--bundle', bundle, '--goalies', goalies,*flags)
     run('validate_daily_bundle.py', '--bundle', bundle)
+    sys.path.insert(0, str(ROOT))
+    from src.fantasy.history import archive_snapshot
+    archive_snapshot(bundle, Path('data/processed/prediction_history'), 'predictions')
     run('build_nhl_outlook.py','--bundle',bundle,'--out',bundle/'nhl_outlook')
     report_config=ROOT/'config/fantasy_report.json'
     report_team=args.report_team_id

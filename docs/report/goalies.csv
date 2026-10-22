@@ -1,2 +1,4 @@
 player_name,lineup_slot,injury_status,start_share_provisional,saves_if_full_start,goals_against_if_full_start,save_percentage_projection
-Jesper Wallstedt,Goalie,ACTIVE,0.8181818182,24.2772877216,2.5570691034,0.9047091339
+Juuse Saros,Bench,ACTIVE,0.8888888889,26.6230930735,3.0551563336,0.8970573941
+Dylan Garand,Goalie,ACTIVE,0.875,25.5235845882,2.269792683,0.9183333259
+Jesper Wallstedt,Goalie,ACTIVE,0.8333333333,24.379919495,2.6266047135,0.9027418451
