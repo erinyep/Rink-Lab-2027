@@ -1,0 +1,5 @@
+model,category,rows,games,mae,bias
+goalie_history_baseline,goals_against,72,36,1.1786336323533781,0.07883136631129556
+goalie_history_baseline,saves,72,36,4.896650624655816,0.48677249076665446
+goalie_opponent_context_trial,goals_against,72,36,1.1731067581818286,0.025984517069351103
+goalie_opponent_context_trial,saves,72,36,4.738323768467491,0.00297765395614623

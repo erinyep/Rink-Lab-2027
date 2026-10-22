@@ -75,7 +75,7 @@ def main():
         'The exported prediction CSV hashes verify, but we cannot independently inspect the absent bundle or recover every player forecast.\n\n'
         '## Team shots\n\n'+table(metrics[metrics.category.eq('shots')][['scope','model','rows','games','mae','bias']])+'\n\n'
         'Use publication_safe for conservative comparative evidence; declared_pregame depends on the saved issuance claim. '
-        'Do not merge these exported team observations into the 13-game full-player sample. '
+        'Do not merge these exported team observations into the full-player sample. '
         'All six exported team categories are scored in [metrics](published_october_17_metrics.csv).\n\n'
         '## Goalies\n\n'+table(goalie[['scope','model','category','rows','games','mae','bias']])+'\n\n'
         f'{int(g.player_id.isna().sum())} goalie/model rows remain unresolved. IDs use exact normalized full names on '

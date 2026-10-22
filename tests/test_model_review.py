@@ -23,6 +23,16 @@ class ModelReviewTests(unittest.TestCase):
         self.assertEqual(result.loc['default', 'lower_95'], 0.)
         self.assertEqual(result.loc['default', 'upper_95'], 0.)
 
+    def test_cross_cohort_metrics_weight_observations_not_dates(self):
+        from scripts.publish_multi_date_review import aggregate_metrics
+        frame=pd.DataFrame([dict(model='trial',category='shots',rows=2,games=1,mae=1.,bias=-1.),
+                            dict(model='trial',category='shots',rows=8,games=4,mae=3.,bias=1.)])
+        row=aggregate_metrics(frame,['model','category']).iloc[0]
+        self.assertEqual(row['rows'],10)
+        self.assertEqual(row['games'],5)
+        self.assertAlmostEqual(row['mae'],2.6)
+        self.assertAlmostEqual(row['bias'],.6)
+
     def test_incomplete_model_pairing_is_rejected(self):
         with self.assertRaisesRegex(ValueError, 'share every scored appearance'):
             clustered_difference(self.sample().iloc[:-1], 'test')

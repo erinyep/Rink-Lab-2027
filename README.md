@@ -5,6 +5,12 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## Model performance across saved dates
+
+[Expanded history and charts](https://erinyep.github.io/Rink-Lab-2027/history/) · [Research readout](outputs/per_game_forecast/season_through_2026-10-20/multi_date.md).
+
+151 finals audited. Full five-model comparisons cover 24 pregame games/864 appearances across October 10, 12 and 20; 12 additional October 17 export-only games extend team/goalie evidence to 36 games. Calibrated opponent improves all-player shots in 20/24 games (MAE 1.042 vs default 1.058), but not the saved fantasy subset. Saved season-rate baselines cover 69 games. Missing forecasts remain missing; the new D experiment still has only 11 prospective games.
+
 ## Latest model results — October 20 games
 
 [Interactive results and player/team audits](https://erinyep.github.io/Rink-Lab-2027/results/) · [Full readout](outputs/per_game_forecast/results_2026-10-20/README.md).

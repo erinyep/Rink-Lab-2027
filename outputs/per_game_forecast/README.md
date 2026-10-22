@@ -1,5 +1,10 @@
 # Per-game forecast status — October 21, 2026
 
+## Expanded performance across saved dates
+
+[Multi-date review through October 20](season_through_2026-10-20/multi_date.md) · [Interactive history](https://erinyep.github.io/Rink-Lab-2027/history/): 24 full-comparison games across October 10, 12 and 20, plus 12 additional publication-safe team/goalie export games. All 151 finals audited; baseline coverage is 69 games. Date/category/fantasy splits and missing forecasts remain explicit. New defense trials have only 11 prospective games.
+
+
 ## Latest evaluation — October 20 finals
 
 [Results and protocol readout](results_2026-10-20/README.md) · [Interactive results](https://erinyep.github.io/Rink-Lab-2027/results/). All 11 frozen pregame games scored, with 396 skater appearances and 22 starts. New D measures beat their research control but trail the best existing main team model; no model promotion. Main player/team/fantasy/goalie metrics, paired uncertainty, components, interval coverage and lineup misses are separate.

@@ -1,5 +1,18 @@
 # Rink Lab — Next Steps
 
+## Expanded multi-date performance review — October 21, 2026
+
+[Research report](outputs/per_game_forecast/season_through_2026-10-20/multi_date.md) · [Published history](https://erinyep.github.io/Rink-Lab-2027/history/).
+
+- Re-evaluated every locally available complete daily-model cohort against the same official actuals through October 20: 24 pregame games (October 10, 12, 20), 864 player appearances, 179 saved fantasy appearances and 48 goalie starts. Canonical saved version per date selected by creation time, never by error. Late forecasts excluded.
+- Audited all 151 finals/5,435 positive-TOI appearances; saved season-rate policy covers 69 games/2,422 appearances. The remaining baseline gaps are not filled with postgame reconstructions. Baseline and daily cohorts overlap; counts must not be summed.
+- Full daily models: calibrated opponent player SOG MAE 1.042 vs default 1.058; paired delta -0.0167 (game-bootstrap exploratory 95% [-0.0241,-0.0093]), lower errors in 20/24 games. Candidate nearly ties at 1.043. Only three dates, so within-date dependence and changing inputs limit claims.
+- Fantasy subset: opponent-only 1.348/default 1.350 vs calibrated 1.361/candidate 1.364. Full-daily team SOG candidate leads (4.227 vs default 4.448). Goalies: opponent saves 4.959 vs baseline 5.221, GA 1.093 vs 1.085. Do not promote one winner across populations/categories.
+- Added conservative October 17 publication-safe exports for 12 disjoint team/goalie games. Combined 36-game team SOG MAE calibrated 4.215, candidate 4.218, default 4.429. Mixed evidence tiers remain labeled; no missing player forecasts invented. Transfer the original October 17 bundle to extend full-player/fantasy evaluation.
+- Older October 9 issued simulations/independent opponent and goalie runs (4 games) remain separate. New defense/quality experiment has only 11 prospective games; its 51-game retrospective screen does not increase prospective sample size.
+- New outputs include every date/category, paired fantasy/all-player uncertainty, leave-one-date-out sensitivity, coverage by date and source registry. Producer: `scripts/publish_multi_date_review.py`, following `scripts/review_season_to_date.py` and the archived October 17 export audit. PBP context source still ends October 19 and is labeled; this task does not infer newer PBP data.
+
+
 ## First prospective feature evaluation — October 21, 2026
 
 [October 20 results](outputs/per_game_forecast/results_2026-10-20/README.md) · [Published results](https://erinyep.github.io/Rink-Lab-2027/results/).
