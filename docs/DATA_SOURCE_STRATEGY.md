@@ -131,3 +131,9 @@ No unattended job or external trade execution is enabled here.
 ## First incremental-value screen completed
 
 [October 20 feature evidence](../outputs/per_game_forecast/feature_evidence_2026-10-20/README.md) trains through October 12 and tests 51 October 13–19 games. D and shot-quality inputs do not improve team SOG MAE against a bias-adjusted control in this specified screen. This is a corrected-data retrospective test, not evidence that the sources never help. All variants are frozen separately for tonight; main forecasts remain unchanged. Archive source vintages and score future games before promotion.
+
+## October 24 validation update
+
+[Broader review](history/broader_model_review_2026-10-24/README.md) supersedes older coverage counts: 167 official games, 155 reconciled MoneyPuck team games for the new goal/xG screen, and 105 reconciled shot-quality games. Twelve team-file games and 62 shot-file games have discrepancies; no raw values overwritten. Credit MoneyPuck.com. Current xG was rebuilt using 2023–26 shots, so older-season screens cannot independently validate the upstream model.
+
+[Kalshi benchmark](history/kalshi_benchmark_2026-10-24/README.md): 24 winner contracts mapped to 12 official October 24 games, before puck drop, with contract rules retained. Median spread $0.01. Quoted midpoint remains a benchmark, not a calibrated probability or model input. Depth and last-trade timestamps are not captured. Extra series query found no KXNHLSAVE contracts and 127 KXNHLGOAL contracts (92 two-sided; median volume zero). Historical pregame backfill remains separate work.

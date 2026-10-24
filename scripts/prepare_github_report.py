@@ -60,7 +60,7 @@ def main():
     for key,filename in [('roster','roster.csv'),('streamers','streamer_watchlist.csv'),('goalies','goalies.csv'),('schedule','roster_schedule.csv'),('matchup','category_gaps.csv')]:
         rows=data[key]
         with (args.out/filename).open('w',newline='') as f:
-            writer=csv.DictWriter(f,fieldnames=list(rows[0]) if rows else ['player_name'])
+            writer=csv.DictWriter(f,fieldnames=list(rows[0]) if rows else ['player_name'],lineterminator='\n')
             writer.writeheader();writer.writerows(rows)
     (args.out/'manifest.json').write_text(json.dumps(dict(date=data['date'],report_created_at=data['created_at'],
         source_report_sha256=sha(args.report/'report.json'),scope='Displayed fantasy report fields only; no credentials, raw API snapshots or local filesystem paths.',

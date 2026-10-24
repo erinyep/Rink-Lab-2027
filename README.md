@@ -5,17 +5,15 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Model performance across saved dates
+## Model review — October 24
 
-[Expanded history and charts](https://erinyep.github.io/Rink-Lab-2027/history/) · [Latest season review](outputs/per_game_forecast/season_through_2026-10-21/README.md) · [Permanent history and rolling scoreboard](outputs/per_game_forecast/scoreboard_2026-10-22/README.md).
+[Model decisions](docs/history/model-priorities-2026-10-24.md) · [Broader goal/xG, defense and injury review](outputs/per_game_forecast/broader_model_review_2026-10-24/README.md) · [Season review](outputs/per_game_forecast/season_through_2026-10-23/README.md) · [Rolling scoreboard](outputs/per_game_forecast/scoreboard_2026-10-24/README.md).
 
-153 finals audited through October 21. Full five-model comparisons cover 24 pregame games/864 appearances across October 10, 12 and 20; 12 additional October 17 export-only games extend team/goalie evidence to 36 games. Calibrated opponent improves all-player shots in 20/24 games (MAE 1.042 vs default 1.058), but not the saved fantasy subset. Saved season-rate baselines cover 69 games. Missing forecasts remain missing; the new D experiment still has only 11 prospective games.
+167 official finals audited. Full saved comparisons cover 36 games across October 10, 12, 20 and 22, with 1,295 positive-TOI appearances and 262 fantasy appearances. Default retained for fantasy: the small opponent-only advantage has uncertainty crossing zero. All-player calibrated SOG improves MAE 1.0435→1.0263; do not transfer that gain to every category or subgroup.
 
-## Latest model results — October 20 games
+The broader chronological development screen covers all 1,312 games in 2025–26 plus 155 reconciled current-season games. Simple goal/xG blends did not establish a reliable improvement. Both prospective defense-feature slates now total 23 games; no feature promotion. Corrected historical sources are separate from saved pregame forecasts.
 
-[Interactive results and player/team audits](https://erinyep.github.io/Rink-Lab-2027/results/) · [Full readout](outputs/per_game_forecast/results_2026-10-20/README.md).
-
-First prospective feature test: D-only team SOG MAE improves 5.792→5.344 against its frozen control, but remains behind the existing opponent-shots model (4.775). Feature uncertainty still includes no gain. Calibrated opponent context leads all-player SOG; opponent-only leads fantasy SOG. All 11 games and 396 player appearances scored without refitting. No promotion after one slate.
+[Experimental team probabilities](outputs/per_game_forecast/team_probability_2026-10-24/README.md) · [Kalshi benchmark: 24 contracts, 12 games](outputs/per_game_forecast/kalshi_benchmark_2026-10-24/README.md). These are separate pregame research releases, not fantasy-model changes.
 
 ## Research Goals
 
@@ -30,26 +28,28 @@ First prospective feature test: D-only team SOG MAE improves 5.792→5.344 again
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
-## Latest saved NHL predictions — October 22
+## Latest saved NHL predictions — October 24
 
-[Thursday, October 22 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+[Saturday, October 24 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
 projected goals, shots, scoring leans and goalie scenarios for all 24 teams.
 [Reading guide](docs/games/README.md).
 
 ## What is driving the forecasts?
 
-[Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 22. No model promotion; completed evidence remains linked from the trial page.
+[Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 24. No model promotion; completed evidence remains linked from the trial page.
 
-## Latest saved fantasy report — October 22
+## Latest saved fantasy report — October 24
 
 [Quinn’s local report and roster alerts](reports/today/README.md).
 
 [Interactive browser report](https://erinyep.github.io/Rink-Lab-2027/report/)
 (requires the [one-time Pages setup](docs/GITHUB_PAGES.md)).
 
-![October 22 category comparison](docs/report/category-gaps.svg)
+![October 24 category comparison](docs/report/category-gaps.svg)
 
 ## Current forecast work
+
+October 24: [12-game frozen release](outputs/per_game_forecast/2026-10-24_20261024T110008Z_pregame_readout.md), fresh inputs through October 23, [continued feature trials](outputs/per_game_forecast/feature_evidence_2026-10-24_v2/README.md), and updated local game/fantasy reports. The broader review prioritizes participation/EV-PP opportunity, goalie start/duration and calibrated uncertainty. Local reports are prepared; remote publication has not been performed.
 
 October 22: [All 12 games issued pregame](outputs/per_game_forecast/2026-10-22_20261022T204633Z_pregame_readout.md), with fresh ESPN roster/category data and history through October 21. [Frozen feature trials](outputs/per_game_forecast/feature_evidence_2026-10-22/README.md) continue without refitting. The append-only local archive now preserves predictions and actuals versions; the derived scoreboard reports season and rolling 7/30-day errors. All starters remain provisional.
 

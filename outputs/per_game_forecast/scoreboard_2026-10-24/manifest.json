@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-10-24T11:00:43.452870+00:00",
+  "through": "2026-10-23",
+  "review": "outputs/per_game_forecast/season_through_2026-10-23",
+  "review_sha256": "02999c4b203687e398614fc2c2ca9e329fcee3b8801aa660bdf9032bab7c6e42",
+  "actuals_manifest_sha256": "b8b750dc695e8f257f49a4672bcff755631d09e5bc7168779a155ba68891c0d1",
+  "files": {
+    "source_registry.csv": "1f0de131730ec7967429c3a800d3cc129162d53d42cf9cb1f103fcd6921ced56",
+    "README.md": "f2905e0f0771a5efcd008de08a7a446633d87f65066df9188989eec6b4835105",
+    "model_scoreboard.csv": "5d0fa4d26810abcb5edf2392aa33bdccc379e0f6b18696a0e4f4337ebab2017c"
+  }
+}

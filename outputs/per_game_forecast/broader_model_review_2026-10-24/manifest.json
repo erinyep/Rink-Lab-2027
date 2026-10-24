@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-10-24T11:03:30.495484+00:00",
+  "review": "outputs/per_game_forecast/season_through_2026-10-23",
+  "review_sha256": "02999c4b203687e398614fc2c2ca9e329fcee3b8801aa660bdf9032bab7c6e42",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261024T105807796162Z/all_teams.csv",
+  "moneypuck_sha256": "f8e361682bbe60bbafabcd971a0f8dbd8f19bd95aedb1e765db4ee14dd2976c7",
+  "quality": "data/processed/forecasts/moneypuck_shots_20261024T105849553044Z",
+  "quality_sha256": "745ee0f51e9eb8af0f5deec47ef3f3388b85d556f131a28c51174961b6b775f5",
+  "fixed_design": {
+    "recent_games": 20,
+    "prior_games": 20,
+    "blend_weight": 0.5
+  },
+  "files": {
+    "defense_offense_all_games.csv": "7999a8c6f05bdf9437aa0737e1623ac7d82cc4daf9badc64c21d2c353be4b60e",
+    "team_source_audit.csv": "db09509b7bdab060f10f130417eac520145458f50a5e9ca6ff20ff0089aca597",
+    "role_goals_vs_xg.csv": "641e68eb50230fe0fe4006806fe5e6ffb71900b461f353382c3d636d1417fef8",
+    "goal_metrics.csv": "9aa379aec14c36603b4155615158d624ae34278f613bcb69bf1b520a0588aebe",
+    "goal_uncertainty.csv": "3f05bf12628c564fbcf4c2409cdd680503f33c0bc63a343f464cddcf811b1b14",
+    "prospective_feature_metrics.csv": "7dbea452387f3f0a28fab8c7f90bcbc746a401d2fc190fb0f001e6916a165e64",
+    "chronological_goal_predictions.csv": "4392c8269a8fc1d5cb8c6f538f917eb205709b3de642b58fd2e04416174cafab",
+    "injury_participation_by_date.csv": "5db0ac7431bd72b8e42e4cf479760cf021547cd793c236e5e612b45ddf0187ba",
+    "current_season_probability_screen.csv": "98c0dcae251aba8aab818c0bc6ee8d780231b516e5d8193f4966164a59fa1ec0",
+    "README.md": "44d3b82779fa771c95985b504e5f47f434bd22f020ae211d0f2bfa706ba896e6",
+    "shot_goal_source_audit.csv": "8e3f1d344ec231bf1ea7b7474b20a25925914433ae8452b26f3ef80fc17070d9",
+    "player_goals_vs_xg.csv": "39e8a57475d20ac217685e215b62a1256191f0c42a0761ad2f84d9c27aaf0388",
+    "probability_metrics.csv": "76f411234a308007a8983bb9070054b67b84505390205b630cfb322e742ef9e9",
+    "probability_uncertainty.csv": "a6ed57b2f7ad7f0dede32076d7f8aa5ec87d87c14f824f4bb17b46d08da04963",
+    "lineup_coverage.csv": "8664325da1169356c6828be47cd8ae8f64945ba0b267250ff9393c5b7a11c6b1",
+    "prospective_feature_uncertainty.csv": "3955bac21f5f19e68b4ad2be8458b872237ddef034255538f42e241e89f30cd8"
+  }
+}

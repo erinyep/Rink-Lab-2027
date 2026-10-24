@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-10-24T11:00:40.292055+00:00",
+  "date": "2026-10-24",
+  "bundle": "data/processed/forecasts/daily_2026-10-24_20261024T110008Z",
+  "bundle_sha256": "a14c91ea2487d495b4e0cc9a2830a4c16992bd38dce8980687ae2d0926ac9de8",
+  "method": "independent_poisson_tie_split_v1",
+  "code_sha256": "5e69d43071076a5145f81fd99fdc2821b2035e4bbf6dc18618ab29a205f947e0",
+  "files": {
+    "team_win_probabilities.csv": "4c14823111183f3ba55dd33c535debf177bccbaa203b417b6c39aa595b168fb2",
+    "README.md": "a471970a2abd46b2835b11da8e27718f01ed001b5df5d50842c64400bc708653"
+  }
+}

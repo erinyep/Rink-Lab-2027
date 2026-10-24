@@ -67,12 +67,13 @@ Source disagreements retain their existing quarantines and training-time imputat
 [Frozen predictions](tonight_experimental_team_forecasts.csv) · [Player SOG accounting](player_contributions.csv).
 These separate team-volume experiments do not change the main five models.
 Player contributions are ordered changes in the usage trial, not causal importance.
-October 20 remains the only completed prospective feature slate (11 games).
+Completed feature evaluations are reported separately in the latest model review;
+this release does not fix the historical evidence count to its original issue date.
 
 Score after finals using `scripts/evaluate_feature_evidence.py`; preserve this release.
 ''')
     table = pd.concat(rows)[['game_id', 'team', 'opponent', 'model', 'experimental_team_sog']].round(3).to_html(index=False)
-    (a.out / 'index.html').write_text(f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Feature trials — {target}</title><style>body{{font:16px system-ui;margin:24px;color:#172c38}}main{{overflow:auto}}td,th{{padding:8px;text-align:left}}p{{max-width:900px}}</style><h1>Feature trials — {target}</h1><p><a href="../games/">Matchups</a> · <a href="../report/">Fantasy</a> · <a href="../results/">Completed October 20 results</a> · <a href="../archive/2026-10-20/evidence/">Original feature research</a></p><p>Four frozen variants on {len(team)//2} new games. Exact October 20 coefficients; fresh past-only context. No refit or promotion. Predictions remain separate from the main models.</p><p><a href="README.md">Method and limits</a> · <a href="tonight_experimental_team_forecasts.csv">Forecast CSV</a> · <a href="player_contributions.csv">Player contributions CSV</a></p><main>{table}</main></html>''')
+    (a.out / 'index.html').write_text(f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Feature trials — {target}</title><style>body{{font:16px system-ui;margin:24px;color:#172c38}}main{{overflow:auto}}td,th{{padding:8px;text-align:left}}p{{max-width:900px}}</style><h1>Feature trials — {target}</h1><p><a href="../games/">Matchups</a> · <a href="../report/">Fantasy</a> · <a href="../results/">Completed model results</a> · <a href="../archive/2026-10-20/evidence/">Original feature research</a></p><p>Four frozen variants on {len(team)//2} new games. Exact October 20 coefficients; fresh past-only context. No refit or promotion. Predictions remain separate from the main models.</p><p><a href="README.md">Method and limits</a> · <a href="tonight_experimental_team_forecasts.csv">Forecast CSV</a> · <a href="player_contributions.csv">Player contributions CSV</a></p><main>{table}</main></html>''')
     manifest = dict(created_at_utc=now.isoformat(), target_date=target, config=manifests['evidence']['config'],
         status='frozen_parameters_new_prospective_slate',
         source_manifests={str(getattr(a, key) / 'manifest.json'): digest(getattr(a, key) / 'manifest.json') for key in manifests},
