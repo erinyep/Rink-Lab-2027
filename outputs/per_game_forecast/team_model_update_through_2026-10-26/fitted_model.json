@@ -1,0 +1,89 @@
+{
+  "version": "team_goal_context_v2",
+  "selected_model": "goal_xg_home_rest",
+  "config": {
+    "version": "team_goal_context_v2",
+    "training_seasons": [
+      2023,
+      2024
+    ],
+    "validation_season": 2025,
+    "test_season": 2026,
+    "recent_games": 20,
+    "prior_games": 20,
+    "ridge_penalty": 20,
+    "selection_metric": "mean_poisson_negative_log_likelihood",
+    "feature_sets": {
+      "goal_strength_home_rest": [
+        "log_own_goal_rate",
+        "log_opponent_goals_against",
+        "is_home",
+        "own_back_to_back",
+        "opponent_back_to_back",
+        "rest_advantage"
+      ],
+      "goal_xg_home_rest": [
+        "log_own_goal_rate",
+        "log_opponent_goals_against",
+        "is_home",
+        "own_back_to_back",
+        "opponent_back_to_back",
+        "rest_advantage",
+        "log_own_xg_rate",
+        "log_opponent_xg_against"
+      ]
+    },
+    "protocol": "Select once on 2025-26, refit through 2025-26, evaluate all available 2026-27 games. Refit selected specification through the requested cutoff for future issuance. No target-date outcomes in features. Current official counts override conflicting downloaded counts only in derived data; xG discrepancies are quarantined."
+  },
+  "training_through": "2026-10-26",
+  "model": {
+    "features": [
+      "log_own_goal_rate",
+      "log_opponent_goals_against",
+      "is_home",
+      "own_back_to_back",
+      "opponent_back_to_back",
+      "rest_advantage",
+      "log_own_xg_rate",
+      "log_opponent_xg_against"
+    ],
+    "center": [
+      1.1149094737147456,
+      1.1137489920952433,
+      0.5,
+      0.1494057724957555,
+      0.1494057724957555,
+      -4.7123218362697645e-20,
+      1.1385991479604203,
+      1.1390315976391308
+    ],
+    "scale": [
+      0.11105753851264664,
+      0.11665362166400686,
+      0.5,
+      0.3564879908786579,
+      0.3564879908786579,
+      0.16720244991750555,
+      0.09212259953752307,
+      0.07923120260374064
+    ],
+    "coefficients": [
+      1.1132648382776082,
+      0.032648355857315084,
+      0.027932904138363097,
+      0.031216667916191206,
+      -0.022067085506224715,
+      0.010163136225867724,
+      0.010983006715103391,
+      0.036332662465553625,
+      0.04338361433607471
+    ],
+    "penalty": 20,
+    "training_rows": 8246,
+    "training_games": 4123,
+    "training_through": "2026-10-26",
+    "converged": true
+  },
+  "selection": "2025-26 goal likelihood only; 2026-27 not used to choose the specification",
+  "code_sha256": "87cb32bd7ccc72f7002f40fdde8eca72ae7a8549561b7122fb1ac1bd48ef1801"
+}

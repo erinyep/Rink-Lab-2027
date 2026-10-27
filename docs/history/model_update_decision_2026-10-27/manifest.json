@@ -1,0 +1,14 @@
+{
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "model_manifest_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
+  "saved_review": "outputs/per_game_forecast/season_through_2026-10-25",
+  "review_sha256": "18c94a2e0018de8a3c6f4337d59cbb44fd1825a13fe24c6f083271e1d8319ed6",
+  "fantasy_policy_sha256": "204ebccbb8a73f015592016dbae71fff57a5095d07b479fb04f5aa0d4009ff51",
+  "files": {
+    "shared_v1_comparison.csv": "00ee89175b3da749d4bf1794b16f8a47a495f9e7dae44a8e26a5da7b5ea7f816",
+    "production_coefficients.csv": "3da4d17c2dd308db3c72f02a3a1f55118a8bdceab692f61d95aff94026ff8c73",
+    "recent_probability_reliability.csv": "d44515b22ca56214d79956a8b6d9a9bc5f32ad8727ae4e66be982c4886928981",
+    "README.md": "38b611fc8f1054ed29beabfafe49ce4f7f1023fb2fd8f4c5703cd4a8148f9d24",
+    "shared_v1_summary.csv": "c804ec7b7a07604d8ef1be35896eab5322251faa11a20e063f4e5004e6841464"
+  }
+}

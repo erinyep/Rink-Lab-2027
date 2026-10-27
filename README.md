@@ -5,6 +5,12 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## Models updated — October 27
+
+[Updated team goals/win probabilities](https://erinyep.github.io/Rink-Lab-2027/team-model/) · [Fantasy report with updated ATOI](https://erinyep.github.io/Rink-Lab-2027/report/) · [Model changes and validation](docs/history/model-update-2026-10-27.md).
+
+Fantasy TOI error improves 6.9% on 347 saved fantasy appearances; the new category policy changes ATOI only. A fitted team model now includes team strength, home/rest and lagged xG, trained/validated on full seasons and tested on all 187 current-season games through yesterday. Recent Brier improves 0.2425→0.2350 against a simple goal-history baseline, but not the old model on their smaller shared cohort; it remains an enabled challenger with baselines preserved. Both changes are applied to fresh October 27 forecasts.
+
 ## Latest update — results through October 25
 
 [October 24–25 results](https://erinyep.github.io/Rink-Lab-2027/results/) · [Model history](https://erinyep.github.io/Rink-Lab-2027/history/) · [Full local results](outputs/per_game_forecast/results_through_2026-10-25/README.md) · [Probability vs Kalshi](outputs/per_game_forecast/probability_results_2026-10-24/README.md).

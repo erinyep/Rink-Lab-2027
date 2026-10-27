@@ -1,0 +1,28 @@
+{
+  "created_at_utc": "2026-10-27T10:36:47.425921+00:00",
+  "through": "2026-10-26",
+  "selected_model": "goal_xg_home_rest",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261027T103420625893Z",
+  "moneypuck_sha256": "3bb0d2553adc51a2260b87d77bd2e2a3768f1390e83246cb21ec693bcd6d88ba",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261027T103420Z",
+  "boxscores_sha256": "d13ec8a0b5cb06d6ad5d9fccea26bb285594150e1c4f2e0a423e91c2f74175cf",
+  "config_sha256": "0e784398a62e7f6d358de0b99f68f976830436d6aa4a995938c999aa4af2b27e",
+  "local_training_features": "data/processed/forecasts/team_goal_training_20261027T103647337537Z",
+  "local_files": {
+    "validation_predictions.csv": "fdf7bfdadbba01c91272bf43342d469858f730cfa0600a7baef85a7129bad261",
+    "lagged_features.csv": "1620bd6df2e42711c5c1ba1abb5576445ade83d96a9eaa37ffb81320654f98f1"
+  },
+  "files": {
+    "recent_probability_metrics.csv": "82a088416dcf6df5b85e49c250869be1f5d7aafa2c2c3295b56d36d200b55df2",
+    "recent_metrics_by_date.csv": "66f14690cf5827a4e52d7e62380085dbff04017c531b7f924e38b2ad2cef206b",
+    "historical_test_models.json": "f0b29bf4278f59ccf93c3f348ed15710d76ed7da87933a29e4466111566f7410",
+    "fitted_model.json": "27bcae41d26554c09015b8eda54788e088e66301259aa5efd3afae4248719d50",
+    "recent_predictions.csv": "6e192fcf486699d2df42cb750acddd82269693a1b1e270eec583efe5ad9d6319",
+    "source_audit.csv": "0e5519d0c655e745510c06f092809ee2a22c8b021cd735db875d1ea4dc6849c1",
+    "README.md": "74b0f72b4334a0da5ad17fe854b1bd665f8f86b522cbfdc298ad6e1439c3c093",
+    "paired_uncertainty.csv": "0c85158e937f6d5c694f30ceda2376a66370215339286c1dd9b1e11f0a5f9681",
+    "recent_goal_metrics.csv": "e5e749e17618070697931d7986090863cb9494cc75b6e511d0d7066774dba596",
+    "validation_metrics.csv": "614e296e34ed6b0b93b89ae6a0555d8f3413625fe235d099d7e61b86b9539f4f",
+    "recent_probabilities.csv": "ed3e32de879ddfeb399d88fd59bd5f2f5d3b726dfb1cffcb3667199c0b1a22d0"
+  }
+}

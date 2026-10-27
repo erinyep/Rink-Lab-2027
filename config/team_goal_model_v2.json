@@ -1,0 +1,15 @@
+{
+  "version": "team_goal_context_v2",
+  "training_seasons": [2023, 2024],
+  "validation_season": 2025,
+  "test_season": 2026,
+  "recent_games": 20,
+  "prior_games": 20,
+  "ridge_penalty": 20,
+  "selection_metric": "mean_poisson_negative_log_likelihood",
+  "feature_sets": {
+    "goal_strength_home_rest": ["log_own_goal_rate", "log_opponent_goals_against", "is_home", "own_back_to_back", "opponent_back_to_back", "rest_advantage"],
+    "goal_xg_home_rest": ["log_own_goal_rate", "log_opponent_goals_against", "is_home", "own_back_to_back", "opponent_back_to_back", "rest_advantage", "log_own_xg_rate", "log_opponent_xg_against"]
+  },
+  "protocol": "Select once on 2025-26, refit through 2025-26, evaluate all available 2026-27 games. Refit selected specification through the requested cutoff for future issuance. No target-date outcomes in features. Current official counts override conflicting downloaded counts only in derived data; xG discrepancies are quarantined."
+}

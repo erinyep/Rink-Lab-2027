@@ -64,8 +64,16 @@ def main():
     if a.out.exists():raise ValueError('Preserve earlier evaluations')
     pm=verify_manifest_files(a.probabilities,[]);km=verify_manifest_files(a.benchmark,[])
     if km['probabilities_sha256']!=digest(a.probabilities/'manifest.json'):raise ValueError('Wrong benchmark forecast version')
-    if digest(Path(pm['bundle'])/'manifest.json')!=pm['bundle_sha256']:raise ValueError('Changed frozen bundle')
-    verify_manifest_files(Path(pm['bundle']),[])
+    if 'bundle' in pm:
+        if digest(Path(pm['bundle'])/'manifest.json')!=pm['bundle_sha256']:raise ValueError('Changed frozen bundle')
+        verify_manifest_files(Path(pm['bundle']),[])
+    elif pm.get('method')=='team_goal_context_v2':
+        release=Path(pm['model_release'])
+        if digest(release/'manifest.json')!=pm['model_release_sha256']:raise ValueError('Changed fitted model release')
+        verify_manifest_files(release,[])
+        if json.loads((release/'fitted_model.json').read_text())['training_through']>=pm['date']:
+            raise ValueError('Model trained on target outcomes')
+    else:raise ValueError('Unsupported probability release provenance')
     f=pd.read_csv(a.probabilities/'team_win_probabilities.csv');q=pd.read_csv(a.benchmark/'winner_benchmark.csv')
     if f.game_id.duplicated().any() or q.duplicated(['game_id','team']).any():raise ValueError('Duplicate source rows')
     if set(q.game_id)!=set(f.game_id):raise ValueError('Unequal benchmark populations')
@@ -91,7 +99,7 @@ def main():
             lower_95=np.quantile(boot,.025),upper_95=np.quantile(boot,.975)))
     a.out.mkdir(parents=True)
     for name,z in [('scored_predictions',scored),('metrics',metrics),('paired_uncertainty',pd.DataFrame(intervals)),('coverage',pd.DataFrame(coverage))]:z.to_csv(a.out/(name+'.csv'),index=False)
-    (a.out/'README.md').write_text(f'''# First prospective probability comparison — {pm['date']}
+    (a.out/'README.md').write_text(f'''# Prospective probability comparison — {pm['date']}
 
 {table(metrics)}
 

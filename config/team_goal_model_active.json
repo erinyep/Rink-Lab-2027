@@ -1,0 +1,6 @@
+{
+  "version": "team_goal_context_v2",
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "status": "enabled_in_daily_issuance_with_baseline_comparison",
+  "scope": "Direct team goal forecasts and derived winner probabilities. Player and fantasy means remain unchanged. Future results must be scored as a separate model version."
+}

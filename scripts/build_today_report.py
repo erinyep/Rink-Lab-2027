@@ -13,6 +13,7 @@ sys.path.insert(0,str(ROOT))
 import pandas as pd
 from src.fantasy.decisions import active_slots, category_rules, fit_lineup, dominates, acquisition_window_open, category_comparison, goalie_qualification
 from src.fantasy.availability import excluded_by_status
+from src.fantasy.forecast_policy import select_fantasy_projections
 from src.fantasy.schedule import normalize_team, LEGACY_TEAM_ALIASES
 from scripts.validate_daily_bundle import validate
 
@@ -70,7 +71,12 @@ def main():
     cw=pd.read_csv(crosswalk_path)
     cw=cw[cw.match_status.eq('matched')][['espn_player_id','nhl_player_id']]
     if cw.espn_player_id.duplicated().any():raise ValueError('Duplicate crosswalk')
-    projections=pd.read_csv(args.bundle/'player_projections.csv');projections=projections[projections.model.eq('default')]
+    policy_path=Path('config/fantasy_category_policy.json')
+    policy=json.loads(policy_path.read_text())
+    projections=select_fantasy_projections(pd.read_csv(args.bundle/'player_projections.csv'),m['date'],policy)
+    policy_name=projections.model.iloc[0]
+    policy_note=('ATOI uses the validated recent-usage TOI model; other skater categories retain default.'
+                 if policy_name==policy['version'] else 'Default skater category means.')
     projections=projections.drop(columns=['player_name','fantasy_team_name','injury_status'])
     history_path=args.bundle/'inputs/current_per_game_forecast.csv'
     if sha(history_path)!=fm['files']['current_per_game_forecast.csv']:raise ValueError('Player history hash mismatch')
@@ -199,8 +205,8 @@ def main():
         acquisition_open_today=add_window,injuries_as_of=ownership_as_of,forecast_injuries_as_of=m['injuries_as_of_utc'],opponent=other.team_name.iloc[0],categories=cats,slots=caps,
         actions=actions,roster=records(own.drop(columns='eligible')),matchup=gaps,streamers=records(watch.drop(columns='eligible')),
         goalies=records(goalie),goalie_qualification=qualification,comparisons=comparisons,transaction_note=transaction_note,future_note=future_note,
-        schedule=records(own_calendar),future_roster=future_rows,
-        limitations=['Conditional means assume the player dresses; ACTIVE and lineup selection do not confirm participation.',
+        schedule=records(own_calendar),future_roster=future_rows,model_policy=policy_name,
+        limitations=[policy_note,'Conditional means assume the player dresses; ACTIVE and lineup selection do not confirm participation.',
                      'Matchup scores are the saved ESPN snapshot, not live scores or final projected results.',
                      'ATOI is average ice time; adding a player below the team average can reduce it. GAA and SV% require exposure-weighted aggregation.',
                      'No calibrated category win probabilities or joint matchup simulation. Future calendar games are schedule opportunities, not predicted appearances.'])
@@ -217,13 +223,13 @@ def main():
     lines=[f"# {name} — {m['date']}",'', '[Interactive report and charts](index.html)','']
     lines += ['- '+a for a in actions]
     lines += ['',transaction_note,'','Charts: category gaps, sortable roster/streamer projections, and roster schedule calendar.','',
-              'Model: default skaters, goalie history baseline. All goalie starts provisional.','']
+              'Model: '+policy_note+' Goalie history baseline; all goalie starts provisional.','']
     (args.out/'README.md').write_text('\n'.join(lines))
-    sources=[args.bundle/'manifest.json',rules_path,snapshot/'metadata.json',crosswalk_path,raw_schedule,history_path]
+    sources=[args.bundle/'manifest.json',rules_path,snapshot/'metadata.json',crosswalk_path,raw_schedule,history_path,policy_path]
     if args.future_roster:sources.append(args.future_roster/'metadata.json')
     manifest=dict(created_at_utc=now.isoformat(),date=m['date'],team_id=args.team_id,team_name=name,
-        model='default',bundle=str(args.bundle),espn_snapshot=str(snapshot),rules_snapshot=str(args.rules),
-        sources={str(p):sha(p) for p in sources},code_sha256={str(p):sha(p) for p in [Path(__file__),ROOT/'src/fantasy/decisions.py',ROOT/'templates/fantasy_today.html']},
+        model=policy_name,bundle=str(args.bundle),espn_snapshot=str(snapshot),rules_snapshot=str(args.rules),
+        sources={str(p):sha(p) for p in sources},code_sha256={str(p):sha(p) for p in [Path(__file__),ROOT/'src/fantasy/decisions.py',ROOT/'src/fantasy/forecast_policy.py',ROOT/'templates/fantasy_today.html']},
         files={p.name:sha(p) for p in args.out.iterdir() if p.is_file()})
     (args.out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print('Today report:',args.out/'index.html')

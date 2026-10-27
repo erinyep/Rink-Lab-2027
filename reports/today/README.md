@@ -1,13 +1,9 @@
-# Latest results — through October 25
+# Updated fantasy report — October 27, 2026
 
-[Published October 24–25 results](https://erinyep.github.io/Rink-Lab-2027/results/) · [Saved fantasy skater projections versus actuals](../../docs/results/saved_fantasy_skaters.csv).
+[Interactive local report](2026-10-27_quinn/index.html) · [Published report](https://erinyep.github.io/Rink-Lab-2027/report/) · [Model update](../../docs/history/model-update-2026-10-27.md).
 
-The October 24 roster report below is a historical snapshot, not today's lineup advice. Original active/bench labels are preserved; final ESPN lineup decisions were not reconstructed. The five October 25 games have no saved daily forecasts.
+ATOI now uses the recent-usage TOI model; all other skater categories retain default. Saved evidence: 6.9% lower TOI error across 347 fantasy appearances, stable across leave-one-date-out checks. Source-model lineage and baseline TOI are retained locally.
 
-# Saved report — October 24, 2026
+One goalie start recorded toward the three-start matchup minimum; two more needed. Wallstedt and Saros are active with games; starters unconfirmed. No unlocked benched skater has a game in this snapshot. Acquisition limits remain a separate constraint; no transactions performed.
 
-[Interactive local report](2026-10-24_quinn/index.html) · [Text summary](2026-10-24_quinn/README.md).
-
-Default fantasy model retained after four-date validation. ESPN snapshot at 6:54 a.m. Eastern; 12 games issued at 7:00 a.m. Eastern. Four matchup goalie starts recorded against a three-start minimum. Wallstedt and Cooley are active; Saros is benched. All starts remain unconfirmed. Daily acquisition usage remains unresolved; no roster changes performed.
-
-[Model decisions and broader review](../../docs/history/model-priorities-2026-10-24.md). Previous report preserved under `docs/archive/2026-10-22/`.
+[Updated direct team goal/win forecasts](../../docs/team-model/index.html) use the new fitted context model. These are separate from individual player goal means.

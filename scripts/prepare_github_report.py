@@ -35,7 +35,7 @@ def main():
     (args.out/'report.json').write_text(payload+'\n')
     template=Path('templates/fantasy_today.html').read_text()
     rendered=template.replace('__REPORT_DATA__',payload.replace('</','<\\/'))
-    rendered=rendered.replace('<body><main>','<body><main><nav><a href="../games/index.html">All NHL game predictions</a> · <strong>Your fantasy team</strong> · <a href="../evidence/">Feature evidence and player contributions</a> · <a href="../results/">Model results</a> · <a href="../history/model-priorities-2026-10-22.md">Performance-based model priorities</a></nav>',1)
+    rendered=rendered.replace('<body><main>','<body><main><nav><a href="../games/index.html">All NHL game predictions</a> · <a href="../team-model/">Updated team model</a> · <strong>Your fantasy team</strong> · <a href="../results/">Model results</a> · <a href="../history/">Model evidence and decisions</a></nav>',1)
     (args.out/'index.html').write_text(rendered)
     # Regenerate the README preview from the same snapshot as the interactive page.
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 {80+37*len(data["matchup"])}" font-family="system-ui,sans-serif" role="img" aria-label="Saved category comparison">',

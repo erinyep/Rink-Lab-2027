@@ -33,6 +33,14 @@ def main():
     a=ap.parse_args(); target=str(a.date)
     if not (a.template_forecast/'manifest.json').is_file():
         ap.error('Template missing; select an existing validated per_game forecast before acquisition')
+    team_model_config=Path('config/team_goal_model_active.json')
+    team_model=json.loads(team_model_config.read_text()) if team_model_config.exists() else None
+    if team_model:
+        release=Path(team_model['model_release'])
+        if not (release/'fitted_model.json').is_file():
+            ap.error('Active team-model release missing before acquisition')
+        if json.loads((release/'fitted_model.json').read_text())['training_through']>=target:
+            ap.error('Active team model contains target-date outcomes; use an earlier model vintage')
     if a.prepared_inputs:
         inputs=json.loads(a.prepared_inputs.read_text())
     else:
@@ -62,6 +70,10 @@ def main():
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
     from src.fantasy.history import archive_snapshot
     archive_snapshot(bundle,Path('data/processed/prediction_history'),'predictions')
+    if team_model:
+        run('issue_team_context_forecasts.py',['--date',target,'--model-release',team_model['model_release'],
+            '--moneypuck',inputs['moneypuck_snapshot'],'--boxscores',inputs['boxscore_history'],
+            '--out',str(Path('outputs/per_game_forecast')/('team_context_'+Path(bundle).name))])
     print('Issued bundle:',bundle)
 
 

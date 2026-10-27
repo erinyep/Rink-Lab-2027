@@ -1,0 +1,9 @@
+feature,coefficient_native
+log_own_goal_rate,0.29397694469517943
+log_opponent_goals_against,0.23945166673707924
+is_home,0.06243333583238241
+own_back_to_back,-0.06190134330145206
+opponent_back_to_back,0.028509056366297265
+rest_advantage,0.06568687672053965
+log_own_xg_rate,0.3943946724034283
+log_opponent_xg_against,0.5475571859365731

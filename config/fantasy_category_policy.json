@@ -1,0 +1,8 @@
+{
+  "version": "fantasy_category_policy_v2",
+  "effective_from": "2026-10-27",
+  "baseline": "default",
+  "category_models": {"toi_minutes": "usage_shot_context_trial"},
+  "evidence": "outputs/per_game_forecast/model_decisions_through_2026-10-25",
+  "reason": "Saved fantasy TOI MAE 2.1644 to 2.0145 over 347 appearances/48 games; paired delta -0.1499 minutes, 95% interval [-0.2127,-0.0826]. Improvement persists leaving out each saved date. Other category means retain default."
+}
