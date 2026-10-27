@@ -1,0 +1,4 @@
+model,games,brier,log_loss,favorite_accuracy
+even_baseline,12,0.25,0.6931471805599453,
+kalshi_home_midpoint,12,0.22553125,0.6435324756995925,0.6666666666666666
+team_probability_trial,12,0.24963789102383727,0.6924832725107319,0.5

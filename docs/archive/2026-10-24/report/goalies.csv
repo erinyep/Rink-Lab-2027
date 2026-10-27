@@ -1,0 +1,4 @@
+player_name,lineup_slot,injury_status,start_local,start_share_provisional,saves_if_full_start,goals_against_if_full_start,save_percentage_projection
+Juuse Saros,Bench,ACTIVE,7:00 PM,0.8,26.6230930735,3.0551563336,0.8970573941
+Devin Cooley,Goalie,ACTIVE,10:00 PM,0.4545454545,26.8812158868,2.8385400341,0.9044897932
+Jesper Wallstedt,Goalie,ACTIVE,10:00 PM,0.8461538462,24.2181522689,2.6009633985,0.9030183012

@@ -34,11 +34,12 @@
     "data/processed/forecasts/moneypuck_shots_20261024T105849553044Z/manifest.json": "745ee0f51e9eb8af0f5deec47ef3f3388b85d556f131a28c51174961b6b775f5"
   },
   "files": {
-    "index.html": "f909583679e28489f0fe16b27db8c3b74a18e674b9d5ec07b567b3184112c4b8",
+    "index.html": "1972f3c591de1c1b93a07f6630723a4c58b99807c84acc30cf682ce7d90ba215",
     "player_contributions.csv": "058685dba75b3757e7c1d94270acdd049b9d1e9633447654f66cecbeeeab537e",
     "README.md": "cbfe79137ac45f9587da6febc0380e4de3b9a9a911299b6e7326f71b1323ddec",
     "tonight_experimental_team_forecasts.csv": "0f17ebf44ce1096f2d22fab99af715d857758e0c95f0a048e143d603ec8b953b",
     "fitted_models.json": "85fd24b56c149a86e7c735989bd6766a35b76f067f9336d9065537a313ed28fa"
   },
-  "publication_view_note": "Navigation updated after the broader review; frozen source release remains unchanged."
+  "publication_view_note": "Navigation updated after the broader review; frozen source release remains unchanged.",
+  "results_notice_through": "2026-10-25"
 }

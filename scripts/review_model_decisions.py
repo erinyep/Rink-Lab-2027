@@ -103,7 +103,7 @@ Saved fantasy ownership defines the fantasy population; no current-roster relabe
 
 [Paired game-bootstrap uncertainty, all categories and roles](paired_uncertainty.csv).
 [Leave-one-date-out sensitivity](leave_one_date_out.csv). These are exploratory comparisons;
-four dates do not establish stable subgroup improvement. Do not tune corrections on the same evaluation sample.
+{p.date.nunique()} dates do not establish stable subgroup improvement. Do not tune corrections on the same evaluation sample.
 
 ## Team win-probability development screen
 
@@ -112,8 +112,9 @@ four dates do not establish stable subgroup improvement. Do not tune corrections
 Independent Poisson counts from frozen team goal means; tied counts split 50/50.
 Official final scores determine winners, including overtime/shootouts. Saved means cover full-game
 scoring, so this is an approximate scoring-count model, not regulation/OT decomposition.
-This transformation was introduced after outcomes: its historical scores are a retrospective
-development screen, NOT previously issued probability forecasts. No fitted calibration or home-ice
+This pooled table applies the transform to all saved means and is a development screen.
+Only separately timestamped probability releases qualify for prospective probability scoring;
+evaluate those releases separately rather than labeling this entire pool prospective. No fitted calibration or home-ice
 adjustment. Compare with the 50/50 baseline (Brier .25, log loss .6931).
 Intervals resample games and do not resolve within-date dependence or multiple comparisons.
 [Reliability bins](team_probability_reliability.csv) expose the small sample. Keep any new probabilities

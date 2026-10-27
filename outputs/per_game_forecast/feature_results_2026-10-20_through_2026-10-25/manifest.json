@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-10-27T10:26:51.500818+00:00",
+  "target_date": "2026-10-20",
+  "evidence_manifest_sha256": "a86326fa268d1b1b3e924397f9c298e30d702143ee287dfcc4e90e28b169e636",
+  "actuals_manifest_sha256": "fe993ce952cfeb6c4df9e3a4ce202f2e3a3bc6a09e5599d4710a24c201bcaa2a",
+  "completed_games": 11,
+  "unscored_games": 0,
+  "selection": "All frozen variants, same completed games; no postgame refit",
+  "files": {
+    "coverage.csv": "98c116b4c583995b0041fb6c06f9db3bcd2bde76bb6216d310216c3e69d316a6",
+    "metrics.csv": "4a0fcf658e78c81a9ad168079730f57ccd34a483c7896652ce423604a1c62708",
+    "paired_uncertainty.csv": "2ad30e64951775d721e8ba41f9ba5c283e2081e22101b429291cc9b05402996d",
+    "scored_predictions.csv": "37bf8a4da762dd6552c55d75fb18e9ae5b15e28fbebb7064220d7b37956ae9aa"
+  }
+}

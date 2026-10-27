@@ -1,0 +1,10 @@
+{
+  "created_at_utc": "2026-10-22T20:51:10.090063+00:00",
+  "through": "2026-10-21",
+  "scope": "Current landing page, current review and scoreboard; older root exports remain October 20 research",
+  "files": {
+    "index.html": "d0982d2771c01cdb9e8218ad5af5bf5bc546baf14697a59a65b88a91be71016a"
+  },
+  "review_manifest_sha256": "e55cac3704e18aa331fa8b8a468b55d974396b82ce5d6733206971fae3eaf57b",
+  "scoreboard_manifest_sha256": "faf6d97ef262f1ea7efd6e9dcb850f8ee768a11560bb10c97e9bf1f652d067a2"
+}

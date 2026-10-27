@@ -1,0 +1,30 @@
+{
+  "created_at_utc": "2026-10-24T10:54:35.081266+00:00",
+  "through": "2026-10-23",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261024T105340Z",
+  "actuals_sha256": "b8b750dc695e8f257f49a4672bcff755631d09e5bc7168779a155ba68891c0d1",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261024T105319Z",
+  "defense_pbp": "data/processed/forecasts/defense_pbp_20261024T105350033241Z",
+  "evaluations": [
+    "data/processed/forecasts/daily_evaluation_2026-10-10_20261024T105412736350Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-12_20261024T105413962390Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-20_20261024T105414916745Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-22_20261024T105416224769Z"
+  ],
+  "baseline_selection": "latest saved pregame snapshot per game; no performance selection",
+  "hash_checks": 158,
+  "files": {
+    "baseline_metrics.csv": "06c60369202ffaad51f1320752ec01de150173903808c58d6b31dc3778e77d65",
+    "archived_opponent_metrics.csv": "3a6efa97ee6cdada780d4aecd91be66e4e5bac9d0bdfc45f4da413bcbb1a8d58",
+    "saved_run_inventory.csv": "3a524181af5561a1d55f61c109e6b22dd05d17257f03d71800b885d748332c13",
+    "archived_goalie_metrics.csv": "84902e29a27eda4fb762cd27720f879ac6b445d98a80a5736b01aa2f4f203342",
+    "game_cluster_uncertainty.csv": "f6ec41fbaf9e4444b41192559ae300443ef3db0ee16ea0fe62d146d28a5c583b",
+    "archived_issued_simulation_metrics.csv": "e9dabbeae39f28262228f1f8629389403d80bc6d77e0ca689ac6cad83c5ec132",
+    "README.md": "e811f0f600ba34f1f1e0a183f7ebea6af3aa8afbfb38c5ce3f5c44ad99b19ecc",
+    "game_coverage.csv": "548a4a5ba8984f69803ab76bd84941084e56cb783b94eaa4d74a21c15f5b9bdd",
+    "defense_context.csv": "1e7f450324c2c26f5d548f0277d6dae29a570ad3411a8a20d9c15b0715124bc3",
+    "baseline_by_date.csv": "e91e094d1c9d4c40995674bc86be5ca5988f5ddf51d992b28f62161e9edc991b",
+    "model_metrics.csv": "62dc528721197dae1842b05e2874d16b1dabb2cfe8998f3591265b50825972c3",
+    "season_coverage.png": "ab6140e1106bb318f30883f7c1fe5907a6235b308004046877937f47b0bc10c3"
+  }
+}

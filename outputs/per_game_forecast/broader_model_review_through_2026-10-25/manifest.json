@@ -1,0 +1,37 @@
+{
+  "created_at_utc": "2026-10-27T10:27:05.527467+00:00",
+  "review": "outputs/per_game_forecast/season_through_2026-10-25",
+  "review_sha256": "18c94a2e0018de8a3c6f4337d59cbb44fd1825a13fe24c6f083271e1d8319ed6",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261026T194036730070Z/all_teams.csv",
+  "moneypuck_sha256": "3bb0d2553adc51a2260b87d77bd2e2a3768f1390e83246cb21ec693bcd6d88ba",
+  "quality": "data/processed/forecasts/moneypuck_shots_20261027T102534750786Z",
+  "quality_sha256": "5d7c8e85fa6009162f96a3099b03ecb5c93079d6c70bdb1761880a00fc921138",
+  "feature_evaluations": {
+    "outputs/per_game_forecast/feature_results_2026-10-20_through_2026-10-25": "e740c26df15a7a8d7f797a06c712bb106c61d44039b6983c7a098093e2f16bca",
+    "outputs/per_game_forecast/feature_results_2026-10-22_through_2026-10-25": "cfd60152cfae420a8f2b77630d5c895b7c696be7b71ab92486f40c46ed81d435",
+    "outputs/per_game_forecast/feature_results_2026-10-24": "f857b2643103fc69eadd7893d33982a7e4b0a85d9eb48aeeb975f77ccb4cb7d1"
+  },
+  "fixed_design": {
+    "recent_games": 20,
+    "prior_games": 20,
+    "blend_weight": 0.5
+  },
+  "files": {
+    "defense_offense_all_games.csv": "465f13cfc80f4b2e647651bf229b03aeb57987672311056b9bfd6e795af21b98",
+    "team_source_audit.csv": "53931d55b675b2727ee0a93aad865877e4c88b35a9eaccadfa981451ef36a70e",
+    "role_goals_vs_xg.csv": "ebac74f88ab560f65f81e922dc13164a9f8d23d57b8c1ec792f8981fe4d6c66f",
+    "goal_metrics.csv": "5c3dc70923c247b46dfb2678fbf3fb75642c98e65109d640bd21d254c871b040",
+    "goal_uncertainty.csv": "e815453d5061e714e3a2a4413f739ae7d04f95616e1511c21f2e8a6c8590e035",
+    "prospective_feature_metrics.csv": "abb8c2c34a525a6d38d14d47cd319cd0940162145635f9512bae02deb805d1de",
+    "chronological_goal_predictions.csv": "38dc5a53d26bd41ec402b3da517bbe01335f33a0928eda8e4ef72d9e7b59ea5a",
+    "injury_participation_by_date.csv": "d57ae67b7a1404bc235d48e7dc1895ab180eda10c084f2c80770a5c710e1319f",
+    "current_season_probability_screen.csv": "93cdecb0798aea871a3724eb718e75035b750a38c1aef55b8c017e1e0665f2f3",
+    "README.md": "510c6dc18c142ea3e3518a0c43c2fbd696a0e6f8d0796654f09a2bd2d946fc62",
+    "shot_goal_source_audit.csv": "c7a4cb97ef4d909342465f868121e8d28db23abb8c3e90b42013ec08c55db0d0",
+    "player_goals_vs_xg.csv": "22fc21fe259250af7ab5c5d1c896329277ba8531c7fea9e9f0e7d3fd88682e16",
+    "probability_metrics.csv": "9d0784e0c2e4864972f32ed3290f0f191b0a222b26a2fc2e5196c9c123a8b007",
+    "probability_uncertainty.csv": "f28c5d9ef86fe69eb623ca31e7b0986fe1e204afcbfddb1e4abc463433da4664",
+    "lineup_coverage.csv": "ba0e832e368e2b7dad3116a9656adc43bf7ab9a744fbc91f0aa7a74cbd49d7a9",
+    "prospective_feature_uncertainty.csv": "0da3abc85752f5aec1ee8daa54ca5b276287e8bc9dfc1452f4454fe67a3f5b37"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "created_at_utc": "2026-10-24T11:05:04.556820+00:00",
+  "target_date": "2026-10-24",
+  "config": {
+    "version": "oct20_screen_v1",
+    "target_date": "2026-10-20",
+    "training_start": "2026-10-05",
+    "training_end": "2026-10-12",
+    "holdout_start": "2026-10-13",
+    "holdout_end": "2026-10-19",
+    "team_prior_games": 20,
+    "ridge_penalty": 20,
+    "bootstrap_draws": 2000,
+    "seed": 20261020,
+    "pbp_features": [
+      "own_defense_attempt_share",
+      "own_followup_attempts_after_defense_per_game",
+      "opponent_defense_attempt_share"
+    ],
+    "quality_features": [
+      "own_defense_xg_per_game",
+      "own_defense_expected_rebounds_per_game",
+      "own_team_xg_per_game"
+    ],
+    "decision": "Retrospective feasibility screen only; no automatic promotion. Compare feature variants to the intercept-adjusted control on identical games. All variants issued separately for tonight.",
+    "source_limit": "Current corrected downloads with game-date cutoffs, not historical as-of source vintages; historical lineups/market quotes are not reconstructed."
+  },
+  "status": "frozen_parameters_new_prospective_slate",
+  "source_manifests": {
+    "data/processed/forecasts/daily_2026-10-24_20261024T110008Z/manifest.json": "a14c91ea2487d495b4e0cc9a2830a4c16992bd38dce8980687ae2d0926ac9de8",
+    "outputs/per_game_forecast/feature_evidence_2026-10-20/manifest.json": "a86326fa268d1b1b3e924397f9c298e30d702143ee287dfcc4e90e28b169e636",
+    "data/processed/forecasts/fantasy_game_details_20261024T105340Z/manifest.json": "b8b750dc695e8f257f49a4672bcff755631d09e5bc7168779a155ba68891c0d1",
+    "data/processed/forecasts/defense_pbp_20261024T105350033241Z/manifest.json": "4243db44d0af8696fa426bd24ff0e0866744dde3708e951390ca9de8dd967108",
+    "data/processed/forecasts/moneypuck_shots_20261024T105849553044Z/manifest.json": "745ee0f51e9eb8af0f5deec47ef3f3388b85d556f131a28c51174961b6b775f5"
+  },
+  "files": {
+    "index.html": "f909583679e28489f0fe16b27db8c3b74a18e674b9d5ec07b567b3184112c4b8",
+    "player_contributions.csv": "058685dba75b3757e7c1d94270acdd049b9d1e9633447654f66cecbeeeab537e",
+    "README.md": "cbfe79137ac45f9587da6febc0380e4de3b9a9a911299b6e7326f71b1323ddec",
+    "tonight_experimental_team_forecasts.csv": "0f17ebf44ce1096f2d22fab99af715d857758e0c95f0a048e143d603ec8b953b",
+    "fitted_models.json": "85fd24b56c149a86e7c735989bd6766a35b76f067f9336d9065537a313ed28fa"
+  },
+  "publication_view_note": "Navigation updated after the broader review; frozen source release remains unchanged."
+}

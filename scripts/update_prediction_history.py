@@ -83,8 +83,8 @@ def main():
 Immutable, content-addressed copies of issued forecasts, official actuals and evaluations
 are stored locally under `data/processed/prediction_history/`. Repeating registration
 verifies hashes; corrected actuals receive a new version. Issuance, input cutoffs,
-ownership labels and original manifests are retained. Tonight's forecasts are registered
-but unscored. No missing forecast is reconstructed; absent conditional outcomes are not zero.
+ownership labels and original manifests are retained. Registered forecasts are scored only
+when matching actuals exist in the review. No missing forecast is reconstructed; absent conditional outcomes are not zero.
 
 The derived scoreboard uses the review's canonical forecast per date and one actuals
 vintage, so revisions and repeated issuances are not double-counted. Separate player,

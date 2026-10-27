@@ -5,6 +5,14 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## Latest update — results through October 25
+
+[October 24–25 results](https://erinyep.github.io/Rink-Lab-2027/results/) · [Model history](https://erinyep.github.io/Rink-Lab-2027/history/) · [Full local results](outputs/per_game_forecast/results_through_2026-10-25/README.md) · [Probability vs Kalshi](outputs/per_game_forecast/probability_results_2026-10-24/README.md).
+
+184 official finals validated; all 17 October 24–25 games acquired. Main model comparisons now cover 48 saved games. October 25 has no saved daily forecast, so its five games update season data without adding retrospective predictions. Fantasy default retained; no defense/xG promotion. First prospective probability slate: model Brier 0.2496 vs Kalshi midpoint 0.2255 across 12 games. Too little evidence for promotion.
+
+October 24 forecasts below are historical snapshots. [Refreshed broader xG, defense and injury review](outputs/per_game_forecast/broader_model_review_through_2026-10-25/README.md) · [Rolling scoreboard](outputs/per_game_forecast/scoreboard_through_2026-10-25/README.md).
+
 ## Model review — October 24
 
 [Model decisions](docs/history/model-priorities-2026-10-24.md) · [Broader goal/xG, defense and injury review](outputs/per_game_forecast/broader_model_review_2026-10-24/README.md) · [Season review](outputs/per_game_forecast/season_through_2026-10-23/README.md) · [Rolling scoreboard](outputs/per_game_forecast/scoreboard_2026-10-24/README.md).

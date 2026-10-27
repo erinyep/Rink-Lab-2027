@@ -1,0 +1,31 @@
+{
+  "created_at_utc": "2026-10-27T10:26:23.356273+00:00",
+  "through": "2026-10-25",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261026T194042Z",
+  "actuals_sha256": "fe993ce952cfeb6c4df9e3a4ce202f2e3a3bc6a09e5599d4710a24c201bcaa2a",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261026T194017Z",
+  "defense_pbp": "data/processed/forecasts/defense_pbp_20261026T194042227128Z",
+  "evaluations": [
+    "data/processed/forecasts/daily_evaluation_2026-10-10_20261027T102558729788Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-12_20261027T102559984873Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-20_20261027T102600992644Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-22_20261027T102602297005Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-24_20261027T102603758530Z"
+  ],
+  "baseline_selection": "latest saved pregame snapshot per game; no performance selection",
+  "hash_checks": 158,
+  "files": {
+    "baseline_metrics.csv": "06c60369202ffaad51f1320752ec01de150173903808c58d6b31dc3778e77d65",
+    "archived_opponent_metrics.csv": "3a6efa97ee6cdada780d4aecd91be66e4e5bac9d0bdfc45f4da413bcbb1a8d58",
+    "saved_run_inventory.csv": "3a524181af5561a1d55f61c109e6b22dd05d17257f03d71800b885d748332c13",
+    "archived_goalie_metrics.csv": "84902e29a27eda4fb762cd27720f879ac6b445d98a80a5736b01aa2f4f203342",
+    "game_cluster_uncertainty.csv": "7efd8540edf9f4fccbdb56a951a03d0d13b77ce8ca25ba427e8cc63ca3b463ce",
+    "archived_issued_simulation_metrics.csv": "e9dabbeae39f28262228f1f8629389403d80bc6d77e0ca689ac6cad83c5ec132",
+    "README.md": "92e23504cfffb9055b145a0de67009a4785141781bc84cb0f67a3145da24ed3e",
+    "game_coverage.csv": "684ae0349bcfcdb4b297d458b2299097b2e535dfce3615a4a6d872b77bc0350c",
+    "defense_context.csv": "fdd57ae2d4e9dc14bb2553a6ca7f91ef2a79f02bef93d5106358215148a9b535",
+    "baseline_by_date.csv": "e91e094d1c9d4c40995674bc86be5ca5988f5ddf51d992b28f62161e9edc991b",
+    "model_metrics.csv": "97b7b4a7188341bc531bb2ac58f541e91afef4cfaa72f061697318b5429a60af",
+    "season_coverage.png": "2ab9224f85b44840099c735d2ed3595efd441fb5e13d98e87ba1b6072a87d8d7"
+  }
+}

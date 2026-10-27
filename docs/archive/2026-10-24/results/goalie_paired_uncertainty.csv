@@ -1,0 +1,4 @@
+model,comparison,games,mae_delta,ci_low,ci_high,category
+goalie_opponent_context_trial,goalie_history_baseline,11,-0.31350183967161976,-0.963935158381244,0.3288370898944051,shots_against
+goalie_opponent_context_trial,goalie_history_baseline,11,-0.28849926846058727,-0.8751805528814665,0.29346499754059047,saves
+goalie_opponent_context_trial,goalie_history_baseline,11,-0.022408815175263788,-0.0695837792186784,0.022754279776798527,goals_against

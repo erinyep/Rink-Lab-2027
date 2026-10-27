@@ -137,3 +137,9 @@ No unattended job or external trade execution is enabled here.
 [Broader review](history/broader_model_review_2026-10-24/README.md) supersedes older coverage counts: 167 official games, 155 reconciled MoneyPuck team games for the new goal/xG screen, and 105 reconciled shot-quality games. Twelve team-file games and 62 shot-file games have discrepancies; no raw values overwritten. Credit MoneyPuck.com. Current xG was rebuilt using 2023–26 shots, so older-season screens cannot independently validate the upstream model.
 
 [Kalshi benchmark](history/kalshi_benchmark_2026-10-24/README.md): 24 winner contracts mapped to 12 official October 24 games, before puck drop, with contract rules retained. Median spread $0.01. Quoted midpoint remains a benchmark, not a calibrated probability or model input. Depth and last-trade timestamps are not captured. Extra series query found no KXNHLSAVE contracts and 127 KXNHLGOAL contracts (92 two-sided; median volume zero). Historical pregame backfill remains separate work.
+
+## Results through October 25
+
+184 NHL finals and 6,623 positive-TOI appearances validated. The refreshed MoneyPuck goal/xG screen retains 167 current-season games (17 team-file discrepancies); shot-quality comparison retains 115 games (69 shot-file discrepancies). All source rows preserved. Official goalie count exceptions for October 24 Jarry and Vejmelka remain excluded from conditional count scoring. [Updated evidence](history/broader_model_review_through_2026-10-25/README.md).
+
+The October 24 Kalshi comparison uses saved pregame quotes and official NHL final winners, one home outcome per game. It does not claim exchange settlement verification, trade execution or P&L. [First prospective probability scores](history/probability_results_2026-10-24/README.md).

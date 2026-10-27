@@ -1,5 +1,18 @@
 # Rink Lab — Next Steps
 
+## Results refreshed through October 25
+
+- Acquired all 184 finals through October 25, including all 12 October 24 games and five October 25 games. Validated 6,623 positive-TOI appearances and complete TOI joins. No October 25 daily forecasts exist; those five games are observed data/coverage gaps, never reconstructed predictions.
+- Scored the original October 24 main, feature and separate probability releases without refitting. The complete daily comparison now covers 48 games across five dates, 1,725 forecast-covered appearances and 347 saved fantasy appearances. October 24: 430/432 actual skaters forecast-covered; T. Mitchell (ANA, 8484262) and A. Hayes (PIT, 8482993) lacked forecasts. Twenty-five selected identified skaters did not appear.
+- All-player calibrated SOG MAE 1.0257 vs default 1.0425. Fantasy calibrated 1.3090 vs default 1.3172; paired change -0.0081, exploratory 95% [-0.0284,+0.0128]. Default remains fantasy baseline. Goalie October 24 counts use 22 eligible starts; Jarry and Vejmelka fail official SA=SV+GA identity and remain visible but unscored for counts.
+- First prospective probability test: 12 games, one home outcome per game. Model Brier 0.2496, saved Kalshi midpoint 0.2255, 50/50 0.2500. Model favorite accuracy 6/12, market 8/12. These are NHL-outcome scores, not exchange settlement/P&L verification. No market blend or calibration promotion from one slate.
+- Re-scored all three frozen feature slates on the same actuals vintage: 35 games. Control SOG MAE 5.3387; D-only 5.4101, quality 5.3409, combined 5.3784. All paired intervals cross zero. Updated broader goal/xG screen: 1,312 prior-season games and 167 reconciled current-season games; no reliable benefit. Seventeen team-file games and 69 shot-file games quarantined; shot-level comparison covers 115 games. D goals 104 vs xG 100.8 on the same usable games.
+- Updated versioned history, results, rolling scoreboard, fantasy/role uncertainty, injury/lineup audits, defense/xG review and site navigation. October 24 pregame pages archived and current forecast pages labeled historical with links to results. Saved fantasy skater projections/actuals retain original active/bench labels, not inferred final ESPN decisions. No new pregame slate issued in this results-only update.
+
+[Results](outputs/per_game_forecast/results_through_2026-10-25/README.md) · [Season](outputs/per_game_forecast/season_through_2026-10-25/README.md) · [Probability/Kalshi](outputs/per_game_forecast/probability_results_2026-10-24/README.md) · [Broader review](outputs/per_game_forecast/broader_model_review_through_2026-10-25/README.md).
+
+Next: resolve official goalie count discrepancies via future source vintages, improve participation/EV-PP opportunity and goalie duration, keep separate prospective probability/market samples, and issue a fresh pregame slate before the next forecast test. 82 tests pass, including probability timing, paired population, invalid-probability and rescheduling checks.
+
 ## October 24 broader validation, market benchmark and pregame release
 
 - Acquired/validated all 167 official finals through October 23: 6,011 positive-TOI appearances, complete TOI joins. Scored October 22's exact frozen main and feature releases, re-evaluated all four saved dates, and appended content-addressed prediction/actual/evaluation history. [Review](outputs/per_game_forecast/season_through_2026-10-23/README.md), [scoreboard](outputs/per_game_forecast/scoreboard_2026-10-24/README.md).

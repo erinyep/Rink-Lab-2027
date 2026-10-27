@@ -1,0 +1,21 @@
+model,bin,games,mean_probability,home_win_rate
+calibrated_opponent_sog_trial,"(-0.001, 0.4]",4,0.3806002773460925,0.5
+calibrated_opponent_sog_trial,"(0.4, 0.5]",22,0.46657031495509804,0.5
+calibrated_opponent_sog_trial,"(0.5, 0.6]",20,0.5504236248962254,0.75
+calibrated_opponent_sog_trial,"(0.6, 1.0]",2,0.6287773095866016,0.5
+candidate,"(-0.001, 0.4]",4,0.3806002773460925,0.5
+candidate,"(0.4, 0.5]",22,0.46657031495509804,0.5
+candidate,"(0.5, 0.6]",20,0.5504236248962254,0.75
+candidate,"(0.6, 1.0]",2,0.6287773095866016,0.5
+default,"(-0.001, 0.4]",4,0.3806002773460925,0.5
+default,"(0.4, 0.5]",22,0.46657031495509804,0.5
+default,"(0.5, 0.6]",20,0.5504236248962254,0.75
+default,"(0.6, 1.0]",2,0.6287773095866016,0.5
+opponent_form_sog_trial,"(-0.001, 0.4]",4,0.3806002773460925,0.5
+opponent_form_sog_trial,"(0.4, 0.5]",22,0.46657031495509804,0.5
+opponent_form_sog_trial,"(0.5, 0.6]",20,0.5504236248962254,0.75
+opponent_form_sog_trial,"(0.6, 1.0]",2,0.6287773095866016,0.5
+usage_shot_context_trial,"(-0.001, 0.4]",4,0.3806002773460925,0.5
+usage_shot_context_trial,"(0.4, 0.5]",22,0.46657031495509804,0.5
+usage_shot_context_trial,"(0.5, 0.6]",20,0.5504236248962254,0.75
+usage_shot_context_trial,"(0.6, 1.0]",2,0.6287773095866016,0.5

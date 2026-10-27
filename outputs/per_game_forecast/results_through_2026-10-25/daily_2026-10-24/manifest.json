@@ -1,0 +1,90 @@
+{
+  "evaluated_at_utc": "2026-10-27T10:26:04.150630+00:00",
+  "date": "2026-10-24",
+  "frozen_bundle": "data/processed/forecasts/daily_2026-10-24_20261024T110008Z",
+  "frozen_bundle_manifest_sha256": "a14c91ea2487d495b4e0cc9a2830a4c16992bd38dce8980687ae2d0926ac9de8",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261026T194042Z",
+  "actuals_manifest_sha256": "fe993ce952cfeb6c4df9e3a4ce202f2e3a3bc6a09e5599d4710a24c201bcaa2a",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261026T194017Z",
+  "boxscores_metadata_sha256": "f467ba09da9b6d4abd0a9011d2673058425c75f8a868c41e40766799ca4ff299",
+  "games": 12,
+  "game_issue_timing": [
+    {
+      "game_id": 2026020168,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020169,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020170,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020171,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020172,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020173,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020174,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020175,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020176,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020177,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020178,
+      "issue_timing": "pregame"
+    },
+    {
+      "game_id": 2026020179,
+      "issue_timing": "pregame"
+    }
+  ],
+  "goalie_forecast_status": "issued_and_evaluated",
+  "external_goalie_source": null,
+  "external_goalie_manifest_sha256": null,
+  "source_hash_exceptions": [],
+  "scoring_notes": [
+    "Pregame and late rows scored separately; no pooled headline metrics.",
+    "Player means scored only against positive-TOI appearances; absent players retain missing outcomes.",
+    "Team SOG is official NHL boxscore SOG; other team categories sum all positive-TOI skaters.",
+    "Goalie primary count metrics use actual starters with consistent counts, and include variable actual duration.",
+    "55-65-minute starter and relief subsets are separate; unused backups retain observations but no count score.",
+    "Starter Brier is the summed multiclass score per team-game; missing starters receive probability zero.",
+    "Expected intervals remain uncalibrated; this evaluation does not tune or promote models."
+  ],
+  "files": {
+    "goalie_starter_scores.csv": "e76d2b2f8356d15e099fd54d180455c8ff240719fcc849ee6d652802139252ff",
+    "team_metrics.csv": "14c554a0963dead1595f791fe3ba17f21d4ebbbad569e9c544ef9da0497bb463",
+    "team_projections.csv": "f97289777707549daf19d5610ca542c248eb4a05177a3be65e813d2c04166c7d",
+    "player_metrics.csv": "9c160d9647086330380eb1799b1a24db69b9803f47f37731f6b6801300a439ce",
+    "fantasy_player_metrics.csv": "8b5511d37393510beabbbab423273da1d03f3e64be4e2ffeb055cefafccd75b5",
+    "player_projections.csv": "7bdc0ab9e7136ba62b9051e5506165f1087250bd7b70dfd807a6d52edc0baab5",
+    "team_projected_vs_actual.csv": "2486a8041abedb0564976a620e9c031fb8421d35164add5ad9c5198f2a017bf0",
+    "goalie_projections.csv": "d49b087f8be44f0d6ec2757ffe2adb4f21f395da5bc4463f6a0b7f0fd0dfe496",
+    "unmodeled_actual_skaters.csv": "1040d8a0a80a080968c2c5cbdf176b05593bc743b54ec8083a8376f54129663f",
+    "goalie_metrics.csv": "7026134250a1e5659f7d59343087af345555e3018975651228b9414dfe7ec386",
+    "game_team_coverage.csv": "8d644b95b1bbb52bd489490af9d692faa511a3bc540d50a96e9750782ec91dcd"
+  },
+  "evaluation_code_sha256": "f0a81e638e854e247c9842dcea9d1c7226449366d6786ab1813c161146c051ce",
+  "publication_scope": "reading views; full simulation rows retained locally",
+  "source_evaluation_manifest_sha256": "796585746ad97c9fb6634cc2d1da40e3fba3cd5762805780b2adcd721c2fcfce"
+}

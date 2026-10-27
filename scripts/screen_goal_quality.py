@@ -25,6 +25,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     for key in ['review','moneypuck','quality','out']:
         ap.add_argument('--'+key, type=Path, required=True)
+    ap.add_argument('--feature-results', type=Path, nargs='+', required=True,
+                    help='One evaluation directory per frozen feature slate, using this actuals vintage')
     a = ap.parse_args()
     if a.out.exists(): raise ValueError('Preserve previous screens')
     rm = verify_manifest_files(a.review, [])
@@ -130,8 +132,12 @@ def main():
         p['appeared']=p.actual.notna()
         injury.append(p.groupby('injury_status',dropna=False).agg(candidates=('player_id','size'),appeared=('appeared','sum')).reset_index().assign(date=p.date.iloc[0]))
         c=pd.read_csv(root/'game_team_coverage.csv');coverage.append(c[c.issue_timing.eq('pregame')])
-    # Combine only the two actually issued frozen feature slates, not the retrospective screen.
-    feature=pd.concat([pd.read_csv(p) for p in [Path('outputs/per_game_forecast/results_2026-10-20/feature_trials/scored_predictions.csv'),Path('outputs/per_game_forecast/feature_results_2026-10-22/scored_predictions.csv')]])
+    # Compare only issued slates scored against the same corrected actuals vintage.
+    for path in a.feature_results:
+        fm=verify_manifest_files(path,[])
+        if fm['actuals_manifest_sha256'] != rm['actuals_sha256']:
+            raise ValueError('Feature evaluations use a different actuals vintage')
+    feature=pd.concat([pd.read_csv(p/'scored_predictions.csv') for p in a.feature_results])
     if feature.duplicated(['game_id','team','model']).any():raise ValueError('Overlapping feature trials')
     a.out.mkdir(parents=True)
     outputs=dict(team_source_audit=audit,chronological_goal_predictions=pred,goal_metrics=metrics,goal_uncertainty=intervals,
@@ -182,11 +188,11 @@ for SOG or goal discrepancies. [Every player, with no GP threshold](player_goals
 on the SAME usable games. This residual mixes finishing, sampling variation and model error; it is not established
 repeatable finishing talent. Split PP/5v5, shrink toward longer history and test future games before adding effects.
 
-## Frozen defense/quality trials: both prospective dates
+## Frozen defense/quality trials: {len(a.feature_results)} prospective dates
 
 {table(outputs['prospective_feature_metrics'])}
 
-[Paired uncertainty](prospective_feature_uncertainty.csv). These 23 games test team shots, not defenseman goal
+[Paired uncertainty](prospective_feature_uncertainty.csv). These {feature.game_id.nunique()} games test team shots, not defenseman goal
 scoring or team win probabilities. They cannot validate a defense scoring coefficient for a different target.
 
 ## Injuries and opportunity
@@ -200,6 +206,7 @@ players' opportunity to actual replacement roles. Effects require saved lineups/
     (a.out/'manifest.json').write_text(json.dumps(dict(created_at_utc=datetime.now(timezone.utc).isoformat(),
         review=str(a.review),review_sha256=digest(a.review/'manifest.json'),moneypuck=str(mp),moneypuck_sha256=digest(mp),
         quality=str(a.quality),quality_sha256=digest(a.quality/'manifest.json'),
+        feature_evaluations={str(p):digest(p/'manifest.json') for p in a.feature_results},
         fixed_design=dict(recent_games=20,prior_games=20,blend_weight=.5),
         files={p.name:digest(p) for p in a.out.iterdir() if p.is_file()}),indent=2)+'\n')
     print(metrics.to_string(index=False));print(probability_metrics.to_string(index=False));print('Broader screen:',a.out)

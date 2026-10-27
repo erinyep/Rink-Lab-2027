@@ -1,0 +1,53 @@
+{
+  "created_at_utc": "2026-10-27T10:28:08.712185+00:00",
+  "through": "2026-10-25",
+  "from_date": "2026-10-24",
+  "sources": {
+    "review": {
+      "path": "outputs/per_game_forecast/season_through_2026-10-25",
+      "manifest_sha256": "18c94a2e0018de8a3c6f4337d59cbb44fd1825a13fe24c6f083271e1d8319ed6"
+    },
+    "decisions": {
+      "path": "outputs/per_game_forecast/model_decisions_through_2026-10-25",
+      "manifest_sha256": "e9d3e2b0a3604224d2106150bc9a0f0cb8c246190680046e0864d2422426d897"
+    },
+    "broader": {
+      "path": "outputs/per_game_forecast/broader_model_review_through_2026-10-25",
+      "manifest_sha256": "cb7199de27a9a5f8475315782350545121160faeefaf792fb47a32f37a9fc1c7"
+    },
+    "scoreboard": {
+      "path": "outputs/per_game_forecast/scoreboard_through_2026-10-25",
+      "manifest_sha256": "6ec07de3b98deceb342539b40cec888703acff7def2da15a51528b847d26dce9"
+    },
+    "probability_results": {
+      "path": "outputs/per_game_forecast/probability_results_2026-10-24",
+      "manifest_sha256": "f7beb12c7b6db23defd6a6a75490510d42ff14da95756b347ec2b71b50a9842b"
+    }
+  },
+  "saved_fantasy_report_sha256": "095e8ef79afba942a570f5751679341f177cada50151bb30fbeb3cad9548ed70",
+  "files": {
+    "index.html": "3f4f51e65ee24cfb19642ef4fae1b921f4a63c2ce1f7f8c81d68bac6a434af6d",
+    "README.md": "6ee13cc1cbf92f17ca2327ac2fcf64034060f5eafe0165fda38383fdf76eb445",
+    "game_results.csv": "98ff503cfb5931182153880ae23d8443b5edf414fdde01fc71cf48061961b185",
+    "saved_fantasy_skaters.csv": "8fe58a89f87fdca29bf9e703ee7a5c555fefec1366f9fc88ec2b38950ea0919c",
+    "feature_results_2026-10-24/coverage.csv": "7a37619af2252f705faa8255a7fa4709dd45942050f185b9413e4f4655159e0c",
+    "feature_results_2026-10-24/metrics.csv": "75419d53c3ecf5c335fcbc3b3d404e0c2da5bcaadfed1399dfa677eff88c1b9c",
+    "feature_results_2026-10-24/paired_uncertainty.csv": "44f95d7583294baaf0c83d00cd11e0a6cee1588951b7eb6d1b5fccb8f3072ec5",
+    "feature_results_2026-10-24/manifest.json": "f857b2643103fc69eadd7893d33982a7e4b0a85d9eb48aeeb975f77ccb4cb7d1",
+    "feature_results_2026-10-24/scored_predictions.csv": "aca8927f998e0cb3817a374843b631295f4070ab7cd5030d8693f9e14939ffb7",
+    "daily_2026-10-24/goalie_starter_scores.csv": "e76d2b2f8356d15e099fd54d180455c8ff240719fcc849ee6d652802139252ff",
+    "daily_2026-10-24/team_metrics.csv": "14c554a0963dead1595f791fe3ba17f21d4ebbbad569e9c544ef9da0497bb463",
+    "daily_2026-10-24/team_projections.csv": "f97289777707549daf19d5610ca542c248eb4a05177a3be65e813d2c04166c7d",
+    "daily_2026-10-24/player_metrics.csv": "9c160d9647086330380eb1799b1a24db69b9803f47f37731f6b6801300a439ce",
+    "daily_2026-10-24/fantasy_player_metrics.csv": "8b5511d37393510beabbbab423273da1d03f3e64be4e2ffeb055cefafccd75b5",
+    "daily_2026-10-24/README.md": "7fac94085d20ab1be748521bb6741cbb8a55cba558ad702c87b55904e6695e44",
+    "daily_2026-10-24/player_projections.csv": "7bdc0ab9e7136ba62b9051e5506165f1087250bd7b70dfd807a6d52edc0baab5",
+    "daily_2026-10-24/team_projected_vs_actual.csv": "2486a8041abedb0564976a620e9c031fb8421d35164add5ad9c5198f2a017bf0",
+    "daily_2026-10-24/manifest.json": "9bb1cdf9e51bb2a88c1661201cdef645da66dcdd55f77dc5c145827f0964415e",
+    "daily_2026-10-24/goalie_projections.csv": "d49b087f8be44f0d6ec2757ffe2adb4f21f395da5bc4463f6a0b7f0fd0dfe496",
+    "daily_2026-10-24/unmodeled_actual_skaters.csv": "1040d8a0a80a080968c2c5cbdf176b05593bc743b54ec8083a8376f54129663f",
+    "daily_2026-10-24/goalie_metrics.csv": "7026134250a1e5659f7d59343087af345555e3018975651228b9414dfe7ec386",
+    "daily_2026-10-24/game_team_coverage.csv": "8d644b95b1bbb52bd489490af9d692faa511a3bc540d50a96e9750782ec91dcd"
+  },
+  "feature_evaluation_manifest_sha256": "f857b2643103fc69eadd7893d33982a7e4b0a85d9eb48aeeb975f77ccb4cb7d1"
+}

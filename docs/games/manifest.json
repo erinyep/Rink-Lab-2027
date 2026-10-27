@@ -11,11 +11,12 @@
     "nhl_outlook.html": "47a4128f3d4c26503bdf835b440152bb3425c73719765e25476686b1b4e4cb0f"
   },
   "files": {
-    "index.html": "2ee37f678e1e719a99872d466b2e1b183acdc88303886b312ed0598b1cfac45d",
+    "index.html": "9914f3866ced7c8bc4803c770576e3d1d0cf8325d0e76f1480cd2a9435ec3d25",
     "goalie_scenarios.csv": "e289ad5064582f9edf69dd05657c41e073557f38b6cf15a5cb4d614e82bcc23f",
     "outlook.json": "c7b8b0b1622c165d36f731e9fe298514148fddb9f4d3045f78226d87e6d80aea",
     "README.md": "f76f93e69f9d57a241b31626124f16abc4ec022167bf2e5b82ff4b8de9e5925c",
     "team_predictions.csv": "24fa3b973c7da4223538b3638686543978cec6508c9e730e46be0bbd8873c095",
     "game_predictions.csv": "e4964f7be6201839cbb14131422bb79aa0edb7949be4a6e8f5b716237a13164b"
-  }
+  },
+  "results_notice_through": "2026-10-25"
 }
