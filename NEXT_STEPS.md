@@ -1,5 +1,23 @@
 # Rink Lab — Next Steps
 
+## October 28 — expanded shots comparison and participation test
+
+- Re-scored all six canonical daily slates against one actuals vintage: 59 games, 2,121 covered appearances, 423 saved fantasy appearances. Calibrated shots MAE 1.040→1.023 all-player; fantasy 1.292→1.277, paired interval [-0.033,+0.004]. Favorable point estimate survives every date omission, but fantasy game/date intervals both cross zero. Retain fantasy default and the current TOI policy; calibrated shots stays a challenger.
+- Tested two fixed past-only selection rules on frozen candidate/injury/history inputs. Five-game frequency worsened selected nonparticipants 114→144; last-game priority plus frequency tiebreaker 114→116. Neither clearly improved team error. Reject both production replacements; preserve reusable screen and candidate audits.
+- Original team goal bias +0.156 per team pooled, versus +0.641 yesterday; negative on three earlier dates. No blanket scoring correction. Saved injury labels include 11 candidate-game appearances marked IR/OUT that played: investigate timestamped returns/lineup confirmations rather than relaxing exclusions based on outcomes.
+- [Decision and reproduction](docs/history/shots-participation-decision-2026-10-28.md) · [Full evidence](outputs/per_game_forecast/shots_participation_through_2026-10-27/README.md). Local research update; existing production models and frozen forecasts preserved.
+
+Next: collect additional pregame status/lineup snapshots and prospective shots evidence. Any fitted participation probabilities need chronological training/validation and a separately frozen future trial.
+
+## October 28 — first prospective check of October 27 updates
+
+- Acquired official finals through October 27: 198 games; scored all 11 October 27 games against the canonical frozen releases without refitting. All 396 actual skater appearances covered, 21 selected lineup nonparticipants, 22 starting goalies with no count-identity exceptions.
+- New team model goal MAE 1.523 vs original 1.617 per team; Brier 0.261 vs 0.268, both worse than 0.250 coin flip. New favorites 3/11 vs original 4/11. New-minus-original Brier bootstrap interval [-0.0484,+0.0338]: retain challenger status. Forecast goals 67.37 vs 55 actual (shootout bonus excluded).
+- Fantasy TOI update improved MAE 2.232→2.064 minutes across 76 rostered appearances; Quinn's 15 observed skaters improved 2.167→2.045. Calibrated shots improved all-player MAE 1.030→1.010 and fantasy 1.176→1.131. Goalie context trial slightly worse than baseline (save MAE 5.219 vs 5.169). No model selection or coefficient changes based on one night.
+- [Full local results and source provenance](outputs/per_game_forecast/results_2026-10-27/README.md). Reproducible comparison: `scripts/review_frozen_model_results.py`; main evaluation: `data/processed/forecasts/daily_evaluation_2026-10-27_20261028T214857181958Z`. No October 27 Kalshi benchmark scored. Results not yet published to Pages.
+
+Next: accumulate more frozen prospective slates, examine scoring overprediction and lineup participation across dates, and preserve a matched pregame market benchmark before assessing market comparisons.
+
 ## October 27 — two implemented model changes, including October 26 results
 
 - Acquired yesterday's three games: 187 finals through October 26. Refreshed the season review and versioned main-model history. The new training study uses 2,624 games (2023–24/2024–25), a separate 1,312-game validation season, and all 187 current games as the recent test. Prior-season rates are whole-season priors; every current-game feature excludes its entire date.

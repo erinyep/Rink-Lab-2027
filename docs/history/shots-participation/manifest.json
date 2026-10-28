@@ -1,0 +1,47 @@
+{
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261028T214830Z",
+  "actuals_sha256": "de3eaeca5af88139ca72824940e978e5bbac861ae5b365dc497f00f6674ef1fc",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261028T214822Z",
+  "evaluations": [
+    "data/processed/forecasts/daily_evaluation_2026-10-10_20261028T221124044632Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-12_20261028T221125793849Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-20_20261028T221126836104Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-22_20261028T221128740514Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-24_20261028T221130720263Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-27_20261028T221132729775Z"
+  ],
+  "bundles": [
+    "data/processed/forecasts/daily_2026-10-10_20261010T203436Z",
+    "data/processed/forecasts/daily_2026-10-12_20261012T225309Z",
+    "data/processed/forecasts/daily_2026-10-20_20261020T125723Z",
+    "data/processed/forecasts/daily_2026-10-22_20261022T204633Z",
+    "data/processed/forecasts/daily_2026-10-24_20261024T110008Z",
+    "data/processed/forecasts/daily_2026-10-27_20261027T132258Z"
+  ],
+  "source_manifest_hashes": {
+    "data/processed/forecasts/daily_2026-10-10_20261010T203436Z/manifest.json": "83d013684dc404bfb6a82561c90fb1dc27bd126c9a4e19520c19e14e594df0bf",
+    "data/processed/forecasts/daily_2026-10-12_20261012T225309Z/manifest.json": "cfd8017ffe133926fe6ffbe507e96f7c01d6120a6c70366b6699941c73e62bd9",
+    "data/processed/forecasts/daily_2026-10-20_20261020T125723Z/manifest.json": "6363657677ba4485f495a0c98d86fb2145a48323ce1c3ae8af4a447b7b5467c8",
+    "data/processed/forecasts/daily_2026-10-22_20261022T204633Z/manifest.json": "71ccc7f36c260b1a6baeea283c67f0d91c916c592adb82151706a78533b1b51c",
+    "data/processed/forecasts/daily_2026-10-24_20261024T110008Z/manifest.json": "a14c91ea2487d495b4e0cc9a2830a4c16992bd38dce8980687ae2d0926ac9de8",
+    "data/processed/forecasts/daily_2026-10-27_20261027T132258Z/manifest.json": "456bb6a957949ff90702788f51ecdec659072d087c0eed9411d560269a3756b5"
+  },
+  "code_hashes": {
+    "scripts/screen_shots_and_participation.py": "aa8a186fae03849f0fdeb32bf1ef66b89c1b3054c3a90ef190b96dc551ae0702",
+    "src/fantasy/participation_screen.py": "586a685232ae24d7db9450e3550fec859b4f2c100fd3a5e5ad59856b3f7cc602"
+  },
+  "files": {
+    "participation_game_uncertainty.csv": "012641516b28b3e8b9048e5969992f2ce3dc249d121c937e1aeca2263629d4b7",
+    "participation_by_date.csv": "6240daf7dd4f32adad14e558d035576d2cd00cd1a69fc89b5ccacfac26f19a9f",
+    "participation_team_games.csv": "99964c3910231e3c4a8eb94813e3f6ad4d99528278c19d74440074008d964496",
+    "shots_game_uncertainty.csv": "9f586760c4edbcad0d2fca3bde8df4bffd0aba368effa5963377dc00856a9cf6",
+    "shots_leave_one_date_out.csv": "86ec24bcf8b578cb788be7cd2e4f488ba38c1a39e82297f607999f5f4f801788",
+    "shots_metrics.csv": "5c1f761401d1d8df339ecae0eb4a9ce0be3c82eddf829f670d792697325309c7",
+    "README.md": "e58c8716ae0fdde2848700c74969eef1455046f424381b86aeb220e9efc74dac",
+    "participation_metrics.csv": "c389399e1230c0d5e7411ea5a05751b8e4b2e93d19fc4190a32f1a127e987894",
+    "shots_by_date.csv": "47752a3330192ee0b1662f7debe2b2eb20b1885311640d69e76d020fa5eec94f",
+    "shots_date_uncertainty.csv": "ace8a3b1ce7893dfaba7a58c9997e4b35a9dd7a39030609fa92fdb44d09d9ada"
+  },
+  "publication_source_manifest_sha256": "6c078eb5011a04434c2567456f08fd63991b3480ff2a510332b9351ba05b6f70",
+  "publication_scope": "Compact site export; full candidate audit retained in repository source directory."
+}
