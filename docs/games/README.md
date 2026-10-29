@@ -1,4 +1,4 @@
-# NHL game outlook — 2026-10-27
+# NHL game outlook — 2026-10-29
 
 [Interactive matchups](index.html) · [Game predictions CSV](game_predictions.csv)
 

@@ -1,4 +1,16 @@
-# Forecast data priorities — October 20, 2026
+# Forecast data priorities
+
+## October 29 implementation
+
+[Today's full source-use report](../outputs/per_game_forecast/pregame_data_use_2026-10-29/README.md) records exact paths, timestamps, per-team coverage and game comparisons. Official history is complete through October 28: 202 games and 7,271 positive-TOI skater appearances. Current roster/ESPN status snapshots remain provisional participation evidence.
+
+MoneyPuck team-game data feeds prior-season SOG rates and lagged 5v5 xOnGoal in the usage-shot challenger, plus lagged xG/xGA in the separate fitted team goal model. The direct model retains 191/202 current games for xG; all 202 official goal/schedule observations remain. Shot-level data covers all 202 games but only 125 pass its stricter SOG reconciliation. Those defense quality/rebound features affect the separate frozen feature trial. None changes fantasy shots or goal means; the fantasy promotion remains TOI only.
+
+Kalshi's nine-series snapshot contains 22 winner contracts for today's 11 games, all mapped with exact fixture identities and settlement rules. Median spread is $0.01. Original and direct-model probabilities have distinct version-matched benchmark manifests sharing the same morning quotes. Public depth and fully paginated live trade histories are now acquired with `scripts/snapshot_kalshi_liquidity.py`. Later depth/trade timestamps are not substituted for original quote timestamps. No save contracts were returned; unmapped props/totals remain coverage evidence, not model inputs.
+
+Read-only endpoints: [orderbooks](https://docs.kalshi.com/api-reference/market/get-market-orderbook) and [trades](https://docs.kalshi.com/api-reference/market/get-trades). YES asks are derived from complementary NO bids, preserving quantities. Empty, crossed and malformed books are distinguished. Most recent live-API trade is not a claim about archived exchange history, executable fill or profitability.
+
+## Original October 20 priorities
 
 The research question is whether defense-generated offense, player opportunity
 and independent game expectations improve **future** player SOG, scoring and

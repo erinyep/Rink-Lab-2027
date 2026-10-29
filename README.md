@@ -5,13 +5,21 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## Today's preparation — October 29
+
+[MoneyPuck/Kalshi data use and all 11 games](outputs/per_game_forecast/pregame_data_use_2026-10-29/README.md) · [Local game outlook](docs/games/index.html) · [Fantasy report](reports/today/2026-10-29_quinn/index.html) · [Reproduction and scoring handoff](docs/history/pregame-2026-10-29.md).
+
+All 11 games frozen pregame at 10:06 a.m. Eastern using complete official history through October 28 (202 games). MoneyPuck supplies lagged shot context and xG to specified challengers; source disagreements remain quarantined. Kalshi supplies 22 mapped winner quotes, with a separate later depth/trade snapshot, as an independent benchmark. Fantasy retains the adopted TOI policy and defaults for other categories. Lineups/starters remain provisional. Local views are updated; remote publication has not been performed.
+
+Latest completed evaluation: [October 27 results](outputs/per_game_forecast/results_2026-10-27/README.md) and [October 28 shots/participation decision](docs/history/shots-participation-decision-2026-10-28.md), covering 59 frozen daily-model games. Earlier dated sections below are historical checkpoints.
+
 ## Models updated — October 27
 
 [Updated team goals/win probabilities](https://erinyep.github.io/Rink-Lab-2027/team-model/) · [Fantasy report with updated ATOI](https://erinyep.github.io/Rink-Lab-2027/report/) · [Model changes and validation](docs/history/model-update-2026-10-27.md).
 
 Fantasy TOI error improves 6.9% on 347 saved fantasy appearances; the new category policy changes ATOI only. A fitted team model now includes team strength, home/rest and lagged xG, trained/validated on full seasons and tested on all 187 current-season games through yesterday. Recent Brier improves 0.2425→0.2350 against a simple goal-history baseline, but not the old model on their smaller shared cohort; it remains an enabled challenger with baselines preserved. Both changes are applied to fresh October 27 forecasts.
 
-## Latest update — results through October 25
+## Earlier results through October 25
 
 [October 24–25 results](https://erinyep.github.io/Rink-Lab-2027/results/) · [Model history](https://erinyep.github.io/Rink-Lab-2027/history/) · [Full local results](outputs/per_game_forecast/results_through_2026-10-25/README.md) · [Probability vs Kalshi](outputs/per_game_forecast/probability_results_2026-10-24/README.md).
 

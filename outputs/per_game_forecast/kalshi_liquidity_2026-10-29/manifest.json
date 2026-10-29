@@ -1,0 +1,282 @@
+{
+  "started_at_utc": "2026-10-29T17:52:53.127314+00:00",
+  "completed_at_utc": "2026-10-29T17:53:04.339016+00:00",
+  "benchmark": "outputs/per_game_forecast/kalshi_benchmark_2026-10-29",
+  "benchmark_sha256": "79ed2b9f8a19c61227dc8a91527e2607faa21321e07542cc6d7af2dc6edd13fb",
+  "raw_snapshot": "data/raw/kalshi/snapshots/liquidity_20261029T175253127314Z",
+  "sources": [
+    {
+      "file": "KXNHLGAME-26OCT29WPGTB-TB_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29WPGTB-TB/orderbook?depth=0",
+      "sha256": "b1bb5d4c31025f16639eb8b8797ba5490654f8faf51ad640c28fa7a487d99356",
+      "sampled_at_utc": "2026-10-29T17:52:53.333208+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WPGTB-TB_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29WPGTB-TB&limit=1000&max_ts=1793296373",
+      "sha256": "e9233d2dfc684b86f5d3c7ec287a048f78da7aa73d4c01ed4699d7964dc22b8d",
+      "sampled_at_utc": "2026-10-29T17:52:53.637050+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WPGTB-WPG_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29WPGTB-WPG/orderbook?depth=0",
+      "sha256": "86329b2dbf58a334ec590164083c389bbcdae147b894c70745850f3cc99b4935",
+      "sampled_at_utc": "2026-10-29T17:52:53.826000+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WPGTB-WPG_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29WPGTB-WPG&limit=1000&max_ts=1793296373",
+      "sha256": "840086b8ed35c4f4fc6c861ba7d4f25106aabb63a31b717cd3c1a1550733d5c7",
+      "sampled_at_utc": "2026-10-29T17:52:54.084179+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29UTAPIT-PIT_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29UTAPIT-PIT/orderbook?depth=0",
+      "sha256": "816ea1e9ba42510d6fd85d78a8b3c6f8789c9707b99a73deca3bba6cc12b08b4",
+      "sampled_at_utc": "2026-10-29T17:52:54.292122+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29UTAPIT-PIT_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29UTAPIT-PIT&limit=1000&max_ts=1793296374",
+      "sha256": "8e9db8d11871089fcd5e6b07892005d587a00a92f3943104af14da4161b8682a",
+      "sampled_at_utc": "2026-10-29T17:52:54.566564+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29UTAPIT-UTA_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29UTAPIT-UTA/orderbook?depth=0",
+      "sha256": "c9410309dc63679916f73cfa40eaa3c14ae49876e63494d1dae789838a5e1812",
+      "sampled_at_utc": "2026-10-29T17:52:54.764641+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29UTAPIT-UTA_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29UTAPIT-UTA&limit=1000&max_ts=1793296374",
+      "sha256": "820b4099a394d42c50d70256f686660f946a3df37d7c52ffe78f3191fbd4816b",
+      "sampled_at_utc": "2026-10-29T17:52:55.050172+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CBJCAR-CAR_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29CBJCAR-CAR/orderbook?depth=0",
+      "sha256": "775a3152c6608d2958f244577c33a6803d6b28142abad3637ff0e46fb8f6f361",
+      "sampled_at_utc": "2026-10-29T17:52:55.233301+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CBJCAR-CAR_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29CBJCAR-CAR&limit=1000&max_ts=1793296375",
+      "sha256": "d4cee0da44cc38b86b03c6fe166d2fd9f2abc2cba39656b1367be87cb37310c6",
+      "sampled_at_utc": "2026-10-29T17:52:55.621578+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CBJCAR-CBJ_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29CBJCAR-CBJ/orderbook?depth=0",
+      "sha256": "22c20c8fcdabd1a05f2136a5f0b5fc088288058039396274ec6700e3abfc69da",
+      "sampled_at_utc": "2026-10-29T17:52:55.807257+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CBJCAR-CBJ_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29CBJCAR-CBJ&limit=1000&max_ts=1793296375",
+      "sha256": "69ad536c4242a147b1c921d70e7ab6b49aedecda9b8c5cfddcce568414a3406b",
+      "sampled_at_utc": "2026-10-29T17:52:56.027101+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CHIDET-DET_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29CHIDET-DET/orderbook?depth=0",
+      "sha256": "667c31fdd0a2a9d67e3a932399e45e5ae99ab4d76f0389b0f888d5dc7beed4fd",
+      "sampled_at_utc": "2026-10-29T17:52:56.195187+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CHIDET-DET_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29CHIDET-DET&limit=1000&max_ts=1793296376",
+      "sha256": "2585b433350c1435eefce7a3df544db8b4326eba15948ba605286be81aa9e321",
+      "sampled_at_utc": "2026-10-29T17:52:56.501325+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CHIDET-CHI_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29CHIDET-CHI/orderbook?depth=0",
+      "sha256": "39a6efed27a817323f087aae3b71a44598ec81f32dc52fed33c1de176d74aca0",
+      "sampled_at_utc": "2026-10-29T17:52:56.697868+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29CHIDET-CHI_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29CHIDET-CHI&limit=1000&max_ts=1793296376",
+      "sha256": "fca27e495c30c750f8fec2cf7356c8294fbf167c941b51eeb8faa76e8bf98249",
+      "sampled_at_utc": "2026-10-29T17:52:56.972023+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BOSSTL-STL_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29BOSSTL-STL/orderbook?depth=0",
+      "sha256": "8f4ad39f324df1878bb0e0ccaaaf3bce4e7a0b59ee3106e180abd9d30b1fdd83",
+      "sampled_at_utc": "2026-10-29T17:52:57.159284+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BOSSTL-STL_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29BOSSTL-STL&limit=1000&max_ts=1793296377",
+      "sha256": "1a2f20b5438e30431e6b508f8e5f10f7285bbab0bb369f1e762de21ff63ad393",
+      "sampled_at_utc": "2026-10-29T17:52:57.441826+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BOSSTL-BOS_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29BOSSTL-BOS/orderbook?depth=0",
+      "sha256": "4f7348dad51c6f3e55d63d01be1a07254258be7b32d8e9eddc670463549c8bc5",
+      "sampled_at_utc": "2026-10-29T17:52:57.690168+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BOSSTL-BOS_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29BOSSTL-BOS&limit=1000&max_ts=1793296377",
+      "sha256": "6f707faa25d06cc3e706e57e3a2b6a5cf1e3a1b70d4553e90924d96226b96839",
+      "sampled_at_utc": "2026-10-29T17:52:58.036986+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WSHNSH-NSH_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29WSHNSH-NSH/orderbook?depth=0",
+      "sha256": "a76a30610072a19a0a5375b2fb9f4d07ed4bab5ccabd18f5714241487957641a",
+      "sampled_at_utc": "2026-10-29T17:52:58.378743+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WSHNSH-NSH_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29WSHNSH-NSH&limit=1000&max_ts=1793296378",
+      "sha256": "39e02de3c93827870835d89908628f505277739f0c13fb34e5c01a887cf0975b",
+      "sampled_at_utc": "2026-10-29T17:52:58.780839+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WSHNSH-WSH_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29WSHNSH-WSH/orderbook?depth=0",
+      "sha256": "10181600ce3030919de341db5e0e47635018bc28683921a4787577531b79ccb0",
+      "sampled_at_utc": "2026-10-29T17:52:59.061198+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29WSHNSH-WSH_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29WSHNSH-WSH&limit=1000&max_ts=1793296379",
+      "sha256": "20132b463507a2014ffdf7c78772de184c8f0f8dbb9107c66d301a03e5e73b7f",
+      "sampled_at_utc": "2026-10-29T17:52:59.506067+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29MTLDAL-DAL_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29MTLDAL-DAL/orderbook?depth=0",
+      "sha256": "2a5f908a692e8454b6bcd7bb641ca8d2801f9950abea6839a47efd7b23940e5a",
+      "sampled_at_utc": "2026-10-29T17:52:59.712300+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29MTLDAL-DAL_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29MTLDAL-DAL&limit=1000&max_ts=1793296379",
+      "sha256": "222a857d1aef0a449cf9817156f19be96efda91279cfa83a243eb004df400003",
+      "sampled_at_utc": "2026-10-29T17:53:00.006348+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29MTLDAL-MTL_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29MTLDAL-MTL/orderbook?depth=0",
+      "sha256": "77197324c182869bba5aca5892ff3e74ad0cb25b634fe1a527616bcc676a6401",
+      "sampled_at_utc": "2026-10-29T17:53:00.217681+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29MTLDAL-MTL_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29MTLDAL-MTL&limit=1000&max_ts=1793296380",
+      "sha256": "67889c956cecca1c45e5627aa9a9ad88e8d76a0e2e4d6def296a9924450d71ba",
+      "sampled_at_utc": "2026-10-29T17:53:00.550649+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29NYIMIN-MIN_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29NYIMIN-MIN/orderbook?depth=0",
+      "sha256": "b120bf8a9ee4b621e74cd787b17545ac54a26117a3c0bbd4969861248a858ef5",
+      "sampled_at_utc": "2026-10-29T17:53:00.734142+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29NYIMIN-MIN_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29NYIMIN-MIN&limit=1000&max_ts=1793296380",
+      "sha256": "90676c0218e03734991650fd7b29fa949ccf48c502797bd323483cb1286b1395",
+      "sampled_at_utc": "2026-10-29T17:53:01.073169+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29NYIMIN-NYI_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29NYIMIN-NYI/orderbook?depth=0",
+      "sha256": "cdc0d5a0ac9b24a90fb285a65ffaa3fcf71148c57df5073f9971a55fb25d14bc",
+      "sampled_at_utc": "2026-10-29T17:53:01.244770+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29NYIMIN-NYI_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29NYIMIN-NYI&limit=1000&max_ts=1793296381",
+      "sha256": "fcbd3e69e6c9ad0438f318b4b58e53c6e7945cac0742d9beb302a6202e3bd362",
+      "sampled_at_utc": "2026-10-29T17:53:01.486558+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BUFANA-ANA_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29BUFANA-ANA/orderbook?depth=0",
+      "sha256": "ed413e2a388f572f81a66900babe2177af393a019e0a946e2eacf66308a983ff",
+      "sampled_at_utc": "2026-10-29T17:53:01.698343+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BUFANA-ANA_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29BUFANA-ANA&limit=1000&max_ts=1793296381",
+      "sha256": "9d7f24539e4bcbc2d9863f9645697860edf6983485f03a9c57a7dfd74f9fcd9f",
+      "sampled_at_utc": "2026-10-29T17:53:01.997189+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BUFANA-BUF_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29BUFANA-BUF/orderbook?depth=0",
+      "sha256": "07cabba6213e3634a50422b04a7f3841fe4fe394df3f1e71fe8c89414a81f7ef",
+      "sampled_at_utc": "2026-10-29T17:53:02.281665+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29BUFANA-BUF_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29BUFANA-BUF&limit=1000&max_ts=1793296382",
+      "sha256": "a32e38d09aa19c86c7c4027dd6530df772a7d0277dfa383704b441e915b185e5",
+      "sampled_at_utc": "2026-10-29T17:53:02.545189+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29OTTLA-LA_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29OTTLA-LA/orderbook?depth=0",
+      "sha256": "d4ec21efea3b08c611253a5c7d26ffac1748881fcda56880963df4b4a3f56c3e",
+      "sampled_at_utc": "2026-10-29T17:53:02.730310+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29OTTLA-LA_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29OTTLA-LA&limit=1000&max_ts=1793296382",
+      "sha256": "aa014e108760e31ea37b4fbd5e27fb518934d3e24f091f767d869195d141c9d8",
+      "sampled_at_utc": "2026-10-29T17:53:02.976795+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29OTTLA-OTT_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29OTTLA-OTT/orderbook?depth=0",
+      "sha256": "d3aacb57ead87af6223d24fc2350b7437c434b777ab3def57eb340627971d958",
+      "sampled_at_utc": "2026-10-29T17:53:03.193998+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29OTTLA-OTT_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29OTTLA-OTT&limit=1000&max_ts=1793296383",
+      "sha256": "178b6c70ea6b6810aa031f599d74527d6fdad2b572fed276dc32980ddd0c0acf",
+      "sampled_at_utc": "2026-10-29T17:53:03.476407+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29VANSJ-SJ_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29VANSJ-SJ/orderbook?depth=0",
+      "sha256": "76635883e75a6a3712f13f2b681de58c3a5fed48cb5d5682f9088b17a93014df",
+      "sampled_at_utc": "2026-10-29T17:53:03.655075+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29VANSJ-SJ_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29VANSJ-SJ&limit=1000&max_ts=1793296383",
+      "sha256": "1c6082d43802f4f310e6ed7dca550672b872f164981c55118e22c4a77bccafe7",
+      "sampled_at_utc": "2026-10-29T17:53:03.944957+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29VANSJ-VAN_book.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/KXNHLGAME-26OCT29VANSJ-VAN/orderbook?depth=0",
+      "sha256": "1b8cff436ff6ec8d693594a9227205e030ce3a41ba1d63f63e6510c23b81ec47",
+      "sampled_at_utc": "2026-10-29T17:53:04.119754+00:00"
+    },
+    {
+      "file": "KXNHLGAME-26OCT29VANSJ-VAN_trades_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets/trades?ticker=KXNHLGAME-26OCT29VANSJ-VAN&limit=1000&max_ts=1793296384",
+      "sha256": "391b2e12a7c6e15b608633ef6e34526d4f4b458a022b26ab69491d05481e5054",
+      "sampled_at_utc": "2026-10-29T17:53:04.333500+00:00"
+    }
+  ],
+  "contracts": 22,
+  "limitations": [
+    "Depth and trades were sampled sequentially after the original quote benchmark.",
+    "Most recent available live-API trade; archived trades may be outside this endpoint.",
+    "No executable-price, fill, profitability, or calibrated-probability claim."
+  ],
+  "files": {
+    "winner_liquidity.csv": "bd4a7b304d22f3e3533aa6f36a7a975b01fc594cd148c3e2b66a19a067014d2a"
+  }
+}

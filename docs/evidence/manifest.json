@@ -1,6 +1,6 @@
 {
-  "created_at_utc": "2026-10-24T11:05:04.556820+00:00",
-  "target_date": "2026-10-24",
+  "created_at_utc": "2026-10-29T14:06:40.130055+00:00",
+  "target_date": "2026-10-29",
   "config": {
     "version": "oct20_screen_v1",
     "target_date": "2026-10-20",
@@ -27,19 +27,17 @@
   },
   "status": "frozen_parameters_new_prospective_slate",
   "source_manifests": {
-    "data/processed/forecasts/daily_2026-10-24_20261024T110008Z/manifest.json": "a14c91ea2487d495b4e0cc9a2830a4c16992bd38dce8980687ae2d0926ac9de8",
+    "data/processed/forecasts/daily_2026-10-29_20261029T140615Z/manifest.json": "b663350889ceba6ee85162660c859db46130e826eab7cf58e95b9b2a83426d8e",
     "outputs/per_game_forecast/feature_evidence_2026-10-20/manifest.json": "a86326fa268d1b1b3e924397f9c298e30d702143ee287dfcc4e90e28b169e636",
-    "data/processed/forecasts/fantasy_game_details_20261024T105340Z/manifest.json": "b8b750dc695e8f257f49a4672bcff755631d09e5bc7168779a155ba68891c0d1",
-    "data/processed/forecasts/defense_pbp_20261024T105350033241Z/manifest.json": "4243db44d0af8696fa426bd24ff0e0866744dde3708e951390ca9de8dd967108",
-    "data/processed/forecasts/moneypuck_shots_20261024T105849553044Z/manifest.json": "745ee0f51e9eb8af0f5deec47ef3f3388b85d556f131a28c51174961b6b775f5"
+    "data/processed/forecasts/fantasy_game_details_20261029T140428Z/manifest.json": "437be72af989e64880114085c7b88121e98e19438d7df13bcaca32b9a6383da1",
+    "data/processed/forecasts/defense_pbp_20261029T140548844607Z/manifest.json": "d94d4edd411d7f59fd8da2ebcc97229b7707213f0da5e2241f9b28bf12b0b445",
+    "data/processed/forecasts/moneypuck_shots_20261029T140612483781Z/manifest.json": "9433ceea01b5488bb25099d11a067351a3d05ad7012aace76ecd1d3ec4b8f092"
   },
   "files": {
-    "index.html": "1972f3c591de1c1b93a07f6630723a4c58b99807c84acc30cf682ce7d90ba215",
-    "player_contributions.csv": "058685dba75b3757e7c1d94270acdd049b9d1e9633447654f66cecbeeeab537e",
-    "README.md": "cbfe79137ac45f9587da6febc0380e4de3b9a9a911299b6e7326f71b1323ddec",
-    "tonight_experimental_team_forecasts.csv": "0f17ebf44ce1096f2d22fab99af715d857758e0c95f0a048e143d603ec8b953b",
+    "index.html": "acc86e0fae42badd924b252baf283ae2a906c90693ba9e7490dbee27287f9e56",
+    "player_contributions.csv": "31cf64be0642f2c3f87cd464f64cad2acf474936df76b8f9872f29b7726eebcb",
+    "README.md": "bd756cf4dc49967062121a1f76754671669ae7c3e818e3fbeacd05c1f720a173",
+    "tonight_experimental_team_forecasts.csv": "a20f811b0998d943e610852e0d61c2dd033c2f1d5d8d085d1237325f29208cab",
     "fitted_models.json": "85fd24b56c149a86e7c735989bd6766a35b76f067f9336d9065537a313ed28fa"
-  },
-  "publication_view_note": "Navigation updated after the broader review; frozen source release remains unchanged.",
-  "results_notice_through": "2026-10-25"
+  }
 }

@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-10-29T17:53:18.617974+00:00",
+  "date": "2026-10-29",
+  "source_manifests": {
+    "data/processed/forecasts/daily_2026-10-29_20261029T140615Z/manifest.json": "b663350889ceba6ee85162660c859db46130e826eab7cf58e95b9b2a83426d8e",
+    "outputs/per_game_forecast/team_context_daily_2026-10-29_20261029T140615Z/manifest.json": "17051d4c453ec8a647f73e2ae73146db04d48349589f9967e19bf75012877402",
+    "outputs/per_game_forecast/team_probability_2026-10-29/manifest.json": "6fdd26c543e0b66ab568e9488789b8a47b500752ebf6f832b0ea645da5eed950",
+    "outputs/per_game_forecast/kalshi_benchmark_2026-10-29/manifest.json": "79ed2b9f8a19c61227dc8a91527e2607faa21321e07542cc6d7af2dc6edd13fb",
+    "outputs/per_game_forecast/kalshi_liquidity_2026-10-29/manifest.json": "30b58943bb4c9afc4ade423525a06dc2ca839839ef9a96763b94a947fbf9e161",
+    "outputs/per_game_forecast/feature_evidence_2026-10-29/manifest.json": "b0f038ea0b72a220751e41911b5278b9b179d0c7135cea2210db3f3dccee948c",
+    "reports/today/2026-10-29_quinn/manifest.json": "fd85b744862a5fa3ff671392105d7a65c264994cee8fa5e0fd83c83d8931a884"
+  },
+  "validation": {
+    "date": "2026-10-29",
+    "games": 11,
+    "player_rows": 2490,
+    "team_rows": 110,
+    "goalie_rows": 102,
+    "availability": "timestamped_espn_labels_not_confirmed_lineups"
+  },
+  "files": {
+    "game_comparison.csv": "ec3b65b45ffa69d9a91c2ba0a1e9a3ed26e3883bb1017c6cccb3916a588792a0",
+    "index.html": "23b6c615e7ada26d2fec4bf49d615d7b0ca15fda01d5141d8482e0b76f9de65b",
+    "participation_candidates.csv": "003c3c151830baa42fdf4d4ec3f04b4bfed03afcda2420c7ff12c1f4929e5a8b",
+    "kalshi_today_series.csv": "36ff6a33abde0d495032e152365c2ff8e71860e2e32d47fc52f677c70fd43c59",
+    "README.md": "1956a36bf95b03eb5bf964e0566a96973f661d06c481a4cdd85a884896cea9d8",
+    "source_usage.csv": "e3b92806c4510b4bf2a7b8889fc92119b35f3eaec08712898118a170611518ff",
+    "moneypuck_team_context.csv": "0f9e9abdce2985c76ca2172d818104123c3c9fd36a08737848c57d06997f1509",
+    "selected_status_review.csv": "e17712ff89d532af445dfc9be2cdf39814b6daef1e8cfaa068b809739664c330",
+    "participation_summary.csv": "47fea926bcfc9e32e8fc49a355c8d2183f27eadfc41e64761a89f14bcd4d027b"
+  }
+}

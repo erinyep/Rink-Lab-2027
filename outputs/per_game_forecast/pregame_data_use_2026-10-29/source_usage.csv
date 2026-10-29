@@ -1,0 +1,10 @@
+source,path,timestamp,use
+Official NHL finals,data/raw/nhl/snapshots/current_game_history_20262027_20261029T140409Z,2026-10-29T14:04:28.346615+00:00,"Observed goals, SOG, participation and schedule history through the preceding day; outcome validation reference."
+Official NHL TOI,data/processed/nhl/game_toi_20262027_20261029T140458Z/player_game_toi.csv,2026-10-29T14:04:58.489602+00:00,Recent EV/PP and total TOI history; only validated total-TOI policy is promoted.
+Official NHL schedule and rosters,data/raw/nhl/snapshots/daily_context_20261029T140615Z,2026-10-29T14:06:17.988703+00:00,"Today game identities/times, roster candidates and prior-game union; not confirmation of dressing."
+ESPN,data/raw/espn/snapshots/espn_2027_20261029T140458Z,2026-10-29T14:05:01.310945+00:00,"Timestamped injuries, ownership, active/bench slots and saved matchup categories; ACTIVE is not confirmation."
+MoneyPuck team games,data/raw/moneypuck/snapshots/team_games_20261029T140503736470Z,2026-10-29T14:05:48.047426+00:00,Previous-season SOG priors and reconciled lagged 5v5 xOnGoal in usage-shot challenger; lagged xG/xGA in separate direct team model.
+MoneyPuck unblocked shots,data/processed/forecasts/moneypuck_shots_20261029T140612483781Z,2026-10-29T14:06:14.795839+00:00,Lagged D xG/rebound/attempt features in separate frozen feature experiment; no change to main player or fantasy means.
+NHL play-by-play,data/processed/forecasts/defense_pbp_20261029T140548844607Z,2026-10-29T14:06:10.940609+00:00,Lagged defense involvement in separate feature trial; quarantined disagreements remain excluded.
+Kalshi winner quotes,outputs/per_game_forecast/kalshi_benchmark_2026-10-29,2026-10-29T14:04:10.659366+00:00,Matched pregame external benchmark for original and fitted team probabilities; no model input or blending.
+Kalshi depth/trades,outputs/per_game_forecast/kalshi_liquidity_2026-10-29,2026-10-29T17:53:04.339016+00:00,Quote quality and recency audit from a later sequential observation; original quote benchmark preserved.

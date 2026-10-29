@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-10-29T17:53:45.941635+00:00",
+  "snapshot": "data/processed/forecasts/hockey_20261029T140409985231Z",
+  "snapshot_sha256": "e291ebbf1c257116ee095f9ead9c30aeac9a6d9548ffd30d3a5d9f7126602bae",
+  "probabilities": "outputs/per_game_forecast/team_probability_2026-10-29",
+  "probabilities_sha256": "6fdd26c543e0b66ab568e9488789b8a47b500752ebf6f832b0ea645da5eed950",
+  "files": {
+    "README.md": "9d4e8dffe8f2ed2f61f9a133dcb367fad23bbe11d43a0283faea965a2cfe6866",
+    "winner_benchmark.csv": "628ba1b043528b6c8a6fde6e28723ab95aea5834749822daaf718dffdd85f43a"
+  }
+}

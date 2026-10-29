@@ -1,5 +1,18 @@
 # Rink Lab — Next Steps
 
+## October 29 — pregame release, MoneyPuck inputs and matched Kalshi benchmark
+
+- Issued all 11 games at 10:06 a.m. Eastern: 498 candidate skaters across five models, 51 goalie candidates across two, and 22 teams. All strict pregame/freshness/coverage/hash/count checks passed without a context-lag exception. Official history and TOI cover all 202 finals and 7,271 positive-TOI appearances through October 28. Forecasts and source vintages are preserved.
+- MoneyPuck team data covers all 202 games. Direct team xG uses 191 reconciled games; 11 are quarantined for xG while official goals/schedule remain. The main shot-context audit excludes nine distinct games involving today's teams. Shot-level data contains 16,880 unblocked events across 202 games; 77 games are quarantined, leaving 125 usable. PBP has four team-game SOG disagreements. These are different source checks, not interchangeable coverage counts.
+- Frozen October 26 team-model coefficients use new past-only features through October 28. Continued the four separate October 20 feature variants without refitting. Fantasy retains the adopted TOI policy and default other categories; neither MoneyPuck xG nor Kalshi changes fantasy goal/shot means. No participation-rule promotion.
+- Captured all nine requested Kalshi series at 10:04 a.m. Eastern. Mapped 22 winner contracts to all 11 games, median spread $0.01, with rules/timestamps. Both original and direct-team probabilities have separate version-matched benchmark manifests using identical quotes. Added public orderbook/trade collector; all 22 depth observations available and trade pages complete at approximately 1:53 p.m. Eastern. The later depth/trade observations are explicitly distinct from morning quotes. No goalie-save contracts; player prop median volumes are zero. No market blend or trading.
+- Preserved every lineup candidate and status: 395 identified selected skaters, with 13 selected non-ACTIVE labels (four DAY_TO_DAY, nine UNKNOWN) for review; one unidentified replacement fills the remaining lineup slot. No confirmed-lineup claim. ESPN roster/rules/next-period refresh completed. Quinn has four of three required goalie starts; Wallstedt/Kochetkov active, Saros benched with a game, all unconfirmed. No unlocked benched skater has a game. No transactions.
+- Refreshed local game/fantasy/team/feature views and added a data-use report; archived October 27 views. 90 tests pass, including new orderbook complement/quantity, empty/crossed book and invalid-level tests. No remote publication performed.
+
+[Today's complete data-use report](outputs/per_game_forecast/pregame_data_use_2026-10-29/README.md) · [Reproduction and scoring handoff](docs/history/pregame-2026-10-29.md) · [Pregame release](outputs/per_game_forecast/2026-10-29_20261029T140615Z_pregame_readout.md).
+
+Next: obtain a separately timestamped near-puck-drop lineup/starter and quote observation; any refreshed forecast must be a new release. After finals, score the frozen main/TOI/goalie, direct-team, original probability/market and four feature variants on matched games. Keep the morning quote benchmark fixed and later observations separately labeled. Actual results and final lineup confirmations are not yet available.
+
 ## October 28 — expanded shots comparison and participation test
 
 - Re-scored all six canonical daily slates against one actuals vintage: 59 games, 2,121 covered appearances, 423 saved fantasy appearances. Calibrated shots MAE 1.040→1.023 all-player; fantasy 1.292→1.277, paired interval [-0.033,+0.004]. Favorable point estimate survives every date omission, but fantasy game/date intervals both cross zero. Retain fantasy default and the current TOI policy; calibrated shots stays a challenger.

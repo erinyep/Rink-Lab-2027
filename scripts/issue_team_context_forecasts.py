@@ -80,7 +80,8 @@ Learned home ice, rest/back-to-back, own scoring and opposing goals allowed, plu
 The simple baseline is preserved alongside every updated prediction. Player/fantasy conditional means are unchanged;
 these are direct team forecasts, not a redistribution of player goals. No confirmed-goalie or injury effect is claimed.
 Winner probabilities use independent Poisson scoring and equal tie splitting; intervals are not calibrated.
-Model choice used the prior full season, and production coefficients include all official games through yesterday.
+Model choice used the prior full season. Coefficients remain frozen through {model['training_through']};
+today's lagged feature inputs include official history through {cutoff}, without refitting coefficients.
 Future performance must be scored against this frozen release. Credit MoneyPuck.com for lagged xG data; absent or
 disagreeing xG rows remain excluded from rate updates, with official goals and schedule retained.
 ''')

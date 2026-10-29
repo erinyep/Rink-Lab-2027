@@ -1,8 +1,8 @@
-# Frozen feature experiment — 2026-10-24
+# Frozen feature experiment — 2026-10-29
 
-12 games, four variants: bias control, defense, shot quality and both.
-Issued 2026-10-24T11:05:04.556820+00:00. Uses the exact October 20 fitted parameters with fresh
-past-only inputs through 2026-10-23; no refit, tuning or model promotion.
+11 games, four variants: bias control, defense, shot quality and both.
+Issued 2026-10-29T14:06:40.130055+00:00. Uses the exact October 20 fitted parameters with fresh
+past-only inputs through 2026-10-28; no refit, tuning or model promotion.
 Source disagreements retain their existing quarantines and training-time imputation.
 
 [Frozen predictions](tonight_experimental_team_forecasts.csv) · [Player SOG accounting](player_contributions.csv).

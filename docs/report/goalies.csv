@@ -1,3 +1,4 @@
 player_name,lineup_slot,injury_status,start_local,start_share_provisional,saves_if_full_start,goals_against_if_full_start,save_percentage_projection
-Juuse Saros,Goalie,ACTIVE,8:00 PM,0.75,26.6865947369,3.0521743257,0.89736716
-Jesper Wallstedt,Goalie,ACTIVE,9:00 PM,0.8,24.1734159133,2.5220049758,0.9055266824
+Pyotr Kochetkov,Goalie,ACTIVE,7:00 PM,0.5625,22.2113579408,2.3048088298,0.9059882056
+Juuse Saros,Bench,ACTIVE,8:00 PM,0.7692307692,26.632883494,3.0489012676,0.8972803929
+Jesper Wallstedt,Goalie,ACTIVE,8:00 PM,0.8125,24.2594691147,2.4487541096,0.9083146008
