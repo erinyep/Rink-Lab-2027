@@ -13,6 +13,18 @@
 
 Next: after today's slate is final, extend the same official history, score only saved pregame releases against matched actuals/quotes, validate coverage, and register the new vintage. Continue to preserve forecasts and quote snapshots; do not infer market returns or expand this promotion beyond all-player SOG without category-specific evidence.
 
+## October 30 — pregame release, fantasy refresh and matched market benchmark
+
+- Issued three games at 12:13 p.m. Eastern: 665 player rows across five models, 30 team rows and 32 goalie rows. All passed strict pregame timing, source-hash, coverage and count checks. Official history and TOI cover all 213 finals and 7,667 positive-TOI appearances through October 29.
+- MoneyPuck shot input contains 17,780 unblocked events across 213 games; 80 are quarantined and 133 usable. Four PBP team-game SOG disagreements remain flagged. Direct team xG reconciliation quarantines 13 games overall; none are among the 11 October 29 target-slate games, all of which reconcile. Source-specific exclusions are not interchangeable.
+- Refreshed ESPN roster/status/ownership/rules and the local Quinn fantasy report. Retained the existing fantasy TOI policy and defaults elsewhere. No unlocked benched skater has a game; matchup goalie-start minimum is already met. No roster transactions. No participation/model promotion.
+- Froze direct-team and original-probability releases, four separate October 20 feature variants, and two version-matched Kalshi winner benchmarks against the same six quotes. All three fixtures mapped; spread $0.01. Depth/trade follow-up failed on DNS/network access and is not represented as collected. No market blend or trading.
+- Four selected skaters need status review: Brennan Othmann (DAY_TO_DAY), Jake Middleton (UNKNOWN), Frederick Gaudreau (UNKNOWN), Josh Mahura (UNKNOWN). All goalies remain provisional/unconfirmed. No confirmed-lineup claim.
+
+[Daily forecast readout](outputs/per_game_forecast/2026-10-30_20261030T161300Z_pregame_readout.md) · [Data-use and scoring handoff](docs/history/pregame-2026-10-30.md) · [Local Quinn report](reports/today/2026-10-30_quinn/README.md).
+
+Next: after finals, acquire official results and complete fantasy stats; validate completeness; score the frozen main/TOI/goalie, direct-team, original probability/market and four feature variants on matched games. Keep the two probability benchmarks paired with their own model releases. Exclude void/cancelled/fair-price market resolutions; do not infer trading returns. Preserve original quotes and forecasts. Before puck drop, any new lineup/starter/quote observation must be separately timestamped; a refreshed forecast requires a new release.
+
 ## October 29 — pregame release, MoneyPuck inputs and matched Kalshi benchmark
 
 - Issued all 11 games at 10:06 a.m. Eastern: 498 candidate skaters across five models, 51 goalie candidates across two, and 22 teams. All strict pregame/freshness/coverage/hash/count checks passed without a context-lag exception. Official history and TOI cover all 202 finals and 7,271 positive-TOI appearances through October 28. Forecasts and source vintages are preserved.

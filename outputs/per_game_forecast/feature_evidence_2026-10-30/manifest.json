@@ -1,0 +1,43 @@
+{
+  "created_at_utc": "2026-10-30T16:14:20.421791+00:00",
+  "target_date": "2026-10-30",
+  "config": {
+    "version": "oct20_screen_v1",
+    "target_date": "2026-10-20",
+    "training_start": "2026-10-05",
+    "training_end": "2026-10-12",
+    "holdout_start": "2026-10-13",
+    "holdout_end": "2026-10-19",
+    "team_prior_games": 20,
+    "ridge_penalty": 20,
+    "bootstrap_draws": 2000,
+    "seed": 20261020,
+    "pbp_features": [
+      "own_defense_attempt_share",
+      "own_followup_attempts_after_defense_per_game",
+      "opponent_defense_attempt_share"
+    ],
+    "quality_features": [
+      "own_defense_xg_per_game",
+      "own_defense_expected_rebounds_per_game",
+      "own_team_xg_per_game"
+    ],
+    "decision": "Retrospective feasibility screen only; no automatic promotion. Compare feature variants to the intercept-adjusted control on identical games. All variants issued separately for tonight.",
+    "source_limit": "Current corrected downloads with game-date cutoffs, not historical as-of source vintages; historical lineups/market quotes are not reconstructed."
+  },
+  "status": "frozen_parameters_new_prospective_slate",
+  "source_manifests": {
+    "data/processed/forecasts/daily_2026-10-30_20261030T161300Z/manifest.json": "3148c58596512fa273f2c30e5112ee644ea34c17b226a0f2b0fd41d4fa47452c",
+    "outputs/per_game_forecast/feature_evidence_2026-10-20/manifest.json": "a86326fa268d1b1b3e924397f9c298e30d702143ee287dfcc4e90e28b169e636",
+    "data/processed/forecasts/fantasy_game_details_20261030T161156Z/manifest.json": "38b8cb1ff126e42633eb91d6f710ee238e2c2987e93d1267ae4b7edf5388dad3",
+    "data/processed/forecasts/defense_pbp_20261030T161239524562Z/manifest.json": "6866b7bf0a09616d2cfc895a29278c6a436dd65c56f6f2290e1003bc00800155",
+    "data/processed/forecasts/moneypuck_shots_20261030T161257621853Z/manifest.json": "2c22c3c133d5212258aefbfb20d98412c5d909c874fcfb19be9491590e99c6d3"
+  },
+  "files": {
+    "index.html": "7c1cb92690e49ab6e0822219e0ebf8df738b3babc704867026229564fb53618d",
+    "player_contributions.csv": "c845a51771ad68f9de749bdb12b2b82f90e8f51fbd8c32234154a2d1b8ed9070",
+    "README.md": "7cf4e691a8038c2aa66e778f928ba248c42d9229c77a35b905b4c1f53f11df47",
+    "tonight_experimental_team_forecasts.csv": "3978e7e9fa8afdbab27eb15a12f316e4d731d4944c279581629a28fe6813205f",
+    "fitted_models.json": "85fd24b56c149a86e7c735989bd6766a35b76f067f9336d9065537a313ed28fa"
+  }
+}

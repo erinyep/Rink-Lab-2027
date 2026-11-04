@@ -1,0 +1,7 @@
+game_id,team,candidates,selected,injury_excluded,selected_not_in_previous_game,selected_nonactive,lineup_confirmed
+2026020214,NJD,20,18,0,0,0,False
+2026020214,VGK,21,18,2,0,0,False
+2026020215,FLA,23,18,3,0,0,False
+2026020215,WPG,22,18,2,0,0,False
+2026020216,CGY,23,18,2,0,2,False
+2026020216,SEA,24,18,3,0,2,False

@@ -1,0 +1,92 @@
+{
+  "tonight_refit": {
+    "bias_control": {
+      "features": [],
+      "center": {},
+      "scale": {},
+      "coefficients": {},
+      "intercept": 0.18125120883040668
+    },
+    "pbp_defense": {
+      "features": [
+        "own_defense_attempt_share",
+        "own_followup_attempts_after_defense_per_game",
+        "opponent_defense_attempt_share"
+      ],
+      "center": {
+        "own_defense_attempt_share": 0.3125522772406326,
+        "own_followup_attempts_after_defense_per_game": 3.3625825082508247,
+        "opponent_defense_attempt_share": 0.3125522772406326
+      },
+      "scale": {
+        "own_defense_attempt_share": 0.030882441947321534,
+        "own_followup_attempts_after_defense_per_game": 1.164294052849007,
+        "opponent_defense_attempt_share": 0.030882441947321534
+      },
+      "coefficients": {
+        "own_defense_attempt_share": 0.35832443747084547,
+        "own_followup_attempts_after_defense_per_game": 1.3023193743051276,
+        "opponent_defense_attempt_share": -0.11066688242943555
+      },
+      "intercept": 0.18125120883040668
+    },
+    "shot_quality": {
+      "features": [
+        "own_defense_xg_per_game",
+        "own_defense_expected_rebounds_per_game",
+        "own_team_xg_per_game"
+      ],
+      "center": {
+        "own_defense_xg_per_game": 0.4105632378172589,
+        "own_defense_expected_rebounds_per_game": 0.68867669265168,
+        "own_team_xg_per_game": 3.098600533514624
+      },
+      "scale": {
+        "own_defense_xg_per_game": 0.13814372864107072,
+        "own_defense_expected_rebounds_per_game": 0.15760486901281676,
+        "own_team_xg_per_game": 0.6002809538463607
+      },
+      "coefficients": {
+        "own_defense_xg_per_game": 0.12800942980212224,
+        "own_defense_expected_rebounds_per_game": 0.812109039011534,
+        "own_team_xg_per_game": 0.6589250327416076
+      },
+      "intercept": 0.18125120883040668
+    },
+    "defense_and_quality": {
+      "features": [
+        "own_defense_attempt_share",
+        "own_followup_attempts_after_defense_per_game",
+        "opponent_defense_attempt_share",
+        "own_defense_xg_per_game",
+        "own_defense_expected_rebounds_per_game",
+        "own_team_xg_per_game"
+      ],
+      "center": {
+        "own_defense_attempt_share": 0.3125522772406326,
+        "own_followup_attempts_after_defense_per_game": 3.3625825082508247,
+        "opponent_defense_attempt_share": 0.3125522772406326,
+        "own_defense_xg_per_game": 0.4105632378172589,
+        "own_defense_expected_rebounds_per_game": 0.68867669265168,
+        "own_team_xg_per_game": 3.098600533514624
+      },
+      "scale": {
+        "own_defense_attempt_share": 0.030882441947321534,
+        "own_followup_attempts_after_defense_per_game": 1.164294052849007,
+        "opponent_defense_attempt_share": 0.030882441947321534,
+        "own_defense_xg_per_game": 0.13814372864107072,
+        "own_defense_expected_rebounds_per_game": 0.15760486901281676,
+        "own_team_xg_per_game": 0.6002809538463607
+      },
+      "coefficients": {
+        "own_defense_attempt_share": 0.33987390931051664,
+        "own_followup_attempts_after_defense_per_game": 0.9121431672824422,
+        "opponent_defense_attempt_share": -0.10847796327935319,
+        "own_defense_xg_per_game": 0.13945646557193986,
+        "own_defense_expected_rebounds_per_game": 0.23888624906657646,
+        "own_team_xg_per_game": 0.4962878633418045
+      },
+      "intercept": 0.18125120883040668
+    }
+  }
+}

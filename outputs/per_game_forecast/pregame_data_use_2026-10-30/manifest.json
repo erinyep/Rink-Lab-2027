@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-10-30T16:20:41.827688+00:00",
+  "date": "2026-10-30",
+  "source_manifests": {
+    "data/processed/forecasts/daily_2026-10-30_20261030T161300Z/manifest.json": "3148c58596512fa273f2c30e5112ee644ea34c17b226a0f2b0fd41d4fa47452c",
+    "outputs/per_game_forecast/team_context_daily_2026-10-30_20261030T161300Z/manifest.json": "9f6c77f4f0ed7cdc841c80a57677580daf743eda4146da3524234213415136a1",
+    "outputs/per_game_forecast/team_probability_2026-10-30/manifest.json": "a03a1798400b301a06f90655d1561795a36aaba37b1ced3dc8b47f594270139e",
+    "outputs/per_game_forecast/kalshi_benchmark_2026-10-30/manifest.json": "8fff3c5c3fa22d0f36cad3f01bc3f958d1e30d57fd431b4ea85ebbd9e1c1e777",
+    "outputs/per_game_forecast/kalshi_liquidity_2026-10-29/manifest.json": "30b58943bb4c9afc4ade423525a06dc2ca839839ef9a96763b94a947fbf9e161",
+    "outputs/per_game_forecast/feature_evidence_2026-10-30/manifest.json": "db1cee0015036cdc58c2250194fee72dbe4cf34103d908be6b362bd49f1eca45",
+    "reports/today/2026-10-30_quinn/manifest.json": "fec3af836868e5059271282858abbb7e3f3b2cab0b38f1e9eb125cca22d59b9a"
+  },
+  "validation": {
+    "date": "2026-10-30",
+    "games": 3,
+    "player_rows": 665,
+    "team_rows": 30,
+    "goalie_rows": 32,
+    "availability": "timestamped_espn_labels_not_confirmed_lineups"
+  },
+  "files": {
+    "game_comparison.csv": "37b44ad1683b42af4190d2cde25a1587ecf47e8027ee021159e3eb7c48ad3bd4",
+    "index.html": "7df6f0376dad55124dec9cca1b1df268b4aaf2e70ee0e7622899dff93e93e549",
+    "participation_candidates.csv": "62ea06d2e88858b7f413d39e6fd444d7d3d6672886f1ec23e41cb0615a07dceb",
+    "kalshi_today_series.csv": "ae0b4da1c749c8c8da94694e7efaef2b21a396835dd8f8f42207811d05d27934",
+    "README.md": "b30cf11688d6ec688750b0ec0aa7671619d8b05333251ef3cb99f4cf0caeec7c",
+    "source_usage.csv": "56e9b05e3886e9dee4b996342a883cc1eac457e76ab0a455153ccbd352c3193e",
+    "moneypuck_team_context.csv": "6292b0cd473f8b3a7eec30bc811395d588163d16c5008a0951d9e63e1991f562",
+    "selected_status_review.csv": "f2db4cd34e5eab2addd8bb3359ac0a3c0b08f73fc456f6f040aa3887d594f7e2",
+    "participation_summary.csv": "ef18c6bde8787a622504e38e9e08383459e2a55f83f94a5e5ab4a0ce7a9f7a82"
+  }
+}
