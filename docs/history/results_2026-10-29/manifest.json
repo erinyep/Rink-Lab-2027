@@ -1,0 +1,29 @@
+{
+  "inputs": {
+    "team": "outputs/per_game_forecast/team_context_daily_2026-10-29_20261029T140615Z",
+    "bundle": "data/processed/forecasts/daily_2026-10-29_20261029T140615Z",
+    "evaluation": "data/processed/forecasts/daily_evaluation_2026-10-29_20261104T152602419479Z",
+    "actuals": "data/processed/forecasts/fantasy_game_details_20261104T152452Z",
+    "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261104T152427Z",
+    "fantasy": "reports/today/2026-10-29_quinn"
+  },
+  "source_manifests": {
+    "outputs/per_game_forecast/team_context_daily_2026-10-29_20261029T140615Z/manifest.json": "17051d4c453ec8a647f73e2ae73146db04d48349589f9967e19bf75012877402",
+    "data/processed/forecasts/daily_2026-10-29_20261029T140615Z/manifest.json": "b663350889ceba6ee85162660c859db46130e826eab7cf58e95b9b2a83426d8e",
+    "data/processed/forecasts/fantasy_game_details_20261104T152452Z/manifest.json": "54a04e01bfe7d8aaeaec7ba32c7912c23b9f40d64b3fca60c9c1b802185154c4",
+    "reports/today/2026-10-29_quinn/manifest.json": "fd85b744862a5fa3ff671392105d7a65c264994cee8fa5e0fd83c83d8931a884"
+  },
+  "boxscore_metadata_sha256": "febeeabbffa1133e45c8dc9fb6c3720c5ebd23d3f6dc045f9f27f6602dc3148c",
+  "files": {
+    "team_metrics.csv": "839fe6d228e503761e2fd2d4152fb12d1e2e93c236ca48eb3217c68d8114d165",
+    "coverage.csv": "9268f85198adaf2f1bf8b67e4b723cc06c2a5e9533c0bd3f282a3a8486cbcf87",
+    "fantasy_roster_scored.csv": "fbc44f013f59648998ff898c62bb91f6c3a8cc140d14313c7d6293145b636d59",
+    "team_scores.csv": "8f83c4fb5b16f5b00651b42da142d8db993c903d6ec92b1f9a9c05d5892bb315",
+    "player_metrics.csv": "298bbf583a76a0194bd2ca97d57d2a9e9460a86fa5737d4831b00bdd852fe9d2",
+    "fantasy_player_metrics.csv": "8b9c93a8f5c3a973392d451f05b7843a9cd86a5553d406c3d83b43d6fa52a9bd",
+    "fantasy_toi_comparison.csv": "f49ababbb8ca8a10b20cda16225d38ebd6e6adab02fc4985b99004927423b208",
+    "README.md": "bfe2fbdb529567f4c4c05653b9cb8bbda3354e830594dc480419a3009c6c11a7",
+    "goalie_metrics.csv": "c3ca109df9060c0462c8a039e9393de8240e04655d64f0097a9add596bd55a98",
+    "team_games.csv": "77a8cfb6487a6d54826197ee8e428180f61e3530e95d481566c1174f68947f9e"
+  }
+}

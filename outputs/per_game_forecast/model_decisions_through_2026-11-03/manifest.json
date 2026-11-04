@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-11-04T15:35:06.664786+00:00",
+  "review": "outputs/per_game_forecast/season_through_2026-11-03",
+  "review_sha256": "fa035103bbca892b5211c33d7dcf360f55081fbbb7735c7838583901ff7288e5",
+  "files": {
+    "team_probability_screen.csv": "643895ed15905eaebac9f6ee60aafa834eab2e9380ee286bc75671e12371a4dd",
+    "README.md": "75669c77e81056a99b84c2b91093bc443447ea96aba053d9643e9f1d228ecb6d",
+    "paired_uncertainty.csv": "19c273c5dd79166135bca5cb73cc0ac4adf8c466dad36f40385763e3b1d586ba",
+    "goalie_metrics_by_date.csv": "0ccbea533b2705cb9548ac74cb2298caa28405db7cefeb8bc049e8de10c895f4",
+    "starter_metrics_by_date.csv": "6fece1520df94ae7370f7a8cc6bb63f7d73401d114dd6820f3ba6226d9d41999",
+    "population_metrics.csv": "a218697ad4ab5df3611d4de3cf26724fc92afb22c0c6cdf4fd81e19ebac01de4",
+    "team_probability_metrics.csv": "68a59ec53428a0332951f4e32b52ebf80095a45be02a974027b49f8635e56f4b",
+    "team_probability_reliability.csv": "2f9b06bdaf4a1b66a8f978dff8258039e300528c7f0e198ac4ae718485547bd2",
+    "leave_one_date_out.csv": "7907915902124d12648e0de7c93543376c2462a80552dfbb301a9692a94e58a6"
+  }
+}

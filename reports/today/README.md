@@ -1,9 +1,9 @@
-# Updated fantasy report — October 29, 2026
+# Updated fantasy report — November 4, 2026
 
-[Interactive local report](2026-10-29_quinn/index.html) · [Prepared site report](../../docs/report/index.html) · [Today’s data-use report](../../outputs/per_game_forecast/pregame_data_use_2026-10-29/README.md).
+[Interactive report](../../docs/report/index.html) · [All NHL game forecasts](../../docs/games/index.html) · [Direct team model](../../docs/team-model/index.html) · [Pregame handoff](../../docs/history/pregame-2026-11-04.md).
 
-ATOI uses the adopted recent-usage policy; shots and all other skater categories retain default. Forecasts were frozen at 10:06 a.m. ET; ESPN status/ownership was retrieved at 10:05 a.m. ET. MoneyPuck xG and Kalshi prices do not change fantasy goal or shot means.
+Four games are on today's slate. Forecasts were issued at 10:39 a.m. Eastern using NHL history through November 3; all four are pregame releases. ESPN roster/status was refreshed at 10:36 a.m. Eastern. Lineup and goalie labels remain provisional.
 
-Four goalie starts are recorded against a three-start matchup minimum. Wallstedt and Kochetkov are active with games; Saros is benched with a game. All starts remain unconfirmed. No unlocked benched skater has a game in the saved roster. No next-period roster changes were detected; no transactions were performed.
+No unlocked benched skater has a game today. Two goalie starts are recorded against the three-start matchup minimum; one more qualifying start is needed. No roster or transaction changes were made.
 
-[Separate direct team goals/win forecasts](../../docs/team-model/index.html) · [Saved October 27 report](2026-10-27_quinn/index.html).
+Fantasy ATOI uses the adopted recent-usage policy. Other fantasy categories, including shots, retain the default policy because the fantasy-roster paired interval still includes no improvement. Calibrated-opponent shots is selected for the all-player NHL SOG view after improving paired MAE across 73 saved games. MoneyPuck features are lagged research/model inputs; Kalshi quotes are a separate benchmark and do not feed projections.

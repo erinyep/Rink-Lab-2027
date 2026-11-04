@@ -8,5 +8,6 @@
   "team_prior_games": 20,
   "status": "fixed_experimental_assumptions_not_tuned_on_october_9",
   "new_model_scope": "SOG and conditional TOI only; other means follow candidate",
-  "promotion": "none_pending_chronological_validation"
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "promotion": "primary_for_all_player_sog_from_2026-11-04; fantasy_shots_remain_default"
 }

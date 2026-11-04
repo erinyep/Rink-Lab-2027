@@ -1,0 +1,3 @@
+model,comparison,games,brier_delta,lower_95,upper_95
+team_probability_trial,even_baseline,3,-0.014160871930229321,-0.1165183178076275,0.07541738281641569
+team_probability_trial,kalshi_home_midpoint,3,0.027214128069770693,-0.016606680799476137,0.07039238281641569

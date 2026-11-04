@@ -1,12 +1,15 @@
-# NHL game outlook — 2026-10-29
+# NHL game outlook — 2026-11-04
 
 [Interactive matchups](index.html) · [Game predictions CSV](game_predictions.csv)
 
-There are 11 games: 11 pregame forecasts and 0 late-issued.
+There are 4 games: 4 pregame forecasts and 0 late-issued.
 The goal numbers are projected means, not exact final scores. The side with the
 higher goal mean is the model scoring lean; no calibrated win odds are supplied.
 Simulation ranges and goalie start shares remain provisional. All five saved
-models can be compared without changing the frozen forecasts.
+models can be compared without changing the frozen forecasts. The
+calibrated-opponent SOG model is selected by default for all-player NHL shots
+based on the season-to-date paired evaluation; fantasy shots retain their
+separate default policy.
 
 Start by comparing each matchup's goal means and shot volume. Expand a card for
 assumed shot leaders and goalie full-start scenarios. Use the table to scan all

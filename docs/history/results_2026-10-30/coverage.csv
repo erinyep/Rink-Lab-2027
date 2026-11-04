@@ -1,0 +1,7 @@
+game_id,date,team,opponent,start_time_utc,official_roster_skaters,modeled_candidates,prior_game_additions,position_prior_players,selected_skaters,missing_lineup_slots,selected_prior_game_only,goalie_candidates,issued_at_utc,issue_timing,actual_skaters,actual_skaters_with_forecast,actual_skaters_without_forecast,missing_actual_skater_ids,selected_lineup_actual_overlap,selected_identified_nonparticipants,modeled_nonparticipants,goalie_forecast_status,actual_goalie_appearances,forecast_goalies_observed_in_boxscore,goalie_count_exceptions
+2026020214,2026-10-30,VGK,NJD,2026-10-30T22:00:00Z,21,21,0,0,18,0,0,3,2026-10-30T16:13:06.049011+00:00,pregame,18,17,1,8480007.0,17,1,4,issued,1,2,0
+2026020214,2026-10-30,NJD,VGK,2026-10-30T22:00:00Z,20,20,0,0,18,0,0,3,2026-10-30T16:13:06.049011+00:00,pregame,18,18,0,,17,1,2,issued,1,2,0
+2026020215,2026-10-30,FLA,WPG,2026-10-30T23:00:00Z,23,23,0,0,18,0,0,3,2026-10-30T16:13:06.049011+00:00,pregame,18,18,0,,18,0,5,issued,1,2,0
+2026020215,2026-10-30,WPG,FLA,2026-10-30T23:00:00Z,22,22,0,0,18,0,0,3,2026-10-30T16:13:06.049011+00:00,pregame,18,18,0,,17,1,4,issued,1,2,0
+2026020216,2026-10-30,CGY,SEA,2026-10-31T00:00:00Z,23,23,0,0,18,0,0,2,2026-10-30T16:13:06.049011+00:00,pregame,18,18,0,,17,1,5,issued,1,1,0
+2026020216,2026-10-30,SEA,CGY,2026-10-31T00:00:00Z,24,24,0,1,18,0,0,2,2026-10-30T16:13:06.049011+00:00,pregame,18,18,0,,17,1,6,issued,2,2,0

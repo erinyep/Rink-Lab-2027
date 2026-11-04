@@ -1,0 +1,34 @@
+{
+  "created_at_utc": "2026-11-04T15:26:22.326858+00:00",
+  "through": "2026-11-03",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261104T152452Z",
+  "actuals_sha256": "54a04e01bfe7d8aaeaec7ba32c7912c23b9f40d64b3fca60c9c1b802185154c4",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261104T152427Z",
+  "defense_pbp": "data/processed/forecasts/defense_pbp_20261104T152517487585Z",
+  "evaluations": [
+    "data/processed/forecasts/daily_evaluation_2026-10-10_20261104T152554529250Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-12_20261104T152555763293Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-20_20261104T152556848049Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-22_20261104T152558329451Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-24_20261104T152559699496Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-27_20261104T152601072130Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-29_20261104T152602419479Z",
+    "data/processed/forecasts/daily_evaluation_2026-10-30_20261104T152603618420Z"
+  ],
+  "baseline_selection": "latest saved pregame snapshot per game; no performance selection",
+  "hash_checks": 158,
+  "files": {
+    "baseline_metrics.csv": "06c60369202ffaad51f1320752ec01de150173903808c58d6b31dc3778e77d65",
+    "archived_opponent_metrics.csv": "3a6efa97ee6cdada780d4aecd91be66e4e5bac9d0bdfc45f4da413bcbb1a8d58",
+    "saved_run_inventory.csv": "3a524181af5561a1d55f61c109e6b22dd05d17257f03d71800b885d748332c13",
+    "archived_goalie_metrics.csv": "84902e29a27eda4fb762cd27720f879ac6b445d98a80a5736b01aa2f4f203342",
+    "game_cluster_uncertainty.csv": "e34c074bbc393bd6e99e873525632f6c6245bd2c95e164adbd3772cb976ac5ff",
+    "archived_issued_simulation_metrics.csv": "e9dabbeae39f28262228f1f8629389403d80bc6d77e0ca689ac6cad83c5ec132",
+    "README.md": "d02abef987521664f472e063a65662fc4b0fb8c445f7eac7f2547f58652ecf7d",
+    "game_coverage.csv": "88d8abf8d0c0c067953a9c5b0108117e6069782d0af244e758be0f7849c3af25",
+    "defense_context.csv": "9264c15534a6042b5048c926e3bd6f0aeeb92394910e81201ebd167ce3d82f66",
+    "baseline_by_date.csv": "e91e094d1c9d4c40995674bc86be5ca5988f5ddf51d992b28f62161e9edc991b",
+    "model_metrics.csv": "7980677c49c2313a0db8d318eff6fe7d27dbc50ab011d2197305f7134365ef10",
+    "season_coverage.png": "656dbc75ed6cfe3ce3baddcb422b54875608ed9bd1e3a5ff74fd4b86a93fe9b4"
+  }
+}
