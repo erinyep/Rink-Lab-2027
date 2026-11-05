@@ -16,7 +16,7 @@ The four pregame forecasts were issued before puck drop and scored against the o
 | new_team_model | 4 | 0.178 | 4 | 100% | 1.56 |
 | original_model | 4 | 0.261 | 2 | 50% | 1.63 |
 
-Brier and per-team absolute goal error are lower-is-better. New model picks were correct in 4/4 games; original model picks were correct in 2/4. New-minus-original Brier was -0.083, with a paired game-bootstrap 95% interval [-0.125, -0.055]. Four games do not establish calibration or durable superiority. Scores use official final box-score goals.
+Brier and per-team absolute goal error are lower-is-better. New model picks were correct in 4/4 games; original model picks were correct in 2/4. The Brier point-score difference was -0.083. Four games do not establish calibration or durable superiority, so no uncertainty interval is inferred from this slate. Scores use official final box-score goals.
 
 ## Player shots
 
