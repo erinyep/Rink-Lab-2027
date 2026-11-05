@@ -1,0 +1,3 @@
+model,games,brier,favorite_correct,favorite_accuracy,goal_mae_per_team
+new_team_model,4,0.17766316217477332,4,1.0,1.5592453974367513
+original_model,4,0.2609717137935607,2,0.5,1.6278715282052088

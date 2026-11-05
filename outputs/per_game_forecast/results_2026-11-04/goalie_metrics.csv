@@ -1,0 +1,13 @@
+issue_timing,model,category,forecast_rows,rows_scored,games_scored,predicted_total,actual_total,mae,bias,rmse,exact_guess_rows,exact_guess_rate,interval_rows,interval_p10_p90_coverage,population
+pregame,goalie_history_baseline,shots_against,8,8,4,223.8741919097174,216.0,2.6389363343174006,0.9842739887146745,3.3524061520097526,0,,8,1.0,actual_starters
+pregame,goalie_opponent_context_trial,shots_against,8,8,4,220.00687685238057,216.0,2.8193587024499007,0.5008596065475692,3.1396298931884306,0,,8,1.0,actual_starters
+pregame,goalie_history_baseline,shots_against,8,8,4,223.8741919097174,216.0,2.6389363343174006,0.9842739887146745,3.3524061520097526,0,,8,1.0,starters_55_to_65_minutes
+pregame,goalie_opponent_context_trial,shots_against,8,8,4,220.00687685238057,216.0,2.8193587024499007,0.5008596065475692,3.1396298931884306,0,,8,1.0,starters_55_to_65_minutes
+pregame,goalie_history_baseline,saves,8,8,4,200.3675244277915,194.0,3.4952451656736763,0.7959405534739359,4.221628445826732,0,,8,1.0,actual_starters
+pregame,goalie_opponent_context_trial,saves,8,8,4,196.85896411659255,194.0,3.3125189493453386,0.35737051457406954,4.005463203118459,0,,8,1.0,actual_starters
+pregame,goalie_history_baseline,saves,8,8,4,200.3675244277915,194.0,3.4952451656736763,0.7959405534739359,4.221628445826732,0,,8,1.0,starters_55_to_65_minutes
+pregame,goalie_opponent_context_trial,saves,8,8,4,196.85896411659255,194.0,3.3125189493453386,0.35737051457406954,4.005463203118459,0,,8,1.0,starters_55_to_65_minutes
+pregame,goalie_history_baseline,goals_against,8,8,4,23.506667481925916,22.0,1.524258759444131,0.18833343524073942,1.8929556901854523,0,,8,0.875,actual_starters
+pregame,goalie_opponent_context_trial,goals_against,8,8,4,23.147912735787997,22.0,1.5308981235441737,0.14348909197349968,1.914947027227628,0,,8,0.875,actual_starters
+pregame,goalie_history_baseline,goals_against,8,8,4,23.506667481925916,22.0,1.524258759444131,0.18833343524073942,1.8929556901854523,0,,8,0.875,starters_55_to_65_minutes
+pregame,goalie_opponent_context_trial,goals_against,8,8,4,23.147912735787997,22.0,1.5308981235441737,0.14348909197349968,1.914947027227628,0,,8,0.875,starters_55_to_65_minutes

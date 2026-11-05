@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-04",
+  "released_at_utc": "2026-11-04T15:39:23.408869+00:00",
+  "statistical_history_through": null,
+  "source_bundle_manifest_sha256": "599f8c5583f0a1e2f539bfc6187522affcfc5f0b1d1c1e8e87058a06a151c649",
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial"
+  ],
+  "rows": {
+    "player_projections.csv": 940,
+    "team_projections.csv": 40,
+    "goalie_projections.csv": 38,
+    "game_team_coverage.csv": 8
+  },
+  "files": {
+    "player_projections.csv": "e7c58a5aa6a3338d27963bba76f48de5fa3272887f4e79a83bcbf0d359cbee70",
+    "team_projections.csv": "6ba28cc32c930a9d2cccfccce66df007183e99b2dad7f73c3166f1ab2e12723e",
+    "goalie_projections.csv": "3e60e4f9aab3077b22226d190fb3d06390e64c84c48a902f31854258bdcec7b7",
+    "game_team_coverage.csv": "a5460fdf8f7cef596968c791d202d3fc05bc6213e722de8083417c15f3f797be"
+  },
+  "note": "Curated projection export. The source bundle SHA-256 is retained for lineage; raw snapshots and the local source manifest are not included in this public export.",
+  "statistical_history_last_game_date": "2026-11-03"
+}
