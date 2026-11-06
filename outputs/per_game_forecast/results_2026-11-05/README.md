@@ -24,6 +24,8 @@ The 11-game November 5 release was issued before puck drop and scored against th
 
 The daily trial comparison is one slate. Compare it with the saved November 4 results and the earlier season-wide evidence before changing policy. Calibrated-opponent SOG remains the NHL-wide selected model based on prior multi-date evidence; fantasy SOG policy remains separate.
 
+The updated [all-date review through November 5](../season_through_2026-11-05/README.md) combines 88 saved forecast games and re-scores their player outcomes against one current official actuals vintage.
+
 Across the two latest saved slates (November 4–5; 15 games), player shots MAE was 1.007 for calibrated-opponent, 1.009 for candidate, 1.010 for usage-shot-context, 1.018 for default, and 1.019 for opponent-form. On this short two-date cohort, calibrated-opponent was closer than default for 293 of 538 player-games. Defense and forward breakouts are in [the two-date table](two_date_shots_metrics.csv). This small cohort supports keeping the established policy under review; it does not support another promotion.
 
 ## Team totals and goalie scenarios

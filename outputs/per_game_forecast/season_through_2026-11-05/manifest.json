@@ -1,0 +1,64 @@
+{
+  "created_at_utc": "2026-11-06T22:06:21.725242+00:00",
+  "through": "2026-11-05",
+  "actuals_source": "official NHL skater game stats through 2026-11-05",
+  "actuals_manifest_sha256": "2c7c6377f2753a3d86acebd354c4e403c250d6932179d3579d23d3c2e67ffa06",
+  "prior_review_source": "season_through_2026-11-03",
+  "prior_review_manifest_sha256": "fa035103bbca892b5211c33d7dcf360f55081fbbb7735c7838583901ff7288e5",
+  "nov4_evaluation_source": "saved pregame player evaluation for 2026-11-04",
+  "nov4_evaluation_manifest_sha256": "c14d32e220974ceef8843e4be71ce2b2aa39b0b0afbbc5faf6e58d7b6e4bcee1",
+  "nov4_results_source": "outputs/per_game_forecast/results_2026-11-04",
+  "nov4_results_manifest_sha256": "1bd59ef4f645d8e96ca106a4f4a058b970ebe99f8c519c05d1da939f157b653d",
+  "nov5_results_source": "outputs/per_game_forecast/results_2026-11-05",
+  "nov5_results_manifest_sha256": "9004d317db3d5fe94a72f27e1a1a7a69c750ac8b9aaaf9e99b1e0d2da4fbc64e",
+  "review_code_sha256": "156f7cfc4d0c49ac749d771c26f87ee8d2217337af3b21f3a5b44b126943b1ab",
+  "official_source_hash_checks": 522,
+  "matched_games": 88,
+  "positive_toi_player_games": 3159,
+  "unavailable_final_games": 173,
+  "paired_bootstrap_seed": 20261105,
+  "paired_bootstrap_resamples": 20000,
+  "sources": [
+    {
+      "date": "2026-10-10",
+      "evaluation_manifest_sha256": "b0dbfe0837285979bfacb24d0a5b89bab17b60f9ab0b5c3ef7022400e1e6845d"
+    },
+    {
+      "date": "2026-10-12",
+      "evaluation_manifest_sha256": "1091eac8c7b17b53d0311a6ab825c1f1044846e07aeb302cbe787eabad08c984"
+    },
+    {
+      "date": "2026-10-20",
+      "evaluation_manifest_sha256": "47364767b482dbe7e78e70a5ec9a7efbdaf805fdce8e79c19f4895b2cac17483"
+    },
+    {
+      "date": "2026-10-22",
+      "evaluation_manifest_sha256": "3fc2c39f869b3478e353b13724c3dfab808aac51aa4c5306283e4ea06e5f5ea4"
+    },
+    {
+      "date": "2026-10-24",
+      "evaluation_manifest_sha256": "17dba6edb273225183d53293a2e11672018c668067ea851709701fa4521394f6"
+    },
+    {
+      "date": "2026-10-27",
+      "evaluation_manifest_sha256": "ae85f98fc0e4ecddec3f0573eea8116fe152e61d1250a8676f6afb737bf6fb77"
+    },
+    {
+      "date": "2026-10-29",
+      "evaluation_manifest_sha256": "98b5ff21cc78267aa01e643d04011ba88434494875f8fd53dc4d1273c08c9d51"
+    },
+    {
+      "date": "2026-10-30",
+      "evaluation_manifest_sha256": "715e0dfbba707d9722078f9f6bd50e39e4e89078cee7272a7a67b0807508ee9f"
+    }
+  ],
+  "files": {
+    "shots_scored_all_games.csv": "200424f4a9842951cd949ef2b45d48c2142bb8a79ebcfc0dd4ca2a9d3ce32e82",
+    "shots_paired_uncertainty.csv": "de120b0afb8cabfcf69e6ad75e2996bad4e16fedb911822cb3d94b988b85065f",
+    "shots_date_comparison.csv": "f32fc125c2b15486d96c83608e1067d1b0cc950ac39d165bc266ffb30061ebec",
+    "player_metrics.csv": "953c08eb00e0e07f465c26ce2735404e15ac781324f886c03af2fbc75b23d0c7",
+    "README.md": "7c99e62adde58ce818eb39ae4a992b72483c20534b003573f5ec265fa702b615",
+    "shots_paired_games.csv": "69c40593ae592a29200d3046aea37bba0ddbca52d496fbeda40f28e0dda2631a",
+    "shots_by_date.csv": "713718aeece220b42406863d767f353ddd0ea34c810f37d14efeedf56a6cb572"
+  }
+}

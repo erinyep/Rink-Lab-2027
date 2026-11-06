@@ -2,7 +2,7 @@
 
 [Interactive report](../../docs/report/index.html) · [All NHL game forecasts](../../docs/games/index.html) · [Direct team model](../../docs/team-model/index.html) · [Pregame handoff](../../docs/history/pregame-2026-11-06.md).
 
-[All public player, team and goalie projections](../../outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/README.md) · [Direct team goals and win probabilities](../../outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z/README.md) · [November 5 model results](../../outputs/per_game_forecast/results_2026-11-05/README.md).
+[All public player, team and goalie projections](../../outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/README.md) · [Direct team goals and win probabilities](../../outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z/README.md) · [November 5 results](../../outputs/per_game_forecast/results_2026-11-05/README.md) · [All-date model review](../../outputs/per_game_forecast/season_through_2026-11-05/README.md).
 
 Three games are on today's slate. Forecasts were issued at 4:35 p.m. Eastern using NHL history through November 5; all three are pregame releases. ESPN roster/status was refreshed at 4:34 p.m. Eastern. Lineup and goalie labels remain provisional.
 

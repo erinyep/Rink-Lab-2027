@@ -12,6 +12,8 @@ __pycache__/
 renv/library/
 renv/staging/
 # Reproducible generated datasets and analysis artifacts
+# Pipeline working bundles stay local; publish sanitized frozen forecasts and
+# reports under outputs/per_game_forecast/ for repository review.
 data/processed/
 outputs/descriptive_2025_26/*.csv
 outputs/descriptive_2025_26/*.png
