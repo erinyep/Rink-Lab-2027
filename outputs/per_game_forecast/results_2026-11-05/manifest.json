@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-05",
+  "frozen_projection_manifest_sha256": "1820abeaca9c2e9491584a026c8b8f3fb1488b81f35e4b9388ca8b13ddcc6d0d",
+  "actuals_manifest_sha256": "2c7c6377f2753a3d86acebd354c4e403c250d6932179d3579d23d3c2e67ffa06",
+  "boxscore_metadata_sha256": "88945efe48fb7f17615c06a9e469ca6a5ea6bf9f63d2dfac22171ca30540ee49",
+  "files": {
+    "goalie_starter_scores.csv": "7bb214adf52000512d769848aa6a8f0847dde56df8961238bd3fe7905611dfd4",
+    "team_metrics.csv": "f483258889d95f19eee9b93a56fa00cb5704a9d0c30f86b76d782b6c1643696d",
+    "coverage.csv": "8d98009e12f515372f348a3c2cde9130c48fa57581eb643142fcfea253067962",
+    "player_metrics.csv": "7edec82a9dd1f1e447ee6f3fad78b5556e538389411529b2e77201a1894bd511",
+    "README.md": "8a2d3d9b64d429634b077f01673e4f0e026a2b9cfb55c85c5a579b933c412194",
+    "player_projections_scored.csv": "79be7792a9f4ae07d128e3320efcb907fe0b93d050a44d312fbea7bb47e96432",
+    "unmodeled_actual_skaters.csv": "43fdccbc8be3c64191c133f3865e65e661f0648a0a24142e2081ac59f67e93e7",
+    "two_date_shots_metrics.csv": "ceaf2e3a3a46baf5cc94d57339f6145e41417f2d18c770a1e2893969184f06cb",
+    "goalie_metrics.csv": "bbde2fbda051c001a92478ff9068ccc77e6903b1750e6010439ee57729854a7a",
+    "team_games.csv": "8e1a4c38611d944b01d467f376178a6ce931f380cd6094a0a591cee9f22985d7"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-05",
+  "view_created_utc": "2026-11-05T20:59:59.980317+00:00",
+  "forecast_issued_utc": "2026-11-05T20:49:02.679177+00:00",
+  "frozen_bundle_manifest_sha256": "4b42bfe215c76e94d2a21be76393c03201370faad4800757b64bc51ccf0e5cfc",
+  "source_schedule_sha256": "356e481b9136956182f80994d918a236906e92cdf2778be692cca9cf4ebc7eb2",
+  "model_status": "existing_frozen_models_primary_all_player_sog_selected",
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "code_sha256": {
+    "build_nhl_outlook.py": "078c67f1e960c383f96dc0dcd590038454f247eee1dfec755ab935eac5b569a4",
+    "game_outlook.py": "f6bea656662359d3be3f5f8278a6a25a931308b479878119d8604187b98014da",
+    "nhl_outlook.html": "e404956c7ae26a0f61c85333f7ae0d4c802b0c4a04d8ded93012403092fc79f8",
+    "daily_forecast_trial.json": "ba8e872ebe2f4d0b722deaac61c9fa1bbb74227658caba5bd38e640112061ced"
+  },
+  "files": {
+    "index.html": "d0a203c4ba7174500637808da828b5ac1517f210db9c079134c3d55a33784780",
+    "goalie_scenarios.csv": "315a1f2d4056639902dc228756db356ec7cf43488f8337e86049b5a0736d66c4",
+    "outlook.json": "a67ebfbbfe69637c24c59a265fde9fc14fc3a5af389193f9cc9e178576b8fd29",
+    "README.md": "23de0ed45e718de7394c24fe1a4edb3b98b345729f05a7c433a6642697e9e544",
+    "team_predictions.csv": "5a7bc49fd13307c5a1cbdaf1039a2162c300e0ebf80bed89dfb0f8c04844b40d",
+    "game_predictions.csv": "d431d4f23589c8442e0ce058722f74605c83cb086e8e5eccd02462592875c267"
+  }
+}

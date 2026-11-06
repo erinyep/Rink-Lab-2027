@@ -1,20 +1,20 @@
 {
-  "created_at_utc": "2026-11-04T15:40:17.985395+00:00",
-  "date": "2026-11-04",
+  "created_at_utc": "2026-11-06T21:37:32.246049+00:00",
+  "date": "2026-11-06",
   "method": "team_goal_context_v2",
   "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
   "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
-  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261104T153815571378Z",
-  "moneypuck_sha256": "5441131523f6336b2d28db0268a95ed2b61606a4beddce9cfc4dc15965f9151a",
-  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261104T153650Z",
-  "boxscores_sha256": "4e95194e56f10c2b297c07c913c280e4c3a194c2a0267d70e84bd99d777f8666",
-  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261104T154017985395Z",
-  "schedule_sha256": "b89c73b74618d89c6f59c95148d6382872efe65c48ce497d9ca1858dfbcebba3",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261106T213450902692Z",
+  "moneypuck_sha256": "85069cc4f9ffd5f5fa638526a349d9ebaf43070b4e89422e8380235504afddba",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261106T213140Z",
+  "boxscores_sha256": "88945efe48fb7f17615c06a9e469ca6a5ea6bf9f63d2dfac22171ca30540ee49",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261106T213732246049Z",
+  "schedule_sha256": "b4bb5477e284d2a89c4dcf131e303a64e498758ffd8473291e7cc39c5a8f709c",
   "files": {
-    "team_win_probabilities.csv": "2d71fc364c387d99ed747b4af797b0a3e9fb1491627ccfe685179fedaf034877",
-    "index.html": "89b6fc4fdfd2dd832a6b9b505531c63a749ac9672910a3bf5142a23afe155e44",
-    "input_reconciliation.csv": "7159dbb9d16bd3edd346a8598aa6a2b632e47d26bc0c97be8fa710d2ee572908",
-    "README.md": "bc1112211c135c1fa6b05fe32cd6bc18ba01b814fea77d5f90efff43a11fde38",
-    "team_goal_forecasts.csv": "d4857290d005fa4408f27d3cc7331b221aefc080faecd510c83b8b4dd2600f5b"
+    "team_win_probabilities.csv": "4dd0202bef37f6ba5c25428cdc44b8b0176929e12e04c5f5980f738a98dea269",
+    "index.html": "fbe3412c997915e24cdfd3cd238e4bf72924ab4dfc609f2021157cef17642639",
+    "input_reconciliation.csv": "011591180157eb19fd1fa749834109b4ac0bd3132f6311353f11d535c7ba517c",
+    "README.md": "2a3f595660916d176574e71f87ea28a6007c7503f63c10167bcea7ab4b7de512",
+    "team_goal_forecasts.csv": "1562edced999a01e2f572ed11f3dd5432a91246dd8c9191a7027c67b0f1c2f31"
   }
 }

@@ -1,1 +1,2 @@
-player_name
+player_name,lineup_slot,injury_status,start_local,start_share_provisional,saves_if_full_start,goals_against_if_full_start,save_percentage_projection
+Jesper Wallstedt,Goalie,ACTIVE,8:00 PM,0.8421052632,24.1855185052,2.4342909536,0.9085534043

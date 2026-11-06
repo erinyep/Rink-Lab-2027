@@ -1,0 +1,13 @@
+model,category,starters,games,mae,bias
+goalie_history_baseline,shots_against,22,11,4.148710160975597,-0.9502896040756755
+goalie_history_baseline,saves,22,11,4.487088757237453,-0.6536063140103111
+goalie_history_baseline,goals_against,22,11,1.3465997059540955,-0.2966832900653644
+goalie_history_baseline,shots_against_55_65_min,22,11,4.148710160975597,-0.9502896040756755
+goalie_history_baseline,saves_55_65_min,22,11,4.487088757237453,-0.6536063140103111
+goalie_history_baseline,goals_against_55_65_min,22,11,1.3465997059540955,-0.2966832900653644
+goalie_opponent_context_trial,shots_against,22,11,4.2126401546118935,-1.5738890538607941
+goalie_opponent_context_trial,saves,22,11,4.578269867715667,-1.2167492643746487
+goalie_opponent_context_trial,goals_against,22,11,1.3187778809621242,-0.357139789486145
+goalie_opponent_context_trial,shots_against_55_65_min,22,11,4.2126401546118935,-1.5738890538607941
+goalie_opponent_context_trial,saves_55_65_min,22,11,4.578269867715667,-1.2167492643746487
+goalie_opponent_context_trial,goals_against_55_65_min,22,11,1.3187778809621242,-0.357139789486145

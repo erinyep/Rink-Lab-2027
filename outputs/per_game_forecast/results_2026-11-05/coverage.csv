@@ -1,0 +1,2 @@
+games,forecast_player_ids,forecast_model_rows,players_with_positive_toi,modeled_positive_toi_players,unmodeled_actual_players,selected_scenario_players,selected_scenario_appeared,selected_scenario_nonparticipants
+11,485,2425,396,395,1,395,380,15

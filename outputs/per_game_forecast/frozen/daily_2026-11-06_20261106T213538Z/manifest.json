@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "released_at_utc": "2026-11-06T21:35:44.007553+00:00",
+  "statistical_history_last_game_date": "2026-11-05",
+  "games": 3,
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "availability": "timestamped_espn_labels_not_confirmed_lineups",
+  "source_bundle_manifest_sha256": "8be0d442eed39e1a0d1b01faedf3f8cb61a0cb16e3ea67acca5f7dbbd07f1f94",
+  "source_files_sha256": {
+    "team_projections.csv": "a609d64b89cc4fa514032c55aa6f8169081b126023f2d0015425a94752c18a3d",
+    "player_projections.csv": "6aca39a92d7d2a78b4a1557951c6e4de129776b98dc02a2c52198d563fffe4e5",
+    "goalie_projections.csv": "3c4946b1e5ff3cf8487c32cb39aae257851542f94715e542506d9a922e8c4ed2",
+    "game_team_coverage.csv": "98d4b370b238a6576f012e47d887b344e0b12bb679c6779b6ab19062c2a1587c"
+  },
+  "rows": {
+    "player_projections.csv": 690,
+    "team_projections.csv": 30,
+    "goalie_projections.csv": 30,
+    "game_team_coverage.csv": 6
+  },
+  "files": {
+    "player_projections.csv": "36b5affdb0775b66e7c53268950f3e5577087775ecaf5635a74778f1514f1184",
+    "team_projections.csv": "a609d64b89cc4fa514032c55aa6f8169081b126023f2d0015425a94752c18a3d",
+    "goalie_projections.csv": "85710f95418c9d82bde7eed7f02ebdb894ef85ebef8797c0e5f07a64975b9852",
+    "game_team_coverage.csv": "98d4b370b238a6576f012e47d887b344e0b12bb679c6779b6ab19062c2a1587c"
+  },
+  "privacy_note": "The public export omits fantasy_team_name so the connected league snapshot does not reveal other managers\u2019 roster ownership."
+}

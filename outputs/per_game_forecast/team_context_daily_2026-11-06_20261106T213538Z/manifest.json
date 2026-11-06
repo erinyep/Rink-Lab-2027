@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-11-06T21:37:32.246049+00:00",
+  "date": "2026-11-06",
+  "method": "team_goal_context_v2",
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261106T213450902692Z",
+  "moneypuck_sha256": "85069cc4f9ffd5f5fa638526a349d9ebaf43070b4e89422e8380235504afddba",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261106T213140Z",
+  "boxscores_sha256": "88945efe48fb7f17615c06a9e469ca6a5ea6bf9f63d2dfac22171ca30540ee49",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261106T213732246049Z",
+  "schedule_sha256": "b4bb5477e284d2a89c4dcf131e303a64e498758ffd8473291e7cc39c5a8f709c",
+  "files": {
+    "team_win_probabilities.csv": "4dd0202bef37f6ba5c25428cdc44b8b0176929e12e04c5f5980f738a98dea269",
+    "index.html": "1a3f625b3c138911fcbe0205ad285bf7f98a0df4a637182751b4683ddb469db6",
+    "input_reconciliation.csv": "011591180157eb19fd1fa749834109b4ac0bd3132f6311353f11d535c7ba517c",
+    "README.md": "2a3f595660916d176574e71f87ea28a6007c7503f63c10167bcea7ab4b7de512",
+    "team_goal_forecasts.csv": "1562edced999a01e2f572ed11f3dd5432a91246dd8c9191a7027c67b0f1c2f31"
+  }
+}

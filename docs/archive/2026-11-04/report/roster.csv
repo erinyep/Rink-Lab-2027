@@ -1,0 +1,23 @@
+player_name,lineup_slot,injury_status,decision_state,start_local,is_goalie,has_game,locked,blocked,expected_pp_points_if_plays,expected_toi_minutes_if_plays,expected_goals_if_plays,expected_shots_if_plays,expected_assists_if_plays,expected_plus_minus_if_plays,expected_hits_if_plays,expected_penalty_minutes_if_plays
+Quinn Hughes,Defense,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Tage Thompson,Forward,ACTIVE,upcoming,7:30 PM,False,True,False,False,0.271973466,18.7903067235,0.5257048093,3.4328358209,0.456053068,-0.0149253731,0.9933665008,0.4593698176
+Kirill Kaprizov,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Alex Tuch,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Jesper Wallstedt,Goalie,ACTIVE,no game today,,True,False,False,False,,,,,,,,
+Beckett Sennecke,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Luke Hughes,Defense,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Will Smith,Forward,ACTIVE,upcoming,10:00 PM,False,True,False,False,0.2213114754,17.5642138365,0.3196721311,2.2336065574,0.4303278689,-0.1352459016,0.2336065574,0.2540983607
+Logan Cooley,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Joel Eriksson Ek,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Vasily Podkolzin,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Matvei Michkov,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Logan Stankoven,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Cole Hutson,Defense,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Charle-Edouard D'Astous,Defense,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Luke Evangelista,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Gavin McKenna,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Pyotr Kochetkov,Goalie,ACTIVE,no game today,,True,False,False,False,,,,,,,,
+Viktor Arvidsson,Util,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Daniil Tarasov,Bench,ACTIVE,no game today,,True,False,False,False,,,,,,,,
+Philip Broberg,Defense,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Joel Farabee,Forward,ACTIVE,upcoming,10:00 PM,False,True,False,False,0.0933544304,17.0955283605,0.2278481013,1.8797468354,0.2658227848,-0.1439873418,0.7579113924,0.3939873418

@@ -5,13 +5,13 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's preparation — October 29
+## Today's preparation — November 6
 
-[MoneyPuck/Kalshi data use and all 11 games](outputs/per_game_forecast/pregame_data_use_2026-10-29/README.md) · [Local game outlook](docs/games/index.html) · [Fantasy report](reports/today/2026-10-29_quinn/index.html) · [Reproduction and scoring handoff](docs/history/pregame-2026-10-29.md).
+[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Fantasy report](reports/today/README.md) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z/README.md) · [Pregame handoff](docs/history/pregame-2026-11-06.md).
 
-All 11 games frozen pregame at 10:06 a.m. Eastern using complete official history through October 28 (202 games). MoneyPuck supplies lagged shot context and xG to specified challengers; source disagreements remain quarantined. Kalshi supplies 22 mapped winner quotes, with a separate later depth/trade snapshot, as an independent benchmark. Fantasy retains the adopted TOI policy and defaults for other categories. Lineups/starters remain provisional. Local views are updated; remote publication has not been performed.
+The three-game slate was frozen pregame at 4:35 p.m. Eastern using official history through November 5 (261 finals). Player rows condition on playing, goalie rows on a full start; lineup and goalie labels remain provisional. The ESPN league snapshot and fantasy report were refreshed at 4:34 p.m. Eastern. MoneyPuck lagged xG feeds the separate direct team-goal model; Kalshi is a read-only benchmark and does not feed forecasts. The complete public projection export omits fantasy-team ownership.
 
-Latest completed evaluation: [October 27 results](outputs/per_game_forecast/results_2026-10-27/README.md) and [October 28 shots/participation decision](docs/history/shots-participation-decision-2026-10-28.md), covering 59 frozen daily-model games. Earlier dated sections below are historical checkpoints.
+Latest completed evaluation: [November 5 results](outputs/per_game_forecast/results_2026-11-05/README.md), with the [November 4–5 comparison](outputs/per_game_forecast/results_2026-11-05/two_date_shots_metrics.csv). The established all-player calibrated-opponent SOG selection and fantasy category policies remain unchanged; the recent two-date sample does not justify another promotion or refit. Earlier dated sections below are historical checkpoints.
 
 ## Models updated — October 27
 
