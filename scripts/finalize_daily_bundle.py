@@ -91,11 +91,12 @@ def main():
     m['files']={f.name:sha(f) for f in p.glob('*.csv')}
     (p/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')
     replacements=tw[tw.model.eq('default') & tw.unidentified_replacement_skaters.gt(0)][['team','unidentified_replacement_skaters']]
-    guide=(f"# Daily projections — {m['date']}\n\nReleased {released.isoformat()}: {len(games)} games, all pregame. "
+    guide=(f"# Daily projections — {m['date']}\n\nReleased {released.isoformat()}: {len(games)} games, "
+        f"{validation['pregame_games']} pregame and {validation['late_games']} late-issued. "
         f"Statistical history ends {hist.game_date.max()} ({hist.game_id.nunique()} games).\n\n"
         "Start with player_projections.csv, team_projections.csv and goalie_projections.csv. Player means condition on playing; "
         "selected_for_trial is an assumed lineup, not a confirmed roster. Goalies condition on a full start; start shares are provisional. "
-        "Default remains baseline; other models remain trials.\n\n"
+        "Default remains baseline; other models remain trials. Late-issued rows are marked and are not prospective predictions.\n\n"
         f"Availability: {m.get('availability_status','timestamped_espn_labels')}. Public-only mode has unknown injuries and no ownership.\n\n"
         "## Unidentified lineup replacements\n\n"+(table(replacements) if len(replacements) else "None.")+"\n\n"
         "Source coverage/discrepancies: team_context.csv. Release checks: manifest.json. Actuals remain blank. "
@@ -107,6 +108,7 @@ def main():
         table(forecast_table)+'\n')
     print('Finalized bundle:',p)
     print('Reading guide:',report)
+    print('Pregame games:',validation['pregame_games'],'Late-issued games:',validation['late_games'])
     print('Player rows:',len(wide),'Team rows:',len(tw),'Goalie rows:',len(g))
 
 if __name__=='__main__':main()

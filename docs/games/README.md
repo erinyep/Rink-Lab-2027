@@ -1,10 +1,8 @@
-# NHL game outlook — 2026-11-06
+# NHL game outlook — 2026-11-07
 
 [Interactive matchups](index.html) · [Game predictions CSV](game_predictions.csv)
 
-[Complete player, team and goalie projections for all five saved models](https://github.com/erinyep/Rink-Lab-2027/tree/main/outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z) · [Direct team goals and win probabilities](https://github.com/erinyep/Rink-Lab-2027/tree/main/outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z) · [November 5 results](https://github.com/erinyep/Rink-Lab-2027/tree/main/outputs/per_game_forecast/results_2026-11-05)
-
-There are 3 games: 3 pregame forecasts and 0 late-issued.
+There are 12 games: 11 pregame forecasts and 1 late-issued.
 The goal numbers are projected means, not exact final scores. The side with the
 higher goal mean is the model scoring lean; no calibrated win odds are supplied.
 Simulation ranges and goalie start shares remain provisional. All five saved
@@ -19,9 +17,3 @@ teams. Any late-issued games are excluded by default.
 
 The page is a saved snapshot and does not update live. See the page's assumptions
 and manifest for limitations and source hashes.
-
-## Full frozen projections
-
-Browse all November 6 player, team and goalie rows in the [complete projection package](../../outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/README.md).
-The live view summarizes matchup forecasts; the package contains every saved
-model row. Other managers' fantasy-team ownership fields are omitted.

@@ -41,8 +41,16 @@ def main():
         (raw/'metadata.json').write_text(json.dumps(dict(url=url,retrieved_at_utc=datetime.now(timezone.utc).isoformat(),sha256=digest(raw/'schedule.json')),indent=2)+'\n')
     sm=json.loads((raw/'metadata.json').read_text())
     if digest(raw/'schedule.json')!=sm['sha256']:raise ValueError('Changed schedule source')
-    games=[g for d in json.loads((raw/'schedule.json').read_text())['gameWeek'] if d['date']==a.date for g in d['games'] if g['season']==20262027 and g['gameType']==2]
-    if not games or len({g['id'] for g in games})!=len(games):raise ValueError('Missing/duplicate scheduled games')
+    scheduled=[g for d in json.loads((raw/'schedule.json').read_text())['gameWeek'] if d['date']==a.date for g in d['games'] if g['season']==20262027 and g['gameType']==2]
+    if not scheduled or len({g['id'] for g in scheduled})!=len(scheduled):raise ValueError('Missing/duplicate scheduled games')
+    excluded=[];games=[]
+    for g in scheduled:
+        start=pd.Timestamp(g['startTimeUTC'])
+        if g['gameState'] not in {'FUT','PRE'} or start<=pd.Timestamp(now)+pd.Timedelta(minutes=10):
+            excluded.append(dict(game_id=g['id'],away=g['awayTeam']['abbrev'],home=g['homeTeam']['abbrev'],
+                start_time_utc=g['startTimeUTC'],game_state=g['gameState'],reason='started_or_within_10_minute_lead'))
+        else:games.append(g)
+    if not games:raise ValueError('No games remain with the required pregame lead')
     fixtures=[]
     for g in games:
         if pd.Timestamp(g['startTimeUTC'])<=pd.Timestamp(now)+pd.Timedelta(minutes=10):raise ValueError('Insufficient pregame lead')
@@ -68,14 +76,17 @@ def main():
     view=predictions[['away','home','away_goal_mean','home_goal_mean','home_win_probability','baseline_home_win_probability','probability_change_vs_baseline']].copy()
     for c in ['home_win_probability','baseline_home_win_probability','probability_change_vs_baseline']:view[c]=100*view[c]
     view=view.rename(columns={'home_win_probability':'home_win_percent','baseline_home_win_probability':'baseline_home_win_percent','probability_change_vs_baseline':'change_percentage_points'})
-    body=f'<p>{len(games)} games issued before puck drop. Fitted through {model["training_through"]}; includes yesterday’s official games. Team offense, opposing defense, home ice, rest and lagged xG now affect goal means.</p><main>'+view.round(3).to_html(index=False)+'</main>'
+    body=f'<p>{len(games)} of {len(scheduled)} scheduled games issued with at least ten minutes before puck drop. Fitted through {model["training_through"]}; uses official history through yesterday where available. Team offense, opposing defense, home ice, rest and lagged xG now affect goal means.</p><main>'+view.round(3).to_html(index=False)+'</main>'
+    if excluded:
+        body+='<p>Excluded from prospective forecasts: '+', '.join(f"{g['away']} at {g['home']} ({g['reason']})" for g in excluded)+'.</p>'
     body+='<p>Win probabilities are derived from the goal model, not a second independently fitted model. Positive change means higher home-win probability than the simple goal-history baseline. Lineups and starters are not confirmed inputs; p10–p90 goal ranges remain uncalibrated.</p><p><a href="team_win_probabilities.csv">Probability CSV</a> · <a href="team_goal_forecasts.csv">Goals and feature inputs CSV</a> · <a href="../history/'+a.model_release.name+'/README.md">Training and validation results</a></p>'
     (a.out/'index.html').write_text(page('Updated team model — '+a.date,body))
+    excluded_label=', '.join(f"{g['away']} at {g['home']}" for g in excluded) or 'none'
     (a.out/'README.md').write_text(f'''# Updated team model — {a.date}
 
 [Interactive forecasts](index.html) · [Goal and win forecasts](team_win_probabilities.csv) · [Lagged model inputs](team_goal_forecasts.csv).
 
-{len(games)} games, all issued before puck drop. Model `{model['selected_model']}` fit through {model['training_through']}.
+{len(games)} of {len(scheduled)} scheduled games were issued before puck drop. Model `{model['selected_model']}` fit through {model['training_through']}.
 Learned home ice, rest/back-to-back, own scoring and opposing goals allowed, plus lagged xG where applicable.
 The simple baseline is preserved alongside every updated prediction. Player/fantasy conditional means are unchanged;
 these are direct team forecasts, not a redistribution of player goals. No confirmed-goalie or injury effect is claimed.
@@ -83,9 +94,12 @@ Winner probabilities use independent Poisson scoring and equal tie splitting; in
 Model choice used the prior full season. Coefficients remain frozen through {model['training_through']};
 today's lagged feature inputs include official history through {cutoff}, without refitting coefficients.
 Future performance must be scored against this frozen release. Credit MoneyPuck.com for lagged xG data; absent or
-disagreeing xG rows remain excluded from rate updates, with official goals and schedule retained.
+disagreeing xG rows remain excluded from rate updates, with official goals and schedule retained. The MoneyPuck
+input vintage is documented in the manifest and reconciliation table. Games already started or within ten minutes
+of puck drop were excluded from this prospective issue: {excluded_label}.
 ''')
     (a.out/'manifest.json').write_text(json.dumps(dict(created_at_utc=now.isoformat(),date=a.date,method=model['version'],
+        scheduled_games=len(scheduled),excluded_games=excluded,
         model_release=str(a.model_release),model_release_sha256=digest(a.model_release/'manifest.json'),
         moneypuck=str(a.moneypuck),moneypuck_sha256=digest(a.moneypuck/'all_teams.csv'),boxscores=str(a.boxscores),
         boxscores_sha256=digest(a.boxscores/'metadata.json'),schedule_snapshot=str(raw),schedule_sha256=digest(raw/'schedule.json'),

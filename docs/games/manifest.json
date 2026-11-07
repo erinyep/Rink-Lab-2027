@@ -1,9 +1,9 @@
 {
-  "date": "2026-11-06",
-  "view_created_utc": "2026-11-06T21:46:56.410562+00:00",
-  "forecast_issued_utc": "2026-11-06T21:35:44.007553+00:00",
-  "frozen_bundle_manifest_sha256": "8be0d442eed39e1a0d1b01faedf3f8cb61a0cb16e3ea67acca5f7dbbd07f1f94",
-  "source_schedule_sha256": "b4bb5477e284d2a89c4dcf131e303a64e498758ffd8473291e7cc39c5a8f709c",
+  "date": "2026-11-07",
+  "view_created_utc": "2026-11-07T17:47:36.347001+00:00",
+  "forecast_issued_utc": "2026-11-07T17:44:44.097193+00:00",
+  "frozen_bundle_manifest_sha256": "b950fc8aaf811ed95f4d5aa0b3a692eeb32a4aa4c5ea3a64e884b265ed1e5d2d",
+  "source_schedule_sha256": "e6e67adce9631e63b5e3070a5cdd5d35ff29e0fd5f25c749d58b534aebf84ad8",
   "model_status": "existing_frozen_models_primary_all_player_sog_selected",
   "primary_sog_model": "calibrated_opponent_sog_trial",
   "code_sha256": {
@@ -13,11 +13,11 @@
     "daily_forecast_trial.json": "ba8e872ebe2f4d0b722deaac61c9fa1bbb74227658caba5bd38e640112061ced"
   },
   "files": {
-    "index.html": "f629b269c9f7be8cf73d62e8a8108f77834419a9846207ecf3ee54523b936fbe",
-    "goalie_scenarios.csv": "822684e09e1ca5edcfce26cd2747a9f28ae0819d7ef1c39a41c344da2b677554",
-    "outlook.json": "df96ff2d7a4350deed98bf08584edf8444d01995eb8df755bbb6903e495b241d",
-    "README.md": "40e94f91fef3f7ecf442d86ab4c95d766522159654558b7f790fe4e19f78ffc6",
-    "team_predictions.csv": "d60fb6104abb89e6824498027febc6f2808fe049ab538cfb3589ad9a9871a2c7",
-    "game_predictions.csv": "b2c9d4d6354abe7facea448d23ebb613db7d33a74f43c6b535bf0319b2c119b9"
+    "index.html": "12b812c81ef61b0e72716a578078f9e8dfbb7509152823961e5376807bef45a8",
+    "goalie_scenarios.csv": "dcdd3bae4decdb789b791874fe13c1f0ac30d83c5363e000b39b2423e530db7f",
+    "outlook.json": "dec9eef9b4e49e52698e0beb3d2b1c5513616561294fb63fa6a9443af02f98b1",
+    "README.md": "2fddd811c1a102a55e8b65cdb5c0c1db0413300abf3863524fe3b744d07b88a3",
+    "team_predictions.csv": "28e481474a838223755441cbf2929fc739c59dbbd4854d2b10e6b7eb4d5c81e0",
+    "game_predictions.csv": "6c5fcd9b98592410e459426802bf68b119528a9e5a078c56e10532ee61d34fd0"
   }
 }

@@ -1,5 +1,15 @@
 # Rink Lab — Next Steps
 
+## November 7 — full slate refreshed; one matchup issued late
+
+- Refreshed official NHL results and player stats through November 6: **264 final games** and **9,503 positive-TOI skater game rows**. The Nov. 7 slate has 12 scheduled games. The player/team/goalie release contains **2,720 player rows, 120 team rows and 116 goalie rows**: 11 games were pregame; Florida at Washington had started and is labeled late-issued, not prospectively scoreable. [Public projections](outputs/per_game_forecast/frozen/daily_2026-11-07_20261107T174425Z/README.md) · [Interactive outlook](docs/games/index.html) · [Pregame handoff](docs/history/pregame-2026-11-07.md).
+- The fitted team-goal model issued **11 of 12** scheduled games with the required ten-minute lead; Florida at Washington was excluded. It remains the existing challenger with coefficients frozen through October 26. [Team-model release](outputs/per_game_forecast/team_context_daily_2026-11-07_20261107T174829Z/README.md).
+- The fresh MoneyPuck download timed out. The complete November 6 snapshot was used instead; its NHL 2026-27 game coverage ends November 5, one day behind the official history cutoff. This lag was accepted explicitly and included in the release manifests. No model was refit and no selection policy changed.
+- Refreshed the ESPN league/status snapshot at 12:28 p.m. Eastern and generated today's fantasy report. Status and goalie-start labels remain provisional. [Fantasy report](docs/report/index.html).
+- NHL play-by-play now covers all 264 final games; four team-game SOG disagreements remain flagged. Do not score Florida–Washington as a prospective forecast.
+
+Next: after the November 7 games are final, refresh actuals and score only the 11 pregame games against matched outcomes. Retry the MoneyPuck refresh, retain the saved xG vintage, and do not infer performance from the late-issued matchup.
+
 ## November 6 — full projections published; November 5 scored
 
 - Refreshed the official NHL schedule/results and player stats through November 5: **261 final games** and **9,395 positive-TOI player/game rows**. Today’s three-game slate was issued at **4:35 p.m. Eastern**, before puck drop. The public export contains **690 player-model rows, 30 team-model rows and 30 goalie-model rows**, with fantasy ownership omitted. [All saved projections](outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/README.md) · [Pregame handoff](docs/history/pregame-2026-11-06.md) · [Interactive NHL outlook](docs/games/index.html).

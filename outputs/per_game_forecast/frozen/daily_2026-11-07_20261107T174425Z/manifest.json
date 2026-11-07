@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-07",
+  "released_at_utc": "2026-11-07T17:47:04.136119+00:00",
+  "statistical_history_last_game_date": "2026-11-06",
+  "games": 12,
+  "pregame_games": 11,
+  "late_games": [
+    {
+      "game_id": 2026020265,
+      "away": "FLA",
+      "home": "WSH"
+    }
+  ],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "availability": "timestamped_espn_labels_not_confirmed_lineups",
+  "injuries_as_of_utc": "2026-11-07T17:28:23.887089+00:00",
+  "moneypuck_latest_game_date": "2026-11-05",
+  "moneypuck_retrieved_at_utc": "2026-11-06T21:35:05.838129+00:00",
+  "moneypuck_context_lag_explicitly_accepted": true,
+  "source_bundle_manifest_sha256": "b950fc8aaf811ed95f4d5aa0b3a692eeb32a4aa4c5ea3a64e884b265ed1e5d2d",
+  "source_files_sha256": {
+    "player_projections.csv": "87e85097ad9f20c95e29f61786d9c9895a85f6eeeb60f1f14d5a897912d0566b",
+    "team_projections.csv": "ff291908e34d4e964dedde70908c783e79fdb2081dd5da2682fe84838443f8bb",
+    "goalie_projections.csv": "b684f37c7b9ab265b2f5474f0bb877db8dd6bb25a4c93de544abef57b2caaa87",
+    "game_team_coverage.csv": "a6e466466b9ec4005703ee2a0c68388da8d01e310a152a43173de8ae831d6b27"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 2720,
+    "team_projections.csv": 120,
+    "goalie_projections.csv": 116,
+    "game_team_coverage.csv": 24
+  },
+  "files": {
+    "team_projections.csv": "ff291908e34d4e964dedde70908c783e79fdb2081dd5da2682fe84838443f8bb",
+    "README.md": "32f96ce333e021a419254f5b068ab4ba5fdd06f00f7bf271a05826953edc825d",
+    "player_projections.csv": "f6509b7b37dce9859937bd76af65b5ad543dc72564f10eb40bd68cb26e0ff862",
+    "goalie_projections.csv": "ffa6b41f2638f3e210a14c414e403e3d2c63953d8b89865758daf9b8a751ead4",
+    "game_team_coverage.csv": "a6e466466b9ec4005703ee2a0c68388da8d01e310a152a43173de8ae831d6b27"
+  }
+}
