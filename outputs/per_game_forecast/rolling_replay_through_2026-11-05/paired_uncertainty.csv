@@ -1,0 +1,2 @@
+comparison,games,player_games,observed_mae_delta,interval_95_low,interval_95_high,calibrated_lower_error_games,seed,resamples,interval_method
+calibrated_opponent_sog_trial - default,206,7415,-0.017289460614414262,-0.020336565696054798,-0.014287179842057005,159,20261106,20000,paired bootstrap resampling whole games

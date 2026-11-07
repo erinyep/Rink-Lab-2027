@@ -1,0 +1,172 @@
+{
+  "created_at_utc": "2026-11-06T22:19:12.588030+00:00",
+  "through": "2026-11-05",
+  "games": 261,
+  "player_games": 9395,
+  "calibrated_games": 206,
+  "calibrated_player_games": 7415,
+  "calibration_training_dates": [
+    "2026-10-06",
+    "2026-10-07"
+  ],
+  "replay_scope": "conditional positive-TOI player SOG means; not availability or lineup selection",
+  "history_cutoff": "strictly before each complete game date",
+  "sources": {
+    "actuals_manifest_sha256": "2c7c6377f2753a3d86acebd354c4e403c250d6932179d3579d23d3c2e67ffa06",
+    "actuals_file_sha256": "3391d1b26af9c67d065d5a33a71c50cf34657c2a40d26b7b245493bdd9ec1427",
+    "boxscore_metadata_sha256": "88945efe48fb7f17615c06a9e469ca6a5ea6bf9f63d2dfac22171ca30540ee49",
+    "calibration_sha256": "052a754cc06dc04a310f8f109670ffc382166614fb4672e4a1e2d2f282c8a3ab",
+    "config_sha256": "ba8e872ebe2f4d0b722deaac61c9fa1bbb74227658caba5bd38e640112061ced",
+    "template_forecast_manifest_sha256": "58dfb0514543c86273d8fdad1754f7570825504f56a8cb849c5e999a84349190",
+    "saved_review_manifest_sha256": "7ca06f8a491527488f4c24fd3485d5547c0c625e43cf5c583415ed19c00fa014",
+    "prior_season_sources": [
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20212022_20261006T230706Z/nhl_skaters_2021_22.csv",
+        "md5": "0335fa0215943c52db6be587ea306307",
+        "rows": 1004,
+        "retrieved_at_utc": "2026-10-06 23:07:01 UTC",
+        "season_id": 20212022,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/summary"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20212022_20261006T230706Z/nhl_skaters_toi_2021_22.csv",
+        "md5": "cda8b5477cd9a76283664646c2b1ecf8",
+        "rows": 1004,
+        "retrieved_at_utc": "2026-10-06 23:07:03 UTC",
+        "season_id": 20212022,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/timeonice"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20212022_20261006T230706Z/nhl_skaters_realtime_2021_22.csv",
+        "md5": "d7904eca938b301c0dd87e50fcb027ab",
+        "rows": 1004,
+        "retrieved_at_utc": "2026-10-06 23:07:05 UTC",
+        "season_id": 20212022,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/realtime"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20222023_20261006T233642Z/nhl_skaters_2022_23.csv",
+        "md5": "58cf578203bce19f83f4ff53aa860e1b",
+        "rows": 951,
+        "retrieved_at_utc": "2026-10-06 23:36:34 UTC",
+        "season_id": 20222023,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/summary"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20222023_20261006T233642Z/nhl_skaters_toi_2022_23.csv",
+        "md5": "b9b0e01ba02929220300f6fea89ec14e",
+        "rows": 951,
+        "retrieved_at_utc": "2026-10-06 23:36:38 UTC",
+        "season_id": 20222023,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/timeonice"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20222023_20261006T233642Z/nhl_skaters_realtime_2022_23.csv",
+        "md5": "9f05f3ee70a73628c2ce10e8e211d99d",
+        "rows": 951,
+        "retrieved_at_utc": "2026-10-06 23:36:42 UTC",
+        "season_id": 20222023,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/realtime"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20232024_20261006T233715Z/nhl_skaters_2023_24.csv",
+        "md5": "76f9ac3eb9033a7c6d28e5eb47994de7",
+        "rows": 924,
+        "retrieved_at_utc": "2026-10-06 23:37:09 UTC",
+        "season_id": 20232024,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/summary"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20232024_20261006T233715Z/nhl_skaters_toi_2023_24.csv",
+        "md5": "9ac25197940c6de85ae9eed6ebcc666f",
+        "rows": 924,
+        "retrieved_at_utc": "2026-10-06 23:37:11 UTC",
+        "season_id": 20232024,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/timeonice"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20232024_20261006T233715Z/nhl_skaters_realtime_2023_24.csv",
+        "md5": "a340853f0d52e4e75270184b0bf9edbc",
+        "rows": 924,
+        "retrieved_at_utc": "2026-10-06 23:37:15 UTC",
+        "season_id": 20232024,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/realtime"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20242025_20261006T233849Z/nhl_skaters_2024_25.csv",
+        "md5": "ae1b9f2880f3f2e677e93eb73065e8a5",
+        "rows": 920,
+        "retrieved_at_utc": "2026-10-06 23:38:45 UTC",
+        "season_id": 20242025,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/summary"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20242025_20261006T233849Z/nhl_skaters_toi_2024_25.csv",
+        "md5": "b295f12836bac1b459f4b77941aaba60",
+        "rows": 920,
+        "retrieved_at_utc": "2026-10-06 23:38:46 UTC",
+        "season_id": 20242025,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/timeonice"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20242025_20261006T233849Z/nhl_skaters_realtime_2024_25.csv",
+        "md5": "6ed856eba55e46cc71a6a103081b83ef",
+        "rows": 920,
+        "retrieved_at_utc": "2026-10-06 23:38:48 UTC",
+        "season_id": 20242025,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/realtime"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20252026_20261006T230637Z/nhl_skaters_2025_26.csv",
+        "md5": "90d6e0703fb3a80774fb794d3fb715ed",
+        "rows": 940,
+        "retrieved_at_utc": "2026-10-06 23:06:32 UTC",
+        "season_id": 20252026,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/summary"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20252026_20261006T230637Z/nhl_skaters_toi_2025_26.csv",
+        "md5": "dbd85ff49f1ee54fff6bd108c79824b2",
+        "rows": 940,
+        "retrieved_at_utc": "2026-10-06 23:06:34 UTC",
+        "season_id": 20252026,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/timeonice"
+      },
+      {
+        "file": "data/raw/nhl/snapshots/fantasy_20252026_20261006T230637Z/nhl_skaters_realtime_2025_26.csv",
+        "md5": "de8254cadc2ebef30afbf995d6ae3a95",
+        "rows": 940,
+        "retrieved_at_utc": "2026-10-06 23:06:36 UTC",
+        "season_id": 20252026,
+        "game_type": 2,
+        "source": "https://api.nhle.com/stats/rest/en/skater/realtime"
+      }
+    ]
+  },
+  "code_sha256": "24ba12e6db94cf54b6cd246c6da7106bc80ca1029ba69f8912c94d33a108fa9e",
+  "files": {
+    "paired_game_metrics.csv": "be4275ceb75f40b8b623233a59259766d382a9980026ea825798c108cd89d75d",
+    "replay_agreement_summary.csv": "9b7fd864b17dc21a0bb6f79b7bc30a0dd2b7d7f2050c6b3b68154535b78ec520",
+    "README.md": "5316d2f6425822ee141605cffc25d35454aa7d4b4b4fcdb7f9d2171b24c9c103",
+    "game_coverage.csv": "d4180a1d508157fb344c1e84ad18d68680b9aa3e518c99ca6b02df43afdeb469",
+    "replay_vs_saved_forecasts.csv": "1ef0d5cf4a8a1de263cbcc5b1c01da7537c273bee91e815b4f602e366636fcfb",
+    "paired_uncertainty.csv": "febb4ab7f0999dfde4c470cdb79df7e47616e3d7f2cb363c70d76ebc3e1cbac8",
+    "model_metrics.csv": "5013066544a10d12bfa40c87f7220bd275a7d3cbd6fd0c0d3394c49f0b5d96be",
+    "shots_replay_all_games.csv": "261cfffb8d85a4484d69ab793e6eb88acca5cf14a5df2b6311bc2b87b014cd1e",
+    "metrics_by_date.csv": "7c91a59e63f5d00c2732ff81ba93438bad163c8ef15d97a5774b68de80219a3b"
+  }
+}

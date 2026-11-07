@@ -1,6 +1,6 @@
 # All saved daily-model results through November 5, 2026
 
-All available frozen five-model daily forecasts were scored against one refreshed official NHL actuals vintage through November 5. The 88 games below are the games with saved prospective five-model releases; the other 173 of 261 finals have no saved release and are not reconstructed. Player errors are conditional on playing; only positive-TOI actuals are included.
+All available frozen five-model daily forecasts were scored against one refreshed official NHL actuals vintage through November 5. The 88 games below are the games with saved prospective five-model releases; the other 173 of 261 finals have no saved release and are not reconstructed in this prospective review. A separate [past-only replay](../rolling_replay_through_2026-11-05/README.md) rebuilds conditional shots means for all 261 game dates from inputs cut off before each date; it is clearly labeled as retrospective and is not pooled with the saved releases. Player errors here are conditional on playing; only positive-TOI actuals are included.
 
 ## All-player shots
 
