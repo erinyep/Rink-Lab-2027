@@ -1,0 +1,51 @@
+{
+  "source": "MoneyPuck published game-by-game team download",
+  "url": "https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv",
+  "retrieved_at_utc": "2026-11-06T21:35:05.838129+00:00",
+  "license": "Non-commercial research with MoneyPuck attribution; see https://moneypuck.com/data.htm",
+  "source_sha256": "85069cc4f9ffd5f5fa638526a349d9ebaf43070b4e89422e8380235504afddba",
+  "source_rows": 234830,
+  "sha256": "eab60b41ab5e07683fd4e95f37f03c0b5bbe41acabfdd702b23203e8ef898bee",
+  "rows": 55090,
+  "seasons": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "regular_season_only": true,
+  "position": "Team Level",
+  "situations": [
+    "4on5",
+    "5on4",
+    "5on5",
+    "all",
+    "other"
+  ],
+  "rows_by_season": {
+    "2022": 13120,
+    "2023": 13120,
+    "2024": 13120,
+    "2025": 13120,
+    "2026": 2610
+  },
+  "rows_by_situation": {
+    "4on5": 11018,
+    "5on4": 11018,
+    "5on5": 11018,
+    "all": 11018,
+    "other": 11018
+  },
+  "latest_game_date_by_season": {
+    "2022": "20230414",
+    "2023": "20240418",
+    "2024": "20250417",
+    "2025": "20260416",
+    "2026": "20261105"
+  },
+  "field_scope": "All original MoneyPuck columns are retained for selected rows.",
+  "filter": "season in 2022-2026; position == Team Level; playoffGame == 0",
+  "purpose": "Compact team-game context for model training and current-season lagged forecasts. This is a filtered source release, not the full MoneyPuck download.",
+  "published_at_utc": "2026-11-07T18:03:13.972437+00:00"
+}

@@ -1,5 +1,11 @@
 # Forecast data priorities
 
+## Published MoneyPuck data — November 6, 2026 vintage
+
+The repository includes a compact [team-game release](../data/processed/moneypuck/team_context_20261106/README.md): **55,090 rows** from seasons 2022-23 through 2026-27, retaining every original column for regular-season Team Level records across all published situations. Its schema and `metadata.json` checksum match the current team-model loader. We compared its loaded history with the full local snapshot; both produce the same **11,024 team-history rows through November 6**. The full upstream CSV is about 128 MB, above GitHub's regular-file limit, so this filtered, source-hashed release is the practical version to publish.
+
+The repository also includes the byte-identical [2026-27 MoneyPuck shot archive](../data/raw/moneypuck/published/shots_2026_20261106/README.md), with 21,775 unblocked events through November 5 and its source and validation metadata. It can be processed again with the existing acquisition/shot-processing workflow and official NHL boxscores. Both releases credit MoneyPuck and document its non-commercial research-use terms. These are November 6 vintages; downloaded historical xG is not a historical as-of score.
+
 ## October 29 implementation
 
 [Today's full source-use report](../outputs/per_game_forecast/pregame_data_use_2026-10-29/README.md) records exact paths, timestamps, per-team coverage and game comparisons. Official history is complete through October 28: 202 games and 7,271 positive-TOI skater appearances. Current roster/ESPN status snapshots remain provisional participation evidence.
