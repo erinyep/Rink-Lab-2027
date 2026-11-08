@@ -15,6 +15,7 @@ import truststore
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.fantasy.per_game import forecast, TARGETS, require
 from src.fantasy.daily import current_from_games, recent_shot_usage, coherent_count_means, validate_exposure_population
+from src.fantasy.opportunity import historical_pp_prior, power_play_opportunity, apply_opportunity_means
 from src.fantasy.diagnostics import defense_opportunity
 from src.fantasy.play_by_play import lagged_defense_context, lagged_shot_quality
 from src.fantasy.availability import excluded_by_status
@@ -173,18 +174,26 @@ def main():
                 recent_toi=toi[toi.player_id==pid].sort_values(['game_date','game_id']).tail(cfg['recent_window_games'])
                 pp=float(recent_toi.pp_toi_seconds.mean()/60) if len(recent_toi) else np.nan
                 ev=float(recent_toi.ev_toi_seconds.mean()/60) if len(recent_toi) else np.nan
+                pp_prior=historical_pp_prior(panel,pid,group,season)
+                pp_opportunity=power_play_opportunity(hist,toi,pid,a.date,
+                    pp_prior['prior_pp_minutes'],pp_prior['prior_pp_rate'],usage['usage_toi_minutes'],
+                    window=cfg['recent_window_games'],exposure_prior_games=cfg['pp_exposure_prior_games'],
+                    rate_prior_minutes=cfg['pp_rate_prior_minutes'])
                 benchmark=bench.loc[pid].espn_projected_sog_per_game if pid in bench.index else np.nan
-                features.append(dict(**identity,**usage,**factor,home_away='home' if side=='homeTeam' else 'away',days_since_previous_team_game=rest,back_to_back=rest==1,baseline_toi_minutes=base['toi_minutes'],baseline_shots=base['shots'],excluded_by_injury=excluded_by_status(status),recent_pp_toi_minutes_per_game=pp,recent_ev_toi_minutes_per_game=ev,espn_projected_sog_per_game=benchmark,pp_usage_status='context_only_coefficient_not_fitted'))
+                features.append(dict(**identity,**usage,**factor,**pp_prior,**pp_opportunity,home_away='home' if side=='homeTeam' else 'away',days_since_previous_team_game=rest,back_to_back=rest==1,baseline_toi_minutes=base['toi_minutes'],baseline_shots=base['shots'],excluded_by_injury=excluded_by_status(status),recent_pp_toi_minutes_per_game=pp,recent_ev_toi_minutes_per_game=ev,espn_projected_sog_per_game=benchmark,pp_usage_status='separate_opportunity_trial_no_fitted_opponent_effect'))
                 audit.append(dict(**identity,has_forecast=True,played_last_team_game=pid in lastids,toi_minutes_per_game=base['toi_minutes']))
                 player_means[pid]={}
                 for model in cfg['models']:
                     means=base.copy()
-                    if model in ['candidate','calibrated_opponent_sog_trial','usage_shot_context_trial']:
+                    if model in ['candidate','calibrated_opponent_sog_trial','usage_shot_context_trial','usage_toi_only_trial','pp_opportunity_trial']:
                         for e in ['shots','assists']:means[e]*=cal['factors'][e]['multiplier']
-                    if model in ['opponent_form_sog_trial','calibrated_opponent_sog_trial']:means['shots']*=factor['original_current_sog_factor']
+                    if model in ['opponent_form_sog_trial','calibrated_opponent_sog_trial','usage_toi_only_trial','pp_opportunity_trial']:means['shots']*=factor['original_current_sog_factor']
                     if model=='usage_shot_context_trial':
                         means['shots']=usage['usage_shots_before_context']*cal['factors']['shots']['multiplier']*factor['blended_sog_factor']
                         means['toi_minutes']=usage['usage_toi_minutes']
+                    if model in ['usage_toi_only_trial','pp_opportunity_trial']:
+                        means=apply_opportunity_means(means,usage['usage_toi_minutes'],
+                            pp_opportunity if model=='pp_opportunity_trial' else None)
                     original_shots=means['shots'];original_ppp=means['pp_points']
                     means,constraints=coherent_count_means(means)
                     player_means[pid][model]=means
@@ -213,9 +222,9 @@ def main():
                 for pos,slots in missing_slots.items():
                     for slot in range(slots):
                         mm={e:float(prior.loc[pos,e]) for e in TARGETS}
-                        if model in ['candidate','calibrated_opponent_sog_trial','usage_shot_context_trial']:
+                        if model in ['candidate','calibrated_opponent_sog_trial','usage_shot_context_trial','usage_toi_only_trial','pp_opportunity_trial']:
                             for e in ['shots','assists']:mm[e]*=cal['factors'][e]['multiplier']
-                        if model in ['opponent_form_sog_trial','calibrated_opponent_sog_trial']:mm['shots']*=factor['original_current_sog_factor']
+                        if model in ['opponent_form_sog_trial','calibrated_opponent_sog_trial','usage_toi_only_trial','pp_opportunity_trial']:mm['shots']*=factor['original_current_sog_factor']
                         if model=='usage_shot_context_trial':mm['shots']*=factor['blended_sog_factor']
                         mm,_=coherent_count_means(mm);replacement_shots+=mm['shots']
                         dd=simulate_counts(mm,draws=cfg['draws'],seed=int(a.date.replace('-','')),key=f'{gid}:{team}:unidentified_{pos}:{slot}')
@@ -250,11 +259,11 @@ def main():
         game_issue_timing=frames['game_team_coverage'][['game_id','issue_timing']].drop_duplicates().to_dict('records'),
         limitations=['Current statistical inputs end before target day. Current rosters/injuries are retrieved at issuance; late rows are not historical pregame forecasts.',
             'No models promoted; added usage/context assumptions remain unvalidated.', 'Lineups and goalie starts are provisional; conditional forecasts are not participation forecasts.',
-            'State-specific usage and source benchmarks are contextual inputs pending validation; no fitted PP effect or schedule/rest coefficient.',
+            'PP opportunity uses fixed recent-minute and event-rate shrinkage in a separate challenger; unidentified replacements retain position priors. No fitted opponent PP or schedule/rest coefficient.',
             'Poisson intervals assume conditional independence across players and are not calibrated.'])
     manifest['files']={p.name:sha(p) for p in out.glob('*.csv')}
     manifest['input_manifest_sha256']=sha(inputs/'manifest.json')
-    manifest['code_sha256']={str(p):sha(p) for p in [Path(__file__),Path('src/fantasy/daily.py'),Path('src/fantasy/diagnostics.py'),Path('src/fantasy/play_by_play.py'),Path('src/fantasy/shot_context.py'),Path('config/daily_forecast_trial.json')]}
+    manifest['code_sha256']={str(p):sha(p) for p in [Path(__file__),Path('src/fantasy/daily.py'),Path('src/fantasy/opportunity.py'),Path('src/fantasy/diagnostics.py'),Path('src/fantasy/play_by_play.py'),Path('src/fantasy/shot_context.py'),Path('config/daily_forecast_trial.json')]}
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print('Daily bundle:',out)
     print(frames['game_team_coverage'].groupby('issue_timing').game_id.nunique().to_string())

@@ -65,6 +65,8 @@ class IssuanceTests(unittest.TestCase):
         args=self.sample(); args[0]['injuries_as_of_utc']='2026-10-19T01:00Z'
         with self.assertRaisesRegex(ValueError,'Stale'): validate_release(*args)
         args=self.sample(); args[-1]=pd.Timestamp('2026-10-20T22:55Z'); args[0]['injuries_as_of_utc']='2026-10-20T22:00Z'
+        # Lead time is measured from issuance, not evaluation of a saved bundle.
+        args[0]['created_at_utc']=args[-1].isoformat()
         with self.assertRaisesRegex(ValueError,'lead time'): validate_release(*args)
         args=self.sample(); args[2]=args[2].iloc[:-1]
         with self.assertRaisesRegex(ValueError,'Incomplete model'): validate_release(*args)

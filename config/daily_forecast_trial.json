@@ -1,13 +1,16 @@
 {
-  "version": "daily_usage_context_v1",
-  "models": ["default", "candidate", "opponent_form_sog_trial", "calibrated_opponent_sog_trial", "usage_shot_context_trial"],
+  "version": "daily_usage_context_v2_opportunity_challengers",
+  "models": ["default", "candidate", "opponent_form_sog_trial", "calibrated_opponent_sog_trial", "usage_shot_context_trial", "usage_toi_only_trial", "pp_opportunity_trial"],
   "draws": 10000,
   "recent_window_games": 5,
   "toi_prior_games": 10,
   "rate_prior_minutes": 200,
   "team_prior_games": 20,
-  "status": "fixed_experimental_assumptions_not_tuned_on_october_9",
-  "new_model_scope": "SOG and conditional TOI only; other means follow candidate",
+  "pp_exposure_prior_games": 10,
+  "pp_rate_prior_minutes": 120,
+  "status": "existing_policies_retained_new_opportunity_challengers_not_promoted",
+  "challenger_evidence": "outputs/per_game_forecast/model_challengers_2026-11-08",
+  "new_model_scope": "Existing models unchanged. usage_toi_only_trial retains calibrated SOG and changes only conditional TOI. pp_opportunity_trial additionally changes PPP using prior-season event rates and recent pre-date PP exposure; no participation or opponent PP coefficient.",
   "primary_sog_model": "calibrated_opponent_sog_trial",
   "promotion": "primary_for_all_player_sog_from_2026-11-04; fantasy_shots_remain_default"
 }

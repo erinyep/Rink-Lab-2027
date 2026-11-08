@@ -71,9 +71,12 @@ def main():
     from src.fantasy.history import archive_snapshot
     archive_snapshot(bundle,Path('data/processed/prediction_history'),'predictions')
     if team_model:
-        run('issue_team_context_forecasts.py',['--date',target,'--model-release',team_model['model_release'],
+        team_args=['--date',target,'--model-release',team_model['model_release'],
             '--moneypuck',inputs['moneypuck_snapshot'],'--boxscores',inputs['boxscore_history'],
-            '--out',str(Path('outputs/per_game_forecast')/('team_context_'+Path(bundle).name))])
+            '--out',str(Path('outputs/per_game_forecast')/('team_context_'+Path(bundle).name))]
+        if team_model.get('probability_calibration_release'):
+            team_args+=['--probability-calibration-release',team_model['probability_calibration_release']]
+        run('issue_team_context_forecasts.py',team_args)
     print('Issued bundle:',bundle)
 
 

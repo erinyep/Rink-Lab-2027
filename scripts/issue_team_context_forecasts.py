@@ -14,6 +14,7 @@ from scipy.stats import poisson
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.fantasy.team_goal_model import load_history,build_features,predict_goals
 from src.fantasy.team_probability import scoring_win_probability
+from src.fantasy.probability_calibration import calibrated_probability
 from src.fantasy.history import archive_snapshot
 from scripts.evaluate_daily_forecasts import verify_manifest_files,digest
 from scripts.publish_results_update import page
@@ -24,6 +25,8 @@ def main():
     ap.add_argument('--date',required=True)
     for key in ['model-release','moneypuck','boxscores','out']:ap.add_argument('--'+key,type=Path,required=True)
     ap.add_argument('--schedule-snapshot',type=Path)
+    ap.add_argument('--probability-calibration-release',type=Path,
+        help='Save experimental calibrated probabilities separately from selected raw probabilities')
     a=ap.parse_args()
     if a.out.exists():raise ValueError('Preserve previous issuances')
     mm=verify_manifest_files(a.model_release,[]);model=json.loads((a.model_release/'fitted_model.json').read_text())
@@ -69,7 +72,18 @@ def main():
             baseline_home_goals=f.loc[h,'baseline'],baseline_away_goals=f.loc[away,'baseline'],baseline_home_win_probability=base,
             probability_change_vs_baseline=prob-base,issued_at_utc=now.isoformat(),model=model['version'],specification=model['selected_model'],
             training_through=model['training_through'],status='updated_team_model_pending_prospective_validation',actual_home_win=None))
-    predictions=pd.DataFrame(rows);a.out.mkdir(parents=True)
+    predictions=pd.DataFrame(rows)
+    calibration=None
+    if a.probability_calibration_release:
+        verify_manifest_files(a.probability_calibration_release,[])
+        calibration=json.loads((a.probability_calibration_release/'probability_calibration.json').read_text())
+        if calibration['raw_model_release_sha256']!=digest(a.model_release/'manifest.json'):
+            raise ValueError('Probability calibrator belongs to a different team model')
+        predictions['calibrated_home_win_probability']=calibrated_probability(predictions.home_win_probability,calibration,a.date)
+        predictions['calibrated_away_win_probability']=1-predictions.calibrated_home_win_probability
+        predictions['probability_calibration_status']=calibration['status']
+        predictions['probability_calibration_training_through']=calibration['training_through']
+    a.out.mkdir(parents=True)
     predictions.to_csv(a.out/'team_win_probabilities.csv',index=False)
     features.to_csv(a.out/'team_goal_forecasts.csv',index=False)
     audit.to_csv(a.out/'input_reconciliation.csv',index=False)
@@ -97,12 +111,17 @@ Future performance must be scored against this frozen release. Credit MoneyPuck.
 disagreeing xG rows remain excluded from rate updates, with official goals and schedule retained. The MoneyPuck
 input vintage is documented in the manifest and reconciliation table. Games already started or within ten minutes
 of puck drop were excluded from this prospective issue: {excluded_label}.
+
+Probability calibration challenger: {'saved separately in the probability CSV; raw probabilities remain selected' if calibration else 'not supplied'}.
 ''')
     (a.out/'manifest.json').write_text(json.dumps(dict(created_at_utc=now.isoformat(),date=a.date,method=model['version'],
         scheduled_games=len(scheduled),excluded_games=excluded,
         model_release=str(a.model_release),model_release_sha256=digest(a.model_release/'manifest.json'),
         moneypuck=str(a.moneypuck),moneypuck_sha256=digest(a.moneypuck/'all_teams.csv'),boxscores=str(a.boxscores),
         boxscores_sha256=digest(a.boxscores/'metadata.json'),schedule_snapshot=str(raw),schedule_sha256=digest(raw/'schedule.json'),
+        probability_calibration_release=str(a.probability_calibration_release) if calibration else None,
+        probability_calibration_manifest_sha256=digest(a.probability_calibration_release/'manifest.json') if calibration else None,
+        probability_calibration_code_sha256=digest('src/fantasy/probability_calibration.py'),
         files={p.name:digest(p) for p in a.out.iterdir() if p.is_file()}),indent=2)+'\n')
     archive_snapshot(a.out,Path('data/processed/prediction_history'),'team_context_predictions')
     print('Updated team forecast:',a.out);print(view.round(3).to_string(index=False))

@@ -1,0 +1,36 @@
+{
+  "target_date": "2026-11-08",
+  "source_hashes": {
+    "data/processed/forecasts/fantasy_game_details_20261108T152110Z/manifest.json": "d768e7053fd1a53b1ebe0d6dd02dbc358d6218d693d5f712ebeda3df1eb4e420",
+    "data/processed/nhl/game_toi_20262027_20261108T144042Z/manifest.json": "17fe9ab36a03a4ba598cb47412aae6b63ba25f78f17fbc286fef49f005346343",
+    "data/processed/forecasts/per_game_20262027_20261017T171239Z/validated_player_seasons.csv": "c5348b1b3b4cff0cdbd8d4cc7e044493975016d260cba97873d8091466ee15d3",
+    "outputs/per_game_forecast/frozen/daily_2026-11-04_20261104T153917Z/manifest.json": "e9993ad3b2a009147ed35c6d0e85f9c28afad1a36772fd4e842990403a7f21db",
+    "outputs/per_game_forecast/frozen/daily_2026-11-05_20261105T204849Z/manifest.json": "1820abeaca9c2e9491584a026c8b8f3fb1488b81f35e4b9388ca8b13ddcc6d0d",
+    "outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/manifest.json": "701ff30c43ffb92e3fb7f0c2fb1052971c05d0ea36a2b9e5e9b25956ca5a6a9a",
+    "outputs/per_game_forecast/frozen/daily_2026-11-07_20261107T174425Z/manifest.json": "bba9369f99fd6407151149adc9d0472d0a0be2c24d7c8dda9da75251e9e836e8",
+    "outputs/per_game_forecast/team_context_daily_2026-10-27_20261027T132258Z/manifest.json": "96fa2a8092c4f55d28b12f7fc9e0b64ad562dc67f019630fe9587b9ed599b9ea",
+    "outputs/per_game_forecast/team_context_daily_2026-10-29_20261029T140615Z/manifest.json": "17051d4c453ec8a647f73e2ae73146db04d48349589f9967e19bf75012877402",
+    "outputs/per_game_forecast/team_context_daily_2026-10-30_20261030T161300Z/manifest.json": "9f6c77f4f0ed7cdc841c80a57677580daf743eda4146da3524234213415136a1",
+    "outputs/per_game_forecast/team_context_daily_2026-11-04_20261104T160000Z/manifest.json": "158ab125d4e7ce24d149fe099a92e1268bd8289c7c133af648485f4a667b73c8",
+    "outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z/manifest.json": "cdc14e3bb64d2880edd9db3c1a9ed266daaff4f101bf1a845a7e934f5d484a9a",
+    "outputs/per_game_forecast/team_context_daily_2026-11-07_20261107T174829Z/manifest.json": "179c423ad14d50bbc95d453a9e7d882e18a3f32b49eca5158354a0e3d86bca2a"
+  },
+  "config_sha256": "2cf0505a48c744bb6db1a357a9c6032f17ac53158a1e06de50e98391b1c1b2ee",
+  "code_sha256": {
+    "/Users/erinyepis/Documents/GitHub/Rink-Lab-2027/scripts/update_model_challengers.py": "42b2a36a053aa87e35132f58b618391608a47afc3b649e4064175f41a3d210f1",
+    "src/fantasy/opportunity.py": "9156a724b9cfa33a3d5c562b47f0069f7518c59bc2d9efce4eb7e97d032607ee",
+    "src/fantasy/probability_calibration.py": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9"
+  },
+  "files": {
+    "probability_fitted_holdout_metrics.csv": "118a4536035c914eb92c85669eac700233c9c1ed257b502c4b97d737ba4f3ba7",
+    "probability_reliability.csv": "694e9dd1d186986046fa4b3a9b2fae7227f751d531f73f2492e46f1981a393af",
+    "player_metrics.csv": "1d439bf6d47bd136aab991013e8eee99c17f82365bc5d6592d614f693df8188e",
+    "probability_walk_forward_scores.csv": "b76ba08cad17f3c8edb46e5dbf4d11bfb9ab4f75d611f7a9f3996cb7a9bfc0dd",
+    "README.md": "5bbc6bb62bbd860cf9b3ee342731b3f75179e6c87cd818e8f493a30112c8a341",
+    "probability_metrics.csv": "c8c41dec6856c7d76bfe04b00373db25791bed7b2302859d4abe9aef6995a50e",
+    "player_challenger_rows.csv": "67535199f9cddac675e2f2e47de96c7bcfe683ae02b49585ad2dcdf40fa0f414",
+    "probability_training_rows.csv": "95098a5cb1f4535d8259ab57c3c1c9e6ec487d0b54789eb7509e299dd8cbb38f",
+    "probability_folds.json": "2109b5121c1479c4204ba91ea3f403be88226fe94b8495d1dbb7e0c651838510",
+    "probability_calibration.json": "ad80a530774ebfb2b70ba6f52d8a5bb70932c78dd65c5b1133aa2e54400f7d9a"
+  }
+}

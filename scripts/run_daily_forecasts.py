@@ -83,6 +83,15 @@ def main():
     sys.path.insert(0, str(ROOT))
     from src.fantasy.history import archive_snapshot
     archive_snapshot(bundle, Path('data/processed/prediction_history'), 'predictions')
+    team_config=ROOT/'config/team_goal_model_active.json'
+    if team_config.exists():
+        active=json.loads(team_config.read_text())
+        team_args=['--date',args.date,'--model-release',active['model_release'],
+            '--moneypuck',mp,'--boxscores',boxes,
+            '--out',ROOT/'outputs/per_game_forecast'/('team_context_'+bundle.name)]
+        if active.get('probability_calibration_release'):
+            team_args+=['--probability-calibration-release',active['probability_calibration_release']]
+        run('issue_team_context_forecasts.py',*team_args)
     run('build_nhl_outlook.py','--bundle',bundle,'--out',bundle/'nhl_outlook')
     report_config=ROOT/'config/fantasy_report.json'
     report_team=args.report_team_id

@@ -82,7 +82,7 @@ def main():
 There are {len(games)} games: {pregame} pregame forecasts and {len(games)-pregame} late-issued.
 The goal numbers are projected means, not exact final scores. The side with the
 higher goal mean is the model scoring lean; no calibrated win odds are supplied.
-Simulation ranges and goalie start shares remain provisional. All five saved
+Simulation ranges and goalie start shares remain provisional. All saved
 models can be compared without changing the frozen forecasts. The
 calibrated-opponent SOG model is selected by default for all-player NHL shots
 based on the season-to-date paired evaluation; fantasy shots retain their

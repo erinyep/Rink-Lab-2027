@@ -1,0 +1,41 @@
+{
+  "scope": "Saved evaluation vintages extended through November 7; not a full historical actuals refresh",
+  "source_manifest_hashes": {
+    "outputs/per_game_forecast/season_through_2026-11-05/manifest.json": "7ca06f8a491527488f4c24fd3485d5547c0c625e43cf5c583415ed19c00fa014",
+    "outputs/per_game_forecast/results_2026-10-27/manifest.json": "87142c9699e4d42738d757327affe65f9feb6115f0c52fca7cfb539945565bb8",
+    "outputs/per_game_forecast/results_2026-10-29/manifest.json": "e7600ad45f25c8c17bcc4a7dc2dc03b96baeda87bae50ae199b9e439966330f7",
+    "outputs/per_game_forecast/results_2026-10-30/manifest.json": "f86ef4a1b957860f47c583574a81d3ec17bd40164f55f22ad7ac539f0081319b",
+    "outputs/per_game_forecast/results_2026-11-04/manifest.json": "1bd59ef4f645d8e96ca106a4f4a058b970ebe99f8c519c05d1da939f157b653d",
+    "outputs/per_game_forecast/results_2026-11-06/manifest.json": "2fde4a7affb4e43f5f313188fa8016e7ff1cb39618a2ec3eda53353ed290487d",
+    "outputs/per_game_forecast/results_2026-11-07/manifest.json": "253e27f361c04b2896911af2b5a285344e4e58b1a1bcae83b3ed9cb9d2571a77"
+  },
+  "bootstrap_seed": 20261108,
+  "bootstrap_draws": 20000,
+  "shots": "Matched player absolute-error differences; cluster sums divided by resampled participant counts",
+  "winners": "Matched direct/original game Brier differences; resampled whole games",
+  "files": {
+    "goalie_starter_scores.csv": "6627828a0059a984f12b6980c179829245dd0ffc33f8d007df484fb52a85b768",
+    "team_metrics.csv": "61603afe5726af74473599f7b59928701ab149948ff47d630eaaaa19c9d0141e",
+    "winner_uncertainty.csv": "93638060e0be465a4751eaac86955df014467343313d8acc8abf99f05beba196",
+    "cumulative_winner_scores.csv": "d68e648235c27484d2df38184736427ae6eda434e0b79e8a2e968e15fd438218",
+    "coverage.csv": "7970aab40e013a1222f402ff5d3d1aafca515157a98df721927185d7c19de486",
+    "cumulative_shots_metrics.csv": "e16235e0b4c7ed1fd2a1c00722d70abd6acf848198f5d41c8750cd4381dae511",
+    "player_shots_by_game.csv": "879502c63d4919d23b8ec699b90c37a74f188d673537212466e3e97733a1c113",
+    "player_metrics.csv": "1e651853467541780b9a0adbccabd5d3c2c1eb1504eaf0874ee6f3b44285417f",
+    "goalie_scores.csv": "d54c55ae5fed06d7bcd8f2bd61918311ef4b20afcd8bdd2f595f4ce54246b77b",
+    "winner_scores.csv": "19eb21ef085dcfececd4929c7614c7b489fe7a14c98e20e9e87d4f30fd652968",
+    "player_category_scores.csv": "936ac83f1e33fefd39c36dbc2df7689cbd0084b7d77d4608f7c37390e96ca646",
+    "README.md": "862d78baf3f20fba377c7797eb956d1b91e00ae65ed44dffb9c70be76c7151ca",
+    "winner_metrics.csv": "c9ec7e7c04c1c3eeffcc36bd082fa1148b4956779604ff7b5014ebdc501832af",
+    "shots_uncertainty.csv": "98d34c4d140637a881bc532e9411cb0d9d510036a7f6a30f6ed5bff1b4f503d5",
+    "player_projections_scored.csv": "af53f3d95ff3807b1aa0e4aa45dec358f459ae59a05e7ab76880856004147b71",
+    "manifest.json": "253e27f361c04b2896911af2b5a285344e4e58b1a1bcae83b3ed9cb9d2571a77",
+    "cumulative_shots_scored.csv": "ed77602b973192a733b34cbb928aede256407608852d3b1c1cff1edfd153d367",
+    "cumulative_winner_metrics.csv": "ea60ee3b6dab78fcafa283c8efc3d9f81b076308af2e9192cf9bc84dacbb91ce",
+    "unmodeled_actual_skaters.csv": "f72657681ff9853ab8f659ec3c948d2464cede9466efbcdb0eecfe5e12538912",
+    "goalie_metrics.csv": "6b1a7062f27ab4e4b45b3c088ece29ef175628487701a2087d3703800c60ce1c",
+    "excluded_late_games.csv": "15bf014dfb2bdfe0cb79975427929437e29728a6f933e55a1f0fa5badcd1ee0b",
+    "team_category_scores.csv": "e4486b82bcc9e73faeb85015db6b153ebadd7b2d31f5109fe2f1957a03c2d243",
+    "team_games.csv": "e7bfbbaa22b7f6cbb31c9874bc77e9110633bb415653090ad5962364e6d0dbb5"
+  }
+}

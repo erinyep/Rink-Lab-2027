@@ -62,7 +62,10 @@ def main():
     lineup=pd.read_csv(p/'inputs/lineup_audit.csv')
     wide=wide.merge(lineup[['game_id','player_id','selected_for_trial','selection_reason']],on=['game_id','player_id'],validate='many_to_one')
     pc=pd.read_csv(p/'player_context.csv')
-    wide=wide.merge(pc[['game_id','player_id','recent_pp_toi_minutes_per_game','recent_ev_toi_minutes_per_game','espn_projected_sog_per_game']],on=['game_id','player_id'],validate='many_to_one')
+    context_fields=['game_id','player_id','recent_pp_toi_minutes_per_game','recent_ev_toi_minutes_per_game','espn_projected_sog_per_game']
+    context_fields += [c for c in ['expected_pp_minutes','expected_non_pp_minutes','pp_points_per_minute',
+        'prior_pp_minutes','prior_pp_rate','pp_prior_source','pp_model_status'] if c in pc]
+    wide=wide.merge(pc[context_fields],on=['game_id','player_id'],validate='many_to_one')
     tk=['game_id','team','model'];tw=t.pivot(index=tk,columns='category',values='projection_mean').reset_index()
     tw=tw.rename(columns={c:'expected_'+c for c in ['goals','assists','shots','hits','points','pp_points']})
     ident=['opponent','issue_timing','start_time_utc','lineup_status','identified_skaters','unidentified_replacement_skaters']

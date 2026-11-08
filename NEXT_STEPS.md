@@ -1,5 +1,24 @@
 # Rink Lab — Next Steps
 
+## November 8 — isolated workload, PP and probability challengers added
+
+- Added `usage_toi_only_trial` (existing usage TOI with calibrated SOG unchanged) and `pp_opportunity_trial` (also predicts PPP from expected PP minutes × a shrunk event rate). Existing five-model means and fantasy policies are preserved; the PP model is not promoted. [Implementation guide](docs/MODEL_CHALLENGERS.md) · [Validation and artifacts](outputs/per_game_forecast/model_challengers_2026-11-08/README.md).
+- Refreshed and reconciled all **276 finals / 9,935 positive-TOI skater-games** against official EV/PP/PK exposure. On **1,041 appearances / 29 games across Nov. 4–7**, usage TOI MAE is **2.062 versus 2.203 minutes**; PP minute MAE **0.865 versus prior 0.952**. PPP Brier slightly improves **0.07837 → 0.07744**, but count MAE worsens **0.18337 → 0.18802**. These reconstructed challengers remain retrospective. November 7 PP minutes were overpredicted while PP points were underpredicted, so increasing PP volume alone is not the explanation.
+- Added regularized, earlier-date-only team probability calibration. Eleven eligible held-out games score Brier **0.18427 versus raw 0.18710**; this is insufficient for promotion. A separate future challenger artifact uses 43 prior issued games through Nov. 7. Both daily runners save calibrated probabilities alongside raw values; raw remains selected. Public evaluation now supports the separate calibrated columns.
+- Added cutoff, missing-exposure, prior/fallback, count-isolation and probability tests. All **99 tests pass**. Local six-game player and team builds exercised the new models; no forecast page was published. Fixed an existing lead-time test fixture to move the issuance timestamp as well as the validation time.
+
+Next: collect prospective outcomes for the new challengers, investigate PP deployment/rate stability, and then add automatic roster/status refresh as a separate task. Do not promote PP or calibrated probabilities based on this short sample.
+
+## November 8 — November 6–7 forecasts evaluated
+
+- Scored the published frozen forecasts against official NHL boxscores and scoring summaries acquired November 8. November 7 covers **11 pregame games / 395 modeled positive-TOI skater appearances**; Florida–Washington remains excluded as late-issued. One actual skater was omitted, and 21 assumed-lineup selections did not appear. [Detailed model review](outputs/per_game_forecast/results_2026-11-07/README.md) · [November 6 evaluation](outputs/per_game_forecast/results_2026-11-06/README.md).
+- November 7 original player-sum winner picks were **10/11**, direct team **8/11**; direct probabilities had lower Brier (**0.1871 versus 0.1987**). Across six saved comparison dates / 43 games, direct Brier is **0.2215 versus 0.2381**, but the paired game-bootstrap difference interval includes zero. Retain experimental status; original probabilities use the existing transform of frozen scoring means.
+- Calibrated all-player SOG MAE was **0.9841 versus default 1.0063**. Extending the existing through-November-5 evaluation with November 6–7 yields **3,662 player-games / 102 games**, calibrated **1.0157 versus 1.0321** (1.59% lower). This combines saved actuals vintages; it is not a complete re-score of historical actuals. Keep fantasy category decisions separate.
+- Usage-trial conditional TOI MAE improved **2.055 to 1.935 minutes** on November 7. Starter-share multiclass Brier was **0.585 versus uniform 0.564**; full-start count accuracy does not establish starter selection. PP points were underpredicted (42 versus 66) on this slate. Investigate deployment and opportunity before adjusting rates; sparse-category MAE alone does not establish useful prediction.
+- Added a hash/timing-validated evaluator for sanitized public releases, avoiding dependence on missing private issuance bundles. Both new slates passed end-to-end scoring, and nine existing evaluation/probability tests passed. No model refit or policy promotion.
+
+Next: improve timestamped participation/starter inputs, validate usage TOI separately from shot rates, audit PP opportunity, collect more prospective probability results, and re-score historical forecasts on one official actuals vintage before policy changes.
+
 ## November 7 — full slate refreshed; one matchup issued late
 
 - Refreshed official NHL results and player stats through November 6: **264 final games** and **9,503 positive-TOI skater game rows**. The Nov. 7 slate has 12 scheduled games. The player/team/goalie release contains **2,720 player rows, 120 team rows and 116 goalie rows**: 11 games were pregame; Florida at Washington had started and is labeled late-issued, not prospectively scoreable. [Public projections](outputs/per_game_forecast/frozen/daily_2026-11-07_20261107T174425Z/README.md) · [Interactive outlook](docs/games/index.html) · [Pregame handoff](docs/history/pregame-2026-11-07.md).

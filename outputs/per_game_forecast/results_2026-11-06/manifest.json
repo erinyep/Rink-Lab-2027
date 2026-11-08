@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-06",
+  "inputs": {
+    "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z",
+    "team": "outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z",
+    "actuals": "data/processed/forecasts/fantasy_game_details_20261108T140716Z",
+    "boxscores": "data/raw/nhl/snapshots/results_nov6_7_20261108T140655Z"
+  },
+  "code_sha256": "642782bc49784dad93ebccc28696c3ec63813a61f3d7b41dd91d36e2b424e8f6",
+  "source_manifest_hashes": {
+    "outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z/manifest.json": "701ff30c43ffb92e3fb7f0c2fb1052971c05d0ea36a2b9e5e9b25956ca5a6a9a",
+    "outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z/manifest.json": "cdc14e3bb64d2880edd9db3c1a9ed266daaff4f101bf1a845a7e934f5d484a9a",
+    "data/processed/forecasts/fantasy_game_details_20261108T140716Z/manifest.json": "888dcb09fa3a6554418a780331ddf8df457e88423e93adc531a48ec58d1f3a35"
+  },
+  "boxscore_metadata_sha256": "dd3e083938d29d29cbc6bbf975f299f39bcd17bffd270ca9ae5e3b5c6745d602",
+  "files": {
+    "goalie_starter_scores.csv": "1a13c590350e95514cbac41164fb87176e647cee07b2c985dc2abfce36a97df5",
+    "team_metrics.csv": "1a71814b72eb147b4d4a315325ba8d951165a0e3f677dff3aa1e819067f9e898",
+    "coverage.csv": "8c8eb67bfadd35b11d62a3faa9cda2188293d75ce41e8a7a5008f6b3a41a03d3",
+    "player_shots_by_game.csv": "adf5d26013dbdd6c6e2f0dd2793880940211ed8ca725f1b79ea58fbd75142e89",
+    "player_metrics.csv": "2fccb89b5870a1a883b97fb2c6de2dae4a1a25f05da2eeec980973cffd15e064",
+    "goalie_scores.csv": "20cd4b1876c189bfb7edbb6d239e08f1882ad3958455d9490ae2ba75c1119a12",
+    "winner_scores.csv": "51708fcdaa9b668d07874a56ddf3f895909719e3c9577e476681e065b7b8df29",
+    "player_category_scores.csv": "b53bfc8e5db485e5feafc45464f6694e8e409519f56d29b93e09bf75deedd82f",
+    "winner_metrics.csv": "77921da7792203fa9ca117cf1a11d3e1ec7914b3fe1d8569d879dbfd7c30d28a",
+    "player_projections_scored.csv": "1a6201f5e97726bb76ff738b5c58b5550eae69fd8633630d82a43b01953a70cf",
+    "unmodeled_actual_skaters.csv": "868f758e509725c5c37885e8da90f85e07a4d5011e6b4da7e81204603f168a1c",
+    "goalie_metrics.csv": "1eb48f4cb17dbe2381fb1c4ff33c4c26cb73da9050d4829c9ee835a9d1780503",
+    "excluded_late_games.csv": "e08f8bdf5caac5d4c2d9550b813f94a858168f18048f79bf5253e3b398230d95",
+    "team_category_scores.csv": "12738cab383a6619f694fa09ee8815d2d28a876c29dcee7fc70c25232ad7f479",
+    "team_games.csv": "b637b14894b4800a429621d089d0a6eca4609f6d138d91cf9adb0201cbc1b8f7"
+  }
+}
