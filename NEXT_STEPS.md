@@ -1,11 +1,17 @@
 # Rink Lab — Next Steps
 
+## November 8 — one pregame matchup published
+
+- Issued the six-game slate at 7:35 p.m. Eastern using official NHL history through November 7 (**276 final games**). Pittsburgh at Anaheim was issued 25 minutes before puck drop; the other five games were already final or underway and are marked late-issued, not prospective. [Public projections](outputs/per_game_forecast/frozen/daily_2026-11-08_20261109T003435Z/README.md) · [Game outlook](docs/games/index.html) · [Pregame handoff](docs/history/pregame-2026-11-08.md).
+- The direct team model covers Pittsburgh–Anaheim only. ESPN roster/status and the fantasy report were refreshed at 7:33 p.m. Eastern. [Team model](outputs/per_game_forecast/team_context_daily_2026-11-08_20261109T003435Z/README.md) · [Fantasy report](docs/report/index.html).
+- The newest complete MoneyPuck team snapshot was retrieved November 6 and covers through November 5. Its 51-hour retrieval age and two-day coverage lag were explicitly accepted for this issue; manifests preserve the source vintage. Forecast coefficients and selection policies were not changed.
+
 ## November 8 — isolated workload, PP and probability challengers added
 
 - Added `usage_toi_only_trial` (existing usage TOI with calibrated SOG unchanged) and `pp_opportunity_trial` (also predicts PPP from expected PP minutes × a shrunk event rate). Existing five-model means and fantasy policies are preserved; the PP model is not promoted. [Implementation guide](docs/MODEL_CHALLENGERS.md) · [Validation and artifacts](outputs/per_game_forecast/model_challengers_2026-11-08/README.md).
 - Refreshed and reconciled all **276 finals / 9,935 positive-TOI skater-games** against official EV/PP/PK exposure. On **1,041 appearances / 29 games across Nov. 4–7**, usage TOI MAE is **2.062 versus 2.203 minutes**; PP minute MAE **0.865 versus prior 0.952**. PPP Brier slightly improves **0.07837 → 0.07744**, but count MAE worsens **0.18337 → 0.18802**. These reconstructed challengers remain retrospective. November 7 PP minutes were overpredicted while PP points were underpredicted, so increasing PP volume alone is not the explanation.
 - Added regularized, earlier-date-only team probability calibration. Eleven eligible held-out games score Brier **0.18427 versus raw 0.18710**; this is insufficient for promotion. A separate future challenger artifact uses 43 prior issued games through Nov. 7. Both daily runners save calibrated probabilities alongside raw values; raw remains selected. Public evaluation now supports the separate calibrated columns.
-- Added cutoff, missing-exposure, prior/fallback, count-isolation and probability tests. All **99 tests pass**. Local six-game player and team builds exercised the new models; no forecast page was published. Fixed an existing lead-time test fixture to move the issuance timestamp as well as the validation time.
+- Added cutoff, missing-exposure, prior/fallback, count-isolation and probability tests. All **99 tests pass**. Local six-game player and team builds exercised the new models; that analysis commit did not include a daily forecast page. A separate November 8 issue is now published above. Fixed an existing lead-time test fixture to move the issuance timestamp as well as the validation time.
 
 Next: collect prospective outcomes for the new challengers, investigate PP deployment/rate stability, and then add automatic roster/status refresh as a separate task. Do not promote PP or calibrated probabilities based on this short sample.
 

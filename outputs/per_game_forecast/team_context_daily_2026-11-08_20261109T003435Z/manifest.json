@@ -1,0 +1,66 @@
+{
+  "created_at_utc": "2026-11-09T00:35:58.323121+00:00",
+  "date": "2026-11-08",
+  "method": "team_goal_context_v2",
+  "scheduled_games": 6,
+  "excluded_games": [
+    {
+      "game_id": 2026020277,
+      "away": "FLA",
+      "home": "BOS",
+      "start_time_utc": "2026-11-08T18:00:00Z",
+      "game_state": "OFF",
+      "reason": "started_or_within_10_minute_lead"
+    },
+    {
+      "game_id": 2026020278,
+      "away": "VGK",
+      "home": "BUF",
+      "start_time_utc": "2026-11-08T20:30:00Z",
+      "game_state": "OFF",
+      "reason": "started_or_within_10_minute_lead"
+    },
+    {
+      "game_id": 2026020280,
+      "away": "TBL",
+      "home": "WPG",
+      "start_time_utc": "2026-11-08T23:00:00Z",
+      "game_state": "LIVE",
+      "reason": "started_or_within_10_minute_lead"
+    },
+    {
+      "game_id": 2026020279,
+      "away": "NJD",
+      "home": "TOR",
+      "start_time_utc": "2026-11-09T00:00:00Z",
+      "game_state": "LIVE",
+      "reason": "started_or_within_10_minute_lead"
+    },
+    {
+      "game_id": 2026020281,
+      "away": "PHI",
+      "home": "CGY",
+      "start_time_utc": "2026-11-09T00:00:00Z",
+      "game_state": "LIVE",
+      "reason": "started_or_within_10_minute_lead"
+    }
+  ],
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
+  "moneypuck": "data/processed/moneypuck/team_context_20261106",
+  "moneypuck_sha256": "eab60b41ab5e07683fd4e95f37f03c0b5bbe41acabfdd702b23203e8ef898bee",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261109T003320Z",
+  "boxscores_sha256": "fd5c664eb7d9e35e3ecb48a7d7a8a5c13b759ba60e0e200463998e00f9ce6338",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261109T003558323121Z",
+  "schedule_sha256": "85b30e0578534d752edc855ae22c880f6520c249f3e7e2b01068fc59fe0d0dc5",
+  "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
+  "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
+  "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
+  "files": {
+    "team_win_probabilities.csv": "dd905f96b5b5c236b1132e25c71abedd92c7f3d6c88e3e2dc4762da9b1d1fd30",
+    "index.html": "a5e3ecfe0770156c3087c33799a33bb59c230141fe2ac94e4dde7bebd75f7ffc",
+    "input_reconciliation.csv": "c13a204a97d80a12d48cf081b0706185c61a69aaee1d23d37588650bbf4625f3",
+    "README.md": "80136f4ef7b78d23d30cc204cc050281cdb5bd12675951ea76ab51f3189e184d",
+    "team_goal_forecasts.csv": "03b6ec050c6ffcf2cac701471d12c8d35b5067c863e98b3b7d7a57aeae370098"
+  }
+}

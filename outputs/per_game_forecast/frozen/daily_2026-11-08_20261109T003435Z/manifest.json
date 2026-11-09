@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-08",
+  "released_at_utc": "2026-11-09T00:35:07.001409+00:00",
+  "statistical_history_last_game_date": "2026-11-07",
+  "games": 6,
+  "pregame_games": 1,
+  "late_games": [
+    {
+      "game_id": 2026020277,
+      "away": "FLA",
+      "home": "BOS"
+    },
+    {
+      "game_id": 2026020278,
+      "away": "VGK",
+      "home": "BUF"
+    },
+    {
+      "game_id": 2026020280,
+      "away": "TBL",
+      "home": "WPG"
+    },
+    {
+      "game_id": 2026020279,
+      "away": "NJD",
+      "home": "TOR"
+    },
+    {
+      "game_id": 2026020281,
+      "away": "PHI",
+      "home": "CGY"
+    }
+  ],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "availability": "timestamped_espn_labels_not_confirmed_lineups",
+  "injuries_as_of_utc": "2026-11-09T00:33:17.626635+00:00",
+  "moneypuck_latest_game_date": "2026-11-05",
+  "moneypuck_retrieved_at_utc": "2026-11-06T21:35:05.838129+00:00",
+  "moneypuck_context_lag_explicitly_accepted": true,
+  "source_bundle_manifest_sha256": "3048077c3ac746d1eba56066d50b8113feb8cfd35b6819a3624670f331f3f012",
+  "source_files_sha256": {
+    "player_projections.csv": "f81c7e1df6d664c819b8d24d35ccce8543036adb56b9b3ceafacbd87a5c68f5e",
+    "team_projections.csv": "5910564872409d180e08be06308840482fd0777fae5b7b5e46bd4b7aad57e0a1",
+    "goalie_projections.csv": "5fa66191fe34fb08e127fe745040a8b233a0131b24c5437972647188ba6e920e",
+    "game_team_coverage.csv": "fbfaf8287219593a4767545ce81ae00cc146763c77082972ce05056db7ceb6d1"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 1911,
+    "team_projections.csv": 84,
+    "goalie_projections.csv": 56,
+    "game_team_coverage.csv": 12
+  },
+  "files": {
+    "team_projections.csv": "5910564872409d180e08be06308840482fd0777fae5b7b5e46bd4b7aad57e0a1",
+    "README.md": "80f41044bf55b9544dc5a5fcdef74bd8f2d9ce521e2f2c734d6bcc1a2e209f6c",
+    "player_projections.csv": "851c734ea0b5991ed729032f0cb49f8333a6da5baa9f4379c86472da5ae8ff90",
+    "goalie_projections.csv": "3db5d2b2ba2927d24cffeb16b5ddf3c44f6937909bca4b55ba8d57517823a04f",
+    "game_team_coverage.csv": "fbfaf8287219593a4767545ce81ae00cc146763c77082972ce05056db7ceb6d1"
+  }
+}

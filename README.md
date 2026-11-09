@@ -5,11 +5,11 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's preparation — November 7
+## Today's projections — November 8
 
-[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-07_20261107T174425Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Fantasy report](docs/report/index.html) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-07_20261107T174829Z/README.md) · [Pregame handoff](docs/history/pregame-2026-11-07.md).
+[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-08_20261109T003435Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Fantasy report](docs/report/index.html) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-08_20261109T003435Z/README.md) · [Pregame handoff](docs/history/pregame-2026-11-08.md).
 
-The 12-game slate was issued at 12:44 p.m. Eastern using official NHL history through November 6 (264 finals). Eleven games met the pregame lead; Florida at Washington had already started and is marked late, so it is excluded from prospective scoring. The ESPN league/status snapshot and fantasy report were refreshed at 12:28 p.m. Eastern. The complete public projection export omits fantasy-team ownership. MoneyPuck xG coverage ends November 5; that one-day context lag is documented in the releases.
+The six-game slate was frozen at 7:35 p.m. Eastern using official NHL history through November 7 (276 finals). Pittsburgh at Anaheim was the only remaining pregame matchup, issued 25 minutes before puck drop; five games were already final or underway and are labeled late-issued, not prospective forecasts. ESPN roster/status was refreshed at 7:33 p.m. Eastern. MoneyPuck xG coverage ends November 5; its 51-hour retrieval age and two-day coverage lag were explicitly accepted and recorded. Public player projections omit fantasy-team ownership.
 
 Latest completed evaluation: the [full saved-forecast review through November 5](outputs/per_game_forecast/season_through_2026-11-05/README.md) re-scores all five daily models over 88 forecasted games against one current actuals vintage. Calibrated-opponent SOG MAE is 1.0205 versus 1.0362 for default, a small 1.5% reduction; its paired game-bootstrap interval is below zero and it has lower date-level error on all 10 saved forecast dates. This supports keeping the existing all-player NHL SOG selection. Fantasy category policy remains separate. The [individual November 5 results](outputs/per_game_forecast/results_2026-11-05/README.md) and earlier sections remain available.
 
