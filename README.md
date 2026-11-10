@@ -5,11 +5,13 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's projections — November 8
+## Today's projections — November 9
 
-[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-08_20261109T003435Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Fantasy report](docs/report/index.html) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-08_20261109T003435Z/README.md) · [Pregame handoff](docs/history/pregame-2026-11-08.md).
+[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-09_20261110T000527Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-09_20261110T000527Z/README.md) · [Pregame model/data handoff](docs/history/pregame-2026-11-09.md).
 
-The six-game slate was frozen at 7:35 p.m. Eastern using official NHL history through November 7 (276 finals). Pittsburgh at Anaheim was the only remaining pregame matchup, issued 25 minutes before puck drop; five games were already final or underway and are labeled late-issued, not prospective forecasts. ESPN roster/status was refreshed at 7:33 p.m. Eastern. MoneyPuck xG coverage ends November 5; its 51-hour retrieval age and two-day coverage lag were explicitly accepted and recorded. Public player projections omit fantasy-team ownership.
+Rangers–Oilers, Flyers–Canucks and Islanders–Sharks were all frozen before puck drop at 7:05 p.m. Eastern using official NHL history through November 8 (282 finals). The release contains 966 player rows, 42 team rows and 30 goalie rows. ESPN roster/status was refreshed at 7:04 p.m. Eastern; lineups and goalie starts remain provisional. MoneyPuck team-game data cover through November 8. The public player projections omit fantasy-team ownership and ESPN player IDs.
+
+The weekend `daily_usage_context_v2_opportunity_challengers` policy is active in this issue. Calibrated-opponent SOG remains selected for the all-player shots view; fantasy shots keep their separate default. The usage-TOI and PP-opportunity challengers remain unpromoted. Direct team probabilities use the model fit through October 26, with November 8 calibration saved separately and raw probabilities still selected.
 
 Latest completed evaluation: the [full saved-forecast review through November 5](outputs/per_game_forecast/season_through_2026-11-05/README.md) re-scores all five daily models over 88 forecasted games against one current actuals vintage. Calibrated-opponent SOG MAE is 1.0205 versus 1.0362 for default, a small 1.5% reduction; its paired game-bootstrap interval is below zero and it has lower date-level error on all 10 saved forecast dates. This supports keeping the existing all-player NHL SOG selection. Fantasy category policy remains separate. The [individual November 5 results](outputs/per_game_forecast/results_2026-11-05/README.md) and earlier sections remain available.
 
@@ -50,28 +52,25 @@ The broader chronological development screen covers all 1,312 games in 2025–26
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
-## Latest saved NHL predictions — October 24
+## Latest saved NHL predictions — November 9
 
-[Saturday, October 24 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
-projected goals, shots, scoring leans and goalie scenarios for all 24 teams.
+[November 9 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+projected goals, shots, scoring leans and goalie scenarios for all six teams.
 [Reading guide](docs/games/README.md).
 
 ## What is driving the forecasts?
 
 [Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 24. No model promotion; completed evidence remains linked from the trial page.
 
-## Latest saved fantasy report — October 24
+## Latest private fantasy report — November 9
 
-[Quinn’s local report and roster alerts](reports/today/README.md).
-
-[Interactive browser report](https://erinyep.github.io/Rink-Lab-2027/report/)
-(requires the [one-time Pages setup](docs/GITHUB_PAGES.md)).
-
-![October 24 category comparison](docs/report/category-gaps.svg)
+[Local report summary and roster alerts](reports/today/README.md). This report includes personal league roster data and is not part of the public Pages update.
 
 ## Current forecast work
 
-October 24: [12-game frozen release](outputs/per_game_forecast/2026-10-24_20261024T110008Z_pregame_readout.md), fresh inputs through October 23, [continued feature trials](outputs/per_game_forecast/feature_evidence_2026-10-24_v2/README.md), and updated local game/fantasy reports. The broader review prioritizes participation/EV-PP opportunity, goalie start/duration and calibrated uncertainty. Local reports are prepared; remote publication has not been performed.
+November 9: [Three-game frozen release](outputs/per_game_forecast/2026-11-09_20261110T000527Z_pregame_readout.md), official history through November 8, fresh ESPN and MoneyPuck inputs, and updated public game and team reports. All three forecasts were issued before puck drop. The fantasy roster report was refreshed locally and kept out of the public Pages update. After the games finish, score the saved predictions against official results and review weekend challengers separately.
+
+October 24: [12-game frozen release](outputs/per_game_forecast/2026-10-24_20261024T110008Z_pregame_readout.md), fresh inputs through October 23, [continued feature trials](outputs/per_game_forecast/feature_evidence_2026-10-24_v2/README.md), and updated game/fantasy reports. The broader review prioritizes participation/EV-PP opportunity, goalie start/duration and calibrated uncertainty.
 
 October 22: [All 12 games issued pregame](outputs/per_game_forecast/2026-10-22_20261022T204633Z_pregame_readout.md), with fresh ESPN roster/category data and history through October 21. [Frozen feature trials](outputs/per_game_forecast/feature_evidence_2026-10-22/README.md) continue without refitting. The append-only local archive now preserves predictions and actuals versions; the derived scoreboard reports season and rolling 7/30-day errors. All starters remain provisional.
 

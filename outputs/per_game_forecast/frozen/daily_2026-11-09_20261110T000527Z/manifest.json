@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-09",
+  "released_at_utc": "2026-11-10T00:05:36.629246+00:00",
+  "statistical_history_last_game_date": "2026-11-08",
+  "games": 3,
+  "pregame_games": 3,
+  "late_games": [],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "availability": "timestamped_espn_labels_not_confirmed_lineups",
+  "injuries_as_of_utc": "2026-11-10T00:05:24.934862+00:00",
+  "moneypuck_latest_game_date": "2026-11-08",
+  "moneypuck_retrieved_at_utc": "2026-11-10T00:04:39.351267+00:00",
+  "moneypuck_context_lag_explicitly_accepted": true,
+  "source_bundle_manifest_sha256": "58cf51f8bb2780f3f6c3714a130fa3b4cf623ed40b5bef50342af16057dac361",
+  "source_files_sha256": {
+    "player_projections.csv": "5f8c9a4c2162b328acba004986312b9e85083e8c0b495b0a83340897d8fb1c91",
+    "team_projections.csv": "ef4ee0881c109f84e4b24f81c8a97f14a5fb856ac632fad0d9ffea0d78da66d9",
+    "goalie_projections.csv": "7dbf51800b101a5382448662e69155c8b6772aeb90b61187b9466731a655ae2a",
+    "game_team_coverage.csv": "9cfcedde12a7d7479a7640f17716b07dc0148113bf907d3c686b5bb5f5bcd44c"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 966,
+    "team_projections.csv": 42,
+    "goalie_projections.csv": 30,
+    "game_team_coverage.csv": 6
+  },
+  "files": {
+    "team_projections.csv": "ef4ee0881c109f84e4b24f81c8a97f14a5fb856ac632fad0d9ffea0d78da66d9",
+    "README.md": "4f0ab538b322f420baa93048771012761d1ccb787fc9932d6a922e94455d6a50",
+    "player_projections.csv": "0c3702a7007f00600642eea047976881fa4dddcdd9b494176d14bfde040a00fe",
+    "goalie_projections.csv": "2dceec08621b1f1b21a20079ee03b4b616d0ffada974ef6e2c3267182edaf90d",
+    "game_team_coverage.csv": "9cfcedde12a7d7479a7640f17716b07dc0148113bf907d3c686b5bb5f5bcd44c"
+  }
+}

@@ -1,0 +1,12 @@
+category,own,opponent,advantage,lower_is_better,status
+PPP,0.0,0.0,0.0,False,tied
+SV%,0.0,0.0,0.0,False,tied
+ATOI,0.0,0.0,0.0,False,tied
+G,0.0,0.0,0.0,False,tied
+SOG,0.0,0.0,0.0,False,tied
+A,0.0,0.0,0.0,False,tied
++/-,0.0,0.0,0.0,False,tied
+HIT,0.0,0.0,0.0,False,tied
+W,0.0,0.0,0.0,False,tied
+PIM,0.0,0.0,0.0,False,tied
+GAA,,,,True,unavailable

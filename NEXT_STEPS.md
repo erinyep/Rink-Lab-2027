@@ -1,5 +1,12 @@
 # Rink Lab — Next Steps
 
+## November 9 — three-game slate issued before puck drop
+
+- Issued Rangers–Oilers, Flyers–Canucks and Islanders–Sharks at 7:05 p.m. ET, with all three forecasts ahead of their 8:00, 9:30 and 10:00 p.m. starts. Official history ends November 8 (**282 finals**). The frozen public release contains **966 player rows, 42 team rows and 30 goalie rows**; all three games are prospective. [Public projections](outputs/per_game_forecast/frozen/daily_2026-11-09_20261110T000527Z/README.md) · [Game outlook](docs/games/index.html) · [Pregame model/data handoff](docs/history/pregame-2026-11-09.md).
+- Model lineage: the daily builder used the validated season-rate selection artifact `data/processed/forecasts/per_game_20262027_20261106T213320Z` for its historical validation selections and prior-season player panel. Current-season rows from that template are excluded; current production rates are recomputed from cutoff-safe NHL games through November 8. The November 8 `daily_usage_context_v2_opportunity_challengers` policy is active: calibrated-opponent SOG is primary for the all-player shots view; fantasy shots retain their default policy. The new usage-TOI and PP-opportunity variants remain challengers. No coefficients or selection policies were changed.
+- Direct team forecasts use the active `team_goal_context_v2` fit through October 26 and lagged inputs through November 8. The November 8 probability calibrator is saved as a separate challenger; raw probabilities remain selected. MoneyPuck team-game coverage is current through November 8. ESPN roster/status was refreshed at 7:04 p.m. ET; it labels availability but does not confirm lineups or goalie starts.
+- Fixed NHL Stats API TOI pagination: its unpartitioned query capped at 10,000 rows while reporting that result as complete. Date-partitioned retrieval now produced **10,151 player-game rows**, exactly reconciled with all positive-TOI rows in the 282 official boxscores. The acquisition manifest preserves page hashes and partition boundaries.
+
 ## November 8 — one pregame matchup published
 
 - Issued the six-game slate at 7:35 p.m. Eastern using official NHL history through November 7 (**276 final games**). Pittsburgh at Anaheim was issued 25 minutes before puck drop; the other five games were already final or underway and are marked late-issued, not prospective. [Public projections](outputs/per_game_forecast/frozen/daily_2026-11-08_20261109T003435Z/README.md) · [Game outlook](docs/games/index.html) · [Pregame handoff](docs/history/pregame-2026-11-08.md).

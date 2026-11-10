@@ -1,0 +1,37 @@
+{
+  "created_at_utc": "2026-11-10T00:05:44.245709+00:00",
+  "date": "2026-11-09",
+  "team_id": 5,
+  "team_name": "Quinn Short for Quinnificent",
+  "model": "fantasy_category_policy_v2",
+  "bundle": "data/processed/forecasts/daily_2026-11-09_20261110T000527Z",
+  "espn_snapshot": "data/raw/espn/snapshots/espn_2027_20261110T000523Z",
+  "rules_snapshot": "data/raw/espn/snapshots/rules_2027_20261110T000542116942Z",
+  "sources": {
+    "data/processed/forecasts/daily_2026-11-09_20261110T000527Z/manifest.json": "58cf51f8bb2780f3f6c3714a130fa3b4cf623ed40b5bef50342af16057dac361",
+    "data/raw/espn/snapshots/rules_2027_20261110T000542116942Z/rules.json": "ccb6f109a45e6ea82e1b9702a84c51406dc596a6523f6b39bbca08bf68e09f31",
+    "data/raw/espn/snapshots/espn_2027_20261110T000523Z/metadata.json": "4fec75111c49b45209189ab001142a5e3a6291e4938dcddbfa233da6a02567c4",
+    "data/processed/espn/espn_2027_20261110T000523Z/espn_nhl_crosswalk.csv": "a0eca98a043b9ebae0dc3f816f6b2f4f0223985495e8c17f49509c5607012b36",
+    "data/raw/nhl/snapshots/daily_context_20261110T000527Z/schedule.json": "7f2ead7d2a4e4a72cee54110596bf3bd73ac327a927c3bb4f073f07a0d6fc2aa",
+    "data/processed/forecasts/daily_2026-11-09_20261110T000527Z/inputs/current_per_game_forecast.csv": "21c6f52ebf20991fc192890250cfae90136fdde2a035f19ce12df9ec09feeea1",
+    "config/fantasy_category_policy.json": "204ebccbb8a73f015592016dbae71fff57a5095d07b479fb04f5aa0d4009ff51",
+    "data/raw/espn/snapshots/future_roster_2027_20261110T000543646820Z/metadata.json": "504c552c6893e1adcbf04533c728f4958b85f8ce371b6b23a0153a304cefc6a6"
+  },
+  "code_sha256": {
+    "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/scripts/build_today_report.py": "50a51c816c6f54139d3454b463bf5dc8497bb5951579db2b5f8805b26d0a76de",
+    "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/src/fantasy/decisions.py": "9bbf2b4fee67ecb39e4366df85e661ae5f051fd2371f0cd69029438bf8e6c489",
+    "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/src/fantasy/forecast_policy.py": "42a8381b462eb54dbb70378fed7062aa9612351a4487a0dbb3efa2833bbab110",
+    "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/templates/fantasy_today.html": "5c484fef92e79f9c7dda064b3ed03a7be0152da0bccf129a1386b208bbbd4d49"
+  },
+  "files": {
+    "goalies.csv": "6e6a42a413829112ab868fb12dc8cb5366fb847841ba371fd8de9147a63f8999",
+    "index.html": "d2fe659858d96ef0dae562427e68d560d2f3f973e67e77c9c8acf32c82d58a92",
+    "report.json": "d302bc61dc4386625907a9a880008bd55ec25b11b0a14dcf9bfe0b55b5f47183",
+    "roster.csv": "103f96acdfe732d7061b618dc2fa00f1638e7544bae11067c81fffc242bdd63c",
+    "category_gaps.csv": "34d039bff422876e97c0c0409d199d6b8ff9b45c15bd51c4c58609ede8f22b11",
+    "streamer_watchlist.csv": "a1a1d9ccd13adc6b4d9732e26cf85bf7f20eef503e194dca4d22020f05ea4302",
+    "README.md": "4d665c8bfc764458760cdd9d4e7a48cdebf8de89e4e19cb07dea8194c27d50cf",
+    "roster_schedule.csv": "186bafb400039164fbeb29061242bc3b672d0d6c8cb251456b47b58b7de1393b",
+    "start_sit_comparisons.csv": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  }
+}

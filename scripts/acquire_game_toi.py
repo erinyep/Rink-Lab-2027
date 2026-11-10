@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -50,31 +50,65 @@ def main() -> None:
             "isAggregate": "false", "isGame": "true", "limit": 100,
             "sort": json.dumps([{"property": "gameId", "direction": "ASC"},
                                 {"property": "playerId", "direction": "ASC"}]),
-            "cayenneExp": f'seasonId={args.season} and gameTypeId=2 and gameDate<"{cutoff}"',
         }
 
-        def fetch(offset: int) -> dict:
-            response = requests.get(URL, params={**params, "start": offset}, timeout=60,
-                                    headers={"User-Agent": "Rink-Lab/0.1 research"})
-            response.raise_for_status()
-            payload = response.json()
-            if not isinstance(payload.get("data"), list) or "total" not in payload:
-                raise ValueError("Invalid NHL time-on-ice response")
-            return payload
+        # The Stats API caps an unbounded season query at 10,000 rows. It still
+        # reports that capped total as if pagination were complete. Partition
+        # by calendar month, recursively splitting any saturated range, so a
+        # successful response cannot silently omit the newest player-games.
+        range_pages = []
+        partitions = []
 
-        first = fetch(0)
-        offsets = list(range(0, first["total"], 100))
-        with ThreadPoolExecutor(max_workers=4) as pool:
-            pages = [first, *pool.map(fetch, offsets[1:])]
-        if any(page["total"] != first["total"] for page in pages):
-            raise ValueError("NHL pagination total changed during acquisition")
+        def acquire_range(start_date: date, end_date: date) -> None:
+            expression = (f'seasonId={args.season} and gameTypeId=2 and '
+                          f'gameDate>="{start_date}" and gameDate<"{end_date}"')
+            range_params = {**params, "cayenneExp": expression}
+
+            def fetch_range(offset: int) -> dict:
+                response = requests.get(URL, params={**range_params, "start": offset}, timeout=60,
+                                        headers={"User-Agent": "Rink-Lab/0.1 research"})
+                response.raise_for_status()
+                payload = response.json()
+                if not isinstance(payload.get("data"), list) or "total" not in payload:
+                    raise ValueError("Invalid NHL time-on-ice response")
+                return payload
+
+            first = fetch_range(0)
+            if first["total"] >= 10000:
+                days = (end_date - start_date).days
+                if days <= 1:
+                    raise ValueError(f"NHL TOI query reached API row cap for {start_date}")
+                midpoint = start_date + timedelta(days=days // 2)
+                acquire_range(start_date, midpoint)
+                acquire_range(midpoint, end_date)
+                return
+            offsets = list(range(0, first["total"], 100))
+
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                pages_for_range = [first, *pool.map(fetch_range, offsets[1:])]
+            if any(page["total"] != first["total"] for page in pages_for_range):
+                raise ValueError("NHL pagination total changed during acquisition")
+            range_pages.extend(pages_for_range)
+            partitions.append({"start_date": start_date.isoformat(),
+                               "end_date_exclusive": end_date.isoformat(),
+                               "api_total": first["total"], "pages": len(pages_for_range),
+                               "request_parameters": range_params})
+
+        season_start = date(int(str(args.season)[:4]), 7, 1)
+        cursor = season_start
+        while cursor < args.before:
+            next_month = (cursor.replace(day=28) + timedelta(days=4)).replace(day=1)
+            end_date = min(next_month, args.before)
+            acquire_range(cursor, end_date)
+            cursor = end_date
+        pages = range_pages
         completed = datetime.now(timezone.utc)
         label = f"game_toi_{args.season}_{completed.strftime('%Y%m%dT%H%M%SZ')}"
         raw = ROOT / "data/raw/nhl/snapshots" / label
         raw.mkdir(parents=True, exist_ok=False)
         hashes = {}
-        for offset, page in zip(offsets, pages):
-            path = raw / f"page_{offset:06d}.json"
+        for index, page in enumerate(pages):
+            path = raw / f"page_{index:06d}.json"
             path.write_text(json.dumps(page, indent=2, sort_keys=True) + "\n")
             hashes[path.name] = digest(path)
         metadata = {
@@ -82,8 +116,9 @@ def main() -> None:
             "season_id": args.season, "game_type": 2, "before_game_date": cutoff,
             "retrieval_started_at_utc": started.isoformat(),
             "retrieval_completed_at_utc": completed.isoformat(),
-            "api_total": first["total"], "pages": len(pages), "source_sha256": hashes,
-            "method": "NHL Stats API JSON, stable gameId/playerId ordering, pages of 100",
+            "api_total": sum(part["api_total"] for part in partitions),
+            "pages": len(pages), "partitions": partitions, "source_sha256": hashes,
+            "method": "NHL Stats API JSON, date-partitioned queries with stable gameId/playerId ordering, pages of 100",
         }
         (raw / "metadata.json").write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
     rows = [row for page in pages for row in page["data"]]

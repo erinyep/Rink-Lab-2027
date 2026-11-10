@@ -1,4 +1,13 @@
-# Per-game forecast status — October 22, 2026
+# Per-game forecast status — November 9, 2026
+
+- [Tonight’s three-game pregame release](2026-11-09_20261110T000527Z_pregame_readout.md) · [Public player/team/goalie projections](frozen/daily_2026-11-09_20261110T000527Z/README.md)
+- [Interactive game outlook](../../docs/games/README.md) · [Fantasy report](../../reports/today/README.md) · [Direct team forecasts](team_context_daily_2026-11-09_20261110T000527Z/README.md) · [Model/data handoff](../../docs/history/pregame-2026-11-09.md)
+- Official history through November 8: 282 finals and 10,151 reconciled positive-TOI skater-games. All three forecasts were issued pregame. ESPN roster/status and MoneyPuck coverage were refreshed; source age and model lineage are recorded in the release manifests.
+- The weekend daily policy is active: calibrated-opponent SOG is selected for all-player NHL shots, fantasy category shots retain their separate default, and usage-TOI/PP-opportunity challengers remain unpromoted. Direct-team raw probabilities remain selected; the Nov. 8 calibration is saved separately.
+
+Older forecast status entries below are historical snapshots.
+
+## Archived status — October 22, 2026
 
 - [Tonight’s 12-game pregame release](2026-10-22_20261022T204633Z_pregame_readout.md)
 - [Matchups](../../docs/games/README.md) · [Fantasy report](../../reports/today/README.md)

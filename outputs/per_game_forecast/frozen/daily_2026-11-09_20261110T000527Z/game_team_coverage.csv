@@ -1,0 +1,7 @@
+game_id,date,team,opponent,start_time_utc,official_roster_skaters,modeled_candidates,prior_game_additions,position_prior_players,selected_skaters,missing_lineup_slots,selected_prior_game_only,goalie_candidates,issued_at_utc,issue_timing
+2026020283,2026-11-09,EDM,NYR,2026-11-10T01:00:00Z,25,25,0,0,18,0,0,3,2026-11-10T00:05:34.744693+00:00,pregame
+2026020283,2026-11-09,NYR,EDM,2026-11-10T01:00:00Z,24,24,0,0,18,0,0,3,2026-11-10T00:05:34.744693+00:00,pregame
+2026020284,2026-11-09,VAN,PHI,2026-11-10T02:30:00Z,22,22,0,0,18,0,0,3,2026-11-10T00:05:34.744693+00:00,pregame
+2026020284,2026-11-09,PHI,VAN,2026-11-10T02:30:00Z,22,22,0,0,18,0,0,2,2026-11-10T00:05:34.744693+00:00,pregame
+2026020285,2026-11-09,SJS,NYI,2026-11-10T03:00:00Z,21,22,1,0,18,0,1,2,2026-11-10T00:05:34.744693+00:00,pregame
+2026020285,2026-11-09,NYI,SJS,2026-11-10T03:00:00Z,23,23,0,0,18,0,0,2,2026-11-10T00:05:34.744693+00:00,pregame
