@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
+from html import escape
 import json
 from pathlib import Path
 import sys
@@ -22,6 +23,8 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bundle',required=True,type=Path)
     parser.add_argument('--out',type=Path,default=Path('docs/games'))
+    parser.add_argument('--model-review',type=Path,
+        help='Optional hash-checked November review directory to summarize on the game page')
     args=parser.parse_args();validate(args.bundle)
     manifest=json.loads((args.bundle/'manifest.json').read_text())
     trial_config=json.loads((ROOT/'config/daily_forecast_trial.json').read_text())
@@ -74,6 +77,37 @@ def main():
     team.to_csv(args.out/'team_predictions.csv',index=False)
     goalie.to_csv(args.out/'goalie_scenarios.csv',index=False)
     template=(ROOT/'templates/nhl_outlook.html').read_text()
+    evidence_html=''
+    review_hash=None
+    review_summary=None
+    if args.model_review:
+        review_manifest=json.loads((args.model_review/'manifest.json').read_text())
+        for name, expected in review_manifest.get('files', {}).items():
+            if digest(args.model_review/name) != expected:
+                raise ValueError(f'Model-review hash mismatch: {name}')
+        review_summary=json.loads((args.model_review/'summary.json').read_text())
+        if review_summary['through'] >= manifest['date']:
+            raise ValueError('Model review includes outcomes on or after today’s forecast date')
+        review_hash=digest(args.model_review/'manifest.json')
+        b=review_summary['selected_shots_paired_game_bootstrap']
+        url='../history/'+args.model_review.name+'/index.html'
+        evidence_html=(
+            '<section class="guide"><h2>Model evidence for today’s release</h2>'
+            f'<p>Across {review_summary["prospective_games"]} saved November games and '
+            f'{review_summary["player_games"]:,} matched player-games, calibrated-opponent shots had '
+            f'{review_summary["selected_shots_mae"]:.3f} MAE versus '
+            f'{review_summary["default_shots_mae"]:.3f} for default '
+            f'({review_summary["selected_shots_relative_improvement_pct"]:.1f}% lower; '
+            f'{b["games_lower_mae"]}/{b["games"]} games lower; game-cluster 95% interval '
+            f'[{b["lower_95"]:+.3f}, {b["upper_95"]:+.3f}]). It remains selected for NHL-wide SOG. '
+            'Fantasy shots keep their separate default policy.</p>'
+            f'<p>The usage-aware ATOI challenger reduced conditional ice-time MAE from '
+            f'{review_summary["default_toi_mae"]:.3f} to {review_summary["usage_toi_mae"]:.3f} minutes '
+            f'and was closer on {review_summary["usage_toi_improved_dates"]}/6 dates. '
+            'It is shown as a challenger; default ATOI remains selected while the isolated prospective '
+            'sample grows. Assist and team-probability results do not support another policy change.</p>'
+            f'<p><a href="{escape(url, quote=True)}">Full November model review and scored files</a></p></section>')
+    template=template.replace('__MODEL_EVIDENCE__',evidence_html)
     (args.out/'index.html').write_text(template.replace('__OUTLOOK_DATA__',json.dumps(payload,separators=(',',':'),allow_nan=False).replace('</','<\\/')))
     (args.out/'README.md').write_text(f'''# NHL game outlook — {manifest['date']}
 
@@ -86,7 +120,7 @@ Simulation ranges and goalie start shares remain provisional. All saved
 models can be compared without changing the frozen forecasts. The
 calibrated-opponent SOG model is selected by default for all-player NHL shots
 based on the season-to-date paired evaluation; fantasy shots retain their
-separate default policy.
+separate default policy. {'This page also summarizes the November 4–9 model review and links the scored evidence.' if review_summary else ''}
 
 Start by comparing each matchup's goal means and shot volume. Expand a card for
 assumed shot leaders and goalie full-start scenarios. Use the table to scan all
@@ -99,6 +133,7 @@ and manifest for limitations and source hashes.
         forecast_issued_utc=manifest['created_at_utc'],frozen_bundle_manifest_sha256=digest(args.bundle/'manifest.json'),
         source_schedule_sha256=digest(schedule_path),model_status='existing_frozen_models_primary_all_player_sog_selected',
         primary_sog_model=primary_sog_model,
+        model_review_manifest_sha256=review_hash,
         code_sha256={p.name:digest(p) for p in [Path(__file__),ROOT/'src/fantasy/game_outlook.py',ROOT/'templates/nhl_outlook.html',ROOT/'config/daily_forecast_trial.json']},
         files={p.name:digest(p) for p in args.out.iterdir() if p.is_file() and p.name!='manifest.json'}),indent=2)+'\n')
     print('NHL outlook:',args.out/'index.html')

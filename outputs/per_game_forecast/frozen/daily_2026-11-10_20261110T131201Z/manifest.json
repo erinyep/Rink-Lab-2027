@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-10",
+  "released_at_utc": "2026-11-10T13:12:17.468287+00:00",
+  "statistical_history_last_game_date": "2026-11-09",
+  "games": 7,
+  "pregame_games": 7,
+  "late_games": [],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "availability": "timestamped_espn_labels_not_confirmed_lineups",
+  "injuries_as_of_utc": "2026-11-10T13:10:16.231457+00:00",
+  "moneypuck_latest_game_date": "2026-11-09",
+  "moneypuck_retrieved_at_utc": "2026-11-10T13:11:33.327091+00:00",
+  "moneypuck_context_lag_explicitly_accepted": false,
+  "source_bundle_manifest_sha256": "220f9e4215c636c3b09293e5e96f11dca144c3d2ce365be789532df85742c2e5",
+  "source_files_sha256": {
+    "player_projections.csv": "1932a6efbf8270b966bafe0e00382b29e03267ac625715e02023c9a0f8791752",
+    "team_projections.csv": "7d3a4b3e1ecc62a411a01443093862130b823ab48fe56c014c674a07aa23bada",
+    "goalie_projections.csv": "96c0dc8801ea09d1c8972d69b22468a269370a25e31670027186b582345b52e2",
+    "game_team_coverage.csv": "f6cc6658610329d96749b6fb94b72f2931ec4e735ed2492f4279a088b21f1897"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 2198,
+    "team_projections.csv": 98,
+    "goalie_projections.csv": 64,
+    "game_team_coverage.csv": 14
+  },
+  "files": {
+    "team_projections.csv": "7d3a4b3e1ecc62a411a01443093862130b823ab48fe56c014c674a07aa23bada",
+    "README.md": "818f7e031d2ca963e3061e6eb28020e62df2aa3e8abcc49d33684667703a9aa1",
+    "player_projections.csv": "dad1aa62007c1b3f750d1b80b7716a5471a9c7efe518526f60a4c6201a3cbc9c",
+    "goalie_projections.csv": "6b9a4cabe4c19e546894e7eabad72458a47903394dea958c4ecfc18b0aa03881",
+    "game_team_coverage.csv": "f6cc6658610329d96749b6fb94b72f2931ec4e735ed2492f4279a088b21f1897"
+  }
+}

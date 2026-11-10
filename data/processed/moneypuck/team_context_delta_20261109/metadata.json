@@ -1,0 +1,41 @@
+{
+  "source": "MoneyPuck published game-by-game team download",
+  "url": "https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv",
+  "retrieved_at_utc": "2026-11-10T13:11:33.327091+00:00",
+  "license": "Non-commercial research with MoneyPuck attribution; see https://moneypuck.com/data.htm",
+  "source_sha256": "0b5e38a20f27e40b1cf50510e33b49e761edb25ced9b0cd1899a12f2edef5c43",
+  "source_rows": 235070,
+  "sha256": "9ed9cbb4dcdac596b4e28da7eea2087dac0528bf5a11918878a046a1e904b54b",
+  "rows": 30,
+  "season": "2026",
+  "date_range_inclusive": [
+    "20261109",
+    "20261109"
+  ],
+  "regular_season_only": true,
+  "position": "Team Level",
+  "situations": [
+    "4on5",
+    "5on4",
+    "5on5",
+    "all",
+    "other"
+  ],
+  "rows_by_situation": {
+    "4on5": 6,
+    "5on4": 6,
+    "5on5": 6,
+    "all": 6,
+    "other": 6
+  },
+  "rows_by_game_date": {
+    "20261109": 30
+  },
+  "games": 3,
+  "paired_team_rows_validated": true,
+  "base_release": "data/processed/moneypuck/team_context_delta_20261110",
+  "base_latest_game_date": "20261108",
+  "filter": "season == 2026; position == Team Level; playoffGame == 0; gameDate > 20261108",
+  "purpose": "Append-only MoneyPuck team context after the previously published current-season delta.",
+  "published_at_utc": "2026-11-10T13:18:58.972581+00:00"
+}

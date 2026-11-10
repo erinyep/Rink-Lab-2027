@@ -1,0 +1,117 @@
+{
+  "created_at_utc": "2026-11-10T13:22:03.408677+00:00",
+  "through": "2026-11-09",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261110T131037Z",
+  "actuals_manifest_sha256": "d0ccffddb9558bd88441464e557000823ceb240dc5a9a89c56328603a9648f7a",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261110T131018Z",
+  "boxscore_metadata_sha256": "dea9022efafd188ed41d53a5ebfaf3f9c99f6eb2817a92d631d6dbe9e28bfc1b",
+  "frozen_releases": [
+    {
+      "date": "2026-11-04",
+      "bundle": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/frozen/daily_2026-11-04_20261104T153917Z",
+      "manifest_sha256": "e9993ad3b2a009147ed35c6d0e85f9c28afad1a36772fd4e842990403a7f21db",
+      "team_release": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/team_context_daily_2026-11-04_20261104T160000Z",
+      "team_manifest_sha256": "158ab125d4e7ce24d149fe099a92e1268bd8289c7c133af648485f4a667b73c8"
+    },
+    {
+      "date": "2026-11-05",
+      "bundle": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/frozen/daily_2026-11-05_20261105T204849Z",
+      "manifest_sha256": "1820abeaca9c2e9491584a026c8b8f3fb1488b81f35e4b9388ca8b13ddcc6d0d"
+    },
+    {
+      "date": "2026-11-06",
+      "bundle": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z",
+      "manifest_sha256": "701ff30c43ffb92e3fb7f0c2fb1052971c05d0ea36a2b9e5e9b25956ca5a6a9a",
+      "team_release": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z",
+      "team_manifest_sha256": "cdc14e3bb64d2880edd9db3c1a9ed266daaff4f101bf1a845a7e934f5d484a9a"
+    },
+    {
+      "date": "2026-11-07",
+      "bundle": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/frozen/daily_2026-11-07_20261107T174425Z",
+      "manifest_sha256": "bba9369f99fd6407151149adc9d0472d0a0be2c24d7c8dda9da75251e9e836e8",
+      "team_release": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/team_context_daily_2026-11-07_20261107T174829Z",
+      "team_manifest_sha256": "179c423ad14d50bbc95d453a9e7d882e18a3f32b49eca5158354a0e3d86bca2a"
+    },
+    {
+      "date": "2026-11-08",
+      "bundle": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/frozen/daily_2026-11-08_20261109T003435Z",
+      "manifest_sha256": "859f69e16924663b0d0329efab44925fbea1391af6bbcdd4377a269a30a95c49",
+      "team_release": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/team_context_daily_2026-11-08_20261109T003435Z",
+      "team_manifest_sha256": "54cec1191a6dc31e257b08703cde10122363bfc876ac64170a845d44811500df"
+    },
+    {
+      "date": "2026-11-09",
+      "bundle": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/frozen/daily_2026-11-09_20261110T000527Z",
+      "manifest_sha256": "828c1accbcb1d402bb115f2f7275f3b90f00ae1ca38a7981b22818607a02b096",
+      "team_release": "/Users/eyepis/Documents/GitHub_Old/Rink-Lab-2027/outputs/per_game_forecast/team_context_daily_2026-11-09_20261110T000527Z",
+      "team_manifest_sha256": "0fe722c028323c3a55ad0031574ba9aa69979d934fd8980fa0704ea9819fd15c"
+    }
+  ],
+  "code_sha256": "e91a1c251621f9e622f5d589a8fad541ee4609fdd4b237601cd4b744789a426e",
+  "summary": {
+    "through": "2026-11-09",
+    "forecast_dates": [
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08",
+      "2026-11-09"
+    ],
+    "prospective_games": 33,
+    "player_games": 1185,
+    "selected_shots_model": "calibrated_opponent_sog_trial",
+    "selected_shots_mae": 1.0075657436227787,
+    "default_shots_mae": 1.022975162208083,
+    "selected_minus_default_shots_mae": -0.015409418585304202,
+    "selected_shots_relative_improvement_pct": 1.5063335997369778,
+    "selected_shots_paired_game_bootstrap": {
+      "model": "calibrated_opponent_sog_trial",
+      "category": "shots",
+      "paired_rows": 1185,
+      "games": 33,
+      "mae_delta_vs_default": -0.015409418585304169,
+      "lower_95": -0.021785081813144598,
+      "upper_95": -0.00891429583327187,
+      "games_lower_mae": 28,
+      "games_equal_or_higher": 5,
+      "bootstrap_draws": 10000
+    },
+    "usage_toi_mae": 2.098316538346652,
+    "default_toi_mae": 2.2462833653870815,
+    "usage_toi_relative_improvement_pct": 6.587184382898705,
+    "usage_toi_improved_dates": 6,
+    "usage_toi_paired_game_bootstrap": {
+      "model": "usage_shot_context_trial",
+      "category": "toi_minutes",
+      "paired_rows": 1185,
+      "games": 33,
+      "mae_delta_vs_default": -0.14796682704042893,
+      "lower_95": -0.1812535648972255,
+      "upper_95": -0.11442529376043432,
+      "games_lower_mae": 29,
+      "games_equal_or_higher": 4,
+      "bootstrap_draws": 10000
+    },
+    "recommendation": "Retain calibrated-opponent SOG as the selected NHL-wide all-player shots model. Add the usage-aware ATOI result to the reporting page as a clearly labeled challenger, but retain the default ATOI policy until its isolated prospective sample grows. Keep fantasy shots default and make no PP or calibrated-probability promotion.",
+    "missing_early_november_releases": [
+      "2026-11-01",
+      "2026-11-02",
+      "2026-11-03"
+    ],
+    "winner_probability_games": 22
+  },
+  "files": {
+    "summary.json": "00c3531a692c6981c8b88809c8fe502599b1e43cf8078c2c97e66af29cbafe01",
+    "coverage_by_date.csv": "2507a01b38471dfe9b153a8c00005a5171b335c9b71818a833e2c165e9a75c5c",
+    "index.html": "2a4fc45e879d6d580d59fe6d91da134eea8019442cb41b353910eeb82f137c7d",
+    "player_metrics.csv": "740b84b354b1b64f375d67012ad8c910d656d3c98da06f60b8bf2adb58114e64",
+    "winner_scores.csv": "810720d4180795bd6646a172cbd4364c2b1368aa03208ebdb0db1f8cc09e8899",
+    "README.md": "68e95dfee0aa84fd7fa4423896ab5e9aa597f443e95d1cb9794010e4459816ba",
+    "winner_metrics.csv": "d8797a576f7873ddac9ca7947fa5ac08079d60cbc154af72d8fdba3a9af58935",
+    "unmodeled_actual_skaters.csv": "9dfc7ebc55a70f2189273bf0eb92387c7b441c0e5c486355092c7de000dadeac",
+    "player_metrics_by_date.csv": "e90ec5a283c1c127c1ab65efaaf2a7fd1530303ed5cb64a0174f8aa940f9d42c",
+    "team_games.csv": "88f5fca6ae050e0ce7002f32c2bb9adfe8e5f094a69763cff57d8f508806905a",
+    "paired_shots_vs_default.csv": "1293b53efd895e78c20de0c5eb49350957e85b45e4a6bfaf04a9ed299e455f2a"
+  }
+}

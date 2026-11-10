@@ -1,0 +1,53 @@
+{
+  "through": "2026-11-09",
+  "forecast_dates": [
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09"
+  ],
+  "prospective_games": 33,
+  "player_games": 1185,
+  "selected_shots_model": "calibrated_opponent_sog_trial",
+  "selected_shots_mae": 1.0075657436227787,
+  "default_shots_mae": 1.022975162208083,
+  "selected_minus_default_shots_mae": -0.015409418585304202,
+  "selected_shots_relative_improvement_pct": 1.5063335997369778,
+  "selected_shots_paired_game_bootstrap": {
+    "model": "calibrated_opponent_sog_trial",
+    "category": "shots",
+    "paired_rows": 1185,
+    "games": 33,
+    "mae_delta_vs_default": -0.015409418585304169,
+    "lower_95": -0.021785081813144598,
+    "upper_95": -0.00891429583327187,
+    "games_lower_mae": 28,
+    "games_equal_or_higher": 5,
+    "bootstrap_draws": 10000
+  },
+  "usage_toi_mae": 2.098316538346652,
+  "default_toi_mae": 2.2462833653870815,
+  "usage_toi_relative_improvement_pct": 6.587184382898705,
+  "usage_toi_improved_dates": 6,
+  "usage_toi_paired_game_bootstrap": {
+    "model": "usage_shot_context_trial",
+    "category": "toi_minutes",
+    "paired_rows": 1185,
+    "games": 33,
+    "mae_delta_vs_default": -0.14796682704042893,
+    "lower_95": -0.1812535648972255,
+    "upper_95": -0.11442529376043432,
+    "games_lower_mae": 29,
+    "games_equal_or_higher": 4,
+    "bootstrap_draws": 10000
+  },
+  "recommendation": "Retain calibrated-opponent SOG as the selected NHL-wide all-player shots model. Add the usage-aware ATOI result to the reporting page as a clearly labeled challenger, but retain the default ATOI policy until its isolated prospective sample grows. Keep fantasy shots default and make no PP or calibrated-probability promotion.",
+  "missing_early_november_releases": [
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03"
+  ],
+  "winner_probability_games": 22
+}
