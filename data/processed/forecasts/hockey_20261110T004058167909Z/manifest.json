@@ -1,0 +1,62 @@
+{
+  "started_at_utc": "2026-11-10T00:40:58.167909+00:00",
+  "completed_at_utc": "2026-11-10T00:41:00.650209+00:00",
+  "raw_snapshot": "data/raw/kalshi/snapshots/hockey_20261110T004058167909Z",
+  "requested_series": [
+    "KXNHLGAME",
+    "KXNHLTOTAL",
+    "KXNHLTEAMTOTAL",
+    "KXNHLSAVES",
+    "KXNHLAST",
+    "KXNHLPTS",
+    "KXNHLANYGOAL"
+  ],
+  "sources": [
+    {
+      "file": "KXNHLGAME_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLGAME&status=open&limit=1000",
+      "sha256": "a7a5b42e3029fa138c43af423c676bc5b1309e5d8504325295402207cbff5535"
+    },
+    {
+      "file": "KXNHLTOTAL_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLTOTAL&status=open&limit=1000",
+      "sha256": "5634830d772d8f8031b6e19963f0c80bade692da9dc9f3290e55a32510a7f02f"
+    },
+    {
+      "file": "KXNHLTEAMTOTAL_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLTEAMTOTAL&status=open&limit=1000",
+      "sha256": "eceeb6e7fcc73c56a82638904089be04cc2dea39c09da466dc7c5f7e8a28102b"
+    },
+    {
+      "file": "KXNHLSAVES_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLSAVES&status=open&limit=1000",
+      "sha256": "50699ea1db13415ea46ec367dcfa58decd9660083271c5dc061561f38337fbac"
+    },
+    {
+      "file": "KXNHLAST_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLAST&status=open&limit=1000",
+      "sha256": "5b1cdb935760452750e0a75f21ca9591ead45dfcefd946eace36c797ab421cfd"
+    },
+    {
+      "file": "KXNHLPTS_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLPTS&status=open&limit=1000",
+      "sha256": "7b4ef391e546cd291e58c9c6180d09e6067b33df21c00d9b4d9c0ab290f7f21e"
+    },
+    {
+      "file": "KXNHLANYGOAL_0.json",
+      "url": "https://external-api.kalshi.com/trade-api/v2/markets?series_ticker=KXNHLANYGOAL&status=open&limit=1000",
+      "sha256": "50699ea1db13415ea46ec367dcfa58decd9660083271c5dc061561f38337fbac"
+    }
+  ],
+  "pagination_complete": true,
+  "limitations": [
+    "Current public open-market snapshot only; no historical pregame claim.",
+    "Contract close is not NHL game start. Explicit contract/player/game mapping and rules review required.",
+    "Midpoint is a quoted price, not a validated probability. Inspect spread, volume, depth and last-trade time.",
+    "No orders, account access, fees simulation or model input."
+  ],
+  "files": {
+    "series_coverage.csv": "bd7d90b74348cd3314db339d6435ce28f50032116a738a4f21219ddd9f36b798",
+    "markets.csv": "10744c2061d03ec709bab2117e8baf1ac04906599ca8419685eb717f34dbf3d9"
+  }
+}
