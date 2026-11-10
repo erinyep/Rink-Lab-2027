@@ -1,5 +1,12 @@
 # Rink Lab — Next Steps
 
+## November 10 — afternoon availability and data-freshness check
+
+- Refreshed ESPN roster, injury labels, projections and league state at **1:03 p.m. Eastern** (`2026-11-10T18:03:43Z`); refreshed rules and next-period roster at **1:04 p.m.** The six-team league snapshot contains 135 rostered players and 1,583 available players. Status labels do not confirm who will dress or start. Rebuilt the [fantasy roster report](docs/report/index.html) from this snapshot while preserving the 8:12 a.m. frozen forecast means.
+- Re-fetched MoneyPuck at **1:03 p.m. Eastern**. It still covers **285 NHL games through November 9**. Its source SHA-256 (`0b5e38a20f27e40b1cf50510e33b49e761edb25ced9b0cd1899a12f2edef5c43`) exactly matches the committed November 9 team delta; no new game rows were available to append.
+- Refreshed public Kalshi markets at **1:03 p.m. Eastern**. The current snapshot includes 94 two-sided NHL winner markets and maps 14 team contracts across all 7 games today (median spread **$0.01** on today's subset). Published the full normalized open-market file and a matched quote table in the [latest benchmark report](docs/history/kalshi_benchmark_2026-11-10_1803/README.md). Market quotes are read-only and are not model inputs; the 1:03 p.m. quotes are 4 hours 51 minutes later than the model issue.
+- Updated the root README and sanitized fantasy page to show the current dates and source timestamps. The game, team and goalie forecasts remain the 8:12 a.m. issue; refresh statuses and market quotes are separate later observations. After tonight's games, acquire results and score only the frozen pregame forecasts.
+
 ## November 10 — seven-game slate issued; November evidence reviewed
 
 - Issued all **7 November 10 games pregame** at 8:12 a.m. Eastern from official NHL history through November 9 (**285 finals**). The validated public release contains **2,198 player-model rows, 98 team rows and 64 goalie rows**. [Today’s game outlook](docs/games/index.html) · [direct team model](docs/team-model/index.html) · [sanitized fantasy report](docs/report/index.html) · [full public frozen forecast](outputs/per_game_forecast/frozen/daily_2026-11-10_20261110T131201Z/README.md).

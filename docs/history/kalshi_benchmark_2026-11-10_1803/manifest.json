@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-10",
+  "forecast_issued_at_utc": "2026-11-10T13:12:21.114373+00:00",
+  "quote_snapshot_started_at_utc": "2026-11-10T18:03:44.855904+00:00",
+  "quote_snapshot_completed_at_utc": "2026-11-10T18:03:48.631698+00:00",
+  "forecast_to_quote_gap_minutes": 291,
+  "scope": "Read-only current open markets plus exact-fixture winner quotes for all seven November 10 games.",
+  "source_acquisition_manifest_sha256": "b5248f56c447663dd5d1813835c87fba50a1db5895711bcf07f70040343825db",
+  "source_market_csv_sha256": "843b51c8449dc50f960347a38aee6bbddffe20df05d6e30c8d0e5c3c5960dd37",
+  "files": {
+    "README.md": "01f426ee6d0e9c2e9f8548e9e17914b25850f05a57bfea7ecd94763428109899",
+    "acquisition_manifest.json": "b5248f56c447663dd5d1813835c87fba50a1db5895711bcf07f70040343825db",
+    "index.html": "7ff2e6c7f4eed1164422c83214197d3e85954b0d051f34e623acd8177d8ff21a",
+    "open_markets.csv": "843b51c8449dc50f960347a38aee6bbddffe20df05d6e30c8d0e5c3c5960dd37",
+    "series_coverage.csv": "8e6cc909ab34f8bbcd415f927a2ac5c2c6a5f466d7019c0ddaf03603d38b8d4f",
+    "winner_benchmark.csv": "ae86822d865a5d5b22d53da5c2e60e3bb673cfb46725848214d19d743d99a325"
+  }
+}

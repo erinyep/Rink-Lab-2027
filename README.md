@@ -5,15 +5,15 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's projections — November 9
+## Today's projections — November 10
 
-[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-09_20261110T000527Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-09_20261110T000527Z/README.md) · [Pregame model/data handoff](docs/history/pregame-2026-11-09.md).
+[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-10_20261110T131201Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Direct team goals and win probabilities](outputs/per_game_forecast/team_context_daily_2026-11-10_20261110T131201Z/README.md) · [November model review](outputs/per_game_forecast/november_model_review_2026-11-10/README.md) · [Latest Kalshi quote benchmark](docs/history/kalshi_benchmark_2026-11-10_1803/README.md).
 
-Rangers–Oilers, Flyers–Canucks and Islanders–Sharks were all frozen before puck drop at 7:05 p.m. Eastern using official NHL history through November 8 (282 finals). The release contains 966 player rows, 42 team rows and 30 goalie rows. ESPN roster/status was refreshed at 7:04 p.m. Eastern; lineups and goalie starts remain provisional. MoneyPuck team-game data cover through November 8. The public player projections omit fantasy-team ownership and ESPN player IDs.
+All seven November 10 games were forecast before puck drop at 8:12 a.m. Eastern, using official NHL history through November 9 (285 finals). The frozen release contains 2,198 player rows, 98 team rows and 64 goalie rows. Forecast means remain frozen. ESPN availability and fantasy roster data were refreshed at 1:03 p.m. Eastern; the [fantasy report](docs/report/index.html) now uses that newer snapshot. ESPN labels do not confirm lineups or goalie starts. The public player projections omit fantasy-team ownership and ESPN player IDs.
 
-The weekend `daily_usage_context_v2_opportunity_challengers` policy is active in this issue. Calibrated-opponent SOG remains selected for the all-player shots view; fantasy shots keep their separate default. The usage-TOI and PP-opportunity challengers remain unpromoted. Direct team probabilities use the model fit through October 26, with November 8 calibration saved separately and raw probabilities still selected.
+The active `daily_usage_context_v2_opportunity_challengers` policy keeps calibrated-opponent SOG selected for NHL-wide player shots; fantasy shots retain their separate default. Usage-aware ATOI remains a challenger, and assist/PP changes are not promoted. The direct team model uses its October 26 fit and a November 8 calibration challenger; raw probabilities remain selected. The [November 4–9 review](outputs/per_game_forecast/november_model_review_2026-11-10/README.md) supports retaining the shots selection, not broad model changes.
 
-Latest completed evaluation: the [full saved-forecast review through November 5](outputs/per_game_forecast/season_through_2026-11-05/README.md) re-scores all five daily models over 88 forecasted games against one current actuals vintage. Calibrated-opponent SOG MAE is 1.0205 versus 1.0362 for default, a small 1.5% reduction; its paired game-bootstrap interval is below zero and it has lower date-level error on all 10 saved forecast dates. This supports keeping the existing all-player NHL SOG selection. Fantasy category policy remains separate. The [individual November 5 results](outputs/per_game_forecast/results_2026-11-05/README.md) and earlier sections remain available.
+Source freshness checked at 1:03 p.m. Eastern: MoneyPuck's current team file still covers 285 games through November 9 and has the same source hash as the committed November 9 delta, so no newer game rows were available. A fresh read-only Kalshi snapshot mapped winner quotes for all seven games (14 contracts; median spread $0.01). Those quotes were sampled at 1:03 p.m. and are several hours later than the 8:12 a.m. forecast; they are a benchmark, not forecast inputs or a synchronized model comparison. See the [full timestamped quote table](docs/history/kalshi_benchmark_2026-11-10_1803/README.md).
 
 ## Models updated — October 27
 
@@ -52,23 +52,23 @@ The broader chronological development screen covers all 1,312 games in 2025–26
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
-## Latest saved NHL predictions — November 9
+## Latest saved NHL predictions — November 10
 
-[November 9 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
-projected goals, shots, scoring leans and goalie scenarios for all six teams.
+[November 10 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+projected goals, shots, scoring leans and goalie scenarios for all seven games.
 [Reading guide](docs/games/README.md).
 
 ## What is driving the forecasts?
 
 [Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 24. No model promotion; completed evidence remains linked from the trial page.
 
-## Latest private fantasy report — November 9
+## Fantasy roster report — refreshed November 10, 1:03 p.m. ET
 
-[Local report summary and roster alerts](reports/today/README.md). This report includes personal league roster data and is not part of the public Pages update.
+[Current roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local.
 
 ## Current forecast work
 
-November 9: [Three-game frozen release](outputs/per_game_forecast/2026-11-09_20261110T000527Z_pregame_readout.md), official history through November 8, fresh ESPN and MoneyPuck inputs, and updated public game and team reports. All three forecasts were issued before puck drop. The fantasy roster report was refreshed locally and kept out of the public Pages update. After the games finish, score the saved predictions against official results and review weekend challengers separately.
+November 10: [Seven-game frozen release](outputs/per_game_forecast/2026-11-10_20261110T131201Z_pregame_readout.md), official history through November 9, the [November 4–9 model review](outputs/per_game_forecast/november_model_review_2026-11-10/README.md), a 1:03 p.m. ET availability refresh, and a timestamped Kalshi quote refresh. MoneyPuck was checked again at 1:03 p.m.; its latest source hash and coverage match the committed November 9 delta. Forecast means remain the 8:12 a.m. issue. Score the saved forecasts after tonight's games finish.
 
 October 24: [12-game frozen release](outputs/per_game_forecast/2026-10-24_20261024T110008Z_pregame_readout.md), fresh inputs through October 23, [continued feature trials](outputs/per_game_forecast/feature_evidence_2026-10-24_v2/README.md), and updated game/fantasy reports. The broader review prioritizes participation/EV-PP opportunity, goalie start/duration and calibrated uncertainty.
 
