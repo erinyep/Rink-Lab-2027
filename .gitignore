@@ -26,6 +26,11 @@ data/processed/moneypuck/team_context_20261106/*
 !data/processed/moneypuck/team_context_20261106/all_teams.csv
 !data/processed/moneypuck/team_context_20261106/metadata.json
 !data/processed/moneypuck/team_context_20261106/README.md
+!data/processed/moneypuck/team_context_delta_20261110/
+data/processed/moneypuck/team_context_delta_20261110/*
+!data/processed/moneypuck/team_context_delta_20261110/all_teams.csv
+!data/processed/moneypuck/team_context_delta_20261110/metadata.json
+!data/processed/moneypuck/team_context_delta_20261110/README.md
 outputs/descriptive_2025_26/*.csv
 outputs/descriptive_2025_26/*.png
 outputs/descriptive_2025_26/session_info.txt

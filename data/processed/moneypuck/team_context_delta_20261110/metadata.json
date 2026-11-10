@@ -1,0 +1,41 @@
+{
+  "source": "MoneyPuck published game-by-game team download",
+  "url": "https://moneypuck.com/moneypuck/playerData/careers/gameByGame/all_teams.csv",
+  "retrieved_at_utc": "2026-11-10T00:04:39.351267+00:00",
+  "license": "Non-commercial use with MoneyPuck attribution",
+  "source_sha256": "ed621739654766189983dcfcc178c3bf4d4db735f90683d76df528465de42ea5",
+  "source_rows": 235040,
+  "sha256": "3de8714f251739659b957aedb703de9478f29ba99ad50111aa3dc51eaa9afb1d",
+  "rows": 210,
+  "season": "2026",
+  "date_range_inclusive": [
+    "20261106",
+    "20261108"
+  ],
+  "regular_season_only": true,
+  "position": "Team Level",
+  "situations": [
+    "4on5",
+    "5on4",
+    "5on5",
+    "all",
+    "other"
+  ],
+  "rows_by_situation": {
+    "4on5": 42,
+    "5on4": 42,
+    "5on5": 42,
+    "all": 42,
+    "other": 42
+  },
+  "rows_by_game_date": {
+    "20261106": 30,
+    "20261107": 120,
+    "20261108": 60
+  },
+  "games": 21,
+  "paired_team_rows_validated": true,
+  "filter": "season == 2026; position == Team Level; playoffGame == 0; gameDate between 20261106 and 20261108 inclusive",
+  "purpose": "Incremental current-season context that extends team_context_20261106 through November 8, 2026. Combine with that frozen historical release; no rows through November 5 are duplicated.",
+  "published_at_utc": "2026-11-10T00:26:50.441474+00:00"
+}

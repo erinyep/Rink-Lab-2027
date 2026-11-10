@@ -21,5 +21,30 @@
     "input_reconciliation.csv": "7a9afb5ce2fc8bee5affdf9c1adcf8b2f6181e8a5f5ef1be4b800b2b7dde079c",
     "README.md": "da7cff3b41ab93fd8f53398abea9827b21ba03cbbc2e201ef7ce29edfd146e6e",
     "team_goal_forecasts.csv": "5fe59887ff745948851d4bd9d727621b23273035b3be205621e2c808320e79f1"
+  },
+  "moneypuck_public_releases": {
+    "team_context": [
+      {
+        "path": "data/processed/moneypuck/team_context_20261106/all_teams.csv",
+        "sha256": "eab60b41ab5e07683fd4e95f37f03c0b5bbe41acabfdd702b23203e8ef898bee",
+        "through_game_date": "20261105"
+      },
+      {
+        "path": "data/processed/moneypuck/team_context_delta_20261110/all_teams.csv",
+        "sha256": "3de8714f251739659b957aedb703de9478f29ba99ad50111aa3dc51eaa9afb1d",
+        "game_dates": [
+          "20261106",
+          "20261108"
+        ],
+        "rows": 210
+      }
+    ],
+    "team_context_reconstructs_selected_source_rows_exactly": true,
+    "shots": {
+      "path": "data/raw/moneypuck/published/shots_2026_20261110/shots_2026.zip",
+      "sha256": "b4df317cbc7309b6164c6e932f5857b9d131177150102ab9fc707aca00ae9fc6",
+      "rows": 23578,
+      "games": 282
+    }
   }
 }
