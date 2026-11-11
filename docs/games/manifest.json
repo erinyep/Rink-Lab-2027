@@ -1,9 +1,9 @@
 {
-  "date": "2026-11-10",
-  "view_created_utc": "2026-11-10T13:22:14.825253+00:00",
-  "forecast_issued_utc": "2026-11-10T13:12:15.063397+00:00",
-  "frozen_bundle_manifest_sha256": "220f9e4215c636c3b09293e5e96f11dca144c3d2ce365be789532df85742c2e5",
-  "source_schedule_sha256": "a1177b1ea396847e504c8c5529af1deed8e62021a717df20cdaa127f2e59a3af",
+  "date": "2026-11-11",
+  "view_created_utc": "2026-11-11T19:26:29.371543+00:00",
+  "forecast_issued_utc": "2026-11-11T19:25:48.240067+00:00",
+  "frozen_bundle_manifest_sha256": "5648d6fba0c8712164d23cc4fa3ecc8ee7c88ab31a52a4bc4cb09d90c9eefa30",
+  "source_schedule_sha256": "2d3eafe43429a54153137d4d62a18c4fcc7b9579b0b0a5393b50804c052eed7b",
   "model_status": "existing_frozen_models_primary_all_player_sog_selected",
   "primary_sog_model": "calibrated_opponent_sog_trial",
   "model_review_manifest_sha256": "cd4766d9cf055a8d8e535f90c5a74f88e4f437d6d3418c5ac05eb79205e373eb",
@@ -14,11 +14,11 @@
     "daily_forecast_trial.json": "0d48558d8d9e9148c971a2c946e78ea0f6e8277d15a1b29520dc01b3d3b35271"
   },
   "files": {
-    "index.html": "4f090bfc74c04acfd0b88f59bc05064fa2b2d1e1df946b6670ee506bd55573ac",
-    "goalie_scenarios.csv": "322a8a30ee6fdd721cc9dc3b4cdb0fe256fcd8538c5dbd514f81d017e6809938",
-    "outlook.json": "134e1c4d275e919fc280979f7dae3d75dcb5ac20e2392620b3ec7c2c76807d8e",
-    "README.md": "0922554787e3f0dc3f325e2027bca19607c22e066ad725ffba80d5e56e4efe8f",
-    "team_predictions.csv": "c6e2b43f8b98adad6eddb3d0c1e8b25f3124854262cb204629bfe8e777e7f487",
-    "game_predictions.csv": "e33ccb26cbf8a516160a2b2c9a8044584915a8a4d11143cd73fa7469f4df27c4"
+    "index.html": "7d386f16e6d389bcdb0bfa889e6b34a89dbf0f7c89b2461d6264a17ea61051cb",
+    "goalie_scenarios.csv": "7076bd63dd62c9259c6440e18946802df18ba3acc5c7fd1e77815c50e5a60f7c",
+    "outlook.json": "ef536c68c548a569deaa998a10d6c2fe74663d84ae03a7e1245388204bf320ed",
+    "README.md": "fe64aeb9e129192c6b9586970ff6275559ccd412b2ac40b86c572e663eafa1cd",
+    "team_predictions.csv": "645f1f6088ef461664a1bad37568a08f33ecf4e35c384e3f0162bc15db72eac2",
+    "game_predictions.csv": "7579b155fc2dd53c8486424c62e3ea1523da7dc1e0ba4700630ca48a99c23342"
   }
 }

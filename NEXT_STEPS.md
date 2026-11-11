@@ -1,5 +1,13 @@
 # Rink Lab — Next Steps
 
+## November 11 — six-game slate issued and Quinn report refreshed
+
+- Issued all **6 November 11 games pregame** at 2:25 p.m. Eastern using official NHL history through November 10 (**292 finals**). The validated public release contains **1,932 player rows, 84 team rows and 56 goalie rows**. [Public frozen projections](outputs/per_game_forecast/frozen/daily_2026-11-11_20261111T192535Z/README.md) · [NHL matchup outlook](docs/games/index.html) · [direct team goals and win probabilities](docs/team-model/README.md) · [Quinn fantasy report](docs/report/index.html).
+- Refreshed ESPN league, roster, status and projection inputs around 2:23 p.m. Eastern; refreshed rules and next-period roster. Labels do not confirm who will dress or start. The fantasy report was built from this snapshot while retaining the frozen forecast means; no roster transactions were made.
+- Refreshed official boxscores and scoring through November 10. Positive-TOI rows reconcile exactly: **10,511 skater-games across 292 finals**. Current MoneyPuck team context covers through November 10. Source snapshots and hashes are preserved locally; the public release omits ESPN player IDs and fantasy-team ownership from player projection files.
+- Kept model coefficients and fantasy selection policies unchanged. Calibrated-opponent shots remains selected for NHL-wide shots; fantasy shots retain their default; usage-aware ATOI remains a challenger. Raw direct-team probabilities remain selected, with the calibration challenger saved separately. No tests or refit were run.
+- After tonight's games, acquire official actuals and score only these frozen pregame forecasts.
+
 ## November 10 — afternoon availability and data-freshness check
 
 - Refreshed ESPN roster, injury labels, projections and league state at **1:03 p.m. Eastern** (`2026-11-10T18:03:43Z`); refreshed rules and next-period roster at **1:04 p.m.** The six-team league snapshot contains 135 rostered players and 1,583 available players. Status labels do not confirm who will dress or start. Rebuilt the [fantasy roster report](docs/report/index.html) from this snapshot while preserving the 8:12 a.m. frozen forecast means.
