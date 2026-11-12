@@ -5,15 +5,15 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's projections — November 11
+## Today's projections — November 12
 
-[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-11_20261111T192535Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Direct team goals and win probabilities](docs/team-model/README.md) · [Fantasy report](docs/report/index.html) · [November model review](outputs/per_game_forecast/november_model_review_2026-11-10/README.md).
+[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-12_20261112T184820Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Direct team goals and win probabilities](docs/team-model/README.md) · [Fantasy report](docs/report/index.html) · [Nov. 11 model results](outputs/per_game_forecast/results_2026-11-11/README.md).
 
-All six November 11 games were issued pregame at 2:25 p.m. Eastern from official history through November 10 (292 finals). The frozen public release contains 1,932 player rows, 84 team rows and 56 goalie rows. The fantasy report uses the read-only ESPN roster/status refresh from 2:23 p.m. Eastern; labels do not confirm participation or goalie starts. The public player projections omit fantasy-team ownership and ESPN player IDs.
+Ten of tonight's 11 scheduled games were issued pregame at 1:48 p.m. Eastern from official history through November 11 (298 finals). Seattle–Carolina had already started; its rows are marked late and are excluded from the page's default pregame view and the team-win release. The frozen public release contains 3,465 player rows, 154 team rows and 100 goalie rows across the slate. ESPN availability labels do not confirm participation or goalie starts; public projections omit fantasy-team ownership and ESPN player IDs.
 
-The active `daily_usage_context_v2_opportunity_challengers` policy keeps calibrated-opponent SOG selected for NHL-wide player shots; fantasy shots retain their separate default. Usage-aware ATOI remains a challenger, and assist/PP changes are not promoted. The direct team model uses its October 26 fit and saves the November 8 probability calibrator separately; raw probabilities remain selected. The [November 4–9 review](outputs/per_game_forecast/november_model_review_2026-11-10/README.md) supports retaining the shots selection, not broad model changes.
+Nov. 11 results did not justify changing model choices: the goal-history baseline had the best winner Brier score on six games, while calibrated-opponent SOG slightly beat default for all-player and fantasy-rostered shots. The fantasy shot policy stays on default, and usage-aware ATOI remains a challenger. Direct-team raw probabilities remain selected, with calibration saved separately. Coefficients were not refit.
 
-NHL boxscores and time-on-ice were refreshed through November 10 and reconciled across 10,511 positive-TOI skater-games. MoneyPuck's current team file covers through November 10. No model coefficients were refit for today's release.
+NHL history and TOI were refreshed through November 11 and reconciled across 10,727 positive-TOI skater-games. MoneyPuck coverage also reaches November 11. ESPN roster/status and projections were refreshed at 1:45 p.m. Eastern; the Quinn report was rebuilt from that read-only snapshot.
 
 ## Models updated — October 27
 
@@ -52,23 +52,25 @@ The broader chronological development screen covers all 1,312 games in 2025–26
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
-## Latest saved NHL predictions — November 11
+## Latest saved NHL predictions — November 12
 
-[November 11 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
-projected goals, shots, scoring leans and goalie scenarios for all six games.
+[November 12 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+projected goals, shots, scoring leans and goalie scenarios for the ten remaining pregame games.
 [Reading guide](docs/games/README.md).
 
 ## What is driving the forecasts?
 
 [Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 24. No model promotion; completed evidence remains linked from the trial page.
 
-## Fantasy roster report — refreshed November 11, 2:25 p.m. ET
+## Fantasy roster report — refreshed November 12, 1:48 p.m. ET
 
 [Current roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local.
 
 ## Current forecast work
 
-November 11: [Six-game frozen release](outputs/per_game_forecast/2026-11-11_20261111T192535Z_pregame_readout.md), [official history through November 10](docs/history/pregame-2026-11-11.md), updated [game outlook](docs/games/index.html), [team model](docs/team-model/README.md) and [Quinn fantasy report](docs/report/index.html). The November 4–9 model review remains linked above. Score the saved forecasts after tonight's games finish.
+November 12: [Ten-game pregame release](outputs/per_game_forecast/2026-11-12_20261112T184820Z_pregame_readout.md), [official history through November 11](docs/history/pregame-2026-11-12.md), updated [game outlook](docs/games/index.html), [team model](docs/team-model/README.md) and [Quinn fantasy report](docs/report/index.html). Seattle–Carolina is late-issued and excluded from prospective scoring.
+
+November 11: [Six-game release](outputs/per_game_forecast/2026-11-11_20261111T192535Z_pregame_readout.md) and [scored model results](outputs/per_game_forecast/results_2026-11-11/README.md). The small slate did not support a refit or policy change.
 
 October 24: [12-game frozen release](outputs/per_game_forecast/2026-10-24_20261024T110008Z_pregame_readout.md), fresh inputs through October 23, [continued feature trials](outputs/per_game_forecast/feature_evidence_2026-10-24_v2/README.md), and updated game/fantasy reports. The broader review prioritizes participation/EV-PP opportunity, goalie start/duration and calibrated uncertainty.
 

@@ -1,12 +1,19 @@
 # Rink Lab — Next Steps
 
+## November 12 — forecast issued after SEA–CAR began
+
+- Refreshed ESPN at **1:45 p.m. Eastern** and issued the 11-game slate at **1:48 p.m.** using official NHL history through November 11 (**298 finals; 10,727 positive-TOI skater-games**) and MoneyPuck coverage through November 11. [Frozen projections](outputs/per_game_forecast/frozen/daily_2026-11-12_20261112T184820Z/README.md) · [NHL outlook](docs/games/index.html) · [team goals and win probabilities](docs/team-model/README.md) · [Quinn fantasy report](docs/report/index.html).
+- **10 games are pregame; Seattle–Carolina had already started.** Its rows are marked late and excluded from prospective scoring and the direct-team probability release. The game outlook hides late rows by default. No roster transactions were made; lineup and goalie labels remain unconfirmed.
+- Nov. 11's six-game evaluation slightly favored calibrated-opponent shots over default for both all players (MAE **1.033 vs. 1.045**) and fantasy-rostered appearances (**1.496 vs. 1.517**), while the goal-history baseline led winner Brier (**0.206** vs. direct-team **0.222**). The usage-only TOI challenger improved all-player error (**2.189 vs. 2.393 min**) but did not improve the fantasy-rostered subset. These six games do not justify a refit or model-policy change. [Scored results](outputs/per_game_forecast/results_2026-11-11/README.md).
+- Existing model and fantasy policies remain in effect: calibrated-opponent SOG for NHL-wide shots, default for fantasy shots, usage-aware ATOI as a challenger, and raw direct-team probabilities selected with calibration saved separately. Coefficients remain frozen; the current release used refreshed inputs, not a refit.
+
 ## November 11 — six-game slate issued and Quinn report refreshed
 
 - Issued all **6 November 11 games pregame** at 2:25 p.m. Eastern using official NHL history through November 10 (**292 finals**). The validated public release contains **1,932 player rows, 84 team rows and 56 goalie rows**. [Public frozen projections](outputs/per_game_forecast/frozen/daily_2026-11-11_20261111T192535Z/README.md) · [NHL matchup outlook](docs/games/index.html) · [direct team goals and win probabilities](docs/team-model/README.md) · [Quinn fantasy report](docs/report/index.html).
 - Refreshed ESPN league, roster, status and projection inputs around 2:23 p.m. Eastern; refreshed rules and next-period roster. Labels do not confirm who will dress or start. The fantasy report was built from this snapshot while retaining the frozen forecast means; no roster transactions were made.
 - Refreshed official boxscores and scoring through November 10. Positive-TOI rows reconcile exactly: **10,511 skater-games across 292 finals**. Current MoneyPuck team context covers through November 10. Source snapshots and hashes are preserved locally; the public release omits ESPN player IDs and fantasy-team ownership from player projection files.
 - Kept model coefficients and fantasy selection policies unchanged. Calibrated-opponent shots remains selected for NHL-wide shots; fantasy shots retain their default; usage-aware ATOI remains a challenger. Raw direct-team probabilities remain selected, with the calibration challenger saved separately. No tests or refit were run.
-- After tonight's games, acquire official actuals and score only these frozen pregame forecasts.
+- Scored the six pregame games against official Nov. 11 results. See [Nov. 11 model results](outputs/per_game_forecast/results_2026-11-11/README.md); late rows and nonparticipants were excluded.
 
 ## November 10 — afternoon availability and data-freshness check
 

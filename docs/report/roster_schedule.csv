@@ -1,53 +1,51 @@
 player_name,date,opponent
-Tage Thompson,2026-11-11,TBL
-Beckett Sennecke,2026-11-11,NSH
-Logan Cooley,2026-11-11,VGK
-Matvei Michkov,2026-11-11,EDM
-Joel Farabee,2026-11-11,NYR
-Trevor Connelly,2026-11-11,UTA
-Mikael Granlund,2026-11-11,NSH
-Devin Cooley,2026-11-11,NYR
 Quinn Hughes,2026-11-12,TOR
+Tage Thompson,2026-11-12,CHI
+Kirill Kaprizov,2026-11-12,TOR
+Alex Tuch,2026-11-12,NJD
+Jesper Wallstedt,2026-11-12,TOR
+Luke Hughes,2026-11-12,WSH
+Logan Cooley,2026-11-12,STL
+Joel Eriksson Ek,2026-11-12,TOR
+Logan Stankoven,2026-11-12,SEA
+Cole Hutson,2026-11-12,NJD
+Luke Evangelista,2026-11-12,WSH
+Pyotr Kochetkov,2026-11-12,SEA
+Viktor Arvidsson,2026-11-12,FLA
+Philip Broberg,2026-11-12,UTA
+Alexander Nikishin,2026-11-12,SEA
+Maxim Shabanov,2026-11-12,TOR
 Quinn Hughes,2026-11-14,BOS
 Quinn Hughes,2026-11-17,NSH
-Tage Thompson,2026-11-12,CHI
 Tage Thompson,2026-11-14,DAL
 Tage Thompson,2026-11-17,PHI
-Kirill Kaprizov,2026-11-12,TOR
 Kirill Kaprizov,2026-11-14,BOS
 Kirill Kaprizov,2026-11-17,NSH
-Alex Tuch,2026-11-12,NJD
 Alex Tuch,2026-11-14,NJD
 Alex Tuch,2026-11-17,TBL
-Jesper Wallstedt,2026-11-12,TOR
 Jesper Wallstedt,2026-11-14,BOS
 Jesper Wallstedt,2026-11-17,NSH
 Beckett Sennecke,2026-11-14,NYI
 Beckett Sennecke,2026-11-15,CGY
 Beckett Sennecke,2026-11-17,STL
-Luke Hughes,2026-11-12,WSH
 Luke Hughes,2026-11-14,WSH
-Logan Cooley,2026-11-12,STL
+Luke Hughes,2026-11-18,MTL
 Logan Cooley,2026-11-14,SJS
 Logan Cooley,2026-11-16,VAN
-Joel Eriksson Ek,2026-11-12,TOR
+Logan Cooley,2026-11-18,COL
 Joel Eriksson Ek,2026-11-14,BOS
 Joel Eriksson Ek,2026-11-17,NSH
 Matvei Michkov,2026-11-14,CBJ
 Matvei Michkov,2026-11-15,EDM
 Matvei Michkov,2026-11-17,BUF
-Logan Stankoven,2026-11-12,SEA
 Logan Stankoven,2026-11-14,SEA
-Cole Hutson,2026-11-12,NJD
 Cole Hutson,2026-11-14,NJD
 Cole Hutson,2026-11-17,TBL
-Luke Evangelista,2026-11-12,WSH
 Luke Evangelista,2026-11-14,WSH
-Pyotr Kochetkov,2026-11-12,SEA
+Luke Evangelista,2026-11-18,MTL
 Pyotr Kochetkov,2026-11-14,SEA
-Viktor Arvidsson,2026-11-12,FLA
 Viktor Arvidsson,2026-11-14,TBL
-Philip Broberg,2026-11-12,UTA
+Viktor Arvidsson,2026-11-18,BOS
 Philip Broberg,2026-11-14,FLA
 Philip Broberg,2026-11-17,ANA
 Joel Farabee,2026-11-14,LAK
@@ -56,7 +54,6 @@ Joel Farabee,2026-11-17,SJS
 Trevor Connelly,2026-11-13,NSH
 Trevor Connelly,2026-11-15,VAN
 Trevor Connelly,2026-11-17,DAL
-Alexander Nikishin,2026-11-12,SEA
 Alexander Nikishin,2026-11-14,SEA
 Mikael Granlund,2026-11-14,NYI
 Mikael Granlund,2026-11-15,CGY
@@ -64,6 +61,5 @@ Mikael Granlund,2026-11-17,STL
 Devin Cooley,2026-11-14,LAK
 Devin Cooley,2026-11-15,ANA
 Devin Cooley,2026-11-17,SJS
-Maxim Shabanov,2026-11-12,TOR
 Maxim Shabanov,2026-11-14,BOS
 Maxim Shabanov,2026-11-17,NSH

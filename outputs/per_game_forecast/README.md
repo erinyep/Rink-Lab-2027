@@ -1,9 +1,9 @@
-# Per-game forecast status — November 11, 2026
+# Per-game forecast status — November 12, 2026
 
-- [Tonight’s six-game pregame release](2026-11-11_20261111T192535Z_pregame_readout.md) · [Public player/team/goalie projections](frozen/daily_2026-11-11_20261111T192535Z/README.md)
-- [Interactive game outlook](../../docs/games/README.md) · [Fantasy report](../../docs/report/index.html) · [Direct team forecasts](../../docs/team-model/README.md) · [Model/data handoff](../../docs/history/pregame-2026-11-11.md)
-- Official history through November 10: 292 finals and 10,511 reconciled positive-TOI skater-games. All six forecasts were issued pregame. ESPN roster/status and MoneyPuck coverage were refreshed; source age and model lineage are recorded in the release manifests.
-- The weekend daily policy is active: calibrated-opponent SOG is selected for all-player NHL shots, fantasy category shots retain their separate default, and usage-TOI/PP-opportunity challengers remain unpromoted. Direct-team raw probabilities remain selected; the Nov. 8 calibration is saved separately.
+- [Tonight’s ten-game pregame release](2026-11-12_20261112T184820Z_pregame_readout.md) · [Public player/team/goalie projections](frozen/daily_2026-11-12_20261112T184820Z/README.md)
+- [Nov. 11 scored model results](results_2026-11-11/README.md) · [Interactive game outlook](../../docs/games/README.md) · [Fantasy report](../../docs/report/index.html) · [Direct team forecasts](../../docs/team-model/README.md) · [Model/data handoff](../../docs/history/pregame-2026-11-12.md)
+- Official history through November 11: 298 finals and 10,727 reconciled positive-TOI skater-games. Ten of 11 scheduled games were issued pregame; Seattle–Carolina was already underway and remains labeled late. ESPN roster/status was refreshed at 1:45 p.m. Eastern; MoneyPuck coverage reaches November 11.
+- Existing policies remain active: calibrated-opponent SOG for all-player shots, default for fantasy shots, usage-aware ATOI and PP opportunity as challengers, and raw direct-team probabilities selected with the Nov. 8 calibrator separate. Nov. 11 results were too small to justify a refit or promotion.
 
 Older forecast status entries below are historical snapshots.
 

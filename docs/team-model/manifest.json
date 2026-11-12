@@ -1,25 +1,34 @@
 {
-  "created_at_utc": "2026-11-11T19:25:54.159897+00:00",
-  "date": "2026-11-11",
+  "created_at_utc": "2026-11-12T18:48:48.434008+00:00",
+  "date": "2026-11-12",
   "method": "team_goal_context_v2",
-  "scheduled_games": 6,
-  "excluded_games": [],
+  "scheduled_games": 11,
+  "excluded_games": [
+    {
+      "game_id": 2026020309,
+      "away": "CAR",
+      "home": "SEA",
+      "start_time_utc": "2026-11-12T17:00:00Z",
+      "game_state": "LIVE",
+      "reason": "started_or_within_10_minute_lead"
+    }
+  ],
   "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
   "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
-  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261111T192450867010Z",
-  "moneypuck_sha256": "9a8380fc16e116b3758fcc10c122d6bcf627c75c0f1e7edfa5204445311f5b33",
-  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261111T192344Z",
-  "boxscores_sha256": "7219a68ce6d5833eaf93e5dca9750cf03bb70ed3c948ebdedb37cf76e77a4902",
-  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261111T192554159897Z",
-  "schedule_sha256": "2d3eafe43429a54153137d4d62a18c4fcc7b9579b0b0a5393b50804c052eed7b",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261112T184732292154Z",
+  "moneypuck_sha256": "0874d85f6012a95fd25c1e0551248fc5fef0b133d6f25817722b60fe1c5c7dc9",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261112T184508Z",
+  "boxscores_sha256": "87c82b9a4c97d0a2d7ca888f704e2e0c75e8f3d1feff057dce212da2d33fd64a",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261112T184848434008Z",
+  "schedule_sha256": "6354820957afab1cee6376c87d8b83dc5cf9fe278e9c8f9b09660401c19b1e64",
   "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
   "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
   "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
   "files": {
-    "team_win_probabilities.csv": "f91a0960e866e24cc33b2ff044708569a482806a8571e17a54d82ab64909c7f0",
-    "index.html": "278863fd8d067dfb5e9b337c2275dd202b58d3bbd36d39b0c25be12c13f0c6aa",
-    "input_reconciliation.csv": "acbba0bdae913b4bfeec1eee4ef6a833b36fac081acdd82421bbd62dc97b2e4a",
-    "README.md": "aba38cf55a6186743a6c62b0e160fab9c96107a20570f035c3e241fc6cb5962b",
-    "team_goal_forecasts.csv": "b5cda5162d476f06b967943911e6c6253d2c0f176aac9184ef1969e79605a910"
+    "team_win_probabilities.csv": "faf6ff250747efca692ba16c282e3427b1ec23d7520e100e059775787060d6cd",
+    "index.html": "8fb25f88c97c2ddbfba142ae9b4057e14620ac36574fe45ffa96a2e735163ec5",
+    "input_reconciliation.csv": "f40ffd1470b14f77cb6c2b1d7ec01e491e21b5e48d9d9977a4547a9cac975e72",
+    "README.md": "52aedaae8637196ce8a3671f80fc7b2269039a96a62cb7f357eb18cecc61d163",
+    "team_goal_forecasts.csv": "ae6da911f7336ca6fdeb50400972fd635a2f6bd814cfa88bccb865cf290a3d9e"
   }
 }
