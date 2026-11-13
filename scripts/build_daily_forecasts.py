@@ -258,7 +258,7 @@ def main():
         moneypuck_shots_manifest_sha256=sha(a.moneypuck_shots/'manifest.json') if a.moneypuck_shots else None,
         game_issue_timing=frames['game_team_coverage'][['game_id','issue_timing']].drop_duplicates().to_dict('records'),
         limitations=['Current statistical inputs end before target day. Current rosters/injuries are retrieved at issuance; late rows are not historical pregame forecasts.',
-            'No models promoted; added usage/context assumptions remain unvalidated.', 'Lineups and goalie starts are provisional; conditional forecasts are not participation forecasts.',
+            'The issue-time config records selected SOG and conditional TOI models; shot-context and PP-opportunity challengers remain experimental.', 'Lineups and goalie starts are provisional; conditional forecasts are not participation forecasts.',
             'PP opportunity uses fixed recent-minute and event-rate shrinkage in a separate challenger; unidentified replacements retain position priors. No fitted opponent PP or schedule/rest coefficient.',
             'Poisson intervals assume conditional independence across players and are not calibrated.'])
     manifest['files']={p.name:sha(p) for p in out.glob('*.csv')}

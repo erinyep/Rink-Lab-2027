@@ -1,5 +1,5 @@
 {
-  "version": "daily_usage_context_v2_opportunity_challengers",
+  "version": "daily_usage_context_v3_selected_toi",
   "models": ["default", "candidate", "opponent_form_sog_trial", "calibrated_opponent_sog_trial", "usage_shot_context_trial", "usage_toi_only_trial", "pp_opportunity_trial"],
   "draws": 10000,
   "recent_window_games": 5,
@@ -8,9 +8,11 @@
   "team_prior_games": 20,
   "pp_exposure_prior_games": 10,
   "pp_rate_prior_minutes": 120,
-  "status": "existing_policies_retained_new_opportunity_challengers_not_promoted",
+  "status": "calibrated_sog_and_isolated_usage_toi_selected; other_challengers_retained",
   "challenger_evidence": "outputs/per_game_forecast/model_challengers_2026-11-08",
   "new_model_scope": "Existing models unchanged. usage_toi_only_trial retains calibrated SOG and changes only conditional TOI. pp_opportunity_trial additionally changes PPP using prior-season event rates and recent pre-date PP exposure; no participation or opponent PP coefficient.",
   "primary_sog_model": "calibrated_opponent_sog_trial",
-  "promotion": "primary_for_all_player_sog_from_2026-11-04; fantasy_shots_remain_default"
+  "primary_toi_model": "usage_toi_only_trial",
+  "primary_toi_effective_from": "2026-11-14",
+  "promotion": "calibrated_opponent_sog_trial_primary_for_all_player_sog_from_2026-11-04; usage_toi_only_trial_primary_for_nhl_wide_conditional_toi_from_2026-11-14; fantasy_shots_remain_default"
 }

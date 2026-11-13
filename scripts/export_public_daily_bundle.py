@@ -42,7 +42,16 @@ def main():
         frame.to_csv(out / name, index=False)
         rows[name] = len(frame)
 
-    model_config = json.loads((ROOT / 'config/daily_forecast_trial.json').read_text())
+    # Use the issue-time config snapshot so later policy updates cannot rewrite
+    # what a historical frozen release says was selected.
+    current_config = json.loads((ROOT / 'config/daily_forecast_trial.json').read_text())
+    model_config = source.get('config') or current_config
+    primary_sog_model = model_config.get('primary_sog_model', current_config.get('primary_sog_model', 'default'))
+    primary_toi_model = (model_config.get('primary_toi_model', 'default')
+                         if source['date'] >= model_config.get('primary_toi_effective_from', '9999-12-31')
+                         else 'default')
+    if primary_sog_model not in source['config']['models'] or primary_toi_model not in source['config']['models']:
+        raise ValueError('Selected public model is absent from the frozen issue')
     raw_schedule = Path(source['raw_context']) / 'schedule.json'
     schedule = json.loads(raw_schedule.read_text())
     games = [g for day in schedule['gameWeek'] if day['date'] == source['date']
@@ -64,7 +73,7 @@ def main():
 
 Issued {source['created_at_utc']}. Official statistical history ends {source['statistical_history_last_game_date']} ({boxscores['final_games']} completed games). The slate contains {release['pregame_games']} pregame game forecasts and {release['late_games']} late-issued game scenario(s).
 
-Start with `player_projections.csv`, `team_projections.csv`, and `goalie_projections.csv`. Player means are conditional on playing; assumed lineups and goalie start shares are not confirmed. The calibrated-opponent SOG model is selected for all-player NHL shots; fantasy category policy remains separate. Alternative rows are preserved for comparison.
+Start with `player_projections.csv`, `team_projections.csv`, and `goalie_projections.csv`. Player means are conditional on playing; assumed lineups and goalie start shares are not confirmed. Selected all-player models: `{primary_sog_model}` for shots and `{primary_toi_model}` for conditional ATOI. Fantasy category selection is separately recorded in its policy; alternative rows are preserved for comparison.
 
 Late-issued scenario(s), excluded from prospective scoring: {late_matchups}.
 
@@ -79,7 +88,8 @@ Availability comes from a timestamped ESPN snapshot and does not confirm partici
         pregame_games=release['pregame_games'],
         late_games=late_games,
         models=source['config']['models'],
-        primary_sog_model=model_config['primary_sog_model'],
+        primary_sog_model=primary_sog_model,
+        primary_toi_model=primary_toi_model,
         availability=source.get('availability_status'),
         injuries_as_of_utc=source.get('injuries_as_of_utc'),
         moneypuck_latest_game_date=mp_last,

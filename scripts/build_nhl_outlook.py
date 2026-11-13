@@ -27,10 +27,17 @@ def main():
         help='Optional hash-checked November review directory to summarize on the game page')
     args=parser.parse_args();validate(args.bundle)
     manifest=json.loads((args.bundle/'manifest.json').read_text())
-    trial_config=json.loads((ROOT/'config/daily_forecast_trial.json').read_text())
+    current_config=json.loads((ROOT/'config/daily_forecast_trial.json').read_text())
+    # Selection belongs to the frozen issue, not whichever config is current
+    # when a historical reading page is rebuilt.
+    trial_config=manifest.get('config') or current_config
     primary_sog_model=trial_config.get('primary_sog_model','default')
+    primary_toi_model=(trial_config.get('primary_toi_model','default')
+        if manifest['date'] >= trial_config.get('primary_toi_effective_from','9999-12-31') else 'default')
     if primary_sog_model not in manifest['config']['models']:
         raise ValueError(f'Primary SOG model {primary_sog_model!r} is not in the frozen bundle')
+    if primary_toi_model not in manifest['config']['models']:
+        raise ValueError(f'Primary TOI model {primary_toi_model!r} is not in the frozen bundle')
     schedule_path=Path(manifest['raw_context'])/'schedule.json'
     schedule_source=next(r for r in manifest['sources'] if r['file']=='schedule.json')
     if digest(schedule_path)!=schedule_source['sha256']:raise ValueError('Schedule source hash mismatch')
@@ -60,13 +67,14 @@ def main():
     payload=dict(date=manifest['date'],forecast_issued_utc=manifest['created_at_utc'],
         forecast_issued_local=pd.Timestamp(manifest['created_at_utc']).tz_convert('America/New_York').strftime('%b %-d, %-I:%M %p ET'),
         view_created_utc=created.isoformat(),pregame_games=pregame,total_games=len(games),
-        primary_sog_model=primary_sog_model,models=model_order,games=outlook,
+        primary_sog_model=primary_sog_model,primary_toi_model=primary_toi_model,
+        models=model_order,games=outlook,
         goalies=json.loads(goalie.to_json(orient='records')),leaders=json.loads(leaders.to_json(orient='records')),
         limitations=[
             'Projected goals are sums of player scoring means in an unconfirmed lineup scenario, not MoneyPuck shot-quality xG.',
             'The scoring lean is the side with the higher mean. It is not a calibrated winner prediction, betting edge or win probability.',
             'Goal totals do not yet have a fitted opponent, home/rest or opposing-goalie adjustment. Shot challengers apply experimental context; selecting a new model may change shots without changing goals.',
-            'Calibrated-opponent SOG is selected by default for NHL-wide player shots based on season-to-date paired results; the fantasy category policy remains separate and keeps its default.',
+            f'{primary_sog_model} is selected for NHL-wide player shots and {primary_toi_model} for conditional ATOI; fantasy category policies remain separate.',
             'Goalie numbers are separate full-60-minute scenarios, not confirmed starters. They are not reconciled with the skater team-goal forecasts.',
             'p10–p90 simulation ranges are provisional Poisson count ranges, not calibrated 80% confidence intervals. Outcomes can fall outside them.',
             'This is a saved forecast, not live scores or an update after puck drop. Late-issued games are excluded by default and must not be scored as prospective predictions.'
@@ -101,11 +109,15 @@ def main():
             f'{b["games_lower_mae"]}/{b["games"]} games lower; game-cluster 95% interval '
             f'[{b["lower_95"]:+.3f}, {b["upper_95"]:+.3f}]). It remains selected for NHL-wide SOG. '
             'Fantasy shots keep their separate default policy.</p>'
-            f'<p>The usage-aware ATOI challenger reduced conditional ice-time MAE from '
-            f'{review_summary["default_toi_mae"]:.3f} to {review_summary["usage_toi_mae"]:.3f} minutes '
-            f'and was closer on {review_summary["usage_toi_improved_dates"]}/6 dates. '
-            'It is shown as a challenger; default ATOI remains selected while the isolated prospective '
-            'sample grows. Assist and team-probability results do not support another policy change.</p>'
+            f'<p>The isolated usage-only ATOI model reduced conditional ice-time MAE from '
+            f'{review_summary["default_toi_mae"]:.3f} to {review_summary["isolated_usage_toi_mae"]:.3f} minutes '
+            f'across {review_summary["isolated_usage_toi_games"]} prospective games '
+            f'({review_summary["isolated_usage_toi_paired_game_bootstrap"]["games_lower_mae"]}/'
+            f'{review_summary["isolated_usage_toi_paired_game_bootstrap"]["games"]} games lower; paired '
+            f'95% interval [{review_summary["isolated_usage_toi_paired_game_bootstrap"]["lower_95"]:+.3f}, '
+            f'{review_summary["isolated_usage_toi_paired_game_bootstrap"]["upper_95"]:+.3f}]). '
+            f'{"It is selected for future conditional ATOI projections." if primary_toi_model == "usage_toi_only_trial" else "It supports promoting usage-only ATOI for future releases."} '
+            'Assist and team-probability results do not support another policy change.</p>'
             f'<p><a href="{escape(url, quote=True)}">Full November model review and scored files</a></p></section>')
     template=template.replace('__MODEL_EVIDENCE__',evidence_html)
     (args.out/'index.html').write_text(template.replace('__OUTLOOK_DATA__',json.dumps(payload,separators=(',',':'),allow_nan=False).replace('</','<\\/')))
@@ -117,22 +129,22 @@ There are {len(games)} games: {pregame} pregame forecasts and {len(games)-pregam
 The goal numbers are projected means, not exact final scores. The side with the
 higher goal mean is the model scoring lean; no calibrated win odds are supplied.
 Simulation ranges and goalie start shares remain provisional. All saved
-models can be compared without changing the frozen forecasts. The
-calibrated-opponent SOG model is selected by default for all-player NHL shots
-based on the season-to-date paired evaluation; fantasy shots retain their
-separate default policy. {'This page also summarizes the November 4–9 model review and links the scored evidence.' if review_summary else ''}
+models can be compared without changing the frozen forecasts. Selected models
+are {primary_sog_model} for all-player SOG and {primary_toi_model} for
+conditional ATOI; fantasy category selection remains separate.
+{'This page also summarizes the November model review and links the scored evidence.' if review_summary else ''}
 
 Start by comparing each matchup's goal means and shot volume. Expand a card for
 assumed shot leaders and goalie full-start scenarios. Use the table to scan all
 teams. Any late-issued games are excluded by default.
 
-The page is a saved snapshot and does not update live. See the page's assumptions
+The page is a saved snapshot and does not update live. Selected models are {primary_sog_model} for all-player SOG and {primary_toi_model} for conditional ATOI; the frozen forecast itself is not changed by this reading view. See the page's assumptions
 and manifest for limitations and source hashes.
 ''')
     (args.out/'manifest.json').write_text(json.dumps(dict(date=manifest['date'],view_created_utc=created.isoformat(),
         forecast_issued_utc=manifest['created_at_utc'],frozen_bundle_manifest_sha256=digest(args.bundle/'manifest.json'),
-        source_schedule_sha256=digest(schedule_path),model_status='existing_frozen_models_primary_all_player_sog_selected',
-        primary_sog_model=primary_sog_model,
+        source_schedule_sha256=digest(schedule_path),model_status='frozen_all_player_sog_and_conditional_toi_selections',
+        primary_sog_model=primary_sog_model,primary_toi_model=primary_toi_model,
         model_review_manifest_sha256=review_hash,
         code_sha256={p.name:digest(p) for p in [Path(__file__),ROOT/'src/fantasy/game_outlook.py',ROOT/'templates/nhl_outlook.html',ROOT/'config/daily_forecast_trial.json']},
         files={p.name:digest(p) for p in args.out.iterdir() if p.is_file() and p.name!='manifest.json'}),indent=2)+'\n')

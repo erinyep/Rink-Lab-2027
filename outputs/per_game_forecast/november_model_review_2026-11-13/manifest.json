@@ -1,0 +1,242 @@
+{
+  "created_at_utc": "2026-11-13T14:57:25.786419+00:00",
+  "through": "2026-11-12",
+  "actuals": "data/processed/forecasts/fantasy_game_details_20261113T145046Z",
+  "actuals_manifest_sha256": "714f2b0b4e1a80228d9a05bac1bccbef99d89ed17dfe12653cadc6c982b24662",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261113T145030Z",
+  "boxscore_metadata_sha256": "941254243571fc08f02930e6e1526a92750abc3a401d33c5012442da9a823e43",
+  "frozen_releases": [
+    {
+      "date": "2026-11-04",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-04_20261104T153917Z",
+      "manifest_sha256": "e9993ad3b2a009147ed35c6d0e85f9c28afad1a36772fd4e842990403a7f21db",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-04_20261104T160000Z",
+      "team_manifest_sha256": "158ab125d4e7ce24d149fe099a92e1268bd8289c7c133af648485f4a667b73c8"
+    },
+    {
+      "date": "2026-11-05",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-05_20261105T204849Z",
+      "manifest_sha256": "1820abeaca9c2e9491584a026c8b8f3fb1488b81f35e4b9388ca8b13ddcc6d0d"
+    },
+    {
+      "date": "2026-11-06",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-06_20261106T213538Z",
+      "manifest_sha256": "701ff30c43ffb92e3fb7f0c2fb1052971c05d0ea36a2b9e5e9b25956ca5a6a9a",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-06_20261106T213538Z",
+      "team_manifest_sha256": "cdc14e3bb64d2880edd9db3c1a9ed266daaff4f101bf1a845a7e934f5d484a9a"
+    },
+    {
+      "date": "2026-11-07",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-07_20261107T174425Z",
+      "manifest_sha256": "bba9369f99fd6407151149adc9d0472d0a0be2c24d7c8dda9da75251e9e836e8",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-07_20261107T174829Z",
+      "team_manifest_sha256": "179c423ad14d50bbc95d453a9e7d882e18a3f32b49eca5158354a0e3d86bca2a"
+    },
+    {
+      "date": "2026-11-08",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-08_20261109T003435Z",
+      "manifest_sha256": "859f69e16924663b0d0329efab44925fbea1391af6bbcdd4377a269a30a95c49",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-08_20261109T003435Z",
+      "team_manifest_sha256": "54cec1191a6dc31e257b08703cde10122363bfc876ac64170a845d44811500df"
+    },
+    {
+      "date": "2026-11-09",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-09_20261110T000527Z",
+      "manifest_sha256": "828c1accbcb1d402bb115f2f7275f3b90f00ae1ca38a7981b22818607a02b096",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-09_20261110T000527Z",
+      "team_manifest_sha256": "0fe722c028323c3a55ad0031574ba9aa69979d934fd8980fa0704ea9819fd15c"
+    },
+    {
+      "date": "2026-11-10",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-10_20261110T131201Z",
+      "manifest_sha256": "8d407666757cc9dca62b6ce852dea759426f2b89bd62f43e3abb0138f43a2b4f",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-10_20261110T131201Z",
+      "team_manifest_sha256": "b83d93d2fc7c420cb9d097e363638b14253812ad9075fd771218851d62d5041b"
+    },
+    {
+      "date": "2026-11-11",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-11_20261111T192535Z",
+      "manifest_sha256": "aab217fd51dfb8e134deebf661c699688787ae5d4513597909e6535a2796ab3d",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-11_20261111T192535Z",
+      "team_manifest_sha256": "20be90e9155885be0b3e7367c53cde2589475b749a7c1f73e10c32e000cac041"
+    },
+    {
+      "date": "2026-11-12",
+      "bundle": "outputs/per_game_forecast/frozen/daily_2026-11-12_20261112T184820Z",
+      "manifest_sha256": "4d38fdec2c2d4150597c4447c5c69ca01a426903d731b6ff9bd8394afe11c580",
+      "team_release": "outputs/per_game_forecast/team_context_daily_2026-11-12_20261112T184820Z",
+      "team_manifest_sha256": "f5d359213e8b95dd7c362f6024757b81b1cbbf630bb02c06889038c84532abd1"
+    }
+  ],
+  "code_sha256": "e4ccd9db4f9e86b166522beefe13912632d324fb94af4ea94af8947be01e4353",
+  "summary": {
+    "through": "2026-11-12",
+    "forecast_dates": [
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12"
+    ],
+    "prospective_games": 56,
+    "player_games": 2007,
+    "selected_shots_model": "calibrated_opponent_sog_trial",
+    "selected_shots_mae": 1.0180441234781654,
+    "default_shots_mae": 1.0324181069676523,
+    "selected_minus_default_shots_mae": -0.01437398348948693,
+    "selected_shots_relative_improvement_pct": 1.3922637923994967,
+    "selected_shots_paired_game_bootstrap": {
+      "model": "calibrated_opponent_sog_trial",
+      "category": "shots",
+      "paired_rows": 2007,
+      "games": 56,
+      "mae_delta_vs_default": -0.014373983489486975,
+      "lower_95": -0.01954977224366872,
+      "upper_95": -0.009184482943540167,
+      "games_lower_mae": 44,
+      "games_equal_or_higher": 12,
+      "bootstrap_draws": 10000
+    },
+    "usage_toi_mae": 2.085837939713609,
+    "default_toi_mae": 2.2319037598842706,
+    "usage_toi_relative_improvement_pct": 6.5444497561236945,
+    "usage_toi_improved_dates": 9,
+    "usage_toi_paired_game_bootstrap": {
+      "model": "usage_shot_context_trial",
+      "category": "toi_minutes",
+      "paired_rows": 2007,
+      "games": 56,
+      "mae_delta_vs_default": -0.1460658201706619,
+      "lower_95": -0.17032916821985428,
+      "upper_95": -0.12213572068741427,
+      "games_lower_mae": 51,
+      "games_equal_or_higher": 5,
+      "bootstrap_draws": 10000
+    },
+    "isolated_usage_toi_mae": 2.1118006030288896,
+    "isolated_usage_toi_games": 27,
+    "isolated_usage_toi_paired_game_bootstrap": {
+      "model": "usage_toi_only_trial",
+      "category": "toi_minutes",
+      "paired_rows": 966,
+      "games": 27,
+      "mae_delta_vs_default": -0.1511747427257089,
+      "lower_95": -0.18091558308682473,
+      "upper_95": -0.12114945554873134,
+      "games_lower_mae": 26,
+      "games_equal_or_higher": 1,
+      "bootstrap_draws": 10000
+    },
+    "latest_date": "2026-11-12",
+    "latest_pregame_games": 10,
+    "latest_player_games": 356,
+    "latest_default_shots_mae": 1.007120288104735,
+    "latest_calibrated_shots_mae": 0.9932706383418494,
+    "latest_default_toi_mae": 2.3791635407090923,
+    "latest_usage_toi_mae": 2.257680488646013,
+    "latest_winner_metrics": [
+      {
+        "model": "calibrated_team_trial",
+        "games": 10,
+        "brier": 0.2587781094832329,
+        "favorite_accuracy": 0.4,
+        "goal_mae": 1.543231632464297
+      },
+      {
+        "model": "direct_team",
+        "games": 10,
+        "brier": 0.2619950168278543,
+        "favorite_accuracy": 0.4,
+        "goal_mae": 1.543231632464297
+      },
+      {
+        "model": "goal_history_baseline",
+        "games": 10,
+        "brier": 0.2660006468154995,
+        "favorite_accuracy": 0.4,
+        "goal_mae": 1.5899700524435763
+      },
+      {
+        "model": "original_player_sum",
+        "games": 10,
+        "brier": 0.27099615764876045,
+        "favorite_accuracy": 0.6,
+        "goal_mae": 1.6504732287260417
+      }
+    ],
+    "fantasy_usage_toi": {
+      "rows": 192,
+      "games": 27,
+      "dates": 5,
+      "default_mae": 2.253721897038327,
+      "usage_toi_mae": 2.07375035252925,
+      "mae_delta": -0.17997154450907674,
+      "lower_95": -0.2466561501128209,
+      "upper_95": -0.11852481675781036,
+      "games_lower_mae": 24,
+      "bootstrap_draws": 10000,
+      "seed": 20261113
+    },
+    "fantasy_evaluation_sources": [
+      {
+        "date": "2026-11-04",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-04_20261105T205651159030Z",
+        "manifest_sha256": "c14d32e220974ceef8843e4be71ce2b2aa39b0b0afbbc5faf6e58d7b6e4bcee1"
+      },
+      {
+        "date": "2026-11-07",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-07_20261113T145234303409Z",
+        "manifest_sha256": "0f07ca4222710e544bc82cc1cfc5b8fb36c8a8a9ea9546dd26e7deae1288f107"
+      },
+      {
+        "date": "2026-11-08",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-08_20261113T145235657553Z",
+        "manifest_sha256": "0e364a638c6bf2ac293453bbb32c87b771d181e988591fd53ef7a1e1520b1668"
+      },
+      {
+        "date": "2026-11-09",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-09_20261113T145236737194Z",
+        "manifest_sha256": "3d4b12163b4248071f49d26da9f9a782aa1e35bcd4c3258a994cfb98352ab79a"
+      },
+      {
+        "date": "2026-11-10",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-10_20261113T145237799571Z",
+        "manifest_sha256": "7b2a5d788438c6f0cf16812f040d4bf4e3415b07b0aa4d61a7e1317f247a5998"
+      },
+      {
+        "date": "2026-11-11",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-11_20261113T145239064212Z",
+        "manifest_sha256": "df4eaeebff1058bd846530bc63c1f48b21641a1c843ffa72e4ceeba7a70e61af"
+      },
+      {
+        "date": "2026-11-12",
+        "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-12_20261113T145204691553Z",
+        "manifest_sha256": "26fbf3db450f7bef1001125a5139bda8f218d9f8a5456237705779b9a889b4ad"
+      }
+    ],
+    "recommendation": "Retain calibrated-opponent SOG for NHL-wide all-player shots and default fantasy shots. Promote isolated usage-aware TOI as the NHL-wide ATOI selection: its prospective game-cluster interval excludes zero across a larger sample, and the November 12 fantasy subset also improves. Keep PP and team-probability calibration as challengers.",
+    "missing_early_november_releases": [
+      "2026-11-01",
+      "2026-11-02",
+      "2026-11-03"
+    ],
+    "winner_probability_games": 45
+  },
+  "files": {
+    "summary.json": "0817c55851bf486d0414c46cde1a3eccb1bdecd67313b2a2870a1c853f962aea",
+    "coverage_by_date.csv": "61b410b5113da5ad239899cc6ab7999d6e31f795f55901cfcc58c371d7d1086f",
+    "index.html": "8a2b023b296a454bd398fea6f50b60a84d9508760017b54c6afe8109d2a916eb",
+    "player_metrics.csv": "a36e82a0f2cbe2833aa3ce209997ced6ba6d7a9ec94fa55e2266743fd1893059",
+    "winner_scores.csv": "515a042936a97b6887c0162d4e9cfe2182e20e7dee30f51f8994334a1f0356b6",
+    "README.md": "bbec322963e8aa37b282ebdeae7ff28e50623cd957404c636d86864100ff0107",
+    "winner_metrics.csv": "93480e38347df92b6c085c646832c836572ae8934f128cfefbe48a503d9aaf3e",
+    "unmodeled_actual_skaters.csv": "dcc8046eabf0f816af1ced291615a510642b6644ebcf5040b116d3296b51d641",
+    "player_metrics_by_date.csv": "bdcd4c7751f1c72bd1e968ae30b6289d6572ff23db40470708fc9802b1c1736b",
+    "team_games.csv": "7162e76384a95538c015ed4645e38b81e012c93ce6bdd37f2cf3230ccc8ff666",
+    "paired_shots_vs_default.csv": "f278d25f19f33a58928abe5e029a4c690578d554629f32b60283814c2963320a"
+  }
+}

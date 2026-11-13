@@ -76,7 +76,7 @@ def main():
     projections=select_fantasy_projections(pd.read_csv(args.bundle/'player_projections.csv'),m['date'],policy)
     policy_name=projections.model.iloc[0]
     policy_note=('ATOI uses the validated recent-usage TOI model; other skater categories retain default.'
-                 if policy_name==policy['version'] else 'Default skater category means.')
+                 if 'toi_minutes_source_model' in projections else 'Default skater category means.')
     projections=projections.drop(columns=['player_name','fantasy_team_name','injury_status'])
     history_path=args.bundle/'inputs/current_per_game_forecast.csv'
     if sha(history_path)!=fm['files']['current_per_game_forecast.csv']:raise ValueError('Player history hash mismatch')

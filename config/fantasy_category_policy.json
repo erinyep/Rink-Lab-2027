@@ -1,8 +1,16 @@
 {
-  "version": "fantasy_category_policy_v2",
-  "effective_from": "2026-10-27",
+  "version": "fantasy_category_policy_v3",
+  "effective_from": "2026-11-14",
   "baseline": "default",
-  "category_models": {"toi_minutes": "usage_shot_context_trial"},
-  "evidence": "outputs/per_game_forecast/model_decisions_through_2026-10-25",
-  "reason": "Saved fantasy TOI MAE 2.1644 to 2.0145 over 347 appearances/48 games; paired delta -0.1499 minutes, 95% interval [-0.2127,-0.0826]. Improvement persists leaving out each saved date. Other category means retain default."
+  "category_models": {"toi_minutes": "usage_toi_only_trial"},
+  "evidence": "outputs/per_game_forecast/november_model_review_2026-11-13",
+  "reason": "Select the isolated usage-only model for ATOI: across 27 prospective games, its MAE was 2.074 vs 2.254 minutes for default across 192 fantasy appearances; paired game-cluster 95% interval for the difference [-0.247,-0.119]. The model changes only TOI; other category means retain default.",
+  "policy_history": [
+    {
+      "version": "fantasy_category_policy_v2",
+      "effective_from": "2026-10-27",
+      "effective_through": "2026-11-13",
+      "category_models": {"toi_minutes": "usage_shot_context_trial"}
+    }
+  ]
 }
