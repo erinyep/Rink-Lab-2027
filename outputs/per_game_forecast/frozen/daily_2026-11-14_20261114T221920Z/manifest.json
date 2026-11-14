@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-14",
+  "released_at_utc": "2026-11-14T22:20:42.380152+00:00",
+  "statistical_history_last_game_date": "2026-11-13",
+  "games": 14,
+  "pregame_games": 12,
+  "late_games": [
+    {
+      "game_id": 2026020321,
+      "away": "SEA",
+      "home": "CAR"
+    },
+    {
+      "game_id": 2026020312,
+      "away": "WPG",
+      "home": "CHI"
+    }
+  ],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "primary_toi_model": "usage_toi_only_trial",
+  "availability": "disabled_public_data_only",
+  "injuries_as_of_utc": null,
+  "moneypuck_latest_game_date": "2026-11-13",
+  "moneypuck_retrieved_at_utc": "2026-11-14T22:11:00.047053+00:00",
+  "moneypuck_context_lag_explicitly_accepted": false,
+  "source_bundle_manifest_sha256": "88ebbdcfc78731378dfd2a4d59c4c280091e8f3e6a9fbe123657c9c7e77e71bf",
+  "source_files_sha256": {
+    "player_projections.csv": "93f1db9dbbc05296f0ec6b61699186cb19ac882b15b3c42b29b694755c4497d9",
+    "team_projections.csv": "30bed9192557cc45dd049aadfb886dc398a00b0245081cc6594d824db3575020",
+    "goalie_projections.csv": "3ef5a5313addcee86e93384ed1c7a4a50a99c6520435089b1a990916f8b2c7a5",
+    "game_team_coverage.csv": "8f5bef44773a8974964c05c1322bb32ca81c33c40a9816d4fddc39942ce9b9fd"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 4445,
+    "team_projections.csv": 196,
+    "goalie_projections.csv": 128,
+    "game_team_coverage.csv": 28
+  },
+  "files": {
+    "goalie_projections.csv": "66dc5e7fc36b0159d80032eceeeb483e90523c39b6cf52af6fd9e267f3ac0b1d",
+    "README.md": "14735b12bd176a26bbb8f5a67b46859674e17c50dd04c68bbae1e1463876c28d",
+    "team_projections.csv": "844c0feb32da906a6255c71a62a070af142905a0ab5ee0cd75f6baa02cb6f162",
+    "game_team_coverage.csv": "8f5bef44773a8974964c05c1322bb32ca81c33c40a9816d4fddc39942ce9b9fd",
+    "player_projections.csv": "09ccd39de8798d173b73ff951d6b5130390ecfd0af7aa5a4a882fecff8c887c9"
+  }
+}

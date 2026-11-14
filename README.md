@@ -5,15 +5,11 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's projections — November 12
+## Today's projections — November 14
 
-[All player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-12_20261112T184820Z/README.md) · [Interactive NHL outlook](docs/games/index.html) · [Direct team goals and win probabilities](docs/team-model/README.md) · [Fantasy report](docs/report/index.html) · [Nov. 11 model results](outputs/per_game_forecast/results_2026-11-11/README.md).
+[Evening game outlook](docs/games/index.html) · [Win probabilities](docs/team-model/README.md) · [Frozen player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-14_20261114T221920Z/README.md).
 
-Ten of tonight's 11 scheduled games were issued pregame at 1:48 p.m. Eastern from official history through November 11 (298 finals). Seattle–Carolina had already started; its rows are marked late and are excluded from the page's default pregame view and the team-win release. The frozen public release contains 3,465 player rows, 154 team rows and 100 goalie rows across the slate. ESPN availability labels do not confirm participation or goalie starts; public projections omit fantasy-team ownership and ESPN player IDs.
-
-Nov. 11 results did not justify changing model choices: the goal-history baseline had the best winner Brier score on six games, while calibrated-opponent SOG slightly beat default for all-player and fantasy-rostered shots. The fantasy shot policy stays on default, and usage-aware ATOI remains a challenger. Direct-team raw probabilities remain selected, with calibration saved separately. Coefficients were not refit.
-
-NHL history and TOI were refreshed through November 11 and reconciled across 10,727 positive-TOI skater-games. MoneyPuck coverage also reaches November 11. ESPN roster/status and projections were refreshed at 1:45 p.m. Eastern; the Quinn report was rebuilt from that read-only snapshot.
+All 12 games starting at 7 p.m. Eastern or later have pregame player, team and goalie projections. The player bundle was finalized at 5:20 PM ET using NHL results and MoneyPuck team history through November 13. Seattle–Carolina and Winnipeg–Chicago started earlier and are excluded from the default view and win probabilities. Injuries and goalie starts are unconfirmed.
 
 ## Models updated — October 27
 
@@ -52,9 +48,9 @@ The broader chronological development screen covers all 1,312 games in 2025–26
 
 [Second-machine setup and daily forecast command](docs/LOCAL_SETUP.md).
 
-## Latest saved NHL predictions — November 12
+## November 12 NHL predictions (historical)
 
-[November 12 NHL matchups](https://erinyep.github.io/Rink-Lab-2027/games/) —
+[November 12 NHL matchups](outputs/per_game_forecast/frozen/daily_2026-11-12_20261112T184820Z/README.md) —
 projected goals, shots, scoring leans and goalie scenarios for the ten remaining pregame games.
 [Reading guide](docs/games/README.md).
 
