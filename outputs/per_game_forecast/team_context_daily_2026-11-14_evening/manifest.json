@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-11-14T22:14:59.362162+00:00",
+  "date": "2026-11-14",
+  "method": "team_goal_context_v2",
+  "scheduled_games": 14,
+  "excluded_games": [
+    {
+      "game_id": 2026020321,
+      "away": "SEA",
+      "home": "CAR",
+      "start_time_utc": "2026-11-14T18:00:00Z",
+      "game_state": "OFF",
+      "reason": "started_or_within_10_minute_lead"
+    },
+    {
+      "game_id": 2026020312,
+      "away": "WPG",
+      "home": "CHI",
+      "start_time_utc": "2026-11-14T20:30:00Z",
+      "game_state": "LIVE",
+      "reason": "started_or_within_10_minute_lead"
+    }
+  ],
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261114T221040482997Z",
+  "moneypuck_sha256": "9eb473051e1d2c827990d802ea7d996684f48d3377c8da7e34db051adfc3bcab",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261114T221040Z",
+  "boxscores_sha256": "f34a9778061a10522f797af32071840f391d23cb718fe265aea7a63bb516a6dd",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261114T221459362162Z",
+  "schedule_sha256": "efa5016e3c6518b3ac27db62fa7b110f2eb4cd12028edddc2fd17ebd40d6d9f6",
+  "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
+  "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
+  "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
+  "files": {
+    "README.md": "cd0ef8d64d9d3bd374f7560910fd3b13a5b4086aa88d1955509e4e2a0097e790",
+    "team_goal_forecasts.csv": "f19c888313bd29856a74e23f76cd2793ea5773124708db03db095fd95005e276",
+    "team_win_probabilities.csv": "4a8a4b1a068f39482637c19b3121a64e893a4d02fa54338cab4742f094fb9b01",
+    "index.html": "2196d16fe4bfa8eb64fadb3ab505fdfc337c6e8b436676221bb19d9c4f54e7cf",
+    "input_reconciliation.csv": "e940b9519f2f3b610683f0280d2d0be14a9d80b1934daeeb881bcc14886b365d"
+  }
+}

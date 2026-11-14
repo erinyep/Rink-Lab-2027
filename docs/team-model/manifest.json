@@ -1,34 +1,42 @@
 {
-  "created_at_utc": "2026-11-12T18:48:48.434008+00:00",
-  "date": "2026-11-12",
+  "created_at_utc": "2026-11-14T22:14:59.362162+00:00",
+  "date": "2026-11-14",
   "method": "team_goal_context_v2",
-  "scheduled_games": 11,
+  "scheduled_games": 14,
   "excluded_games": [
     {
-      "game_id": 2026020309,
-      "away": "CAR",
-      "home": "SEA",
-      "start_time_utc": "2026-11-12T17:00:00Z",
+      "game_id": 2026020321,
+      "away": "SEA",
+      "home": "CAR",
+      "start_time_utc": "2026-11-14T18:00:00Z",
+      "game_state": "OFF",
+      "reason": "started_or_within_10_minute_lead"
+    },
+    {
+      "game_id": 2026020312,
+      "away": "WPG",
+      "home": "CHI",
+      "start_time_utc": "2026-11-14T20:30:00Z",
       "game_state": "LIVE",
       "reason": "started_or_within_10_minute_lead"
     }
   ],
   "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
   "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
-  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261112T184732292154Z",
-  "moneypuck_sha256": "0874d85f6012a95fd25c1e0551248fc5fef0b133d6f25817722b60fe1c5c7dc9",
-  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261112T184508Z",
-  "boxscores_sha256": "87c82b9a4c97d0a2d7ca888f704e2e0c75e8f3d1feff057dce212da2d33fd64a",
-  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261112T184848434008Z",
-  "schedule_sha256": "6354820957afab1cee6376c87d8b83dc5cf9fe278e9c8f9b09660401c19b1e64",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261114T221040482997Z",
+  "moneypuck_sha256": "9eb473051e1d2c827990d802ea7d996684f48d3377c8da7e34db051adfc3bcab",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261114T221040Z",
+  "boxscores_sha256": "f34a9778061a10522f797af32071840f391d23cb718fe265aea7a63bb516a6dd",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261114T221459362162Z",
+  "schedule_sha256": "efa5016e3c6518b3ac27db62fa7b110f2eb4cd12028edddc2fd17ebd40d6d9f6",
   "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
   "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
   "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
   "files": {
-    "team_win_probabilities.csv": "faf6ff250747efca692ba16c282e3427b1ec23d7520e100e059775787060d6cd",
-    "index.html": "8fb25f88c97c2ddbfba142ae9b4057e14620ac36574fe45ffa96a2e735163ec5",
-    "input_reconciliation.csv": "f40ffd1470b14f77cb6c2b1d7ec01e491e21b5e48d9d9977a4547a9cac975e72",
-    "README.md": "52aedaae8637196ce8a3671f80fc7b2269039a96a62cb7f357eb18cecc61d163",
-    "team_goal_forecasts.csv": "ae6da911f7336ca6fdeb50400972fd635a2f6bd814cfa88bccb865cf290a3d9e"
+    "README.md": "cd0ef8d64d9d3bd374f7560910fd3b13a5b4086aa88d1955509e4e2a0097e790",
+    "team_goal_forecasts.csv": "f19c888313bd29856a74e23f76cd2793ea5773124708db03db095fd95005e276",
+    "team_win_probabilities.csv": "4a8a4b1a068f39482637c19b3121a64e893a4d02fa54338cab4742f094fb9b01",
+    "index.html": "2196d16fe4bfa8eb64fadb3ab505fdfc337c6e8b436676221bb19d9c4f54e7cf",
+    "input_reconciliation.csv": "e940b9519f2f3b610683f0280d2d0be14a9d80b1934daeeb881bcc14886b365d"
   }
 }
