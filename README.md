@@ -5,11 +5,11 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## Today's projections — November 14
+## Tonight's projections — November 16
 
-[Evening game outlook](docs/games/index.html) · [Win probabilities](docs/team-model/README.md) · [Frozen player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-14_20261114T221920Z/README.md).
+[Evening game outlook](docs/games/index.html) · [Direct team goals and win probabilities](docs/team-model/README.md) · [Frozen player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-16_20261116T142904Z/README.md) · [Fantasy roster and category report](docs/report/index.html).
 
-All 12 games starting at 7 p.m. Eastern or later have pregame player, team and goalie projections. The player bundle was finalized at 5:20 PM ET using NHL results and MoneyPuck team history through November 13. Seattle–Carolina and Winnipeg–Chicago started earlier and are excluded from the default view and win probabilities. Injuries and goalie starts are unconfirmed.
+Two games have pregame projections: MTL at NYR (7:30 p.m. ET) and VAN at UTA (9:30 p.m. ET). The player release was issued at 9:29 a.m. ET with official NHL history through November 15; the direct team model uses the same slate. Lineups, injuries and goalie starts are unconfirmed. The public fantasy snapshot shows only selected report fields; raw ESPN data and the full waiver analysis remain local.
 
 ## Models updated — October 27
 
@@ -58,11 +58,13 @@ projected goals, shots, scoring leans and goalie scenarios for the ten remaining
 
 [Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 24. No model promotion; completed evidence remains linked from the trial page.
 
-## Fantasy roster report — refreshed November 12, 1:48 p.m. ET
+## Fantasy roster report — refreshed November 16, 9:29 a.m. ET
 
 [Current roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local.
 
 ## Current forecast work
+
+November 16: [two-game pregame release](outputs/per_game_forecast/2026-11-16_20261116T142904Z_pregame_readout.md), [release and coverage details](outputs/per_game_forecast/2026-11-16_20261116T142904Z_pregame_readout.md), updated [game outlook](docs/games/index.html), [direct team goals and probabilities](docs/team-model/README.md) and [fantasy roster/category report](docs/report/index.html). The public projection bundle omits ESPN IDs and fantasy ownership; lineup and goalie scenarios remain provisional.
 
 November 12: [Ten-game pregame release](outputs/per_game_forecast/2026-11-12_20261112T184820Z_pregame_readout.md), [official history through November 11](docs/history/pregame-2026-11-12.md), updated [game outlook](docs/games/index.html), [team model](docs/team-model/README.md) and [Quinn fantasy report](docs/report/index.html). Seattle–Carolina is late-issued and excluded from prospective scoring.
 

@@ -1,13 +1,13 @@
 {
-  "date": "2026-11-14",
-  "view_created_utc": "2026-11-14T22:20:43.649483+00:00",
-  "forecast_issued_utc": "2026-11-14T22:20:38.598706+00:00",
-  "frozen_bundle_manifest_sha256": "88ebbdcfc78731378dfd2a4d59c4c280091e8f3e6a9fbe123657c9c7e77e71bf",
-  "source_schedule_sha256": "efa5016e3c6518b3ac27db62fa7b110f2eb4cd12028edddc2fd17ebd40d6d9f6",
+  "date": "2026-11-16",
+  "view_created_utc": "2026-11-16T20:42:06.043161+00:00",
+  "forecast_issued_utc": "2026-11-16T14:29:10.314420+00:00",
+  "frozen_bundle_manifest_sha256": "13764526b00f3551676ca2659beec7713f628985dcf0e0efcf5efda00720d3bd",
+  "source_schedule_sha256": "00d1d85e3d39ba32ae9225d815337b7b62cc54adf7eb300c0e5cc6b1da3439f8",
   "model_status": "frozen_all_player_sog_and_conditional_toi_selections",
   "primary_sog_model": "calibrated_opponent_sog_trial",
   "primary_toi_model": "usage_toi_only_trial",
-  "model_review_manifest_sha256": "a28234f3d38f5add3d67387069b48af0f39024e59f49256d82bb7ac1de24217c",
+  "model_review_manifest_sha256": null,
   "code_sha256": {
     "build_nhl_outlook.py": "4f24868129fbd68f166e967e02404fae2ca71dcd1ab0913bf2ce8556ed9ed927",
     "game_outlook.py": "f6bea656662359d3be3f5f8278a6a25a931308b479878119d8604187b98014da",
@@ -15,11 +15,11 @@
     "daily_forecast_trial.json": "552ae264fae787e318c3ebf5b3a05b0b4251a08800663425d12b27077242bdb4"
   },
   "files": {
-    "README.md": "6465e6e4058b8bfce08316c02d06b318c01491af9869f70c2f0552729f03d54e",
-    "index.html": "245f1883c4af44974ef4bfe50d656eb7b2876f061f01eef7564207bd26430ca5",
-    "goalie_scenarios.csv": "65269e20e1c6b75f8e1be12695be33037ef7410404cc3b6c22d67ec5e7ee3ace",
-    "game_predictions.csv": "2af282d93b5e860d5d558c34728595717ed211c6b56052382926f5534740d103",
-    "outlook.json": "0360f08e510e0f837f55bd2cd18d5e2a775acbc518c530081de99750ca56a5ac",
-    "team_predictions.csv": "f3a63fb5b92fbee4a0a81c6801634cb1175b7f0b7de13e6930f1300349d71c42"
+    "index.html": "461e6fc256ced7db4089e7e3bbe8c47e943a50bfe7d8bf49e730238d2cf912af",
+    "goalie_scenarios.csv": "6868bb7238e412738838d38c382f4a479ce69233b4190e5565113c5ebe92be11",
+    "outlook.json": "e549d32fe482710fade628d0c3ed4272c6d46c0e9c1c507785ed288bebb5b699",
+    "README.md": "5c1c5694879d20e0193e41c499a8253ee5455ae5eed54031a84dfbed88fc7aa3",
+    "team_predictions.csv": "ad4d44e8fd9ec8e29f77de66f80981a3292e86910621d70d2ac0e049b00fe418",
+    "game_predictions.csv": "2cfed4dbe0a333d112b2e3308ec504545f7cda05b5c97f60b01113de151e7f1c"
   }
 }

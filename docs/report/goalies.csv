@@ -1,3 +1,1 @@
-player_name,lineup_slot,injury_status,start_local,start_share_provisional,saves_if_full_start,goals_against_if_full_start,save_percentage_projection
-Pyotr Kochetkov,Goalie,ACTIVE,12:00 PM,0.619047619,22.1199851321,2.248684092,0.9077223269
-Jesper Wallstedt,Goalie,ACTIVE,7:00 PM,0.8181818182,24.2521796767,2.3235622661,0.9125683012
+player_name
