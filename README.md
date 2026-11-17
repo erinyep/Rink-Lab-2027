@@ -5,6 +5,14 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## November 17 pregame update
+
+[Tonight’s lineup changes and fantasy context](docs/history/pregame-2026-11-17/) · [All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Kalshi comparison](docs/history/kalshi_benchmark_2026-11-17_2009/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-17_20261117T201012Z/).
+
+All 11 games were issued pregame. NHL and MoneyPuck history cover through November 16. Published projected lineups were applied to 18 of 22 teams, changing 36 player selections. The release includes 3,479 player-model rows, 154 team-model rows and 100 goalie scenarios. Kalshi covers 22 winner contracts. Lineup changes affect player-sum scenarios; the direct team model uses its existing team-history, home/rest and xG features.
+
+The fantasy context uses the saved November 16 roster with today’s public NHL information. ESPN authentication is unavailable here, so current ownership, lineup slots, locks and matchup totals remain unverified. Projected starters and lineup coverage gaps are labelled. The selected shots and TOI policies remain in effect, with new lineup handling awaiting prospective evaluation.
+
 ## Tonight's projections — November 16
 
 [Evening game outlook](docs/games/index.html) · [Direct team goals and win probabilities](docs/team-model/README.md) · [Frozen player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-16_20261116T142904Z/README.md) · [Fantasy roster and category report](docs/report/index.html).

@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-17",
+  "released_at_utc": "2026-11-17T20:12:40.096102+00:00",
+  "statistical_history_last_game_date": "2026-11-16",
+  "games": 11,
+  "pregame_games": 11,
+  "late_games": [],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "primary_toi_model": "usage_toi_only_trial",
+  "availability": "disabled_public_data_only",
+  "injuries_as_of_utc": null,
+  "moneypuck_latest_game_date": "2026-11-16",
+  "moneypuck_retrieved_at_utc": "2026-11-17T20:09:58.250911+00:00",
+  "moneypuck_context_lag_explicitly_accepted": false,
+  "source_bundle_manifest_sha256": "6a32926910582e8de997963568d328468322a80eb4fbb61cee8ddfc5602c4ff6",
+  "source_files_sha256": {
+    "player_projections.csv": "5bd1dff659fec151166910f8d3b9d544b43bb6a71d4356572177e6970bbc34df",
+    "team_projections.csv": "c8a4fa175c795e9d83d73f4200c2d50aa678e4fe0bc8f891abeab9516a7f6147",
+    "goalie_projections.csv": "ef6890682be6238c5fd6f753d45d991c8f31fefe457a64155b73d1415e5f2619",
+    "game_team_coverage.csv": "de3eb6b0835d35c0e4af813d9e898e5a7b8a6fbc9786d77ac09c0417fd92efd5"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 3479,
+    "team_projections.csv": 154,
+    "goalie_projections.csv": 100,
+    "game_team_coverage.csv": 22
+  },
+  "files": {
+    "README.md": "f3e57fbc5c6d13f5f857b44614a254b26a673c0035668e3020198c52661048f0",
+    "player_projections.csv": "5f2119b53212710525881cf394b21a0753ec8436c40438ce124ae1f9e02dc82c",
+    "game_team_coverage.csv": "de3eb6b0835d35c0e4af813d9e898e5a7b8a6fbc9786d77ac09c0417fd92efd5",
+    "goalie_projections.csv": "3afadbbd0fd05b8cc086ece3f29f717c0609d0c82b19a504d8a06c91c8053dba",
+    "team_projections.csv": "2670dbf081175f148a581b61a10da36288efb615c7e3ac8b26f4e37132fa3d63"
+  }
+}

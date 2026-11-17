@@ -1,0 +1,637 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pregame update — 2026-11-17</title><style>body{font:16px system-ui;color:#172c38;max-width:1100px;margin:32px auto;padding:20px;line-height:1.5}a{color:#08777c}table{border-collapse:collapse}td,th{padding:8px;text-align:left;border-bottom:1px solid #ddd}main{overflow:auto}img{max-width:100%}</style></head><body><h1>Pregame update — 2026-11-17</h1><p>All 11 games have frozen pregame team, skater and goalie projections. Official statistics cover through November 16. MoneyPuck team data also cover through November 16. Kalshi quotes map to 22 team contracts.</p><p>Published NHL projected lineups were applied for 18 of 22 teams, changing 36 player selections. Incomplete or unresolved lists retain the prior-game lineup heuristic and are identified in lineup_coverage.csv. Projected lineup changes affect player-sum team scenarios. The direct team win model continues to use team history, home/rest and lagged xG. Goalie rows carry published projected status where available. Their start shares remain uncalibrated historical scenarios.</p><p>Fantasy ownership and lineup slots come from the saved 2026-11-16 roster. ESPN requires authenticated access, which is unavailable in this workspace. Today&#x27;s public NHL context and category projections are shown for those saved players. Current fantasy ownership, active slots, locks and matchup totals remain unverified.</p><p>The existing NHL calibrated-opponent shots and isolated usage-only TOI selections remain supported by the November review. On November 16&#x27;s two games, direct-team Brier was 0.3619 versus 0.3172 for the goal-history baseline. The two-game comparison provides insufficient evidence for a refit. New lineup selection is an operational scenario update whose prospective accuracy still needs evaluation.</p><p><a href="../../team-model/">Team probabilities</a> · <a href="../../games/">Player and goalie outlook</a></p><h2>Team model and Kalshi</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>away</th>
+      <th>home</th>
+      <th>away_goal_mean</th>
+      <th>home_goal_mean</th>
+      <th>home_win_probability</th>
+      <th>quoted_midpoint</th>
+      <th>spread</th>
+      <th>sampled_at_utc</th>
+      <th>model_minus_market_percentage_points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LAK</td>
+      <td>BOS</td>
+      <td>2.862</td>
+      <td>3.193</td>
+      <td>0.552</td>
+      <td>0.595</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134095+00:00</td>
+      <td>-4.258</td>
+    </tr>
+    <tr>
+      <td>EDM</td>
+      <td>FLA</td>
+      <td>3.114</td>
+      <td>3.083</td>
+      <td>0.495</td>
+      <td>0.545</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134103+00:00</td>
+      <td>-4.988</td>
+    </tr>
+    <tr>
+      <td>CBJ</td>
+      <td>NYI</td>
+      <td>2.929</td>
+      <td>3.185</td>
+      <td>0.540</td>
+      <td>0.555</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134086+00:00</td>
+      <td>-1.454</td>
+    </tr>
+    <tr>
+      <td>BUF</td>
+      <td>PHI</td>
+      <td>2.975</td>
+      <td>3.015</td>
+      <td>0.506</td>
+      <td>0.455</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134098+00:00</td>
+      <td>5.140</td>
+    </tr>
+    <tr>
+      <td>OTT</td>
+      <td>WPG</td>
+      <td>3.193</td>
+      <td>2.946</td>
+      <td>0.461</td>
+      <td>0.445</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134069+00:00</td>
+      <td>1.600</td>
+    </tr>
+    <tr>
+      <td>WSH</td>
+      <td>TBL</td>
+      <td>2.949</td>
+      <td>3.680</td>
+      <td>0.610</td>
+      <td>0.595</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134083+00:00</td>
+      <td>1.472</td>
+    </tr>
+    <tr>
+      <td>TOR</td>
+      <td>CHI</td>
+      <td>3.236</td>
+      <td>3.033</td>
+      <td>0.468</td>
+      <td>0.445</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134077+00:00</td>
+      <td>2.342</td>
+    </tr>
+    <tr>
+      <td>ANA</td>
+      <td>STL</td>
+      <td>3.137</td>
+      <td>3.242</td>
+      <td>0.516</td>
+      <td>0.545</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134063+00:00</td>
+      <td>-2.876</td>
+    </tr>
+    <tr>
+      <td>NSH</td>
+      <td>MIN</td>
+      <td>2.749</td>
+      <td>3.505</td>
+      <td>0.616</td>
+      <td>0.655</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134060+00:00</td>
+      <td>-3.851</td>
+    </tr>
+    <tr>
+      <td>DAL</td>
+      <td>VGK</td>
+      <td>2.745</td>
+      <td>3.008</td>
+      <td>0.543</td>
+      <td>0.545</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134051+00:00</td>
+      <td>-0.229</td>
+    </tr>
+    <tr>
+      <td>CGY</td>
+      <td>SJS</td>
+      <td>2.950</td>
+      <td>3.184</td>
+      <td>0.537</td>
+      <td>0.545</td>
+      <td>0.01</td>
+      <td>2026-11-17T20:09:26.134045+00:00</td>
+      <td>-0.809</td>
+    </tr>
+  </tbody>
+</table><h2>Lineup coverage</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>team</th>
+      <th>status</th>
+      <th>published_lineup_applied</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LAK</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>BOS</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>EDM</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>FLA</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>CBJ</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>NYI</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>BUF</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>PHI</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>OTT</td>
+      <td>projected_lineup_available</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>WPG</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>WSH</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>TBL</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>TOR</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>CHI</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>ANA</td>
+      <td>projected_lineup_available</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>STL</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>NSH</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>MIN</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>DAL</td>
+      <td>source_unavailable</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>VGK</td>
+      <td>source_unavailable</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>CGY</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>SJS</td>
+      <td>projected_lineup_available</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table><h2>Lineup changes</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>team</th>
+      <th>player_name</th>
+      <th>change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BOS</td>
+      <td>Sean Kuraly</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>BOS</td>
+      <td>Matthew Poitras</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>BOS</td>
+      <td>Frederic Brunet</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>BOS</td>
+      <td>Mason Lohrei</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>LAK</td>
+      <td>Cody Ceci</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>LAK</td>
+      <td>Erik Gustafsson</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>NYI</td>
+      <td>Matthew Kessel</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>NYI</td>
+      <td>Logan Stanley</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>CBJ</td>
+      <td>Erik Gudbranson</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>CBJ</td>
+      <td>Denton Mateychuk</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>PHI</td>
+      <td>Denver Barkey</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>PHI</td>
+      <td>Michael Bunting</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>PHI</td>
+      <td>Simon Benoit</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>PHI</td>
+      <td>Oliver Bonk</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>BUF</td>
+      <td>Louis Crevier</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>BUF</td>
+      <td>Zach Metsa</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>WPG</td>
+      <td>Tyrel Bauer</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>WPG</td>
+      <td>Henry Thrun</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>TBL</td>
+      <td>Anthony Cirelli</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>TBL</td>
+      <td>Jeffrey Viel</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>TBL</td>
+      <td>Erik Cernak</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>TBL</td>
+      <td>Emil Lilleberg</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>TOR</td>
+      <td>Dakota Mermis</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>TOR</td>
+      <td>Morgan Rielly</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>STL</td>
+      <td>Jonatan Berggren</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>STL</td>
+      <td>Ross Johnston</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>MIN</td>
+      <td>Matt Kiersted</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>MIN</td>
+      <td>Olli Maatta</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>NSH</td>
+      <td>Jonathan Marchessault</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>NSH</td>
+      <td>Reid Schaefer</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>NSH</td>
+      <td>Nicolas Hague</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>NSH</td>
+      <td>Daemon Hunt</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>SJS</td>
+      <td>Kiefer Sherwood</td>
+      <td>removed from scenario</td>
+    </tr>
+    <tr>
+      <td>SJS</td>
+      <td>Alexander Wennberg</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>CGY</td>
+      <td>Maxim Tsyplakov</td>
+      <td>added to scenario</td>
+    </tr>
+    <tr>
+      <td>CGY</td>
+      <td>W. Stromgren</td>
+      <td>removed from scenario</td>
+    </tr>
+  </tbody>
+</table><h2>Last saved fantasy roster with tonight’s NHL context</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>player_name</th>
+      <th>saved_lineup_slot</th>
+      <th>team</th>
+      <th>tonight_status</th>
+      <th>expected_shots_if_plays</th>
+      <th>expected_toi_minutes_if_plays</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Quinn Hughes</td>
+      <td>Defense</td>
+      <td>MIN</td>
+      <td>projected_skater</td>
+      <td>2.603</td>
+      <td>27.388</td>
+    </tr>
+    <tr>
+      <td>Tage Thompson</td>
+      <td>Forward</td>
+      <td>BUF</td>
+      <td>projected_skater</td>
+      <td>3.404</td>
+      <td>19.436</td>
+    </tr>
+    <tr>
+      <td>Kirill Kaprizov</td>
+      <td>Forward</td>
+      <td>MIN</td>
+      <td>projected_skater</td>
+      <td>3.452</td>
+      <td>21.643</td>
+    </tr>
+    <tr>
+      <td>Alex Tuch</td>
+      <td>Bench</td>
+      <td>WSH</td>
+      <td>projected_skater</td>
+      <td>2.463</td>
+      <td>19.181</td>
+    </tr>
+    <tr>
+      <td>Jesper Wallstedt</td>
+      <td>Goalie</td>
+      <td>MIN</td>
+      <td>projected_goalie</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Beckett Sennecke</td>
+      <td>Forward</td>
+      <td>ANA</td>
+      <td>projected_skater</td>
+      <td>2.427</td>
+      <td>18.469</td>
+    </tr>
+    <tr>
+      <td>Luke Hughes</td>
+      <td>Defense</td>
+      <td>—</td>
+      <td>not_matched_to_tonights_official_rosters</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Logan Cooley</td>
+      <td>Util</td>
+      <td>—</td>
+      <td>not_matched_to_tonights_official_rosters</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Joel Eriksson Ek</td>
+      <td>Forward</td>
+      <td>MIN</td>
+      <td>projected_skater</td>
+      <td>2.97</td>
+      <td>18.49</td>
+    </tr>
+    <tr>
+      <td>Matvei Michkov</td>
+      <td>Forward</td>
+      <td>PHI</td>
+      <td>projected_skater</td>
+      <td>2.073</td>
+      <td>16.469</td>
+    </tr>
+    <tr>
+      <td>Logan Stankoven</td>
+      <td>Forward</td>
+      <td>—</td>
+      <td>not_matched_to_tonights_official_rosters</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Cole Hutson</td>
+      <td>Defense</td>
+      <td>WSH</td>
+      <td>projected_skater</td>
+      <td>1.875</td>
+      <td>18.453</td>
+    </tr>
+    <tr>
+      <td>Luke Evangelista</td>
+      <td>Bench</td>
+      <td>—</td>
+      <td>not_matched_to_tonights_official_rosters</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Pyotr Kochetkov</td>
+      <td>Bench</td>
+      <td>—</td>
+      <td>not_matched_to_tonights_official_rosters</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Philip Broberg</td>
+      <td>Defense</td>
+      <td>STL</td>
+      <td>projected_skater</td>
+      <td>1.377</td>
+      <td>23.488</td>
+    </tr>
+    <tr>
+      <td>Alexander Nikishin</td>
+      <td>Defense</td>
+      <td>—</td>
+      <td>not_matched_to_tonights_official_rosters</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Mikael Granlund</td>
+      <td>Forward</td>
+      <td>ANA</td>
+      <td>projected_skater</td>
+      <td>1.989</td>
+      <td>19.863</td>
+    </tr>
+    <tr>
+      <td>Devin Cooley</td>
+      <td>Goalie</td>
+      <td>CGY</td>
+      <td>listed_backup</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Maxim Shabanov</td>
+      <td>Bench</td>
+      <td>MIN</td>
+      <td>projected_skater</td>
+      <td>1.338</td>
+      <td>14.013</td>
+    </tr>
+    <tr>
+      <td>Jimmy Snuggerud</td>
+      <td>Forward</td>
+      <td>STL</td>
+      <td>projected_skater</td>
+      <td>2.321</td>
+      <td>17.203</td>
+    </tr>
+    <tr>
+      <td>JJ Peterka</td>
+      <td>Bench</td>
+      <td>BOS</td>
+      <td>projected_skater</td>
+      <td>2.155</td>
+      <td>17.065</td>
+    </tr>
+    <tr>
+      <td>Fraser Minten</td>
+      <td>Forward</td>
+      <td>BOS</td>
+      <td>projected_skater</td>
+      <td>1.478</td>
+      <td>15.657</td>
+    </tr>
+  </tbody>
+</table><p>Projected-lineup sources</p><ul><li><a href="https://www.nhl.com/news/anaheim-ducks-st-louis-blues-game-preview-november-17-2026">anaheim-ducks-st-louis-blues-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/buffalo-sabres-philadelphia-flyers-game-preview-november-17-2026">buffalo-sabres-philadelphia-flyers-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/calgary-flames-san-jose-sharks-game-preview-november-17-2026">calgary-flames-san-jose-sharks-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/columbus-blue-jackets-new-york-islanders-game-preview-november-17-2026">columbus-blue-jackets-new-york-islanders-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/edmonton-oilers-florida-panthers-game-preview-november-17-2026">edmonton-oilers-florida-panthers-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/los-angeles-kings-boston-bruins-game-preview-november-17-2026">los-angeles-kings-boston-bruins-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/nashville-predators-minnesota-wild-game-preview-november-17-2026">nashville-predators-minnesota-wild-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/ottawa-senators-winnipeg-jets-game-preview-november-17-2026">ottawa-senators-winnipeg-jets-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/toronto-maple-leafs-chicago-blackhawks-game-preview-november-17-2026">toronto-maple-leafs-chicago-blackhawks-game-preview-november-17-2026</a></li><li><a href="https://www.nhl.com/news/washington-capitals-tampa-bay-lightning-game-preview-november-17-2026">washington-capitals-tampa-bay-lightning-game-preview-november-17-2026</a></li></ul></body></html>

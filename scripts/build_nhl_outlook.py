@@ -53,6 +53,7 @@ def main():
     goalie=pd.read_csv(args.bundle/'goalie_projections.csv')
     fields=['game_id','team','player_name','model','injury_status','excluded_from_start_scenario',
         'start_share_provisional','starter_status','saves_if_full_start','goals_against_if_full_start','save_percentage_projection','issue_timing']
+    fields += [column for column in ['reported_lineup_status','reported_lineup_source'] if column in goalie]
     goalie=goalie[fields]
     players=pd.read_csv(args.bundle/'player_projections.csv')
     players=players[players.selected_for_trial.eq(True)]

@@ -1,5 +1,14 @@
 # Rink Lab — Next Steps
 
+## November 17 — pregame implementation and release
+
+- Issued and validated all 11 games before puck drop using 332 official finals and MoneyPuck history through November 16. Published 3,479 player-model rows, 154 team-model rows and 100 goalie scenarios. [Release and lineup changes](docs/history/pregame-2026-11-17/README.md) · [Frozen projections](outputs/per_game_forecast/frozen/daily_2026-11-17_20261117T201012Z/README.md).
+- Added `scripts/snapshot_nhl_lineups.py` and optional `--projected-lineups` to the daily builder and runner. Complete, matched 12F/6D published lineups supersede the prior-game selection heuristic. Preserve the heuristic selection alongside the published selection for comparison. Applied to 18 teams, changing 36 selections. Anaheim, Ottawa, Dallas and Vegas retain the heuristic because of incomplete publication or unresolved roster identities. Original source spellings and explicit roster aliases are retained.
+- Goalie exports and the game page now display published projected status. Historical start shares remain provisional; published injury and backup labels are visible independently. Team probabilities have no fitted lineup or confirmed-goalie coefficient yet.
+- Refreshed Kalshi and mapped 22 contracts to all 11 games, with median spread $0.01. Quotes remain a benchmark with source times and contract rules. Retained supported calibrated-opponent NHL SOG and usage-only TOI selections. November 16’s two-game Brier was 0.3619 for direct-team versus 0.3172 for the goal-history baseline; no refit was supported.
+- Added tonight’s public NHL context for the saved November 16 fantasy roster and a freshness notice on the fantasy page. ESPN access returned HTTP 401 and credentials are absent in this workspace. Current fantasy roster/slots and matchup totals remain pending authenticated refresh. No ESPN lineup transactions were executed.
+- Validation: 103 tests passed, full daily release checks passed, all 11 games are prospective, and goalie shots-against equals saves plus goals-against. Season inputs were rebuilt from NHL APIs because the prior local runtime template was unavailable; the same recency-weighted baseline was selected.
+
 ## November 17 — pregame modelling priorities
 
 Research question: does using the lineup and goalie information available before puck drop improve team winner probabilities and player forecasts?

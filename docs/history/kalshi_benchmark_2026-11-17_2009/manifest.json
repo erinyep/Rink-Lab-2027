@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-11-17T20:11:14.380237+00:00",
+  "snapshot": "data/processed/forecasts/hockey_20261117T200922528050Z",
+  "snapshot_sha256": "e9f88bad34d9ed53dad74f11dbe6d7f044c4a731c037731c069ee02ce41baad6",
+  "probabilities": "outputs/per_game_forecast/team_context_2026-11-17_2009",
+  "probabilities_sha256": "040e6eaa56516ee411fcb2114473390411c6758165a5a5edbda8b46044c31fa7",
+  "files": {
+    "index.html": "753e0115186231cd579511668ad7e25334a327ac0ba3dad3e7136ba6a57bd6aa",
+    "README.md": "003f77c86cf333bf0398b83574f1ad6b26f553519079748479912a8f14dbdc73",
+    "winner_benchmark.csv": "1751dad75009db144b55c2edcffbbff0a08d1284be6237529549dca9c585207d"
+  }
+}

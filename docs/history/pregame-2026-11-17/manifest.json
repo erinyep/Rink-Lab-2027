@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-17",
+  "created_at_utc": "2026-11-17T20:12:47.468994+00:00",
+  "fantasy_roster_date": "2026-11-16",
+  "published_lineups_applied": 18,
+  "lineup_selection_changes": 36,
+  "files": {
+    "index.html": "842f4eb8e201786ab9bc47e619c5a9176f12c76ab0c5ac46004e5e8f868eabb5",
+    "README.md": "c4de09e188bfc57457562e339852035a155400663cbbd5841299fe5bed103e65",
+    "lineup_coverage.csv": "6b05c045a9ca495d0fe9cd90ba470dbbd62247767c512d7cb53d9f079b2379ad",
+    "lineup_selection_changes.csv": "d6cb232383595820c2ec25d8f279645cea1ad50302359d65b596b03f0f021b4a",
+    "model_market_comparison.csv": "4e249db0902d598d8e6b1ac8bdb3b87b7cedb02c014b122c279373211f9aedeb",
+    "fantasy_roster_context.csv": "3c7198e0ef604458c58a5003b5d3fcc49543a3e7b74839f7e1bd8002ff27fa06",
+    "november_16_saved_team_probabilities.csv": "4f309d20ad7bf19e99904beccc4b7b1e4e9186b865c7014ed5431dc801649590",
+    "projected_lineups.csv": "56155f28caa2e60e137d51f1c0226351a88802ef269a322d473c3e4eb4a47db9",
+    "november_16_team_evaluation.csv": "2ad476bf34db2b8faa4284477c644529578969013de77a3a6849b65d5280cab1"
+  }
+}

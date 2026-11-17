@@ -35,6 +35,8 @@ def main():
     parser.add_argument('--game-history', type=Path)
     parser.add_argument('--game-toi', type=Path)
     parser.add_argument('--moneypuck-snapshot', type=Path)
+    parser.add_argument('--projected-lineups', type=Path,
+                        help='Verified projected-lineup snapshot to apply to skater scenarios')
     parser.add_argument('--defense-pbp',type=Path)
     parser.add_argument('--moneypuck-shots',type=Path)
     parser.add_argument('--allow-context-lag',action='store_true')
@@ -69,6 +71,8 @@ def main():
     shots=args.moneypuck_shots or new_output('acquire_moneypuck_shots.py',
         Path('data/processed/forecasts'),'moneypuck_shots_*','--boxscores',boxes)
     extra = ['--without-espn'] if args.without_espn else ['--espn-benchmark', benchmark]
+    if args.projected_lineups:
+        extra += ['--projected-lineups', args.projected_lineups]
     bundle = new_output('build_daily_forecasts.py', Path('data/processed/forecasts'), f'daily_{args.date}_*',
         '--date', args.date, '--template-forecast', args.template_forecast,
         '--game-history', games, '--boxscore-history', boxes,

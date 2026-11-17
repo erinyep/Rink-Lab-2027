@@ -16,7 +16,7 @@ from src.fantasy.simulation import simulate_counts
 from src.fantasy.availability import excluded_by_status
 
 
-def select_lineup(players, require_full_lineup=True):
+def select_lineup(players, require_full_lineup=True, published_lineup=None):
     """Trial 12F/6D scenario: last appearance first, then baseline predicted TOI.
 
 Do not infer actual scratches from this heuristic. Retain all selection reasons.
@@ -36,6 +36,21 @@ Do not infer actual scratches from this heuristic. Retain all selection reasons.
         result.loc[selected.index,'selected_for_trial']=True
         result.loc[selected.index,'selection_reason']=np.where(selected.played_last_team_game,
             'last_game_appearance_in_trial','replacement_by_predicted_toi')
+    result['heuristic_selected_for_trial'] = result.selected_for_trial
+    result['published_lineup_applied'] = False
+    if published_lineup is not None:
+        skaters = published_lineup[published_lineup.projected_status.eq('projected_skater')]
+        complete = (len(skaters) == 18 and skaters.player_id.notna().all()
+                    and not skaters.player_id.duplicated().any()
+                    and skaters.role.eq('F').sum() == 12 and skaters.role.eq('D').sum() == 6
+                    and set(skaters.player_id).issubset(set(result.player_id)))
+        if complete:
+            selected_ids = set(skaters.player_id)
+            result['selected_for_trial'] = result.player_id.isin(selected_ids)
+            result['eligible_for_trial'] = result.selected_for_trial & result.has_forecast
+            result['published_lineup_applied'] = True
+            result['selection_reason'] = np.where(result.selected_for_trial,
+                'published_projected_lineup_not_confirmed', 'outside_published_projected_lineup')
     return result
 
 

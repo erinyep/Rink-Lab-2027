@@ -73,6 +73,12 @@ def main():
     for name in ['game_team_coverage.csv','simulation_summary.csv']:
         require(sha256(args.simulation/name)==sim['files'][name], 'Skater simulation source hash mismatch')
     public_only=fm['espn'].get('status')=='disabled_public_data_only'
+    published = pd.DataFrame()
+    published_path = args.simulation/'published_lineup_context.csv'
+    if published_path.exists():
+        require(sha256(published_path)==sim['files']['published_lineup_context.csv'], 'Changed projected lineup source')
+        published = pd.read_csv(published_path)
+        sources.append(dict(file=str(published_path),sha256=sha256(published_path)))
     if not public_only:
         require(sha256(forecast/'espn_player_forecasts.csv')==fm['files']['espn_player_forecasts.csv'],
                 'ESPN forecast source hash mismatch')
@@ -154,6 +160,14 @@ def main():
         for player in roster:
             pid=player['id']; rates=goalie_rates(history,pid)
             share=shares[pid]
+            reported_status = 'not_reported'
+            reported_source = None
+            if not published.empty:
+                match = published[published.game_id.eq(g.game_id) & published.team.eq(g.team) & published.player_id.eq(pid)]
+                require(len(match)<=1, 'Duplicate projected goalie identity')
+                if len(match):
+                    reported_status = match.iloc[0].projected_status
+                    reported_source = match.iloc[0].source_url
             for model in ['goalie_history_baseline','goalie_opponent_context_trial']:
                 baseline_sa=rates['shots_against_per_60']
                 # Blend opponent offense and own defense, both shrunk to current league mean.
@@ -164,7 +178,8 @@ def main():
                     team=g.team,opponent=g.opponent,player_id=pid,
                     player_name=player['firstName']['default']+' '+player['lastName']['default'],model=model)
                 row=dict(**identity,**rates,start_share_provisional=share,current_team_starts=starts[pid],
-                    starter_status='not_confirmed',conditional_minutes_assumption=60,
+                    starter_status='projected_by_nhl_not_confirmed' if reported_status=='projected_goalie' else 'not_confirmed',conditional_minutes_assumption=60,
+                    reported_lineup_status=reported_status,reported_lineup_source=reported_source,
                     shots_against_if_full_start=sa,saves_if_full_start=sa*rates['save_probability'],
                     goals_against_if_full_start=sa*(1-rates['save_probability']),
                     gaa_if_full_60=sa*(1-rates['save_probability']),save_percentage_projection=rates['save_probability'],

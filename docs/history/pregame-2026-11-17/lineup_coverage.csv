@@ -1,0 +1,23 @@
+game_id,team,status,source_url,detail,published_lineup_applied
+2026020333,LAK,projected_lineup_available,https://www.nhl.com/news/los-angeles-kings-boston-bruins-game-preview-november-17-2026,,True
+2026020333,BOS,projected_lineup_available,https://www.nhl.com/news/los-angeles-kings-boston-bruins-game-preview-november-17-2026,,True
+2026020335,EDM,projected_lineup_available,https://www.nhl.com/news/edmonton-oilers-florida-panthers-game-preview-november-17-2026,,True
+2026020335,FLA,projected_lineup_available,https://www.nhl.com/news/edmonton-oilers-florida-panthers-game-preview-november-17-2026,,True
+2026020336,CBJ,projected_lineup_available,https://www.nhl.com/news/columbus-blue-jackets-new-york-islanders-game-preview-november-17-2026,,True
+2026020336,NYI,projected_lineup_available,https://www.nhl.com/news/columbus-blue-jackets-new-york-islanders-game-preview-november-17-2026,,True
+2026020337,BUF,projected_lineup_available,https://www.nhl.com/news/buffalo-sabres-philadelphia-flyers-game-preview-november-17-2026,,True
+2026020337,PHI,projected_lineup_available,https://www.nhl.com/news/buffalo-sabres-philadelphia-flyers-game-preview-november-17-2026,,True
+2026020341,OTT,projected_lineup_available,https://www.nhl.com/news/ottawa-senators-winnipeg-jets-game-preview-november-17-2026,,False
+2026020341,WPG,projected_lineup_available,https://www.nhl.com/news/ottawa-senators-winnipeg-jets-game-preview-november-17-2026,,True
+2026020334,WSH,projected_lineup_available,https://www.nhl.com/news/washington-capitals-tampa-bay-lightning-game-preview-november-17-2026,,True
+2026020334,TBL,projected_lineup_available,https://www.nhl.com/news/washington-capitals-tampa-bay-lightning-game-preview-november-17-2026,,True
+2026020338,TOR,projected_lineup_available,https://www.nhl.com/news/toronto-maple-leafs-chicago-blackhawks-game-preview-november-17-2026,,True
+2026020338,CHI,projected_lineup_available,https://www.nhl.com/news/toronto-maple-leafs-chicago-blackhawks-game-preview-november-17-2026,,True
+2026020339,ANA,projected_lineup_available,https://www.nhl.com/news/anaheim-ducks-st-louis-blues-game-preview-november-17-2026,,False
+2026020339,STL,projected_lineup_available,https://www.nhl.com/news/anaheim-ducks-st-louis-blues-game-preview-november-17-2026,,True
+2026020340,NSH,projected_lineup_available,https://www.nhl.com/news/nashville-predators-minnesota-wild-game-preview-november-17-2026,,True
+2026020340,MIN,projected_lineup_available,https://www.nhl.com/news/nashville-predators-minnesota-wild-game-preview-november-17-2026,,True
+2026020342,DAL,source_unavailable,https://www.nhl.com/news/dallas-stars-vegas-golden-knights-game-preview-november-17-2026,Incomplete article lineup coverage,False
+2026020342,VGK,source_unavailable,https://www.nhl.com/news/dallas-stars-vegas-golden-knights-game-preview-november-17-2026,Incomplete article lineup coverage,False
+2026020343,CGY,projected_lineup_available,https://www.nhl.com/news/calgary-flames-san-jose-sharks-game-preview-november-17-2026,,True
+2026020343,SJS,projected_lineup_available,https://www.nhl.com/news/calgary-flames-san-jose-sharks-game-preview-november-17-2026,,True

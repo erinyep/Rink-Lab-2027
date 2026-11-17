@@ -5,12 +5,13 @@
   "scope": "Displayed fantasy report fields only; no credentials, raw API snapshots or local filesystem paths.",
   "files": {
     "goalies.csv": "a439d2258fccf724799329a4527293510d0dc440b085f57c4caecb51342697a4",
-    "index.html": "a9ad9dc4fc36bd9e8d06856a7a7cea0068e9fe6de2650cf6c6f8e372928e6a75",
+    "index.html": "f00496dca65128f4f8264d5b1673ed43a191b3f1c9c750504755f15876f0b5e6",
     "report.json": "a537abd2724b1bf34695711121b8e8cfd6f4d49c8c705491ad38ac78342fcbc8",
     "roster.csv": "bc9b0f5d5893b4daa26a03d67aead4c651094762d807a8c17eacd34fdc530bd1",
     "category-gaps.svg": "a9e26f88addf94acc2a079760f4bc6936cf3a2ed60de19bc7732a19c40e1f409",
     "category_gaps.csv": "34d039bff422876e97c0c0409d199d6b8ff9b45c15bd51c4c58609ede8f22b11",
     "streamer_watchlist.csv": "240506ac1dae46101d77a1bfd82c94e7a12377576fd8915653a00f4be5825a3b",
     "roster_schedule.csv": "58b5a98d3a853979da248d3d490382c62669c2fdc5660fcf5193a1e271790a8b"
-  }
+  },
+  "freshness_notice": "November 17 public NHL context available; ESPN ownership and slots remain November 16."
 }

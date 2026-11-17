@@ -1,8 +1,8 @@
-# NHL game outlook — 2026-11-16
+# NHL game outlook — 2026-11-17
 
 [Interactive matchups](index.html) · [Game predictions CSV](game_predictions.csv)
 
-There are 2 games: 2 pregame forecasts and 0 late-issued.
+There are 11 games: 11 pregame forecasts and 0 late-issued.
 The goal numbers are projected means, not exact final scores. The side with the
 higher goal mean is the model scoring lean; no calibrated win odds are supplied.
 Simulation ranges and goalie start shares remain provisional. All saved

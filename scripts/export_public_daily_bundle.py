@@ -69,6 +69,14 @@ def main():
     if mp_last:
         mp_last = str(mp_last)
         mp_last = f'{mp_last[:4]}-{mp_last[4:6]}-{mp_last[6:8]}'
+    availability = ('ESPN injury and fantasy ownership data are unavailable in this public-data release.'
+                    if source.get('availability_status') == 'disabled_public_data_only'
+                    else 'Availability comes from a timestamped ESPN snapshot and does not confirm participation.')
+    if source.get('projected_lineup_source'):
+        availability += ' Complete matched NHL.com projected skater lineups inform lineup selection; projected status does not confirm participation.'
+    context_note = ('A lag in MoneyPuck coverage was explicitly accepted in release validation.'
+                    if source['release_validation']['context_lag_explicitly_accepted']
+                    else 'MoneyPuck coverage passed the release freshness checks.')
     guide = f"""# Frozen daily projections — {source['date']}
 
 Issued {source['created_at_utc']}. Official statistical history ends {source['statistical_history_last_game_date']} ({boxscores['final_games']} completed games). The slate contains {release['pregame_games']} pregame game forecasts and {release['late_games']} late-issued game scenario(s).
@@ -77,7 +85,7 @@ Start with `player_projections.csv`, `team_projections.csv`, and `goalie_project
 
 Late-issued scenario(s), excluded from prospective scoring: {late_matchups}.
 
-Availability comes from a timestamped ESPN snapshot and does not confirm participation. MoneyPuck team-game data covered through {mp_last}; this is lagged relative to the NHL history cutoff. That context lag was accepted explicitly and is recorded in the release validation. The complete local issue bundle contains private fantasy ownership and API context; this export omits fantasy team names and ESPN player IDs.
+{availability} MoneyPuck team-game data covered through {mp_last}. {context_note} This export omits fantasy team names and ESPN player IDs.
 """
     (out / 'README.md').write_text(guide)
     manifest = dict(

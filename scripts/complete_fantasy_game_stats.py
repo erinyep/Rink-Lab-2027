@@ -22,6 +22,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--boxscore-snapshots', nargs='+', type=Path, required=True)
     parser.add_argument('--landing-snapshot', type=Path)
+    parser.add_argument('--workers', type=int, default=4, choices=range(1, 17),
+                        help='Concurrent scoring-summary requests (default 4)')
     args = parser.parse_args()
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     raw = args.landing_snapshot or Path('data/raw/nhl/snapshots') / f'fantasy_game_details_{stamp}'
@@ -41,7 +43,7 @@ def main():
             request=Request(url,headers={'User-Agent':'Rink-Lab/0.1','Accept':'application/json'})
             with urlopen(request,context=truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT),timeout=60) as response:
                 landing_path.write_bytes(response.read())
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
         list(pool.map(acquire_landing,sorted(files)))
     for game_id, path in sorted(files.items()):
         box = json.loads(path.read_text())

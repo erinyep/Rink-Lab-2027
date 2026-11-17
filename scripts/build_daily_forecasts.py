@@ -46,6 +46,7 @@ def main():
     ap.add_argument('--without-espn',action='store_true',help='Public-data mode: no injury or fantasy ownership coverage')
     ap.add_argument('--max-injury-age-hours',type=float,default=6)
     ap.add_argument('--raw-context',type=Path)
+    ap.add_argument('--projected-lineups',type=Path,help='Verified NHL projected-lineup snapshot directory')
     ap.add_argument('--defense-pbp',type=Path,help='Verified PBP context; no fitted effect')
     ap.add_argument('--moneypuck-shots',type=Path,help='Verified lagged D shot quality; no fitted effect')
     a=ap.parse_args()
@@ -68,6 +69,15 @@ def main():
     require(len(day)==1,'Missing target date')
     games=[g for g in day[0]['games'] if g['season']==season and g['gameType']==2]
     require(games,'No games')
+    published = None
+    if a.projected_lineups:
+        lineup_manifest = verify(a.projected_lineups)
+        require(lineup_manifest['date'] == a.date, 'Projected lineup date mismatch')
+        published = pd.read_csv(a.projected_lineups/'projected_lineups.csv')
+        ages = (pd.Timestamp.now(tz='UTC') - pd.to_datetime(published.retrieved_at_utc, utc=True)).dt.total_seconds()/3600
+        require(ages.between(0, a.max_injury_age_hours).all(), 'Stale or future projected lineup source')
+        require(set(published.game_id).issubset({g['id'] for g in games}), 'Projected lineup fixture mismatch')
+        published.to_csv(out/'published_lineup_context.csv', index=False)
     teams=sorted({g[s]['abbrev'] for g in games for s in ['homeTeam','awayTeam']})
     def roster(t):return fetch('roster/'+t+'/current',f'roster_{t}.json')
     rosters={}
@@ -209,7 +219,9 @@ def main():
                             probability_at_least_one_if_plays=float((d>0).mean()) if d is not None else np.nan,
                             **constraints,unconstrained_shots_mean=original_shots,unconstrained_pp_points_mean=original_ppp,actual=np.nan,absolute_error=np.nan,
                             distribution_status='provisional_not_calibrated' if d is not None else 'mean_only_no_count_simulation'))
-            lineup=select_lineup(pd.DataFrame(audit),require_full_lineup=False);lineups.append(lineup)
+            team_published = published[published.game_id.eq(gid) & published.team.eq(team)] if published is not None else None
+            lineup=select_lineup(pd.DataFrame(audit),require_full_lineup=False,published_lineup=team_published);lineups.append(lineup)
+            published_applied = bool(lineup.published_lineup_applied.all())
             selected=lineup[lineup.selected_for_trial]
             missing_slots={pos:max(0,n-int((selected.position_group==pos).sum())) for pos,n in [('F',12),('D',6)]}
             for model in cfg['models']:
@@ -234,7 +246,7 @@ def main():
                     team_rows.append(dict(game_id=gid,date=a.date,team=team,opponent=opp,start_time_utc=start,model=model,category=category,
                         projection_mean=mean,whole_number_guess=guess,probability_of_guess=float((d==guess).mean()),simulation_p10=int(np.quantile(d,.1,method='inverted_cdf')),
                         simulation_p90=int(np.quantile(d,.9,method='inverted_cdf')),assumed_skaters=len(selected)+sum(missing_slots.values()),identified_skaters=len(selected),unidentified_replacement_skaters=sum(missing_slots.values()),replacement_shots_mean=replacement_shots,actual=np.nan,absolute_error=np.nan,exact_guess_correct=np.nan,
-                        lineup_version='refreshed_injury_prior_game_union_trial',lineup_status='unconfirmed_12F_6D_trial' if len(selected)==18 else 'unconfirmed_with_position_prior_replacement'))
+                        lineup_version='published_nhl_projected_lineup' if published_applied else 'refreshed_injury_prior_game_union_trial',lineup_status='published_projected_not_confirmed' if published_applied else ('unconfirmed_12F_6D_trial' if len(selected)==18 else 'unconfirmed_with_position_prior_replacement')))
             coverage.append(dict(game_id=gid,date=a.date,team=team,opponent=opp,start_time_utc=start,
                 official_roster_skaters=len(rosters[team]['forwards'])+len(rosters[team]['defensemen']),modeled_candidates=len(candidates),prior_game_additions=sum(p['roster_source']!='current_official_roster' for p in candidates),
                 position_prior_players=sum(p['player_id'] not in rates.index for p in candidates),selected_skaters=len(selected),missing_lineup_slots=18-len(selected),selected_prior_game_only=int((selected.roster_source!='current_official_roster').sum()),goalie_candidates=len(rosters[team]['goalies'])))
@@ -250,7 +262,8 @@ def main():
     manifest=dict(created_at_utc=created.isoformat(),date=a.date,games=len(games),forecast=str(inputs),raw_context=str(raw),sources=sources,
         seed=int(a.date.replace('-','')),draws=cfg['draws'],config=cfg,calibration=cal,game_history=str(a.game_history),boxscore_history=str(a.boxscore_history),
         moneypuck_snapshot=str(a.moneypuck_snapshot),moneypuck_sha256=mpmeta['sha256'],injuries_as_of_utc=espn_info['retrieved_at_utc'],
-        additional_sources={str(source):sha(source) for source in [a.game_toi,a.espn_benchmark] if source is not None},
+        additional_sources={str(source):sha(source) for source in [a.game_toi,a.espn_benchmark,a.projected_lineups/'manifest.json' if a.projected_lineups else None,a.projected_lineups/'projected_lineups.csv' if a.projected_lineups else None] if source is not None},
+        projected_lineup_source=str(a.projected_lineups) if a.projected_lineups else None,
         availability_status=espn_info['status'] if a.without_espn else 'timestamped_espn_labels_not_confirmed_lineups',
         defense_pbp_source=str(a.defense_pbp) if a.defense_pbp else None,
         defense_pbp_manifest_sha256=sha(a.defense_pbp/'manifest.json') if a.defense_pbp else None,
