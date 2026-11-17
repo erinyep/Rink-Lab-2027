@@ -1,0 +1,124 @@
+name: Refresh fantasy report
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fantasy-report-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install report dependencies
+        run: python -m pip install -r requirements-forecast.txt -r requirements-espn.txt
+      - name: Select today's Eastern date
+        id: target
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          print('date=' + datetime.now(ZoneInfo('America/New_York')).date().isoformat())
+          PY
+      - name: Prepare today's public forecast context
+        run: >-
+          python scripts/prepare_public_report_bundle.py
+          --date "${{ steps.target.outputs.date }}"
+          --out "$RUNNER_TEMP/fantasy-report-bundle"
+      - name: Refresh private ESPN snapshots
+        shell: bash
+        env:
+          ESPN_LEAGUE_ID: ${{ secrets.ESPN_LEAGUE_ID }}
+          ESPN_SEASON_ID: ${{ secrets.ESPN_SEASON_ID }}
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: |
+          set -euo pipefail
+          if ! python scripts/refresh_espn_snapshot.py >"$RUNNER_TEMP/espn-snapshot.log" 2>&1; then
+            echo "::error::ESPN snapshot failed; private response details were suppressed from public logs."
+            exit 1
+          fi
+          if ! python scripts/acquire_fantasy_rules.py >"$RUNNER_TEMP/espn-rules.log" 2>&1; then
+            echo "::error::ESPN rules refresh failed; private league details were suppressed from public logs."
+            exit 1
+          fi
+          if ! python scripts/acquire_future_roster.py >"$RUNNER_TEMP/espn-future-roster.log" 2>&1; then
+            echo "::error::Next-period roster refresh failed; private response details were suppressed from public logs."
+            exit 1
+          fi
+          snapshot=$(find data/raw/espn/snapshots -mindepth 1 -maxdepth 1 -type d -name "espn_${ESPN_SEASON_ID}_*" -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
+          rules=$(find data/raw/espn/snapshots -mindepth 1 -maxdepth 1 -type d -name 'rules_*' -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
+          future=$(find data/raw/espn/snapshots -mindepth 1 -maxdepth 1 -type d -name 'future_roster_*' -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
+          test -n "$snapshot" && test -n "$rules" && test -n "$future"
+          python - "$snapshot" <<'PY'
+          import json, pathlib, sys
+          metadata = json.loads((pathlib.Path(sys.argv[1]) / 'metadata.json').read_text())
+          if metadata.get('available_limit_reached'):
+              raise SystemExit('ESPN available-player result hit its configured limit; refusing an incomplete streamer report.')
+          PY
+          echo "ESPN_SNAPSHOT=$snapshot" >> "$GITHUB_ENV"
+          echo "ESPN_RULES=$rules" >> "$GITHUB_ENV"
+          echo "ESPN_FUTURE_ROSTER=$future" >> "$GITHUB_ENV"
+      - name: Build current fantasy report
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! python scripts/build_today_report.py \
+            --bundle "$RUNNER_TEMP/fantasy-report-bundle" \
+            --rules "$ESPN_RULES" \
+            --future-roster "$ESPN_FUTURE_ROSTER" \
+            --espn-snapshot "$ESPN_SNAPSHOT" \
+            --team-id "$(python -c 'import json; print(json.load(open("config/fantasy_report.json"))["team_id"])')" \
+            --out "reports/today/${{ steps.target.outputs.date }}_github_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}" \
+            >"$RUNNER_TEMP/private-report-build.log" 2>&1; then
+            echo "::error::Fantasy report build failed; private roster details were suppressed from public logs."
+            exit 1
+          fi
+      - name: Export and verify the public report fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          report=$(find reports/today -mindepth 1 -maxdepth 1 -type d -name "${{ steps.target.outputs.date }}_github_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}" -print -quit)
+          python scripts/prepare_github_report.py --report "$report" --out "$RUNNER_TEMP/public-fantasy-report"
+          python - "$RUNNER_TEMP/public-fantasy-report" <<'PY'
+          import hashlib, json, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          manifest = json.loads((root / 'manifest.json').read_text())
+          for name, expected in manifest['files'].items():
+              if hashlib.sha256((root / name).read_bytes()).hexdigest() != expected:
+                  raise SystemExit('Public report hash check failed: ' + name)
+          forbidden = {'espn_player_id', 'fantasy_team_id', 'espn_s2', 'swid', 'league_id'}
+          data = json.loads((root / 'report.json').read_text())
+          def keys(value):
+              if isinstance(value, dict):
+                  for key, item in value.items():
+                      yield key
+                      yield from keys(item)
+              elif isinstance(value, list):
+                  for item in value:
+                      yield from keys(item)
+          if forbidden.intersection(keys(data)):
+              raise SystemExit('Private identifier found in public fantasy report')
+          for path in root.iterdir():
+              if path.is_file() and (b'data/raw/espn' in path.read_bytes() or b'/home/runner/work/' in path.read_bytes()):
+                  raise SystemExit('Private filesystem path found in public fantasy report')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fantasy-report-${{ steps.target.outputs.date }}
+          path: ${{ runner.temp }}/public-fantasy-report/
+          if-no-files-found: error
+          retention-days: 2
+      - name: Summarize
+        run: echo "Generated the sanitized fantasy report for ${{ steps.target.outputs.date }}. Raw ESPN snapshots and the full report were not uploaded."

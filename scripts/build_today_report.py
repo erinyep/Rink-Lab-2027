@@ -81,6 +81,7 @@ def main():
     history_path=args.bundle/'inputs/current_per_game_forecast.csv'
     if sha(history_path)!=fm['files']['current_per_game_forecast.csv']:raise ValueError('Player history hash mismatch')
     exposure=pd.read_csv(history_path)[['player_id','historical_gp']]
+    historical_gp_available=bool(exposure['historical_gp'].notna().any())
     projections=projections.merge(exposure,on='player_id',how='left',validate='one_to_one')
     own=roster[roster.fantasy_team_id.eq(args.team_id)].merge(cw,on='espn_player_id',how='left',validate='one_to_one')
     own=own.merge(projections,left_on='nhl_player_id',right_on='player_id',how='left',validate='one_to_one')
@@ -210,6 +211,8 @@ def main():
                      'Matchup scores are the saved ESPN snapshot, not live scores or final projected results.',
                      'ATOI is average ice time; adding a player below the team average can reduce it. GAA and SV% require exposure-weighted aggregation.',
                      'No calibrated category win probabilities or joint matchup simulation. Future calendar games are schedule opportunities, not predicted appearances.'])
+    if not historical_gp_available:
+        payload['limitations'].append('Prior NHL game counts are unavailable in the sanitized forecast export; streamer GP is shown as unavailable.')
     args.out.mkdir(parents=True,exist_ok=False)
     own.drop(columns='eligible').to_csv(args.out/'roster.csv',index=False)
     watch.drop(columns='eligible').to_csv(args.out/'streamer_watchlist.csv',index=False)
