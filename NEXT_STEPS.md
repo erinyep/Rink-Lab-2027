@@ -1,5 +1,21 @@
 # Rink Lab — Next Steps
 
+## November 17 — pregame modelling priorities
+
+Research question: does using the lineup and goalie information available before puck drop improve team winner probabilities and player forecasts?
+
+- [ ] Preserve an early forecast and a later pregame forecast for the same games. Record source retrieval times, projected versus confirmed status, and the exact availability changes between releases. Compare both versions on the same completed games.
+- [ ] Connect player availability to team goal forecasts. Estimate replacement minutes at even strength, on the power play and on the penalty kill. Apply the change relative to the lineup already represented in recent team rates to avoid counting a returning player twice. Start with top-pair defenseman returns and high-usage forward absences.
+- [ ] Publish starter-specific goalie scenarios and the resulting team win probabilities. Use empirically supported start probabilities when mixing scenarios, then preserve a new version after starter confirmation. Test starter changes and back-to-back starts as explicit error-analysis groups.
+- [ ] Test lagged linemate continuity using shared five-on-five minutes from prior games. Evaluate individual shots first, then incremental line-level chance creation beyond individual player rates. Shrink sparse shared-minute estimates and retain newly assembled lines.
+- [ ] Add one or two measurable matchup expectations per game, such as five-on-five chance share, special-teams opportunity or shot-location overlap. Record the forecast quantity and its postgame measurement together. Spatial matchup features need chronological validation before affecting forecasts.
+- [ ] Add a postgame check for each forecasted edge alongside the final result. Score winner probabilities with Brier score and calibration, player counts with category-specific errors, and compare performance for lineup changes, uncertain starters and top-pair returns.
+- [ ] Separate performance from finishing and save-percentage variation when interpreting recent form. Test new information against the existing lagged goals/xG baseline before adding coefficients.
+- [ ] Align Kalshi snapshots with forecast issue times, map contracts to exact fixtures and retain bid, ask, spread and settlement rules. Compare market and model scores on identical games before fitting any market blend.
+- [ ] Make the game page explain the original probability, updated probability, availability change and a measurable matchup expectation. Display an unestimated impact when no fitted effect exists.
+
+For the November 17 refresh, acquire official history through November 16, current MoneyPuck team data, timestamped Kalshi winner quotes and source-labelled projected lineups. Retain the already-supported calibrated-opponent NHL shots and isolated usage-only TOI selections. Any additional model promotion requires a paired chronological comparison. ESPN roster and fantasy slot freshness must be verified independently of public NHL lineup news.
+
 ## November 13 — November models reviewed through November 12
 
 - Scored all saved pregame daily releases from Nov. 4–12: **56 games / 2,007 matched positive-TOI player-games**. Nov. 1–3 have no frozen releases and are not reconstructed. Official NHL boxscores and scoring summaries were refreshed through Nov. 12. [Full November model comparison](outputs/per_game_forecast/november_model_review_2026-11-13/README.md) · [Nov. 12 daily evaluation](data/processed/forecasts/daily_evaluation_2026-11-12_20261113T145204691553Z/README.md).
