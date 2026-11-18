@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-18",
+  "released_at_utc": "2026-11-18T15:59:42.624707+00:00",
+  "statistical_history_last_game_date": "2026-11-17",
+  "games": 3,
+  "pregame_games": 3,
+  "late_games": [],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "primary_toi_model": "usage_toi_only_trial",
+  "availability": "disabled_public_data_only",
+  "injuries_as_of_utc": null,
+  "moneypuck_latest_game_date": "2026-11-17",
+  "moneypuck_retrieved_at_utc": "2026-11-18T15:58:25.281878+00:00",
+  "moneypuck_context_lag_explicitly_accepted": false,
+  "source_bundle_manifest_sha256": "38daf7835b6e135d0b6a343d54b20b77d3496e15d3d3fc26ffe831ddfe46a368",
+  "source_files_sha256": {
+    "player_projections.csv": "779d3c047ea9175aa6401cff566009b7db0b498bf94034ea06ad4721681e424b",
+    "team_projections.csv": "fa9b57faff81409308c56af5196054535b59d249b3846180d8e8d72efcab7aa0",
+    "goalie_projections.csv": "65d777381e3e2433aa13b2c4cc27a2807f4d6149296eac2b6913598e2713f2ec",
+    "game_team_coverage.csv": "0427b014a47f80db9364d1472f76aaa6072bcf16f00b5bcfc60c7d318578bc80"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 966,
+    "team_projections.csv": 42,
+    "goalie_projections.csv": 26,
+    "game_team_coverage.csv": 6
+  },
+  "files": {
+    "team_projections.csv": "fa9b57faff81409308c56af5196054535b59d249b3846180d8e8d72efcab7aa0",
+    "README.md": "87bdc971bfd14d9d27d1405dcbf59d9fe2f5c38f4ec20265355610f1cc806255",
+    "player_projections.csv": "12cb43bf42b0b9baec1e54e06c79bbf46751151a6b1dc94d994abec25ac55160",
+    "goalie_projections.csv": "b5c4bf699101aabb83984795128c17b5bd07cbb1141b4e3683c53c06376a050f",
+    "game_team_coverage.csv": "0427b014a47f80db9364d1472f76aaa6072bcf16f00b5bcfc60c7d318578bc80"
+  }
+}

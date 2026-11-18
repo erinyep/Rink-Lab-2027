@@ -1,5 +1,12 @@
 # Rink Lab — Next Steps
 
+## November 18 — public pregame release; ESPN refresh pending
+
+- Issued all **3 November 18 games pregame** at 10:59 a.m. Eastern using official NHL history and MoneyPuck team data through November 17 (**343 completed games**). Validated 12,347 player-game TOI rows with no boxscore join discrepancies. Published **966 player-model rows, 42 team-model rows and 26 goalie scenarios**. [Frozen public bundle](outputs/per_game_forecast/frozen/daily_2026-11-18_20261118T155931Z/) · [Pregame readout](outputs/per_game_forecast/2026-11-18_20261118T155931Z_pregame_readout.md) · [Game outlook](docs/games/) · [Team model](docs/team-model/).
+- The issue uses the existing calibrated-opponent SOG and isolated usage-only ATOI selections. No coefficient refit, confirmed lineup, injury, or goalie-start claim was added. The schedule is BOS–DET and MTL–NJD at 7:30 p.m. Eastern, and COL–UTA at 10 p.m.
+- The fantasy report remains a **November 16** snapshot. A GitHub Actions dispatch to use the new ESPN secrets was rejected by automatic review because it would process private ESPN data on a hosted runner and upload a report artifact; the workflow did not run, and no secret values or ESPN data were accessed. The public page now labels the stale roster and links to today's separate NHL outlook.
+- Next: run the authenticated ESPN refresh in an approved trusted environment, verify the snapshot covers the whole available-player list and today's league state, then regenerate and publish only the allow-listed report fields. Do not treat the November 16 streamer or matchup recommendations as current.
+
 ## November 17 — pregame implementation and release
 
 - Issued and validated all 11 games before puck drop using 332 official finals and MoneyPuck history through November 16. Published 3,479 player-model rows, 154 team-model rows and 100 goalie scenarios. [Release and lineup changes](docs/history/pregame-2026-11-17/README.md) · [Frozen projections](outputs/per_game_forecast/frozen/daily_2026-11-17_20261117T201012Z/README.md).

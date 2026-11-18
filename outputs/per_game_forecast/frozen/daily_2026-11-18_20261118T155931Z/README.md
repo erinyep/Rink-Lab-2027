@@ -1,0 +1,9 @@
+# Frozen daily projections — 2026-11-18
+
+Issued 2026-11-18T15:59:40.718051+00:00. Official statistical history ends 2026-11-17 (343 completed games). The slate contains 3 pregame game forecasts and 0 late-issued game scenario(s).
+
+Start with `player_projections.csv`, `team_projections.csv`, and `goalie_projections.csv`. Player means are conditional on playing; assumed lineups and goalie start shares are not confirmed. Selected all-player models: `calibrated_opponent_sog_trial` for shots and `usage_toi_only_trial` for conditional ATOI. Fantasy category selection is separately recorded in its policy; alternative rows are preserved for comparison.
+
+Late-issued scenario(s), excluded from prospective scoring: none.
+
+ESPN injury and fantasy ownership data are unavailable in this public-data release. MoneyPuck team-game data covered through 2026-11-17. MoneyPuck coverage passed the release freshness checks. This export omits fantasy team names and ESPN player IDs.

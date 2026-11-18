@@ -5,15 +5,15 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## November 17 pregame update
+## November 18 pregame update
 
-[Tonight’s lineup changes and fantasy context](docs/history/pregame-2026-11-17/) · [All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Kalshi comparison](docs/history/kalshi_benchmark_2026-11-17_2009/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-17_20261117T201012Z/).
+[All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-18_20261118T155931Z/) · [Fantasy report](docs/report/index.html).
 
-All 11 games were issued pregame. NHL and MoneyPuck history cover through November 16. Published projected lineups were applied to 18 of 22 teams, changing 36 player selections. The release includes 3,479 player-model rows, 154 team-model rows and 100 goalie scenarios. Kalshi covers 22 winner contracts. Lineup changes affect player-sum scenarios; the direct team model uses its existing team-history, home/rest and xG features.
+All three games were issued pregame at 10:59 a.m. Eastern using official NHL and MoneyPuck history through November 17 (343 completed games). The release has 966 player-model rows, 42 team-model rows and 26 goalie scenarios. Boston at Detroit and Montréal at New Jersey start at 7:30 p.m.; Colorado at Utah starts at 10 p.m. Projected lineup and goalie status remain unconfirmed.
 
-The fantasy context uses the saved November 16 roster with today’s public NHL information. ESPN authentication is unavailable here, so current ownership, lineup slots, locks and matchup totals remain unverified. Projected starters and lineup coverage gaps are labelled. The selected shots and TOI policies remain in effect, with new lineup handling awaiting prospective evaluation.
+The public fantasy page still contains the November 16 ESPN roster, slots and matchup snapshot. The secret-backed refresh did not run in this environment; no credentials or private ESPN data were read. See the page freshness notice before using its roster or waiver recommendations.
 
-## Tonight's projections — November 16
+## Earlier projections — November 16
 
 [Evening game outlook](docs/games/index.html) · [Direct team goals and win probabilities](docs/team-model/README.md) · [Frozen player, team and goalie projections](outputs/per_game_forecast/frozen/daily_2026-11-16_20261116T142904Z/README.md) · [Fantasy roster and category report](docs/report/index.html).
 
@@ -68,9 +68,11 @@ projected goals, shots, scoring leans and goalie scenarios for the ten remaining
 
 ## Fantasy roster report — refreshed November 16, 9:29 a.m. ET
 
-[Current roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local.
+[Latest available roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local. It has not yet been refreshed with the GitHub secrets.
 
 ## Current forecast work
+
+November 18: [three-game pregame release](outputs/per_game_forecast/2026-11-18_20261118T155931Z_pregame_readout.md), official results and MoneyPuck history through November 17, [frozen player/team/goalie bundle](outputs/per_game_forecast/frozen/daily_2026-11-18_20261118T155931Z/), [game outlook](docs/games/index.html) and [team model](docs/team-model/). The fantasy page remains on its November 16 roster snapshot pending the authenticated refresh.
 
 November 16: [two-game pregame release](outputs/per_game_forecast/2026-11-16_20261116T142904Z_pregame_readout.md), [release and coverage details](outputs/per_game_forecast/2026-11-16_20261116T142904Z_pregame_readout.md), updated [game outlook](docs/games/index.html), [direct team goals and probabilities](docs/team-model/README.md) and [fantasy roster/category report](docs/report/index.html). The public projection bundle omits ESPN IDs and fantasy ownership; lineup and goalie scenarios remain provisional.
 
