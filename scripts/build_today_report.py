@@ -43,6 +43,17 @@ def normalize_espn_id(value):
         return str(value).strip()
 
 
+def fits_open_slot(baseline, candidate, capacities):
+    """Return false for a duplicate ESPN record instead of failing the report."""
+    try:
+        lineup = baseline + [dict(id=candidate['id'], eligible=candidate['eligible'])]
+        return fit_lineup(lineup, capacities) is not None
+    except ValueError as exc:
+        if str(exc) == 'Duplicate player in lineup':
+            return False
+        raise
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bundle',required=True,type=Path)
@@ -194,7 +205,8 @@ def main():
     watch=watch[watch.issue_timing.eq('pregame') & watch.selected_for_trial.eq(True) & pd.to_datetime(watch.start_time_utc,utc=True).gt(now)]
     watch['start_local']=pd.to_datetime(watch.start_time_utc,utc=True).dt.tz_convert('America/New_York').dt.strftime('%-I:%M %p')
     watch['eligible']=watch.eligible_slots.fillna('').str.split('|')
-    watch['open_slot_fit']=watch.apply(lambda r:fit_lineup(baseline+[dict(id=r.espn_player_id,eligible=r.eligible)],skater_caps) is not None,axis=1)
+    watch['open_slot_fit']=watch.apply(
+        lambda r:fits_open_slot(baseline,dict(id=r.espn_player_id,eligible=r.eligible),skater_caps),axis=1)
     add_window=acquisition_window_open([pd.Timestamp(g['startTimeUTC']) for g in fixtures.values()],now)
     watch['usable_starts_today']=watch.open_slot_fit.astype(int) if add_window else 0
     watch['action_status']='watchlist_only_transaction_timing_and_remaining_daily_allowance_unverified'
