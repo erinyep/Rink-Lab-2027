@@ -2,9 +2,11 @@ name: Refresh fantasy report
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 11 * * *'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: fantasy-report-${{ github.ref }}
@@ -12,17 +14,20 @@ concurrency:
 
 jobs:
   refresh:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install report dependencies
         run: python -m pip install -r requirements-forecast.txt -r requirements-espn.txt
+      - name: Create run-specific private workspace
+        run: mkdir -p "$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
       - name: Select today's Eastern date
         id: target
         run: |
@@ -35,7 +40,7 @@ jobs:
         run: >-
           python scripts/prepare_public_report_bundle.py
           --date "${{ steps.target.outputs.date }}"
-          --out "$RUNNER_TEMP/fantasy-report-bundle"
+          --out "$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/forecast-bundle"
       - name: Refresh private ESPN snapshots
         shell: bash
         env:
@@ -45,43 +50,52 @@ jobs:
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
         run: |
           set -euo pipefail
-          if ! python scripts/refresh_espn_snapshot.py >"$RUNNER_TEMP/espn-snapshot.log" 2>&1; then
+          private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          if ! python scripts/refresh_espn_snapshot.py >"$private_temp/espn-snapshot.log" 2>&1; then
             echo "::error::ESPN snapshot failed; private response details were suppressed from public logs."
             exit 1
           fi
-          if ! python scripts/acquire_fantasy_rules.py >"$RUNNER_TEMP/espn-rules.log" 2>&1; then
+          if ! python scripts/acquire_fantasy_rules.py >"$private_temp/espn-rules.log" 2>&1; then
             echo "::error::ESPN rules refresh failed; private league details were suppressed from public logs."
             exit 1
           fi
-          if ! python scripts/acquire_future_roster.py >"$RUNNER_TEMP/espn-future-roster.log" 2>&1; then
+          if ! python scripts/acquire_future_roster.py >"$private_temp/espn-future-roster.log" 2>&1; then
             echo "::error::Next-period roster refresh failed; private response details were suppressed from public logs."
             exit 1
           fi
-          snapshot=$(find data/raw/espn/snapshots -mindepth 1 -maxdepth 1 -type d -name "espn_${ESPN_SEASON_ID}_*" -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
-          rules=$(find data/raw/espn/snapshots -mindepth 1 -maxdepth 1 -type d -name 'rules_*' -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
-          future=$(find data/raw/espn/snapshots -mindepth 1 -maxdepth 1 -type d -name 'future_roster_*' -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
-          test -n "$snapshot" && test -n "$rules" && test -n "$future"
-          python - "$snapshot" <<'PY'
-          import json, pathlib, sys
-          metadata = json.loads((pathlib.Path(sys.argv[1]) / 'metadata.json').read_text())
+          python - "$GITHUB_ENV" "$ESPN_SEASON_ID" <<'PY'
+          import json, os, pathlib, sys
+          env_file, season = pathlib.Path(sys.argv[1]), sys.argv[2]
+          root = pathlib.Path('data/raw/espn/snapshots')
+          def latest(pattern):
+              candidates = list(root.glob(pattern))
+              if not candidates:
+                  raise SystemExit('Required ESPN snapshot is missing')
+              return max(candidates, key=lambda p: p.stat().st_mtime)
+          snapshot = latest(f'espn_{season}_*')
+          rules = latest('rules_*')
+          future = latest('future_roster_*')
+          metadata = json.loads((snapshot / 'metadata.json').read_text())
           if metadata.get('available_limit_reached'):
               raise SystemExit('ESPN available-player result hit its configured limit; refusing an incomplete streamer report.')
+          with env_file.open('a') as f:
+              f.write(f'ESPN_SNAPSHOT={snapshot}\n')
+              f.write(f'ESPN_RULES={rules}\n')
+              f.write(f'ESPN_FUTURE_ROSTER={future}\n')
           PY
-          echo "ESPN_SNAPSHOT=$snapshot" >> "$GITHUB_ENV"
-          echo "ESPN_RULES=$rules" >> "$GITHUB_ENV"
-          echo "ESPN_FUTURE_ROSTER=$future" >> "$GITHUB_ENV"
       - name: Build current fantasy report
         shell: bash
         run: |
           set -euo pipefail
+          private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           if ! python scripts/build_today_report.py \
-            --bundle "$RUNNER_TEMP/fantasy-report-bundle" \
+            --bundle "$private_temp/forecast-bundle" \
             --rules "$ESPN_RULES" \
             --future-roster "$ESPN_FUTURE_ROSTER" \
             --espn-snapshot "$ESPN_SNAPSHOT" \
             --team-id "$(python -c 'import json; print(json.load(open("config/fantasy_report.json"))["team_id"])')" \
             --out "reports/today/${{ steps.target.outputs.date }}_github_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}" \
-            >"$RUNNER_TEMP/private-report-build.log" 2>&1; then
+            >"$private_temp/private-report-build.log" 2>&1; then
             echo "::error::Fantasy report build failed; private roster details were suppressed from public logs."
             exit 1
           fi
@@ -89,9 +103,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           report=$(find reports/today -mindepth 1 -maxdepth 1 -type d -name "${{ steps.target.outputs.date }}_github_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}" -print -quit)
-          python scripts/prepare_github_report.py --report "$report" --out "$RUNNER_TEMP/public-fantasy-report"
-          python - "$RUNNER_TEMP/public-fantasy-report" <<'PY'
+          public_report="$private_temp/public-report"
+          python scripts/prepare_github_report.py --report "$report" --out "$public_report"
+          python - "$public_report" <<'PY'
           import hashlib, json, pathlib, sys
           root = pathlib.Path(sys.argv[1])
           manifest = json.loads((root / 'manifest.json').read_text())
@@ -111,14 +127,24 @@ jobs:
           if forbidden.intersection(keys(data)):
               raise SystemExit('Private identifier found in public fantasy report')
           for path in root.iterdir():
-              if path.is_file() and (b'data/raw/espn' in path.read_bytes() or b'/home/runner/work/' in path.read_bytes()):
-                  raise SystemExit('Private filesystem path found in public fantasy report')
+              if path.is_file():
+                  payload = path.read_bytes()
+                  if any(secret in payload for secret in (b'data/raw/espn', b'/home/runner/work', b'/Users/')):
+                      raise SystemExit('Private filesystem path found in public fantasy report')
           PY
-      - uses: actions/upload-artifact@v4
-        with:
-          name: fantasy-report-${{ steps.target.outputs.date }}
-          path: ${{ runner.temp }}/public-fantasy-report/
-          if-no-files-found: error
-          retention-days: 2
-      - name: Summarize
-        run: echo "Generated the sanitized fantasy report for ${{ steps.target.outputs.date }}. Raw ESPN snapshots and the full report were not uploaded."
+      - name: Publish sanitized report to GitHub Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          public_report="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/public-report"
+          cp -R "$public_report/." docs/report/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/report
+          if git diff --cached --quiet; then
+            echo "The sanitized fantasy report is already current."
+            exit 0
+          fi
+          git commit -m "Refresh fantasy report for ${{ steps.target.outputs.date }}"
+          git push origin HEAD:main
+          echo "Published the sanitized fantasy report for ${{ steps.target.outputs.date }}."
