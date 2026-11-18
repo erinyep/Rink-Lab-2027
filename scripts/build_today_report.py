@@ -205,8 +205,10 @@ def main():
     watch=watch[watch.issue_timing.eq('pregame') & watch.selected_for_trial.eq(True) & pd.to_datetime(watch.start_time_utc,utc=True).gt(now)]
     watch['start_local']=pd.to_datetime(watch.start_time_utc,utc=True).dt.tz_convert('America/New_York').dt.strftime('%-I:%M %p')
     watch['eligible']=watch.eligible_slots.fillna('').str.split('|')
-    watch['open_slot_fit']=watch.apply(
-        lambda r:fits_open_slot(baseline,dict(id=r.espn_player_id,eligible=r.eligible),skater_caps),axis=1)
+    watch['open_slot_fit']=False
+    if not watch.empty:
+        watch['open_slot_fit']=watch.apply(
+            lambda r:fits_open_slot(baseline,dict(id=r.espn_player_id,eligible=r.eligible),skater_caps),axis=1)
     add_window=acquisition_window_open([pd.Timestamp(g['startTimeUTC']) for g in fixtures.values()],now)
     watch['usable_starts_today']=watch.open_slot_fit.astype(int) if add_window else 0
     watch['action_status']='watchlist_only_transaction_timing_and_remaining_daily_allowance_unverified'
