@@ -6,7 +6,7 @@
 - The issue uses the existing calibrated-opponent SOG and isolated usage-only ATOI selections. No coefficient refit, confirmed lineup, injury, or goalie-start claim was added. The schedule is BOS–DET and MTL–NJD at 7:30 p.m. Eastern, and COL–UTA at 10 p.m.
 - The fantasy report remains a **November 16** snapshot. A GitHub Actions dispatch to use the new ESPN secrets was rejected by automatic review because it would process private ESPN data on a hosted runner and upload a report artifact; the workflow did not run, and no secret values or ESPN data were accessed. The public page now labels the stale roster and links to today's separate NHL outlook.
 - The Mac self-hosted runner LaunchAgent has been removed. `.github/workflows/refresh-fantasy-report.yml` now targets GitHub-hosted Ubuntu, supports manual runs, and schedules a daily refresh at 11:00 UTC (6:00 a.m. Eastern). The job reads ESPN credentials from Actions secrets, validates the allow-listed export, and publishes only sanitized files under `docs/report/`; it does not upload an artifact. The current fantasy report is still stale until the first successful run.
-- Next: activate the hosted workflow from `main` and review its first sanitized publication. Do not treat the November 16 streamer or matchup recommendations as current until that run succeeds.
+- Next: review the first hosted publication after the scheduled or a manual run succeeds. Do not treat the November 16 streamer or matchup recommendations as current until then.
 
 ## November 17 — pregame implementation and release
 
