@@ -181,6 +181,10 @@ def main():
     watch=watch[watch.issue_timing.eq('pregame') & watch.selected_for_trial.eq(True) & pd.to_datetime(watch.start_time_utc,utc=True).gt(now)]
     watch['start_local']=pd.to_datetime(watch.start_time_utc,utc=True).dt.tz_convert('America/New_York').dt.strftime('%-I:%M %p')
     watch['eligible']=watch.eligible_slots.fillna('').str.split('|')
+    # ESPN snapshots can serialize the same player ID with different scalar types.
+    # Exclude saved active players again after joining, using normalized IDs.
+    baseline_ids={str(player['id']) for player in baseline}
+    watch=watch[~watch.espn_player_id.astype(str).isin(baseline_ids)]
     watch['open_slot_fit']=watch.apply(lambda r:fit_lineup(baseline+[dict(id=r.espn_player_id,eligible=r.eligible)],skater_caps) is not None,axis=1)
     add_window=acquisition_window_open([pd.Timestamp(g['startTimeUTC']) for g in fixtures.values()],now)
     watch['usable_starts_today']=watch.open_slot_fit.astype(int) if add_window else 0
