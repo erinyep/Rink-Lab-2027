@@ -84,7 +84,9 @@ def main():
     historical_gp_available=bool(exposure['historical_gp'].notna().any())
     projections=projections.merge(exposure,on='player_id',how='left',validate='one_to_one')
     own=roster[roster.fantasy_team_id.eq(args.team_id)].merge(cw,on='espn_player_id',how='left',validate='one_to_one')
-    own=own.merge(projections,left_on='nhl_player_id',right_on='player_id',how='left',validate='one_to_one')
+    # Unmatched crosswalk rows share a null NHL ID, so validate uniqueness on
+    # the forecast side while preserving every roster entry on the left.
+    own=own.merge(projections,left_on='nhl_player_id',right_on='player_id',how='left',validate='many_to_one')
     raw_schedule=Path(m['raw_context'])/'schedule.json'
     schedule_source=next(s for s in m['sources'] if s['file']=='schedule.json')
     if sha(raw_schedule)!=schedule_source['sha256']:raise ValueError('Schedule hash mismatch')
