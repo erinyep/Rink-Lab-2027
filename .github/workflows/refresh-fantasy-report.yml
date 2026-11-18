@@ -96,7 +96,21 @@ jobs:
             --team-id "$(python -c 'import json; print(json.load(open("config/fantasy_report.json"))["team_id"])')" \
             --out "reports/today/${{ steps.target.outputs.date }}_github_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}" \
             >"$private_temp/private-report-build.log" 2>&1; then
-            echo "::error::Fantasy report build failed; private roster details were suppressed from public logs."
+            python - "$private_temp/private-report-build.log" <<'PY'
+          import pathlib, re, sys
+          log = pathlib.Path(sys.argv[1]).read_text(errors='replace')
+          error_types = re.findall(r'(?m)^([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?::.*)?$', log)
+          frames = re.findall(r'File "([^"]+)", line (\d+)', log)
+          location = 'unknown source line'
+          if frames:
+              path, line = frames[-1]
+              try:
+                  location = f'{pathlib.Path(path).resolve().relative_to(pathlib.Path.cwd().resolve())}:{line}'
+              except ValueError:
+                  location = f'{pathlib.Path(path).name}:{line}'
+          kind = error_types[-1] if error_types else 'UnknownError'
+          print(f'::error::Fantasy report build failed ({kind} at {location}); private details were suppressed.')
+          PY
             exit 1
           fi
       - name: Export and verify the public report fields
