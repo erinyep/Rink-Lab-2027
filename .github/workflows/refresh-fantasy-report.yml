@@ -99,8 +99,9 @@ jobs:
             python - "$private_temp/private-report-build.log" <<'PY'
           import pathlib, re, sys
           log = pathlib.Path(sys.argv[1]).read_text(errors='replace')
-          error_types = re.findall(r'(?m)^([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?::.*)?$', log)
           frames = re.findall(r'File "([^"]+)", line (\d+)', log)
+          last = next((line.strip() for line in reversed(log.splitlines()) if line.strip()), '')
+          error_match = re.match(r'(?:[A-Za-z_][A-Za-z0-9_]*\.)*([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?:[:(]|\b)', last)
           location = 'unknown source line'
           for path, line in reversed(frames):
               try:
@@ -111,7 +112,7 @@ jobs:
           if location == 'unknown source line' and frames:
               path, line = frames[-1]
               location = f'{pathlib.Path(path).name}:{line}'
-          kind = error_types[-1] if error_types else 'UnknownError'
+          kind = error_match.group(1) if error_match else 'UnknownError'
           print(f'::error::Fantasy report build failed ({kind} at {location}); private details were suppressed.')
           PY
             exit 1
