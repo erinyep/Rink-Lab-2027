@@ -102,12 +102,15 @@ jobs:
           error_types = re.findall(r'(?m)^([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?::.*)?$', log)
           frames = re.findall(r'File "([^"]+)", line (\d+)', log)
           location = 'unknown source line'
-          if frames:
-              path, line = frames[-1]
+          for path, line in reversed(frames):
               try:
                   location = f'{pathlib.Path(path).resolve().relative_to(pathlib.Path.cwd().resolve())}:{line}'
+                  break
               except ValueError:
-                  location = f'{pathlib.Path(path).name}:{line}'
+                  continue
+          if location == 'unknown source line' and frames:
+              path, line = frames[-1]
+              location = f'{pathlib.Path(path).name}:{line}'
           kind = error_types[-1] if error_types else 'UnknownError'
           print(f'::error::Fantasy report build failed ({kind} at {location}); private details were suppressed.')
           PY
