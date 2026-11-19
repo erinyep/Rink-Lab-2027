@@ -9,13 +9,21 @@ import argparse
 from datetime import date, timedelta
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 
 
 def run(script, args, marker=None):
     result=subprocess.run([sys.executable,str(Path('scripts')/script),*map(str,args)],
-        text=True,stdout=subprocess.PIPE,check=True)
+        text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    if result.returncode:
+        last = next((line.strip() for line in reversed(result.stdout.splitlines()) if line.strip()), '')
+        match = re.match(r'([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?::|\b)', last)
+        kind = match.group(1) if match else 'UnknownError'
+        print(f'Forecast subprocess failed: {script} (exit code {result.returncode}; {kind})',
+              file=sys.stderr, flush=True)
+        raise subprocess.CalledProcessError(result.returncode, result.args, output=result.stdout)
     print(result.stdout,end='',flush=True)
     if marker:
         paths=[line.split(marker,1)[1].strip() for line in result.stdout.splitlines() if line.startswith(marker)]
