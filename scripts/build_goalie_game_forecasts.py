@@ -59,6 +59,8 @@ def main():
                         help='Processed enriched game-history directory with goalie_game_stats.csv and manifest.json')
     parser.add_argument('--boxscore-history',type=Path,required=True,
                         help='Raw completed-game snapshot directory with metadata.json')
+    parser.add_argument('--historical-goalie-root',type=Path,
+                        help='Optional root for hash-verified historical goalie CSVs bundled with the forecast template')
     parser.add_argument('--output-root',type=Path,default=Path('data/processed/forecasts'))
     args=parser.parse_args()
     sim=json.loads((args.simulation/'manifest.json').read_text())
@@ -95,7 +97,14 @@ def main():
         # Pin history to the forecast's recorded inputs, never whichever file is latest.
         snapshots={Path(s['file']).parent for s in fm['source_snapshots'] if int(s['season_id'])==past_season}
         require(len(snapshots)==1, f'Missing or ambiguous historical season {past_season}')
-        path=Path('data/processed/fantasy')/next(iter(snapshots)).name/'historical_goalies.csv'
+        snapshot_name=next(iter(snapshots)).name
+        if args.historical_goalie_root:
+            template_record=fm.get('historical_goalie_files',{}).get(str(past_season))
+            require(template_record is not None, f'Missing bundled goalie history for {past_season}')
+            path=args.historical_goalie_root/template_record['path']
+            require(sha256(path)==template_record['sha256'], f'Bundled goalie history hash mismatch for {past_season}')
+        else:
+            path=Path('data/processed/fantasy')/snapshot_name/'historical_goalies.csv'
         h=pd.read_csv(path)
         require(not h.player_id.duplicated().any() and (h.season_id==past_season).all(),'Invalid goalie population')
         h['weight']=.5**((season-past_season)//10001-1)

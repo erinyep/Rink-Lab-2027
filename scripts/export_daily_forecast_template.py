@@ -17,6 +17,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', required=True, type=Path,
                         help='Inputs directory from a finalized daily forecast bundle')
+    parser.add_argument('--goalie-history-root', type=Path, default=Path('data/processed/fantasy'),
+                        help='Processed historical goalie rates referenced by the source manifest')
     parser.add_argument('--out', required=True, type=Path)
     args = parser.parse_args()
     if args.out.exists():
@@ -42,10 +44,30 @@ def main():
         raise ValueError('Historical player-season panel has invalid or duplicate keys')
     target_season = int(source_manifest['config']['target_season'])
     panel = panel[panel.season_id.lt(target_season)].copy()
+    historical_goalie_files = {}
+    for season in [target_season - 30003, target_season - 20002, target_season - 10001]:
+        snapshots = {Path(row['file']).parent.name for row in source_manifest.get('source_snapshots', [])
+                     if int(row['season_id']) == season}
+        if len(snapshots) != 1:
+            raise ValueError(f'Missing or ambiguous goalie source snapshot for {season}')
+        snapshot_name = next(iter(snapshots))
+        source_goalies = args.goalie_history_root / snapshot_name / 'historical_goalies.csv'
+        if not source_goalies.is_file():
+            raise ValueError(f'Historical goalie rates are missing for {season}')
+        relative = Path('goalie_history') / snapshot_name / 'historical_goalies.csv'
+        historical_goalie_files[str(season)] = {
+            'path': relative.as_posix(),
+            'sha256': sha(source_goalies),
+        }
 
     args.out.mkdir(parents=True)
     panel.to_csv(args.out / panel_path.name, index=False)
     shutil.copyfile(source_manifest_path, args.out / 'source_manifest.json')
+    for item in historical_goalie_files.values():
+        destination = args.out / item['path']
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        snapshot_name = Path(item['path']).parent.name
+        shutil.copyfile(args.goalie_history_root / snapshot_name / 'historical_goalies.csv', destination)
     manifest = {
         'template_version': 1,
         'source_bundle_date': source_manifest.get('current_season_source', {}).get('before_date'),
@@ -55,10 +77,11 @@ def main():
         'config': source_manifest['config'],
         'selected_on_validation': source_manifest['selected_on_validation'],
         'best_process': source_manifest['best_process'],
-        'files': {
-            panel_path.name: sha(args.out / panel_path.name),
-            'source_manifest.json': sha(args.out / 'source_manifest.json'),
-        },
+        'source_snapshots': source_manifest['source_snapshots'],
+        'historical_goalie_files': historical_goalie_files,
+        'files': {path.relative_to(args.out).as_posix(): sha(path)
+                  for path in [args.out / panel_path.name, args.out / 'source_manifest.json',
+                               *(args.out / item['path'] for item in historical_goalie_files.values())]},
     }
     (args.out / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     (args.out / 'README.md').write_text(

@@ -30,6 +30,17 @@ class DailyForecastTemplateTests(unittest.TestCase):
             panel.to_csv(source / 'validated_player_seasons.csv', index=False)
             extra = source / 'current_observed_stats.csv'
             extra.write_text('player_id,season_id\n10,20262027\n')
+            goalie_root = base / 'goalie-source'
+            source_snapshots = []
+            for season in [20232024, 20242025, 20252026]:
+                snapshot = f'fantasy_{season}_snapshot'
+                path = goalie_root / snapshot / 'historical_goalies.csv'
+                path.parent.mkdir(parents=True)
+                path.write_text('player_id,season_id\n1,' + str(season) + '\n')
+                source_snapshots.append({
+                    'season_id': season,
+                    'file': f'data/raw/nhl/snapshots/{snapshot}/goalies.csv',
+                })
             source_manifest = {
                 'created_at_utc': '2026-11-18T15:59:34Z',
                 'config': {'target_season': 20262027, 'lookback_seasons': 3,
@@ -38,6 +49,7 @@ class DailyForecastTemplateTests(unittest.TestCase):
                 'best_process': {'method': 'process', 'decay': 0.5},
                 'current_season_source': {'before_date': '2026-11-18'},
                 'espn': {'status': 'disabled_public_data_only'},
+                'source_snapshots': source_snapshots,
                 'files': {
                     'validated_player_seasons.csv': hashlib.sha256(
                         (source / 'validated_player_seasons.csv').read_bytes()).hexdigest(),
@@ -47,7 +59,8 @@ class DailyForecastTemplateTests(unittest.TestCase):
             (source / 'manifest.json').write_text(json.dumps(source_manifest))
 
             result = subprocess.run(
-                [sys.executable, str(EXPORTER), '--source', str(source), '--out', str(output)],
+                [sys.executable, str(EXPORTER), '--source', str(source), '--out', str(output),
+                 '--goalie-history-root', str(goalie_root)],
                 cwd=ROOT, text=True, capture_output=True)
             self.assertEqual(result.returncode, 0, result.stderr)
 
@@ -57,12 +70,16 @@ class DailyForecastTemplateTests(unittest.TestCase):
             exported_panel = pd.read_csv(output / 'validated_player_seasons.csv')
             self.assertTrue(exported_panel.season_id.lt(20262027).all())
             self.assertEqual(len(exported_panel), 2)
-            self.assertEqual(manifest['files'], {
-                'validated_player_seasons.csv': hashlib.sha256(
-                    (output / 'validated_player_seasons.csv').read_bytes()).hexdigest(),
-                'source_manifest.json': hashlib.sha256(
-                    (output / 'source_manifest.json').read_bytes()).hexdigest(),
+            self.assertEqual(set(manifest['files']), {
+                'validated_player_seasons.csv', 'source_manifest.json',
+                'goalie_history/fantasy_20232024_snapshot/historical_goalies.csv',
+                'goalie_history/fantasy_20242025_snapshot/historical_goalies.csv',
+                'goalie_history/fantasy_20252026_snapshot/historical_goalies.csv',
             })
+            for name, expected in manifest['files'].items():
+                self.assertEqual(hashlib.sha256((output / name).read_bytes()).hexdigest(), expected)
+            self.assertEqual(set(manifest['historical_goalie_files']),
+                             {'20232024', '20242025', '20252026'})
             self.assertTrue((output / 'source_manifest.json').is_file())
             self.assertFalse((output / 'current_observed_stats.csv').exists())
 
@@ -81,6 +98,7 @@ class DailyForecastTemplateTests(unittest.TestCase):
                 'selected_on_validation': {},
                 'best_process': {},
                 'espn': {'status': 'disabled_public_data_only'},
+                'source_snapshots': [],
                 'files': {'validated_player_seasons.csv': hashlib.sha256(
                     panel_path.read_bytes()).hexdigest()},
             }

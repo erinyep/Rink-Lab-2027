@@ -74,6 +74,7 @@ def main():
     goalie=run('build_goalie_game_forecasts.py',['--simulation',bundle,
         '--injury-context',str(Path(bundle)/'inputs/pregame_injury_context.csv'),
         '--game-history',inputs['game_history'],'--boxscore-history',inputs['boxscore_history'],
+        '--historical-goalie-root',str(a.template_forecast),
         '--output-root',str(Path(bundle)/'inputs')],'Goalie output:')
     flags=['--allow-context-lag'] if a.allow_context_lag else []
     run('finalize_daily_bundle.py',['--bundle',bundle,'--goalies',goalie,*flags])
