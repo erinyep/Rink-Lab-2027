@@ -214,8 +214,10 @@ def main():
     watch['action_status']='watchlist_only_transaction_timing_and_remaining_daily_allowance_unverified'
     watch=watch.sort_values(['open_slot_fit','expected_pp_points_if_plays','expected_assists_if_plays'],ascending=False)
     goalie=pd.read_csv(args.bundle/'goalie_projections.csv')
-    goalie=goalie[goalie.model.eq('goalie_history_baseline') & goalie.player_id.isin(own.nhl_player_id)]
-    goalie=goalie.drop(columns=['injury_status'],errors='ignore').merge(own[['nhl_player_id','lineup_slot','injury_status','start_local']],left_on='player_id',right_on='nhl_player_id',validate='one_to_one')
+    goalie_roster=own.loc[own.is_goalie,['nhl_player_id','lineup_slot','injury_status','start_local']]
+    goalie=goalie[goalie.model.eq('goalie_history_baseline') & goalie.player_id.isin(goalie_roster.nhl_player_id)]
+    goalie=goalie.drop(columns=['injury_status'],errors='ignore').merge(
+        goalie_roster,left_on='player_id',right_on='nhl_player_id',validate='one_to_one')
     acq=rules['acquisitionSettings']
     transaction_note=('This is a category league: there is no single fantasy-points total. '
         'Lineup changes lock at each NHL game. Check the next-period roster above before treating an acquisition as available today. '
