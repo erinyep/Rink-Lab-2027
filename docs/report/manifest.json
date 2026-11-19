@@ -1,17 +1,16 @@
 {
-  "date": "2026-11-16",
-  "report_created_at": "Nov 16, 9:29 AM ET",
-  "source_report_sha256": "a913ddaa43f657d4d641c9fac87528e3e32de0619a04c2da86477984e7604baf",
+  "date": "2026-11-19",
+  "report_created_at": "Nov 19, 9:26 AM ET",
+  "source_report_sha256": "1d264f5bb1a4ee2bf78220c9c8cc794b8a0c3e1f9ccf23799da95ae72b4da4b1",
   "scope": "Displayed fantasy report fields only; no credentials, raw API snapshots or local filesystem paths.",
   "files": {
-    "goalies.csv": "a439d2258fccf724799329a4527293510d0dc440b085f57c4caecb51342697a4",
-    "index.html": "55efd7580011085e394558a98d83a608e3795cc86913841d2eeeaae1c46de15a",
-    "report.json": "a537abd2724b1bf34695711121b8e8cfd6f4d49c8c705491ad38ac78342fcbc8",
-    "roster.csv": "bc9b0f5d5893b4daa26a03d67aead4c651094762d807a8c17eacd34fdc530bd1",
-    "category-gaps.svg": "a9e26f88addf94acc2a079760f4bc6936cf3a2ed60de19bc7732a19c40e1f409",
-    "category_gaps.csv": "34d039bff422876e97c0c0409d199d6b8ff9b45c15bd51c4c58609ede8f22b11",
-    "streamer_watchlist.csv": "240506ac1dae46101d77a1bfd82c94e7a12377576fd8915653a00f4be5825a3b",
-    "roster_schedule.csv": "58b5a98d3a853979da248d3d490382c62669c2fdc5660fcf5193a1e271790a8b"
-  },
-  "freshness_notice": "Public NHL outlook updated November 18; fantasy roster, ownership, lineup slots and matchup snapshot remain November 16 pending authenticated ESPN refresh."
+    "index.html": "70a504a776df868ca248b0133c2ee25468f78c0a1fa7711907f49a558a630639",
+    "category-gaps.svg": "361f768d763498a9c947f5a98f6395c1a0046c47eda1ad793e5434acb69d2928",
+    "category_gaps.csv": "8440c90296551a9e4c6331427571aa15b9b2d1f5fb94520c1e97c30f9425754b",
+    "streamer_watchlist.csv": "a439d2258fccf724799329a4527293510d0dc440b085f57c4caecb51342697a4",
+    "roster_schedule.csv": "be613e68381dbfc7510726779f9b8fc0d57162527fa4c572d021bdc3661db020",
+    "report.json": "80d8805cf5b2dfd946ba4360b01e03491935f40da56c2d85cb8bfa1b1d79a8df",
+    "roster.csv": "d5d9708fd4a9264843096ea779cab173c2bbbb8ac4ed80f87f195e2b2cf7eefe",
+    "goalies.csv": "a439d2258fccf724799329a4527293510d0dc440b085f57c4caecb51342697a4"
+  }
 }
