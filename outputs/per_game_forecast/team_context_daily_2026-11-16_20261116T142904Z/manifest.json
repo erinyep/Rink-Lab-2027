@@ -1,0 +1,25 @@
+{
+  "created_at_utc": "2026-11-16T14:29:18.520864+00:00",
+  "date": "2026-11-16",
+  "method": "team_goal_context_v2",
+  "scheduled_games": 2,
+  "excluded_games": [],
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261116T142810391769Z",
+  "moneypuck_sha256": "9b13dc86f7bf88bb2b11f97579b6896b4a06d56a4f7a5dfb9c7fb5ecd70eb04a",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261116T142640Z",
+  "boxscores_sha256": "8470c6110a0f5f67f79cdd80f67acabff320a59e15fbc0961dd2d7abea12cabd",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261116T142918520864Z",
+  "schedule_sha256": "00d1d85e3d39ba32ae9225d815337b7b62cc54adf7eb300c0e5cc6b1da3439f8",
+  "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
+  "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
+  "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
+  "files": {
+    "team_win_probabilities.csv": "adba0e523c3a85394692a295d3fac3fc5ab169764249290dbd182990d249b099",
+    "index.html": "ecf83828582b46870ce0d0d97abe4848dc20952cd4ecafa62d8c6a92823bd5c2",
+    "input_reconciliation.csv": "75c8c2215be05d900d3c6794a9e5b6e3da7fb607f85ff52a9f2398e558689339",
+    "README.md": "28d62894c511633ac47f718effd24f2500774e77dc7d2954fcff7c7529a27fe8",
+    "team_goal_forecasts.csv": "2cc116a3a27a44fb3a18260f7d9bdb36321a0c60aaaa870c21a3a01723013ab9"
+  }
+}
