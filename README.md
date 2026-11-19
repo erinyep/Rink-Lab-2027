@@ -5,13 +5,15 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## November 18 pregame update
+## November 19 pregame update
 
-[All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-18_20261118T155931Z/) · [Fantasy report](docs/report/index.html).
+[All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-19_20261119T183339Z/) · [November model review](docs/history/november_model_review_2026-11-19/) · [Fantasy report](docs/report/index.html).
 
-All three games were issued pregame at 10:59 a.m. Eastern using official NHL and MoneyPuck history through November 17 (343 completed games). The release has 966 player-model rows, 42 team-model rows and 26 goalie scenarios. Boston at Detroit and Montréal at New Jersey start at 7:30 p.m.; Colorado at Utah starts at 10 p.m. Projected lineup and goalie status remain unconfirmed.
+All 12 games were issued pregame at 1:34 p.m. Eastern using official NHL and MoneyPuck history through November 18 (346 completed games). The public release has 3,836 player-model rows, 168 team-model rows and 112 goalie scenarios. Complete NHL projected lineups were available for 9 of 24 teams and applied where all 18 skaters matched; other teams use the documented prior-game selection. Lineup and goalie labels remain provisional. ESPN injuries and fantasy ownership were unavailable in this public-only run.
 
-The public fantasy page still contains the November 16 ESPN roster, slots and matchup snapshot. The secret-backed refresh did not run in this environment; no credentials or private ESPN data were read. See the page freshness notice before using its roster or waiver recommendations.
+An initial 1:32 p.m. issue is preserved separately for same-game evaluation of the later lineup update: [early release](outputs/per_game_forecast/frozen/daily_2026-11-19_20261119T183128Z/).
+
+The latest November model review scores 84 saved pregame games and 3,013 matched positive-TOI player-games through November 18. Calibrated-opponent SOG and usage-only conditional ATOI remain supported; the review found no additional model change to make for tonight. The fantasy report is separately refreshed for November 19.
 
 ## Earlier projections — November 16
 
@@ -64,15 +66,17 @@ projected goals, shots, scoring leans and goalie scenarios for the ten remaining
 
 ## What is driving the forecasts?
 
-[Feature evidence, player/team contributions and tonight’s frozen experiments](https://erinyep.github.io/Rink-Lab-2027/evidence/). Four separate research variants use the exact October 20 coefficients with fresh past-only inputs for October 24. No model promotion; completed evidence remains linked from the trial page.
+[November prospective model evidence through November 18](docs/history/november_model_review_2026-11-19/) · [Frozen October feature experiment](https://erinyep.github.io/Rink-Lab-2027/evidence/). The November review confirms the selected NHL-wide SOG and conditional ATOI models; the October experiment remains a separate team-volume feature trial.
 
-## Fantasy roster report — refreshed November 16, 9:29 a.m. ET
+## Fantasy roster report — refreshed November 19, 9:26 a.m. ET
 
-[Latest available roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local. It has not yet been refreshed with the GitHub secrets.
+[Latest roster alerts and category report](https://erinyep.github.io/Rink-Lab-2027/report/). The public copy contains only displayed report fields; raw ESPN snapshots and credentials stay local.
 
 ## Current forecast work
 
-November 18: [three-game pregame release](outputs/per_game_forecast/2026-11-18_20261118T155931Z_pregame_readout.md), official results and MoneyPuck history through November 17, [frozen player/team/goalie bundle](outputs/per_game_forecast/frozen/daily_2026-11-18_20261118T155931Z/), [game outlook](docs/games/index.html) and [team model](docs/team-model/). The fantasy page remains on its November 16 roster snapshot pending the authenticated refresh.
+November 19: [12-game pregame release](outputs/per_game_forecast/2026-11-19_20261119T183339Z_pregame_readout.md), official results and MoneyPuck history through November 18, [frozen player/team/goalie bundle](outputs/per_game_forecast/frozen/daily_2026-11-19_20261119T183339Z/), [game outlook](docs/games/index.html), [direct team model](docs/team-model/) and [updated prospective evidence](docs/history/november_model_review_2026-11-19/). No new coefficients or model selection changes were justified.
+
+November 18: [three-game pregame release](outputs/per_game_forecast/2026-11-18_20261118T155931Z_pregame_readout.md), official results and MoneyPuck history through November 17, [frozen player/team/goalie bundle](outputs/per_game_forecast/frozen/daily_2026-11-18_20261118T155931Z/), [game outlook](docs/games/index.html) and [team model](docs/team-model/).
 
 November 16: [two-game pregame release](outputs/per_game_forecast/2026-11-16_20261116T142904Z_pregame_readout.md), [release and coverage details](outputs/per_game_forecast/2026-11-16_20261116T142904Z_pregame_readout.md), updated [game outlook](docs/games/index.html), [direct team goals and probabilities](docs/team-model/README.md) and [fantasy roster/category report](docs/report/index.html). The public projection bundle omits ESPN IDs and fantasy ownership; lineup and goalie scenarios remain provisional.
 

@@ -1,4 +1,10 @@
-# Season-to-date review through 2026-10-20
+# NHL model evidence and history
+
+## Current prospective evidence
+
+[November daily model review through November 18, 2026](november_model_review_2026-11-19/) scores 84 saved pregame games and 3,013 matched positive-TOI player-games on one official actuals vintage. Calibrated-opponent SOG and usage-only conditional ATOI remain supported for their separate NHL-wide targets; fantasy SOG, direct-team probability calibration and other challengers did not establish a new promotion.
+
+## Season-to-date review through 2026-10-20
 
 [Start with the multi-date comparison](multi_date.md): 24 full-comparison games, plus 12 additional team/goalie export games. The new feature trial has only 11 prospective games.
 

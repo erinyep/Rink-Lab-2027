@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-19",
+  "released_at_utc": "2026-11-19T18:34:04.550432+00:00",
+  "statistical_history_last_game_date": "2026-11-18",
+  "games": 12,
+  "pregame_games": 12,
+  "late_games": [],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "primary_toi_model": "usage_toi_only_trial",
+  "availability": "disabled_public_data_only",
+  "injuries_as_of_utc": null,
+  "moneypuck_latest_game_date": "2026-11-18",
+  "moneypuck_retrieved_at_utc": "2026-11-19T18:30:46.507655+00:00",
+  "moneypuck_context_lag_explicitly_accepted": false,
+  "source_bundle_manifest_sha256": "b4ec354d6f9ea8d78bf18383eb2476754e9020abf53762cff73696b7e5e85bf5",
+  "source_files_sha256": {
+    "player_projections.csv": "dbb3b6afb7f8995c93f8472c22536b4c9be1ce8d626e4ef66a157f77bcd190c5",
+    "team_projections.csv": "d053c3afa6184ae1ef91e456c89cbb0553a4654110a54278d0b17a4d5759a231",
+    "goalie_projections.csv": "d034ea62958017e8708a74f05016afef049612c02291e180e462c83cf79084df",
+    "game_team_coverage.csv": "1c0da7e20106af27b9a360b7ee4f03df9e6ab0bc24f1a285b7918a3122bf6e14"
+  },
+  "privacy_note": "Public projection files omit fantasy-team names and ESPN player IDs. Raw snapshots, credentials and league ownership remain local.",
+  "rows": {
+    "player_projections.csv": 3836,
+    "team_projections.csv": 168,
+    "goalie_projections.csv": 112,
+    "game_team_coverage.csv": 24
+  },
+  "files": {
+    "team_projections.csv": "d053c3afa6184ae1ef91e456c89cbb0553a4654110a54278d0b17a4d5759a231",
+    "README.md": "7adff4d3c5e6b5a9e8f360853c9a21b73f5b72778c07374de58518fe7f287484",
+    "player_projections.csv": "76dadf29c8a714ce9237e99b7fbbe1f39d17934be12c4ee0c7935f0f4d5331ea",
+    "goalie_projections.csv": "f46f00871281b61d56c715e5ba17dab01a8b2831918e6988fe3efe9c00996941",
+    "game_team_coverage.csv": "1c0da7e20106af27b9a360b7ee4f03df9e6ab0bc24f1a285b7918a3122bf6e14"
+  }
+}
