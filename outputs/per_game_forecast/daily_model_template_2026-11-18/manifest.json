@@ -1,0 +1,64 @@
+{
+  "template_version": 1,
+  "source_bundle_date": "2026-11-18",
+  "source_manifest_sha256": "249bdc29612afa882b13e982a7b6eff06231d8e1a59c3abf2bcaab11cd82a5f5",
+  "source_manifest_file": "source_manifest.json",
+  "source_panel_sha256": "9a67cb18e54063e6ddb603eb6686d23e64d17e5f8d89e8a79d57466bc32182dc",
+  "config": {
+    "target_season": 20262027,
+    "history_seasons": [
+      20212022,
+      20222023,
+      20232024,
+      20242025,
+      20252026
+    ],
+    "development_season": 20232024,
+    "validation_season": 20242025,
+    "test_season": 20252026,
+    "lookback_seasons": 3,
+    "decay_grid": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "event_prior_games_grid": [
+      5,
+      20,
+      60
+    ],
+    "shooting_prior_shots_grid": [
+      50,
+      200,
+      800
+    ],
+    "toi_prior_games": 10,
+    "selection_categories": [
+      "goals",
+      "assists",
+      "shots"
+    ],
+    "selection_metric": "mean validation player MAE relative to last-season-rate MAE over G, A, SOG",
+    "evaluation_scope": "retrospective season-average production conditional on playing; not a strict historical as-of or individual-game backtest",
+    "current_season_update": "provisional: observed current-season counts receive weight 1; historical decay is unchanged",
+    "availability_model": "not yet fitted; no assumed probability of playing",
+    "goalie_model": "not yet fitted; source-count exceptions must be resolved first"
+  },
+  "selected_on_validation": {
+    "method": "weighted",
+    "decay": 0.5,
+    "event_prior_games": 0,
+    "shooting_prior_shots": 0,
+    "score": 0.943849722814797
+  },
+  "best_process": {
+    "method": "process",
+    "decay": 0.5,
+    "event_prior_games": 5,
+    "shooting_prior_shots": 50,
+    "score": 0.9440894921429516
+  },
+  "files": {
+    "validated_player_seasons.csv": "bfc95ff8aee510b85e21a4970ed11b6e9e142d36eb7780f61efbe7014c04e4dc"
+  }
+}

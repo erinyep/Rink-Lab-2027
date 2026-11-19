@@ -30,12 +30,14 @@ def main():
     ap.add_argument('--template-forecast',type=Path,required=True)
     ap.add_argument('--prepared-inputs',type=Path)
     ap.add_argument('--allow-context-lag',action='store_true')
+    ap.add_argument('--skip-team-context',action='store_true',
+                    help='Skip the supplemental direct-team model release')
     a=ap.parse_args(); target=str(a.date)
     if not (a.template_forecast/'manifest.json').is_file():
         ap.error('Template missing; select an existing validated per_game forecast before acquisition')
     team_model_config=Path('config/team_goal_model_active.json')
     team_model=json.loads(team_model_config.read_text()) if team_model_config.exists() else None
-    if team_model:
+    if team_model and not a.skip_team_context:
         release=Path(team_model['model_release'])
         if not (release/'fitted_model.json').is_file():
             ap.error('Active team-model release missing before acquisition')
@@ -70,7 +72,7 @@ def main():
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
     from src.fantasy.history import archive_snapshot
     archive_snapshot(bundle,Path('data/processed/prediction_history'),'predictions')
-    if team_model:
+    if team_model and not a.skip_team_context:
         team_args=['--date',target,'--model-release',team_model['model_release'],
             '--moneypuck',inputs['moneypuck_snapshot'],'--boxscores',inputs['boxscore_history'],
             '--out',str(Path('outputs/per_game_forecast')/('team_context_'+Path(bundle).name))]

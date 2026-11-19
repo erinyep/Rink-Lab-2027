@@ -18,16 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: true
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Install report dependencies
-        run: python -m pip install -r requirements-forecast.txt -r requirements-espn.txt
-      - name: Create run-specific private workspace
-        run: mkdir -p "$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          cache: pip
+          cache-dependency-path: |
+            requirements-forecast.txt
+            requirements-espn.txt
       - name: Select today's Eastern date
         id: target
         run: |
@@ -36,12 +36,11 @@ jobs:
           from zoneinfo import ZoneInfo
           print('date=' + datetime.now(ZoneInfo('America/New_York')).date().isoformat())
           PY
-      - name: Prepare today's public forecast context
-        run: >-
-          python scripts/prepare_public_report_bundle.py
-          --date "${{ steps.target.outputs.date }}"
-          --out "$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/forecast-bundle"
-      - name: Refresh private ESPN snapshots
+      - name: Install forecast and report dependencies
+        run: python -m pip install -r requirements-forecast.txt -r requirements-espn.txt
+      - name: Create run-specific private workspace
+        run: mkdir -p "$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+      - name: Issue and validate today's NHL forecast
         shell: bash
         env:
           ESPN_LEAGUE_ID: ${{ secrets.ESPN_LEAGUE_ID }}
@@ -51,10 +50,57 @@ jobs:
         run: |
           set -euo pipefail
           private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-          if ! python scripts/refresh_espn_snapshot.py >"$private_temp/espn-snapshot.log" 2>&1; then
-            echo "::error::ESPN snapshot failed; private response details were suppressed from public logs."
+          if ! python scripts/issue_daily_forecasts.py \
+            --date "${{ steps.target.outputs.date }}" \
+            --template-forecast outputs/per_game_forecast/daily_model_template_2026-11-18 \
+            --skip-team-context \
+            >"$private_temp/forecast-issue.log" 2>&1; then
+            python - "$private_temp/forecast-issue.log" <<'PY'
+          import pathlib, re, sys
+          log = pathlib.Path(sys.argv[1]).read_text(errors='replace')
+          frames = re.findall(r'File "([^\"]+)", line (\d+)', log)
+          last = next((line.strip() for line in reversed(log.splitlines()) if line.strip()), '')
+          match = re.search(r'([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))', last)
+          location = 'unknown source line'
+          for path, line in reversed(frames):
+              name = pathlib.Path(path).name
+              location = f'{name}:{line}'
+              break
+          kind = match.group(1) if match else 'ForecastIssueError'
+          print(f'::error::NHL forecast issue failed ({kind} at {location}); source and ESPN details were suppressed.')
+          PY
             exit 1
           fi
+          python - "$private_temp/forecast-issue.log" "$GITHUB_ENV" <<'PY'
+          import pathlib, sys
+          log = pathlib.Path(sys.argv[1]).read_text(errors='replace')
+          bundles = [line.split('Issued bundle:', 1)[1].strip()
+                     for line in log.splitlines() if line.startswith('Issued bundle:')]
+          if len(bundles) != 1 or not pathlib.Path(bundles[0], 'manifest.json').is_file():
+              raise SystemExit('Daily forecast issuer did not produce exactly one bundle')
+          with pathlib.Path(sys.argv[2]).open('a') as env:
+              env.write(f'FORECAST_BUNDLE={bundles[0]}\n')
+          PY
+      - name: Validate today's NHL forecast
+        shell: bash
+        run: |
+          set -euo pipefail
+          private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          if ! python scripts/validate_daily_bundle.py --bundle "$FORECAST_BUNDLE" \
+            >"$private_temp/forecast-validation.log" 2>&1; then
+            echo "::error::Today's NHL forecast failed release validation; detailed logs were suppressed."
+            exit 1
+          fi
+      - name: Refresh private ESPN rules and future roster
+        shell: bash
+        env:
+          ESPN_LEAGUE_ID: ${{ secrets.ESPN_LEAGUE_ID }}
+          ESPN_SEASON_ID: ${{ secrets.ESPN_SEASON_ID }}
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: |
+          set -euo pipefail
+          private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           if ! python scripts/acquire_fantasy_rules.py >"$private_temp/espn-rules.log" 2>&1; then
             echo "::error::ESPN rules refresh failed; private league details were suppressed from public logs."
             exit 1
@@ -89,7 +135,7 @@ jobs:
           set -euo pipefail
           private_temp="$RUNNER_TEMP/rink-lab-fantasy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           if ! python scripts/build_today_report.py \
-            --bundle "$private_temp/forecast-bundle" \
+            --bundle "$FORECAST_BUNDLE" \
             --rules "$ESPN_RULES" \
             --future-roster "$ESPN_FUTURE_ROSTER" \
             --espn-snapshot "$ESPN_SNAPSHOT" \
