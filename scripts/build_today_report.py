@@ -54,6 +54,23 @@ def fits_open_slot(baseline, candidate, capacities):
         raise
 
 
+def join_goalie_roster(goalie_projections, own):
+    """Join only matched, unique goalie identities; keep unmatched ESPN rows on the roster."""
+    goalie_roster=own.loc[own.is_goalie & own.nhl_player_id.notna(),
+                          ['nhl_player_id','lineup_slot','injury_status','start_local']]
+    if goalie_roster.nhl_player_id.duplicated().any():
+        raise ValueError('Duplicate matched goalie identity on fantasy roster')
+    goalie=goalie_projections[
+        goalie_projections.model.eq('goalie_history_baseline')
+        & goalie_projections.player_id.isin(goalie_roster.nhl_player_id)
+    ]
+    if goalie.player_id.duplicated().any():
+        raise ValueError('Duplicate baseline goalie projection identity')
+    goalie=goalie.drop(columns=['injury_status'],errors='ignore').merge(
+        goalie_roster,left_on='player_id',right_on='nhl_player_id',validate='one_to_one')
+    return goalie
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bundle',required=True,type=Path)
@@ -214,10 +231,7 @@ def main():
     watch['action_status']='watchlist_only_transaction_timing_and_remaining_daily_allowance_unverified'
     watch=watch.sort_values(['open_slot_fit','expected_pp_points_if_plays','expected_assists_if_plays'],ascending=False)
     goalie=pd.read_csv(args.bundle/'goalie_projections.csv')
-    goalie_roster=own.loc[own.is_goalie,['nhl_player_id','lineup_slot','injury_status','start_local']]
-    goalie=goalie[goalie.model.eq('goalie_history_baseline') & goalie.player_id.isin(goalie_roster.nhl_player_id)]
-    goalie=goalie.drop(columns=['injury_status'],errors='ignore').merge(
-        goalie_roster,left_on='player_id',right_on='nhl_player_id',validate='one_to_one')
+    goalie=join_goalie_roster(goalie,own)
     acq=rules['acquisitionSettings']
     transaction_note=('This is a category league: there is no single fantasy-points total. '
         'Lineup changes lock at each NHL game. Check the next-period roster above before treating an acquisition as available today. '

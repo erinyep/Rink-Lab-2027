@@ -150,6 +150,7 @@ jobs:
           frames = re.findall(r'File "([^"]+)", line (\d+)', log)
           last = next((line.strip() for line in reversed(log.splitlines()) if line.strip()), '')
           error_match = re.match(r'(?:[A-Za-z_][A-Za-z0-9_]*\.)*([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?:[:(]|\b)', last)
+          error_types = re.findall(r'(?m)^\s*([A-Za-z_][A-Za-z0-9_.]*(?:Error|Exception))(?=:|\b)', log)
           location = 'unknown source line'
           for path, line in reversed(frames):
               try:
@@ -160,7 +161,8 @@ jobs:
           if location == 'unknown source line' and frames:
               path, line = frames[-1]
               location = f'{pathlib.Path(path).name}:{line}'
-          kind = error_match.group(1) if error_match else 'UnknownError'
+          kind = (error_types[-1].rsplit('.', 1)[-1] if error_types else
+                  error_match.group(1) if error_match else 'UnknownError')
           print(f'::error::Fantasy report build failed ({kind} at {location}); private details were suppressed.')
           PY
             exit 1
