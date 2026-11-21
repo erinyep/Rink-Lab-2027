@@ -41,6 +41,9 @@ def main():
     ap.add_argument('--skip-team-context',action='store_true',
                     help='Skip the supplemental direct-team model release')
     a=ap.parse_args(); target=str(a.date)
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+    from src.fantasy.model_policy import validate_current_model_policy
+    validate_current_model_policy(target)
     if not (a.template_forecast/'manifest.json').is_file():
         ap.error('Template missing; select an existing validated per_game forecast before acquisition')
     team_model_config=Path('config/team_goal_model_active.json')

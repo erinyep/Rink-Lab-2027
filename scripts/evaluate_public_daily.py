@@ -4,6 +4,7 @@ Actuals must come from complete_fantasy_game_stats.py. Preserve all original
 forecasts, verify recorded hashes and exclude late releases and nonparticipants.
 """
 import argparse
+from html import escape
 import json
 from pathlib import Path
 import sys
@@ -15,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.evaluate_daily_forecasts import CATEGORIES, digest, score_goalies, verify_manifest_files
 from src.fantasy.per_game import require
 from src.fantasy.team_probability import scoring_win_probability
+from src.fantasy.model_policy import validate_current_model_policy, validate_frozen_model_policy
 
 
 def metrics(frame, groups):
@@ -29,6 +31,85 @@ def metrics(frame, groups):
     return pd.DataFrame(rows)
 
 
+def scorecard_table(frame, columns=None, percentages=()):
+    """Render a compact, escaped table for the standalone postgame report."""
+    shown = frame.loc[:, columns].copy() if columns else frame.copy()
+    for column in percentages:
+        if column in shown:
+            shown[column] = shown[column].map(lambda x: '' if pd.isna(x) else f'{x:.1%}')
+    return shown.to_html(index=False, border=0, classes='data', na_rep='—',
+                         float_format=lambda value: f'{value:.3f}', escape=True)
+
+
+def write_scorecard(out, date, frames, policy):
+    games = frames['team_games'].copy()
+    games['score'] = games.away_score.astype(int).astype(str) + '–' + games.home_score.astype(int).astype(str)
+    games['direct_home_probability'] = games.direct_home_probability.astype(float)
+    games['original_home_probability'] = games.original_home_probability.astype(float)
+    game_table = scorecard_table(games, ['away', 'home', 'score', 'direct_home_probability',
+                                         'original_home_probability', 'ending'],
+                                 percentages=['direct_home_probability', 'original_home_probability'])
+
+    player = frames['player_metrics']
+    player = player[player.category.isin(['shots', 'toi_minutes'])].copy()
+    team = frames['team_metrics']
+    team = team[team.category.isin(['shots', 'goals'])].copy()
+    goalie = frames['goalie_metrics'].copy()
+    winners = frames['winner_metrics'].copy()
+    coverage = frames['coverage']
+    coverage_table = scorecard_table(coverage)
+
+    policy_rows = [
+        {'Area': 'NHL all-player shots', 'Selected': policy['primary_sog_model'], 'Status': 'selected'},
+        {'Area': 'NHL conditional TOI', 'Selected': policy['primary_toi_model'], 'Status': 'selected'},
+        {'Area': 'Fantasy shots', 'Selected': policy['fantasy_shots_model'], 'Status': 'selected'},
+        {'Area': 'Fantasy TOI', 'Selected': policy['fantasy_toi_model'] or 'default', 'Status': 'selected'},
+        {'Area': 'Team win probability', 'Selected': policy['selected_probability_model'], 'Status': 'selected'},
+        {'Area': 'Team probability calibration', 'Selected': 'calibrated_team_trial', 'Status': 'challenger only'},
+        {'Area': 'Goalie opponent context', 'Selected': 'goalie_opponent_context_trial', 'Status': 'challenger only'},
+    ]
+    policy_table = scorecard_table(pd.DataFrame(policy_rows))
+
+    sections = [
+        ('Final scores and home win probabilities', game_table),
+        ('Player shots and conditional ice time', scorecard_table(player)),
+        ('Team scoring and shots', scorecard_table(team)),
+        ('Goalie scoring', scorecard_table(goalie)),
+        ('Winner probability scoring', scorecard_table(winners)),
+        ('Coverage', coverage_table),
+        ('Model policy in force', policy_table),
+    ]
+    section_html = '\n'.join(f'<section><h2>{escape(title)}</h2>{table}</section>'
+                             for title, table in sections)
+    html = f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Postgame model scorecard — {escape(str(date))}</title>
+<style>body{{font:16px system-ui,sans-serif;max-width:1200px;margin:32px auto;padding:0 20px;color:#18313d;line-height:1.5}}h1,h2{{color:#123e50}}section{{margin:30px 0;overflow-x:auto}}table{{border-collapse:collapse;width:100%;font-size:14px}}th,td{{padding:8px 10px;border-bottom:1px solid #d8e0e3;text-align:left;white-space:nowrap}}th{{background:#eef4f5}}.note{{background:#f2f7f7;padding:14px 18px;border-radius:8px}}</style></head>
+<body><h1>Postgame model scorecard — {escape(str(date))}</h1>
+<p class="note">Scored from the saved pregame forecasts and official final boxscores. All-player SOG uses {escape(policy['primary_sog_model'])}; conditional TOI uses {escape(policy['primary_toi_model'])}. Fantasy shots remain on default. Raw direct-team probabilities remain selected; calibrated team probabilities and goalie opponent context remain challengers. Player counts are conditional on a positive-TOI appearance.</p>
+{section_html}
+<p><a href="README.md">Report notes</a> · CSV files contain the underlying scored rows and summaries.</p></body></html>
+'''
+    (out/'index.html').write_text(html)
+    (out/'README.md').write_text(f'''# Postgame model scorecard — {date}
+
+[Open the interactive scorecard](index.html)
+
+This report scores forecasts issued before puck drop against final NHL boxscores. It excludes late-issued games and treats player count forecasts as conditional on playing. The scorecard includes final scores, direct home win probabilities, player and team category errors, goalie scores, winner metrics, and coverage.
+
+## Model policy
+
+- NHL all-player shots: `{policy['primary_sog_model']}`
+- NHL conditional TOI: `{policy['primary_toi_model']}`
+- Fantasy shots: `{policy['fantasy_shots_model']}`
+- Fantasy TOI: `{policy['fantasy_toi_model'] or 'default'}`
+- Team win probabilities: `{policy['selected_probability_model']}`
+- Calibrated team probabilities and goalie opponent context remain challenger-only.
+
+See `index.html` for the tables and the CSV files for full scored records. `manifest.json` records input and output hashes.
+''')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     for name in ['bundle', 'team', 'actuals', 'boxscores', 'out']:
@@ -37,6 +118,13 @@ def main():
     require(not a.out.exists(), 'Use a new output directory')
     bm = verify_manifest_files(a.bundle, [])
     verify_manifest_files(a.team, [])
+    active_policy = validate_current_model_policy(bm['date'])
+    frozen_policy = validate_frozen_model_policy(bm['date'], dict(
+        models=bm['models'], primary_sog_model=bm['primary_sog_model'],
+        primary_toi_model=bm['primary_toi_model']))
+    require(frozen_policy['primary_sog_model'] == active_policy['primary_sog_model'] and
+            frozen_policy['primary_toi_model'] == active_policy['primary_toi_model'],
+            'Scored release selections differ from the active reviewed policy')
     am = verify_manifest_files(a.actuals, [])
     for source in am['sources']:
         for field in ['boxscore', 'landing']:
@@ -51,6 +139,8 @@ def main():
     p = pd.read_csv(a.bundle/'player_projections.csv')
     t = pd.read_csv(a.bundle/'team_projections.csv')
     g = pd.read_csv(a.bundle/'goalie_projections.csv')
+    require({'goalie_history_baseline', 'goalie_opponent_context_trial'} <= set(g.model),
+            'Expected goalie baseline and context challenger in the frozen release')
     for frame, keys in [(p, ['game_id','player_id','model']), (t,['game_id','team','model']),
                         (g,['game_id','player_id','model'])]:
         require(not frame.duplicated(keys).any(), 'Duplicate forecast')
@@ -146,10 +236,17 @@ def main():
         excluded_late_games=excluded,team_games=pd.DataFrame(games),winner_scores=scores,winner_metrics=win_metrics)
     for name, frame in frames.items():
         frame.to_csv(a.out/(name+'.csv'),index=False)
+    write_scorecard(a.out, bm['date'], frames, active_policy)
     (a.out/'manifest.json').write_text(json.dumps(dict(date=bm['date'],inputs={k:str(v) for k,v in vars(a).items() if k!='out'},
-        code_sha256=digest(__file__),source_manifest_hashes={str(folder/'manifest.json'):digest(folder/'manifest.json')
+        code_sha256={str(path):digest(path) for path in [Path(__file__),
+            Path(__file__).resolve().parents[1]/'scripts/evaluate_daily_forecasts.py',
+            Path(__file__).resolve().parents[1]/'scripts/validate_daily_bundle.py',
+            Path(__file__).resolve().parents[1]/'src/fantasy/model_policy.py',
+            Path(__file__).resolve().parents[1]/'src/fantasy/team_probability.py']},
+        source_manifest_hashes={str(folder/'manifest.json'):digest(folder/'manifest.json')
             for folder in [a.bundle,a.team,a.actuals]},boxscore_metadata_sha256=digest(a.boxscores/'metadata.json'),
-        files={p.name:digest(p) for p in a.out.glob('*.csv')}),indent=2)+'\n')
+        model_policy=active_policy,
+        files={p.name:digest(p) for p in a.out.iterdir() if p.is_file() and p.name!='manifest.json'}),indent=2)+'\n')
     print(win_metrics.to_string(index=False))
     print(frames['player_metrics'].query("category in ['shots','toi_minutes']").to_string(index=False))
     print(coverage.to_string(index=False))

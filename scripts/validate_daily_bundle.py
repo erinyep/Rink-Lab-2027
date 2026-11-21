@@ -4,6 +4,10 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from src.fantasy.model_policy import validate_frozen_model_policy
 
 import numpy as np
 import pandas as pd
@@ -16,6 +20,7 @@ def require(ok, message):
 
 def validate(bundle):
     manifest = json.loads((bundle / 'manifest.json').read_text())
+    model_policy = validate_frozen_model_policy(manifest['date'], manifest.get('config', {}))
     for name, expected in manifest['files'].items():
         require(hashlib.sha256((bundle / name).read_bytes()).hexdigest() == expected,
                 f'Bundle hash mismatch: {name}')
@@ -56,7 +61,8 @@ def validate(bundle):
     if manifest.get('availability_status','timestamped_espn_labels') == 'disabled_public_data_only':
         require(players.injury_status.eq('UNKNOWN').all() and goalies.injury_status.eq('UNKNOWN').all(), 'Public-mode availability mislabeled')
     return dict(date=manifest['date'], games=len(expected), player_rows=len(players),
-                team_rows=len(teams), goalie_rows=len(goalies), availability=manifest.get('availability_status','timestamped_espn_labels'))
+                team_rows=len(teams), goalie_rows=len(goalies), availability=manifest.get('availability_status','timestamped_espn_labels'),
+                model_policy=model_policy)
 
 
 def main():

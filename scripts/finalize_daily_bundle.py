@@ -13,6 +13,7 @@ from scripts.evaluate_october_9 import table
 from src.fantasy.issuance import validate_release
 from src.fantasy.per_game import require
 from scripts.evaluate_daily_forecasts import verify_manifest_files
+from src.fantasy.model_policy import validate_frozen_model_policy
 
 
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -24,6 +25,7 @@ def main():
     ap.add_argument('--lead-minutes',type=float,default=10)
     ap.add_argument('--allow-context-lag',action='store_true')
     a=ap.parse_args();p=a.bundle;m=json.loads((p/'manifest.json').read_text())
+    model_policy=validate_frozen_model_policy(m['date'],m.get('config',{}))
     for f,h in m['files'].items():require(sha(p/f)==h,'Changed skater file: '+f)
     gm=json.loads((a.goalies/'manifest.json').read_text())
     for f,h in gm['files'].items():require(sha(a.goalies/f)==h,'Changed goalie file: '+f)
@@ -99,7 +101,10 @@ def main():
         f"Statistical history ends {hist.game_date.max()} ({hist.game_id.nunique()} games).\n\n"
         "Start with player_projections.csv, team_projections.csv and goalie_projections.csv. Player means condition on playing; "
         "selected_for_trial is an assumed lineup, not a confirmed roster. Goalies condition on a full start; start shares are provisional. "
-        "Default remains baseline; other models remain trials. Late-issued rows are marked and are not prospective predictions.\n\n"
+        f"Selected NHL-wide shots: {model_policy['primary_sog_model']}; selected conditional TOI: {model_policy['primary_toi_model']}. "
+        f"Fantasy shots remain {model_policy['fantasy_shots_model']}; team probabilities remain {model_policy['team_probability_model']} "
+        "with calibrated probabilities challenger-only. Saved model variants remain available for comparison. "
+        "Late-issued rows are marked and are not prospective predictions.\n\n"
         f"Availability: {m.get('availability_status','timestamped_espn_labels')}. Public-only mode has unknown injuries and no ownership.\n\n"
         "## Unidentified lineup replacements\n\n"+(table(replacements) if len(replacements) else "None.")+"\n\n"
         "Source coverage/discrepancies: team_context.csv. Release checks: manifest.json. Actuals remain blank. "

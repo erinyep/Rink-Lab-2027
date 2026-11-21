@@ -44,6 +44,9 @@ def main():
     # Resolve repository-relative paths consistently even when invoked elsewhere.
     import os
     os.chdir(ROOT)
+    sys.path.insert(0, str(ROOT))
+    from src.fantasy.model_policy import validate_current_model_policy
+    validate_current_model_policy(args.date.isoformat())
     if not (args.template_forecast / 'manifest.json').exists():
         parser.error('Template missing: restore prior data or run build_per_game_forecast.py after NHL season acquisition')
     if not args.without_espn:
@@ -96,7 +99,14 @@ def main():
         if active.get('probability_calibration_release'):
             team_args+=['--probability-calibration-release',active['probability_calibration_release']]
         run('issue_team_context_forecasts.py',*team_args)
-    run('build_nhl_outlook.py','--bundle',bundle,'--out',bundle/'nhl_outlook')
+    outlook_args=['--bundle',bundle,'--out',bundle/'nhl_outlook']
+    model_review=ROOT/'docs/history/november_model_review_2026-11-20'
+    review_summary=model_review/'summary.json'
+    if review_summary.exists():
+        review=json.loads(review_summary.read_text())
+        if review.get('through','9999-12-31') < args.date.isoformat():
+            outlook_args += ['--model-review',model_review]
+    run('build_nhl_outlook.py',*outlook_args)
     report_config=ROOT/'config/fantasy_report.json'
     report_team=args.report_team_id
     if report_team is None and report_config.exists():

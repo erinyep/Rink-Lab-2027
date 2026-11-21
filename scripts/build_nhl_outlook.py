@@ -147,7 +147,10 @@ and manifest for limitations and source hashes.
         source_schedule_sha256=digest(schedule_path),model_status='frozen_all_player_sog_and_conditional_toi_selections',
         primary_sog_model=primary_sog_model,primary_toi_model=primary_toi_model,
         model_review_manifest_sha256=review_hash,
-        code_sha256={p.name:digest(p) for p in [Path(__file__),ROOT/'src/fantasy/game_outlook.py',ROOT/'templates/nhl_outlook.html',ROOT/'config/daily_forecast_trial.json']},
+        code_sha256={str(p.resolve().relative_to(ROOT)):digest(p) for p in [Path(__file__),
+            ROOT/'src/fantasy/game_outlook.py',ROOT/'src/fantasy/model_policy.py',
+            ROOT/'scripts/validate_daily_bundle.py',ROOT/'templates/nhl_outlook.html',
+            ROOT/'config/daily_forecast_trial.json',ROOT/'config/team_goal_model_active.json']},
         files={p.name:digest(p) for p in args.out.iterdir() if p.is_file() and p.name!='manifest.json'}),indent=2)+'\n')
     print('NHL outlook:',args.out/'index.html')
     print('Official games:',len(games),'Pregame:',pregame,'Late:',len(games)-pregame)

@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.fantasy.per_game import require
 from src.fantasy.team_probability import scoring_win_probability
+from scripts.evaluate_daily_forecasts import score_goalies
 
 
 CATEGORIES = ['goals', 'assists', 'shots', 'hits', 'penalty_minutes',
@@ -87,6 +88,7 @@ def main():
             box_by_id[box['id']] = box
 
     sk = pd.read_csv(a.actuals / 'skater_game_stats.csv')
+    gl = pd.read_csv(a.actuals / 'goalie_game_stats.csv')
     require(not sk.duplicated(['game_id', 'player_id']).any(), 'Duplicate actual skater-game key')
     require(sk[CATEGORIES].notna().all().all(), 'Actual stats contain missing modeled categories')
     sk = sk[sk.toi_seconds.gt(0)].copy()
@@ -102,7 +104,18 @@ def main():
             bundle_dirs.append((folder, manifest))
     require(bundle_dirs, 'No frozen November releases found')
 
+    # Some game dates have an early release and a later lineup-informed
+    # revision. Score one prospective release per date: the latest frozen
+    # bundle, using the timestamped bundle name as the ordering key.
+    latest_by_date = {}
+    for bundle, manifest in bundle_dirs:
+        day = manifest['date']
+        if day not in latest_by_date or bundle.name > latest_by_date[day][0].name:
+            latest_by_date[day] = (bundle, manifest)
+    bundle_dirs = [latest_by_date[day] for day in sorted(latest_by_date)]
+
     player_parts, daily_rows, coverage_rows, source_hashes = [], [], [], []
+    goalie_parts, goalie_starter_parts = [], []
     winner_rows, winner_games = [], []
     missing_actuals = []
     for bundle, manifest in bundle_dirs:
@@ -118,6 +131,14 @@ def main():
         require(game_ids <= set(box_by_id), f'Missing completed official boxscore for {day}')
         for gid in game_ids:
             require(box_by_id[gid]['gameDate'] == day, f'Wrong game date for {gid}')
+        goalie_forecasts = pd.read_csv(bundle / 'goalie_projections.csv')
+        goalie_forecasts = goalie_forecasts[goalie_forecasts.issue_timing.eq('pregame')].copy()
+        require(set(goalie_forecasts.game_id) == game_ids,
+                f'Pregame goalie coverage mismatch for {day}')
+        goalie_actuals = gl[gl.game_id.isin(game_ids)].copy()
+        goalie_scored, _, goalie_starters = score_goalies(goalie_forecasts, goalie_actuals)
+        goalie_parts.append(goalie_scored.assign(forecast_date=day))
+        goalie_starter_parts.append(goalie_starters.assign(forecast_date=day))
         actual_subset = sk[['game_id', 'player_id'] + CATEGORIES].rename(
             columns={c: c + '_actual' for c in CATEGORIES})
         scored = forecasts.merge(actual_subset, on=['game_id', 'player_id'],
@@ -229,6 +250,30 @@ def main():
         predicted_goals=('predicted_goals', 'sum'), actual_goals=('actual_goals', 'sum')).reset_index()
         if len(winner_scores) else pd.DataFrame())
 
+    goalie_scores = pd.concat(goalie_parts, ignore_index=True)
+    goalie_starter_scores = pd.concat(goalie_starter_parts, ignore_index=True)
+    goalie_metric_rows = []
+    goalie_populations = {
+        'actual_starters': goalie_scores.actual_starter.eq(1),
+        'starters_55_to_65_minutes': goalie_scores.starter_55_to_65_minutes,
+    }
+    for population, eligible in goalie_populations.items():
+        for category in ['shots_against', 'saves', 'goals_against']:
+            for model, group in goalie_scores[eligible].groupby('model'):
+                error = (group[f'{category}_if_full_start'] - group[f'actual_{category}']).abs()
+                goalie_metric_rows.append(dict(
+                    population=population, model=model, category=category,
+                    rows=len(group), games=group.game_id.nunique(), mae=float(error.mean())))
+    goalie_metrics = pd.DataFrame(goalie_metric_rows)
+    scored_starters = goalie_starter_scores[goalie_starter_scores.scoring_status.eq('scored')]
+    goalie_start_metrics = (scored_starters.groupby('model').agg(
+        team_games=('game_id', 'nunique'), teams=('team', 'size'),
+        multiclass_brier=('brier_score', 'mean'),
+        uniform_candidate_brier=('uniform_candidate_brier_score', 'mean'),
+        finite_log_loss=('log_loss', lambda x: x[np.isfinite(x)].mean()),
+        zero_probability_starters=('log_loss', lambda x: int(np.isinf(x).sum())),
+        starter_coverage=('actual_starter_in_candidates', 'mean')).reset_index())
+
     a.out.mkdir(parents=True)
     frames = {
         'player_metrics.csv': pooled,
@@ -237,6 +282,9 @@ def main():
         'coverage_by_date.csv': pd.DataFrame(coverage_rows),
         'winner_scores.csv': winner_scores,
         'winner_metrics.csv': winner_metrics,
+        'goalie_metrics.csv': goalie_metrics,
+        'goalie_starter_scores.csv': goalie_starter_scores,
+        'goalie_starter_metrics.csv': goalie_start_metrics,
         'team_games.csv': pd.DataFrame(winner_games),
         'unmodeled_actual_skaters.csv': pd.concat(missing_actuals, ignore_index=True)
             if missing_actuals else pd.DataFrame(columns=['game_id', 'player_id', 'date']),
@@ -363,9 +411,10 @@ def main():
         latest_default_toi_mae=float(latest_toi.loc['default', 'mae']),
         latest_usage_toi_mae=float(latest_toi.loc['usage_toi_only_trial', 'mae']),
         latest_winner_metrics=latest_winner_metrics.reset_index().to_dict('records'),
+        goalie_starter_metrics=goalie_start_metrics.replace({np.nan: None}).to_dict('records'),
         fantasy_usage_toi= fantasy_usage_summary,
         fantasy_evaluation_sources=fantasy_evaluation_sources,
-        recommendation='Retain calibrated-opponent SOG for NHL-wide all-player shots and default fantasy shots. Promote isolated usage-aware TOI as the NHL-wide ATOI selection: its prospective game-cluster interval excludes zero across a larger sample, and the November 12 fantasy subset also improves. Keep PP and team-probability calibration as challengers.',
+        recommendation='Retain calibrated-opponent SOG for NHL-wide all-player shots, default fantasy shots, and the existing isolated usage-aware TOI selection. Keep direct-team probabilities and goal-history baselines side by side without calibration. Retain goalie opponent context and PP opportunity as challengers; do not refit.',
         missing_early_november_releases=['2026-11-01', '2026-11-02', '2026-11-03'],
         winner_probability_games=int(winner_scores.game_id.nunique()) if len(winner_scores) else 0)
     (a.out / 'summary.json').write_text(json.dumps(summary, indent=2, allow_nan=False) + '\n')
@@ -386,19 +435,21 @@ Saved prospective releases cover {len(dates)} dates ({dates[0]}–{dates[-1]}), 
 
 **Keep calibrated-opponent SOG for NHL-wide shots.** Across {games} games, it scored {selected.mae:.3f} MAE versus {default.mae:.3f} for default ({100*(default.mae-selected.mae)/default.mae:.1f}% lower). The paired whole-game bootstrap difference was {pdelta.mae_delta_vs_default:+.3f} shots (95% interval [{pdelta.lower_95:+.3f}, {pdelta.upper_95:+.3f}]); it won on {pdelta.games_lower_mae}/{pdelta.games} games. The candidate model's pooled MAE was {shot.loc['candidate', 'mae']:.3f}, effectively tied with the selected variant, so there is no reason to retune the shot policy.
 
-**Promote the isolated usage-aware ATOI model for NHL-wide conditional ice time.** `usage_toi_only_trial` scored {isolated_toi.mae:.3f} vs. {toi_default.mae:.3f} minutes MAE for default on {int(isolated_toi.games)} games ({100*(toi_default.mae-isolated_toi.mae)/toi_default.mae:.1f}% lower); the paired game-cluster interval for the difference was [{isolated_toi_pair.lower_95:+.3f}, {isolated_toi_pair.upper_95:+.3f}], with lower error in {isolated_toi_pair.games_lower_mae}/{isolated_toi_pair.games} games. This isolates the TOI change, unlike `usage_shot_context_trial`, which also changes SOG. The separate fantasy category policy already uses usage-aware TOI. {f'Across {summary["fantasy_usage_toi"]["games"]} fantasy-rostered games, {summary["fantasy_usage_toi"]["rows"]} appearances and {summary["fantasy_usage_toi"]["dates"]} dates with saved evaluations, usage-only MAE was {summary["fantasy_usage_toi"]["usage_toi_mae"]:.3f} vs. {summary["fantasy_usage_toi"]["default_mae"]:.3f} for default; paired interval [{summary["fantasy_usage_toi"]["lower_95"]:+.3f}, {summary["fantasy_usage_toi"]["upper_95"]:+.3f}].' if summary['fantasy_usage_toi'] else 'The saved daily fantasy comparisons are in the date-specific evaluation outputs.'} On Nov. 12 alone, fantasy-rostered MAE was 2.518 vs. 2.629 minutes.
+**Keep the isolated usage-aware ATOI model as the NHL-wide conditional ice-time selection.** `usage_toi_only_trial` scored {isolated_toi.mae:.3f} vs. {toi_default.mae:.3f} minutes MAE for default on {int(isolated_toi.games)} games ({100*(toi_default.mae-isolated_toi.mae)/toi_default.mae:.1f}% lower); the paired game-cluster interval for the difference was [{isolated_toi_pair.lower_95:+.3f}, {isolated_toi_pair.upper_95:+.3f}], with lower error in {isolated_toi_pair.games_lower_mae}/{isolated_toi_pair.games} games. This isolates the TOI change, unlike `usage_shot_context_trial`, which also changes SOG. It is already the NHL-wide selection, and the fantasy category policy also uses usage-aware TOI. {f'Across {summary["fantasy_usage_toi"]["games"]} fantasy-rostered games, {summary["fantasy_usage_toi"]["rows"]} appearances and {summary["fantasy_usage_toi"]["dates"]} dates with saved evaluations, usage-only MAE was {summary["fantasy_usage_toi"]["usage_toi_mae"]:.3f} vs. {summary["fantasy_usage_toi"]["default_mae"]:.3f} for default; paired interval [{summary["fantasy_usage_toi"]["lower_95"]:+.3f}, {summary["fantasy_usage_toi"]["upper_95"]:+.3f}].' if summary['fantasy_usage_toi'] else 'The saved daily fantasy comparisons are in the date-specific evaluation outputs.'}
 
-**Keep fantasy shots on default pending a paired multi-date review.** Yesterday's 73 fantasy-rostered appearances favored candidate (1.168 MAE) and calibrated-opponent (1.172) over default (1.191), but one slate is not enough to change the separate fantasy SOG policy.
+**Keep fantasy shots on default.** This review scores the public NHL-wide population; the saved public bundles do not retain fantasy ownership. Do not transfer the all-player SOG result to fantasy until a paired fantasy evaluation is available.
 
-**Keep the direct-team win probabilities and goal-history baseline side by side; do not promote calibration.** Across the matched {int(winner_scores.game_id.nunique())}-game probability subset, direct-team Brier was {winner_metrics.set_index('model').loc['direct_team', 'brier']:.3f}, compared with {winner_metrics.set_index('model').loc['goal_history_baseline', 'brier']:.3f} for goal history and {winner_metrics.set_index('model').loc['original_player_sum', 'brier']:.3f} for player-sum. Original player-sum picked more winners ({winner_metrics.set_index('model').loc['original_player_sum', 'favorite_accuracy']:.1%} vs. {winner_metrics.set_index('model').loc['direct_team', 'favorite_accuracy']:.1%}), while direct-team probabilities were better under Brier. Calibration trial Brier was {winner_metrics.set_index('model').loc['calibrated_team_trial', 'brier']:.3f} on its {int(winner_metrics.set_index('model').loc['calibrated_team_trial', 'games'])}-game subset.
+**Keep the direct-team probabilities and goal-history baseline side by side; do not promote calibration.** Across the matched {int(winner_scores.game_id.nunique())}-game subset, Brier was {winner_metrics.set_index('model').loc['goal_history_baseline', 'brier']:.3f} for goal history, {winner_metrics.set_index('model').loc['original_player_sum', 'brier']:.3f} for player-sum, and {winner_metrics.set_index('model').loc['direct_team', 'brier']:.3f} for direct team. The calibrated trial scored {winner_metrics.set_index('model').loc['calibrated_team_trial', 'brier']:.3f} on its {int(winner_metrics.set_index('model').loc['calibrated_team_trial', 'games'])}-game subset. This sample gives no support for a calibration promotion.
 
 The PP-opportunity trial did not improve PP-point MAE ({pp_opportunity.mae.iloc[0]:.3f} vs. {pp_default_matched_mae:.3f} default on the same 27 games); keep it experimental. Assist MAE differences are negligible ({assists.loc['candidate'].mae:.3f} candidate vs. {assists.loc['default'].mae:.3f} default), so retain current rates.
 
+**Keep goalie opponent context as a challenger.** Across the November release cohort, opponent context scored {goalie_metrics[(goalie_metrics.population.eq('actual_starters')) & goalie_metrics.category.eq('saves') & goalie_metrics.model.eq('goalie_opponent_context_trial')].mae.iloc[0]:.2f} saves MAE versus {goalie_metrics[(goalie_metrics.population.eq('actual_starters')) & goalie_metrics.category.eq('saves') & goalie_metrics.model.eq('goalie_history_baseline')].mae.iloc[0]:.2f} for the history baseline on actual starters. Starter probabilities scored multiclass Brier {goalie_start_metrics.set_index('model').loc['goalie_opponent_context_trial', 'multiclass_brier']:.3f} versus {goalie_start_metrics.set_index('model').loc['goalie_history_baseline', 'multiclass_brier']:.3f}; keep both unchanged while improving starter identification and duration handling.
+
 ## Population and provenance
 
-Only pregame forecasts are scored. Conditional player predictions are scored for positive-TOI participants; nonparticipants remain unscored. On {latest_date}, {summary['latest_pregame_games']} games had {summary['latest_player_games']} matched player appearances; four actual skaters were missing forecasts. Late-issued SEA–CAR is excluded. Earlier Nov. 8 late scenarios are likewise excluded. Team win probabilities appear only on dates with a separately frozen direct-team release.
+Only pregame forecasts are scored. Conditional player predictions are scored for positive-TOI participants; nonparticipants remain unscored. When a date has multiple frozen releases, this review uses the latest pregame release. On {latest_date}, {summary['latest_pregame_games']} games had {summary['latest_player_games']} matched player appearances; {int(coverage_rows[-1]['unmodeled_actual_participants'])} actual skaters were missing forecasts. Late-issued SEA–CAR is excluded. Earlier Nov. 8 late scenarios are likewise excluded. Team win probabilities appear only on dates with a separately frozen direct-team release.
 
-For {latest_date}, calibrated-opponent SOG MAE was {summary['latest_calibrated_shots_mae']:.3f} vs. {summary['latest_default_shots_mae']:.3f} default. Usage-only TOI MAE was {summary['latest_usage_toi_mae']:.3f} vs. {summary['latest_default_toi_mae']:.3f} minutes. Full model and category details are in the CSVs below. The daily goalie and fantasy evaluations remain in local processed-data outputs and are not included in this review bundle.
+For {latest_date}, calibrated-opponent SOG MAE was {summary['latest_calibrated_shots_mae']:.3f} vs. {summary['latest_default_shots_mae']:.3f} default. Usage-only TOI MAE was {summary['latest_usage_toi_mae']:.3f} vs. {summary['latest_default_toi_mae']:.3f} minutes. Goalie count scores use actual starters with consistent boxscore counts and compare frozen full-start scenarios against actual duration; starter probabilities are scored as team-level multiclass outcomes. See [goalie metrics](goalie_metrics.csv), [starter scores](goalie_starter_scores.csv), and [starter summary](goalie_starter_metrics.csv).
 
 ## All-player conditional metrics
 

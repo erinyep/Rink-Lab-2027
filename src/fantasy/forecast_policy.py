@@ -1,8 +1,10 @@
 """Category-specific forecast selection with explicit source lineage."""
 import numpy as np
+from src.fantasy.model_policy import validate_fantasy_policy
 
 
 def select_fantasy_projections(frame, date, policy):
+    validate_fantasy_policy(date, policy)
     keys=['game_id','player_id']
     if frame.duplicated(keys+['model']).any():raise ValueError('Duplicate forecast identity')
     baseline=policy['baseline'];result=frame[frame.model.eq(baseline)].copy()

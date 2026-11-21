@@ -18,6 +18,7 @@ from src.fantasy.probability_calibration import calibrated_probability
 from src.fantasy.history import archive_snapshot
 from scripts.evaluate_daily_forecasts import verify_manifest_files,digest
 from scripts.publish_results_update import page
+from src.fantasy.model_policy import validate_current_model_policy
 
 
 def main():
@@ -28,6 +29,7 @@ def main():
     ap.add_argument('--probability-calibration-release',type=Path,
         help='Save experimental calibrated probabilities separately from selected raw probabilities')
     a=ap.parse_args()
+    validate_current_model_policy(a.date)
     if a.out.exists():raise ValueError('Preserve previous issuances')
     mm=verify_manifest_files(a.model_release,[]);model=json.loads((a.model_release/'fitted_model.json').read_text())
     if model['training_through']>=a.date:raise ValueError('Fitted model contains target-date outcomes')
@@ -122,6 +124,10 @@ Probability calibration challenger: {'saved separately in the probability CSV; r
         probability_calibration_release=str(a.probability_calibration_release) if calibration else None,
         probability_calibration_manifest_sha256=digest(a.probability_calibration_release/'manifest.json') if calibration else None,
         probability_calibration_code_sha256=digest('src/fantasy/probability_calibration.py'),
+        selected_probability_model='raw_direct_team',probability_calibration_status='challenger_only',
+        code_sha256={name:digest(name) for name in ['scripts/issue_team_context_forecasts.py',
+            'src/fantasy/model_policy.py','src/fantasy/team_probability.py',
+            'config/team_goal_model_active.json']},
         files={p.name:digest(p) for p in a.out.iterdir() if p.is_file()}),indent=2)+'\n')
     archive_snapshot(a.out,Path('data/processed/prediction_history'),'team_context_predictions')
     print('Updated team forecast:',a.out);print(view.round(3).to_string(index=False))
