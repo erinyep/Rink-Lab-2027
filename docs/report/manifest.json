@@ -1,16 +1,16 @@
 {
-  "date": "2026-11-19",
-  "report_created_at": "Nov 19, 9:26 AM ET",
-  "source_report_sha256": "1d264f5bb1a4ee2bf78220c9c8cc794b8a0c3e1f9ccf23799da95ae72b4da4b1",
+  "date": "2026-11-21",
+  "report_created_at": "Nov 21, 12:15 PM ET",
+  "source_report_sha256": "6aa5dd882c5d837cec4952ea2a9b2d2825b46b82cb3f13f6ec50aabfaba75408",
   "scope": "Displayed fantasy report fields only; no credentials, raw API snapshots or local filesystem paths.",
   "files": {
-    "index.html": "70a504a776df868ca248b0133c2ee25468f78c0a1fa7711907f49a558a630639",
-    "category-gaps.svg": "361f768d763498a9c947f5a98f6395c1a0046c47eda1ad793e5434acb69d2928",
-    "category_gaps.csv": "8440c90296551a9e4c6331427571aa15b9b2d1f5fb94520c1e97c30f9425754b",
+    "index.html": "d0f6469805decfa8374cfc16e6365ee071c09544bd903c72a726fd790e069774",
+    "roster_schedule.csv": "0985e6f69ff046bbb4c39b55c090d16fa605ced9a4c1c44b511d3f828a19ee62",
+    "category-gaps.svg": "786fa9c9228841ffba036d97f6b31ffa628abfd981985db423b6c0a72bb1db10",
+    "report.json": "d6a3817d876ad6fd5280b98f09d2dfbf0e5980e424383a4b6a5480e3a8601331",
+    "category_gaps.csv": "63ccd0187ca2fd1f0687de5465fa3f0237aff0e7bf1e53d98a6a4b912f45cf07",
     "streamer_watchlist.csv": "a439d2258fccf724799329a4527293510d0dc440b085f57c4caecb51342697a4",
-    "roster_schedule.csv": "be613e68381dbfc7510726779f9b8fc0d57162527fa4c572d021bdc3661db020",
-    "report.json": "80d8805cf5b2dfd946ba4360b01e03491935f40da56c2d85cb8bfa1b1d79a8df",
-    "roster.csv": "d5d9708fd4a9264843096ea779cab173c2bbbb8ac4ed80f87f195e2b2cf7eefe",
+    "roster.csv": "ec0b156dab4b041a21b36a6a061815cb0d005b9ed705f65d0ca2bcd92ee16401",
     "goalies.csv": "a439d2258fccf724799329a4527293510d0dc440b085f57c4caecb51342697a4"
   }
 }
