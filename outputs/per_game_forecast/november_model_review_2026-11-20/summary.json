@@ -1,0 +1,184 @@
+{
+  "through": "2026-11-19",
+  "forecast_dates": [
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-14",
+    "2026-11-16",
+    "2026-11-17",
+    "2026-11-18",
+    "2026-11-19"
+  ],
+  "prospective_games": 96,
+  "player_games": 3443,
+  "selected_shots_model": "calibrated_opponent_sog_trial",
+  "selected_shots_mae": 1.0032742825038905,
+  "default_shots_mae": 1.0195511381929268,
+  "selected_minus_default_shots_mae": -0.01627685568903625,
+  "selected_shots_relative_improvement_pct": 1.5964727103228664,
+  "selected_shots_paired_game_bootstrap": {
+    "model": "calibrated_opponent_sog_trial",
+    "category": "shots",
+    "paired_rows": 3443,
+    "games": 96,
+    "mae_delta_vs_default": -0.01627685568903647,
+    "lower_95": -0.020488896107369675,
+    "upper_95": -0.01209622348242316,
+    "games_lower_mae": 77,
+    "games_equal_or_higher": 19,
+    "bootstrap_draws": 10000
+  },
+  "usage_toi_mae": 2.056317077650181,
+  "default_toi_mae": 2.2001432627111908,
+  "usage_toi_relative_improvement_pct": 6.537128172452545,
+  "usage_toi_improved_dates": 14,
+  "usage_toi_paired_game_bootstrap": {
+    "model": "usage_shot_context_trial",
+    "category": "toi_minutes",
+    "paired_rows": 3443,
+    "games": 96,
+    "mae_delta_vs_default": -0.14382618506100975,
+    "lower_95": -0.16357205850987835,
+    "upper_95": -0.12442107893608334,
+    "games_lower_mae": 89,
+    "games_equal_or_higher": 7,
+    "bootstrap_draws": 10000
+  },
+  "isolated_usage_toi_mae": 2.053964336332334,
+  "isolated_usage_toi_games": 67,
+  "isolated_usage_toi_paired_game_bootstrap": {
+    "model": "usage_toi_only_trial",
+    "category": "toi_minutes",
+    "paired_rows": 2402,
+    "games": 67,
+    "mae_delta_vs_default": -0.14491018133038003,
+    "lower_95": -0.16819163080704436,
+    "upper_95": -0.12173760616510025,
+    "games_lower_mae": 64,
+    "games_equal_or_higher": 3,
+    "bootstrap_draws": 10000
+  },
+  "latest_date": "2026-11-19",
+  "latest_pregame_games": 12,
+  "latest_player_games": 430,
+  "latest_default_shots_mae": 0.9761146365160127,
+  "latest_calibrated_shots_mae": 0.9567456989230237,
+  "latest_default_toi_mae": 2.1709803628759836,
+  "latest_usage_toi_mae": 2.033996307088525,
+  "latest_winner_metrics": [
+    {
+      "model": "calibrated_team_trial",
+      "games": 12,
+      "brier": 0.2543791955177938,
+      "favorite_accuracy": 0.5833333333333334,
+      "goal_mae": 1.2408715636382637
+    },
+    {
+      "model": "direct_team",
+      "games": 12,
+      "brier": 0.261110157927749,
+      "favorite_accuracy": 0.5833333333333334,
+      "goal_mae": 1.2408715636382637
+    },
+    {
+      "model": "goal_history_baseline",
+      "games": 12,
+      "brier": 0.23895037042637432,
+      "favorite_accuracy": 0.5833333333333334,
+      "goal_mae": 1.2320372073280448
+    },
+    {
+      "model": "original_player_sum",
+      "games": 12,
+      "brier": 0.26362128935880563,
+      "favorite_accuracy": 0.3333333333333333,
+      "goal_mae": 1.3354637444884832
+    }
+  ],
+  "goalie_starter_metrics": [
+    {
+      "model": "goalie_history_baseline",
+      "team_games": 96,
+      "teams": 192,
+      "multiclass_brier": 0.5226142223274767,
+      "uniform_candidate_brier": 0.5572916666666666,
+      "finite_log_loss": 0.7516786107380123,
+      "zero_probability_starters": 2,
+      "starter_coverage": 1.0
+    },
+    {
+      "model": "goalie_opponent_context_trial",
+      "team_games": 96,
+      "teams": 192,
+      "multiclass_brier": 0.5226142223274767,
+      "uniform_candidate_brier": 0.5572916666666666,
+      "finite_log_loss": 0.7516786107380123,
+      "zero_probability_starters": 2,
+      "starter_coverage": 1.0
+    }
+  ],
+  "fantasy_usage_toi": {
+    "rows": 192,
+    "games": 27,
+    "dates": 5,
+    "default_mae": 2.253721897038327,
+    "usage_toi_mae": 2.07375035252925,
+    "mae_delta": -0.17997154450907674,
+    "lower_95": -0.2466561501128209,
+    "upper_95": -0.11852481675781036,
+    "games_lower_mae": 24,
+    "bootstrap_draws": 10000,
+    "seed": 20261113
+  },
+  "fantasy_evaluation_sources": [
+    {
+      "date": "2026-11-04",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-04_20261105T205651159030Z",
+      "manifest_sha256": "c14d32e220974ceef8843e4be71ce2b2aa39b0b0afbbc5faf6e58d7b6e4bcee1"
+    },
+    {
+      "date": "2026-11-07",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-07_20261113T145234303409Z",
+      "manifest_sha256": "0f07ca4222710e544bc82cc1cfc5b8fb36c8a8a9ea9546dd26e7deae1288f107"
+    },
+    {
+      "date": "2026-11-08",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-08_20261113T145235657553Z",
+      "manifest_sha256": "0e364a638c6bf2ac293453bbb32c87b771d181e988591fd53ef7a1e1520b1668"
+    },
+    {
+      "date": "2026-11-09",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-09_20261113T145236737194Z",
+      "manifest_sha256": "3d4b12163b4248071f49d26da9f9a782aa1e35bcd4c3258a994cfb98352ab79a"
+    },
+    {
+      "date": "2026-11-10",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-10_20261113T145237799571Z",
+      "manifest_sha256": "7b2a5d788438c6f0cf16812f040d4bf4e3415b07b0aa4d61a7e1317f247a5998"
+    },
+    {
+      "date": "2026-11-11",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-11_20261113T145239064212Z",
+      "manifest_sha256": "df4eaeebff1058bd846530bc63c1f48b21641a1c843ffa72e4ceeba7a70e61af"
+    },
+    {
+      "date": "2026-11-12",
+      "evaluation": "data/processed/forecasts/daily_evaluation_2026-11-12_20261113T145204691553Z",
+      "manifest_sha256": "26fbf3db450f7bef1001125a5139bda8f218d9f8a5456237705779b9a889b4ad"
+    }
+  ],
+  "recommendation": "Retain calibrated-opponent SOG for NHL-wide all-player shots, default fantasy shots, and the existing isolated usage-aware TOI selection. Keep direct-team probabilities and goal-history baselines side by side without calibration. Retain goalie opponent context and PP opportunity as challengers; do not refit.",
+  "missing_early_november_releases": [
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03"
+  ],
+  "winner_probability_games": 74
+}

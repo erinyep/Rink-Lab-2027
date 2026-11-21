@@ -1,0 +1,13 @@
+population,model,category,rows,games,mae
+actual_starters,goalie_history_baseline,shots_against,192,96,4.535821668125116
+actual_starters,goalie_opponent_context_trial,shots_against,192,96,4.478923438121046
+actual_starters,goalie_history_baseline,saves,192,96,4.774519388363627
+actual_starters,goalie_opponent_context_trial,saves,192,96,4.703323052576528
+actual_starters,goalie_history_baseline,goals_against,192,96,1.2027512348808111
+actual_starters,goalie_opponent_context_trial,goals_against,192,96,1.1960283954320319
+starters_55_to_65_minutes,goalie_history_baseline,shots_against,181,96,4.129853717234146
+starters_55_to_65_minutes,goalie_opponent_context_trial,shots_against,181,96,4.093397148049061
+starters_55_to_65_minutes,goalie_history_baseline,saves,181,96,4.297220113826337
+starters_55_to_65_minutes,goalie_opponent_context_trial,saves,181,96,4.246694185177906
+starters_55_to_65_minutes,goalie_history_baseline,goals_against,181,96,1.1761479404411406
+starters_55_to_65_minutes,goalie_opponent_context_trial,goals_against,181,96,1.1677031938271203
