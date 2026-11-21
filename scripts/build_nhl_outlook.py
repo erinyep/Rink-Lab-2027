@@ -13,6 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 import pandas as pd
 from src.fantasy.game_outlook import game_outlooks
+from src.fantasy.per_game import require
 from scripts.validate_daily_bundle import validate
 
 
@@ -25,6 +26,8 @@ def main():
     parser.add_argument('--out',type=Path,default=Path('docs/games'))
     parser.add_argument('--model-review',type=Path,
         help='Optional hash-checked November review directory to summarize on the game page')
+    parser.add_argument('--kalshi-benchmark',type=Path,
+        help='Optional hash-checked, exact-fixture Kalshi winner quote benchmark; never used as a model input')
     args=parser.parse_args();validate(args.bundle)
     manifest=json.loads((args.bundle/'manifest.json').read_text())
     current_config=json.loads((ROOT/'config/daily_forecast_trial.json').read_text())
@@ -120,7 +123,76 @@ def main():
             f'{"It is selected for future conditional ATOI projections." if primary_toi_model == "usage_toi_only_trial" else "It supports promoting usage-only ATOI for future releases."} '
             'Assist and team-probability results do not support another policy change.</p>'
             f'<p><a href="{escape(url, quote=True)}">Full November model review and scored files</a></p></section>')
+    kalshi_html=''
+    kalshi_hash=None
+    kalshi_meta=None
+    if args.kalshi_benchmark:
+        km=json.loads((args.kalshi_benchmark/'manifest.json').read_text())
+        for name,expected in km.get('files',{}).items():
+            if digest(args.kalshi_benchmark/name)!=expected:
+                raise ValueError(f'Kalshi benchmark hash mismatch: {name}')
+        require(km.get('market_status')=='read_only_benchmark_not_model_input',
+                'Kalshi benchmark must be labeled read-only and not a model input')
+        snapshot=Path(km['snapshot']); snapshot_manifest=snapshot/'manifest.json'
+        require(digest(snapshot_manifest)==km['snapshot_sha256'],'Kalshi snapshot manifest hash mismatch')
+        probability_dir=Path(km['probabilities'])
+        probability_manifest=probability_dir/'manifest.json'
+        require(digest(probability_manifest)==km['probabilities_sha256'],
+                'Kalshi benchmark probability release hash mismatch')
+        issue_manifest=json.loads(probability_manifest.read_text())
+        if 'team_win_probabilities.csv' in issue_manifest.get('files',{}):
+            require(digest(probability_dir/'team_win_probabilities.csv')==
+                    issue_manifest['files']['team_win_probabilities.csv'],
+                    'Changed direct-team probability source')
+        quotes=pd.read_csv(args.kalshi_benchmark/'winner_benchmark.csv')
+        require(set(quotes.game_id)=={g['id'] for g in games},
+                'Kalshi benchmark game coverage differs from today’s official slate')
+        require(not quotes.duplicated(['game_id','team']).any(),
+                'Duplicate Kalshi game/team quote')
+        require(quotes.groupby('game_id').team.nunique().eq(2).all() and
+                quotes.groupby('game_id').size().eq(2).all(),
+                'Kalshi benchmark must have one contract for both teams in every game')
+        require(quotes.two_sided_quote.eq(True).all(), 'Kalshi benchmark contains a one-sided quote')
+        quote_at=pd.to_datetime(quotes.sampled_at_utc,utc=True)
+        starts=pd.to_datetime(quotes.start_time_utc,utc=True)
+        issued=pd.to_datetime(quotes.model_issued_at_utc,utc=True)
+        require((quote_at<starts).all(), 'Kalshi quote was sampled after puck drop')
+        require(quotes.model_probability.between(0,1).all() and
+                quotes.quoted_midpoint.between(0,1).all(), 'Invalid Kalshi/model probability')
+        direct=pd.read_csv(probability_dir/'team_win_probabilities.csv')
+        direct_map={(int(r.game_id),r.home):r.home_win_probability for r in direct.itertuples()}
+        direct_map.update({(int(r.game_id),r.away):r.away_win_probability for r in direct.itertuples()})
+        for r in quotes.itertuples():
+            require((int(r.game_id),r.team) in direct_map and
+                    abs(float(r.model_probability)-float(direct_map[(int(r.game_id),r.team)]))<1e-10,
+                    'Kalshi benchmark probabilities do not match their frozen direct-team release')
+        delay=(quote_at-issued).dt.total_seconds()/60
+        lead=(starts-quote_at).dt.total_seconds()/60
+        view=quotes[['game_id','team','ticker','sampled_at_utc','model_probability',
+                     'yes_bid','yes_ask','quoted_midpoint','market_minus_model_pp','spread']].copy()
+        view['model_probability']=view.model_probability.map(lambda x:f'{x:.1%}')
+        for column in ['yes_bid','yes_ask','quoted_midpoint','spread']:
+            view[column]=view[column].map(lambda x:f'{x:.3f}')
+        view['market_minus_model_pp']=view.market_minus_model_pp.map(lambda x:f'{x:+.1f} pp')
+        table=view.to_html(index=False,border=0,classes='data',escape=True)
+        url='../history/'+args.kalshi_benchmark.name+'/index.html'
+        kalshi_html=(
+            '<section class="guide"><h2>Kalshi winner market comparison</h2>'
+            f'<p>Mapped {len(quotes)} two-sided team quotes across {quotes.game_id.nunique()} games. '
+            f'The quotes were sampled a median of {delay.median():.1f} minutes after the direct-team forecast '
+            f'was issued and at least {lead.min():.1f} minutes before puck drop. '
+            'Market-minus-model is the YES midpoint less the raw direct-team probability, in percentage points. '
+            'Prices are shown as quoted: they are not de-vigged, calibrated probabilities, executable prices, '
+            'or forecast inputs. This comparison does not blend or change the selected model.</p>'
+            f'<div class="scroll">{table}</div>'
+            f'<p><a href="{escape(url, quote=True)}">Full Kalshi benchmark, contract rules, source times and hashes</a></p></section>')
+        kalshi_hash=digest(args.kalshi_benchmark/'manifest.json')
+        kalshi_meta=dict(games=int(quotes.game_id.nunique()),contracts=len(quotes),
+            median_minutes_after_model_issue=float(delay.median()),
+            minimum_minutes_before_game=float(lead.min()),median_spread=float(quotes.spread.median()),
+            market_status='read_only_benchmark_not_model_input')
     template=template.replace('__MODEL_EVIDENCE__',evidence_html)
+    template=template.replace('__KALSHI_BENCHMARK__',kalshi_html)
     (args.out/'index.html').write_text(template.replace('__OUTLOOK_DATA__',json.dumps(payload,separators=(',',':'),allow_nan=False).replace('</','<\\/')))
     (args.out/'README.md').write_text(f'''# NHL game outlook — {manifest['date']}
 
@@ -134,6 +206,7 @@ models can be compared without changing the frozen forecasts. Selected models
 are {primary_sog_model} for all-player SOG and {primary_toi_model} for
 conditional ATOI; fantasy category selection remains separate.
 {'This page also summarizes the November model review and links the scored evidence.' if review_summary else ''}
+{'Kalshi winner prices are shown as a separate read-only benchmark; they were sampled after the direct-team forecast was issued and were not model inputs. See the [mapped market report](../history/'+args.kalshi_benchmark.name+'/README.md).' if kalshi_meta else ''}
 
 Start by comparing each matchup's goal means and shot volume. Expand a card for
 assumed shot leaders and goalie full-start scenarios. Use the table to scan all
@@ -147,10 +220,12 @@ and manifest for limitations and source hashes.
         source_schedule_sha256=digest(schedule_path),model_status='frozen_all_player_sog_and_conditional_toi_selections',
         primary_sog_model=primary_sog_model,primary_toi_model=primary_toi_model,
         model_review_manifest_sha256=review_hash,
+        kalshi_benchmark_manifest_sha256=kalshi_hash,kalshi_benchmark=kalshi_meta,
         code_sha256={str(p.resolve().relative_to(ROOT)):digest(p) for p in [Path(__file__),
             ROOT/'src/fantasy/game_outlook.py',ROOT/'src/fantasy/model_policy.py',
             ROOT/'scripts/validate_daily_bundle.py',ROOT/'templates/nhl_outlook.html',
-            ROOT/'config/daily_forecast_trial.json',ROOT/'config/team_goal_model_active.json']},
+            ROOT/'config/daily_forecast_trial.json',ROOT/'config/team_goal_model_active.json']+
+            ([ROOT/'scripts/map_kalshi_winner_benchmark.py'] if args.kalshi_benchmark else [])},
         files={p.name:digest(p) for p in args.out.iterdir() if p.is_file() and p.name!='manifest.json'}),indent=2)+'\n')
     print('NHL outlook:',args.out/'index.html')
     print('Official games:',len(games),'Pregame:',pregame,'Late:',len(games)-pregame)

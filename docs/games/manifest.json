@@ -1,6 +1,6 @@
 {
   "date": "2026-11-21",
-  "view_created_utc": "2026-11-21T16:42:36.107188+00:00",
+  "view_created_utc": "2026-11-21T16:57:52.875646+00:00",
   "forecast_issued_utc": "2026-11-21T16:38:13.239535+00:00",
   "frozen_bundle_manifest_sha256": "ce9490777d5062c87e38d254294ad5c645f26b9273ce64bcbb0111af011bb9cf",
   "source_schedule_sha256": "c72a2e663e7e9d0deb0eeedcca7a72a964f44707af96f493168f3334cac2ec29",
@@ -8,20 +8,30 @@
   "primary_sog_model": "calibrated_opponent_sog_trial",
   "primary_toi_model": "usage_toi_only_trial",
   "model_review_manifest_sha256": "78015a7dfd054fc5e8fc66500f7b8c91055d1367c316a2974afbced17805bb2f",
+  "kalshi_benchmark_manifest_sha256": "abe824423bf2631faa777f1fb5c35a94d2d477cee3354a316e560f420a1a53df",
+  "kalshi_benchmark": {
+    "games": 14,
+    "contracts": 28,
+    "median_minutes_after_model_issue": 17.122691533333334,
+    "minimum_minutes_before_game": 64.51205038333333,
+    "median_spread": 0.01,
+    "market_status": "read_only_benchmark_not_model_input"
+  },
   "code_sha256": {
-    "scripts/build_nhl_outlook.py": "afd188c067161c445bfe574bf3c5abd5062c330dc194784057117fdc650e1ee6",
+    "scripts/build_nhl_outlook.py": "0ff5729d3de50c8981c66c44525e3bd0c221bad66c17cabb7ebd8b52bf4f9237",
     "src/fantasy/game_outlook.py": "f6bea656662359d3be3f5f8278a6a25a931308b479878119d8604187b98014da",
     "src/fantasy/model_policy.py": "b34632c519591da9907ade78d886bafad65ee6517000320f5e164483f767983e",
     "scripts/validate_daily_bundle.py": "739882d4720038dabf34630832030feb59a7969ef9f873950adae89efdd6c176",
-    "templates/nhl_outlook.html": "3ff33c99ea196a458858da898995332c408bd3a89051effdaa8ae4f4eeb7abd4",
+    "templates/nhl_outlook.html": "979792e9e145bcbddf8b1682d1bee269081cad70a4c77db03327b105e041dfb4",
     "config/daily_forecast_trial.json": "1b50548fd83d4fbc595d57d844764e26098f1522f48978e0bbfb15f48ec2e069",
-    "config/team_goal_model_active.json": "93d2431ee9218854c5601c45f492e993446fbdb6245f1c3e7d7dc80cdf0ebce6"
+    "config/team_goal_model_active.json": "93d2431ee9218854c5601c45f492e993446fbdb6245f1c3e7d7dc80cdf0ebce6",
+    "scripts/map_kalshi_winner_benchmark.py": "d8eff59094ab2df1ff29f35996536c2cbddfb96c7f2049fb55e9f494ff6481f5"
   },
   "files": {
-    "index.html": "b3fdd04843f800cd7d8165ebd981778f769a83a1686247effd73ace8631c1ea4",
+    "index.html": "778bed8c1b7194216f06ba3068e2bbd7df110575a6c7959104d4cbeefe323c5f",
     "goalie_scenarios.csv": "75468468a9172825648e052085815f55c25c3e35533e1a28dce83e1c4b731a49",
-    "outlook.json": "de60c24ef5db4d90804a0d201193602ab2e611d177acb512a661537a7511c810",
-    "README.md": "33d2c7f84a3b1b5a5ac464a9ff2161f693fc70584d8b0125f55cb920b1ef705b",
+    "outlook.json": "db5c215d0d19c45517e6087bf4d91f47c3c7a8468b40c92284a92c576821ec35",
+    "README.md": "b22eb42235f737a4136cc4741c0cb66e3fdacad69036ddf6b93a5c855ea1a00d",
     "team_predictions.csv": "a3d3b6a11f7e27e6dfa6a70a92a991a8ec3dd79fe18ec3ada7d83a52447a522e",
     "game_predictions.csv": "74e36455ef6a3031ee09f2f781cfc244d1f598ba57e1db2f1c19715164e72120"
   }

@@ -48,14 +48,25 @@ def main():
                 status='pregame_quote_benchmark_not_model_input'))
     out=pd.DataFrame(rows)
     if out.duplicated(['game_id','team']).any():raise ValueError('Duplicate mapped contract')
+    quote_time=pd.to_datetime(out.sampled_at_utc,utc=True)
+    issue_time=pd.to_datetime(out.model_issued_at_utc,utc=True)
+    start_time=pd.to_datetime(out.start_time_utc,utc=True)
+    quote_delay_minutes=(quote_time-issue_time).dt.total_seconds()/60
+    lead_minutes=(start_time-quote_time).dt.total_seconds()/60
+    if (lead_minutes<=0).any() or not out.two_sided_quote.all():
+        raise ValueError('Benchmark requires two-sided quotes sampled before every game starts')
+    out['market_minus_model_pp']=(out.quoted_midpoint-out.model_probability)*100
     a.out.mkdir(parents=True);out.to_csv(a.out/'winner_benchmark.csv',index=False)
+    delay=float(quote_delay_minutes.median()); earliest=float(lead_minutes.min())
     (a.out/'README.md').write_text(f'''# Kalshi winner benchmark — {pm['date']}
 
 Mapped {len(out)} contracts to {out.game_id.nunique()} official NHL games using exact dates,
 team aliases and two-team fixture identities. Quotes were sampled before official game starts.
 [Quotes, model probabilities, contract rules and source timestamps](winner_benchmark.csv).
 
-This snapshot maps {out.game_id.nunique()} games and {len(out)} team contracts. Median quoted spread is {out.spread.median():.3f}; each row records its own sample time. Quotes are a same-day benchmark for review, not inputs to the NHL forecasts.
+This snapshot maps {out.game_id.nunique()} games and {len(out)} two-sided team contracts. Median quoted spread is {out.spread.median():.3f}. Quotes were sampled a median of {delay:.1f} minutes after the team-model issue and at least {earliest:.1f} minutes before puck drop. Each row records its own sample time. The market-minus-model column is quoted midpoint minus the raw direct-team probability in percentage points; no de-vigging or blending is applied.
+
+The quote snapshot postdates the forecast issue, so it was not available to the model and is a separate pregame benchmark. It does not alter player forecasts or the selected raw direct-team probabilities.
 
 Contracts settle on official final winners, with postponement/cancellation provisions retained per row.
 This benchmark assumes a normally completed fixture; void/fair-price resolutions must be excluded from
@@ -70,7 +81,7 @@ on identical settled games before testing a blend with chronological training.
 describes live/archive cutoffs. Backfill must use candles ending before an explicitly fixed NHL pregame
 cutoff; final settlement prices cannot substitute for pregame probabilities.
 ''')
-    display=['date','team','ticker','sampled_at_utc','model_probability','yes_bid','yes_ask','quoted_midpoint','spread','volume','open_interest']
+    display=['date','team','ticker','sampled_at_utc','model_probability','yes_bid','yes_ask','quoted_midpoint','market_minus_model_pp','spread','volume','open_interest']
     headings=''.join(f'<th>{escape(col.replace("_", " ").title())}</th>' for col in display)
     body=[]
     for row in out[display].itertuples(index=False,name=None):
@@ -85,16 +96,20 @@ cutoff; final settlement prices cannot substitute for pregame probabilities.
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<title>Kalshi pregame quote benchmark</title><style>body{font:15px system-ui;color:#172c38;max-width:1280px;margin:28px auto;padding:20px;line-height:1.5}a{color:#08777c}h1{color:#087e83}main{overflow:auto}table{border-collapse:collapse;font-size:12px}th,td{padding:8px;border-bottom:1px solid #d5e1e6;text-align:right;white-space:nowrap}th{background:#f1f6f7}td:nth-child(3),td:nth-child(4){text-align:left}</style></head><body><main>'
-        f'<p><a href="../../team-model/">Today’s NHL team model</a> · <a href="../november_model_review_2026-11-10/">November model review</a></p>'
+        f'<p><a href="../../games/">Today’s NHL outlook</a> · <a href="../../team-model/">Today’s NHL team model</a> · <a href="../november_model_review_2026-11-20/">November model review</a></p>'
         f'<h1>Kalshi winner quotes — {pm["date"]}</h1>'
-        f'<p>{out.game_id.nunique()} games, {len(out)} team contracts, median spread {out.spread.median():.3f}. Quotes were sampled before puck drop and mapped by exact date and team fixture. They were not model inputs.</p>'
-        '<p>A quoted midpoint is not a calibrated probability or executable price. These are same-day quotes, not historical pregame prices for earlier forecast dates. The source CSV preserves contract text, timestamps, volume and open interest.</p>'
+        f'<p>{out.game_id.nunique()} games, {len(out)} two-sided team contracts, median spread {out.spread.median():.3f}. Quotes were sampled a median of {delay:.1f} minutes after model issue and at least {earliest:.1f} minutes before puck drop. Exact fixture IDs, settlement rules and timestamps are retained; these quotes were not model inputs.</p>'
+        '<p>Market minus model is the quoted YES midpoint less the selected raw direct-team probability, in percentage points. It is a descriptive difference, not a calibrated edge: midpoints are neither de-vigged nor executable prices. The home and away midpoints need not sum to one. No blend, trading or performance claim is made before these games settle.</p>'
         f'<p><a href="winner_benchmark.csv">Full mapped quotes and model probabilities</a> · <a href="README.md">Methods and limitations</a></p>'
         f'<table><thead><tr>{headings}</tr></thead><tbody>{"".join(body)}</tbody></table>'
         '</main></body></html>')
     (a.out/'manifest.json').write_text(json.dumps(dict(created_at_utc=datetime.now(timezone.utc).isoformat(),
         snapshot=str(a.snapshot),snapshot_sha256=digest(a.snapshot/'manifest.json'),probabilities=str(a.probabilities),
         probabilities_sha256=digest(a.probabilities/'manifest.json'),
+        market_status='read_only_benchmark_not_model_input',median_minutes_after_model_issue=delay,
+        minimum_minutes_before_game=earliest,median_spread=float(out.spread.median()),
+        code_sha256={name:digest(name) for name in ['scripts/map_kalshi_winner_benchmark.py',
+            'scripts/evaluate_daily_forecasts.py']},
         files={p.name:digest(p) for p in a.out.iterdir() if p.is_file()}),indent=2)+'\n')
     print('Mapped games:',out.game_id.nunique(),'Contracts:',len(out),'Median spread:',out.spread.median())
 

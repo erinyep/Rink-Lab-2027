@@ -2,6 +2,8 @@
 
 [Interactive forecasts](index.html) · [Goal and win forecasts](team_win_probabilities.csv) · [Lagged model inputs](team_goal_forecasts.csv).
 
+[Kalshi winner-market benchmark](../history/kalshi_benchmark_2026-11-21_1655/): 28 two-sided contracts across the 14-game slate, sampled after model issue. Quotes are an independent read-only benchmark and are not model inputs.
+
 14 of 14 scheduled games were issued before puck drop. Model `goal_xg_home_rest` fit through 2026-10-26.
 Learned home ice, rest/back-to-back, own scoring and opposing goals allowed, plus lagged xG where applicable.
 The simple baseline is preserved alongside every updated prediction. Player/fantasy conditional means are unchanged;
