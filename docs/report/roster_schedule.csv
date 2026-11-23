@@ -1,39 +1,41 @@
 player_name,date,opponent
-Tage Thompson,2026-11-22,TBL
-Logan Stankoven,2026-11-22,NYR
-Pyotr Kochetkov,2026-11-22,NYR
-Alexander Nikishin,2026-11-22,NYR
-Jimmy Snuggerud,2026-11-22,EDM
-Devon Levi,2026-11-22,STL
 Quinn Hughes,2026-11-23,SJS
+Kirill Kaprizov,2026-11-23,SJS
+Jesper Wallstedt,2026-11-23,SJS
+Beckett Sennecke,2026-11-23,SEA
+Luke Hughes,2026-11-23,CBJ
+Logan Cooley,2026-11-23,WPG
+Joel Eriksson Ek,2026-11-23,SJS
+Luke Evangelista,2026-11-23,CBJ
+Mikael Granlund,2026-11-23,SEA
+Shane Pinto,2026-11-23,CGY
+Neal Pionk,2026-11-23,UTA
 Quinn Hughes,2026-11-25,UTA
 Quinn Hughes,2026-11-27,COL
+Quinn Hughes,2026-11-29,CHI
 Tage Thompson,2026-11-25,NYR
 Tage Thompson,2026-11-27,PIT
-Kirill Kaprizov,2026-11-23,SJS
 Kirill Kaprizov,2026-11-25,UTA
 Kirill Kaprizov,2026-11-27,COL
+Kirill Kaprizov,2026-11-29,CHI
 Alex Tuch,2026-11-25,PHI
 Alex Tuch,2026-11-27,FLA
 Alex Tuch,2026-11-28,STL
-Jesper Wallstedt,2026-11-23,SJS
 Jesper Wallstedt,2026-11-25,UTA
 Jesper Wallstedt,2026-11-27,COL
-Beckett Sennecke,2026-11-23,SEA
+Jesper Wallstedt,2026-11-29,CHI
 Beckett Sennecke,2026-11-25,SJS
 Beckett Sennecke,2026-11-27,LAK
 Beckett Sennecke,2026-11-28,LAK
-Luke Hughes,2026-11-23,CBJ
 Luke Hughes,2026-11-25,CBJ
 Luke Hughes,2026-11-27,CGY
 Luke Hughes,2026-11-28,WPG
-Logan Cooley,2026-11-23,WPG
 Logan Cooley,2026-11-25,MIN
 Logan Cooley,2026-11-27,NSH
 Logan Cooley,2026-11-28,DAL
-Joel Eriksson Ek,2026-11-23,SJS
 Joel Eriksson Ek,2026-11-25,UTA
 Joel Eriksson Ek,2026-11-27,COL
+Joel Eriksson Ek,2026-11-29,CHI
 Matvei Michkov,2026-11-25,WSH
 Matvei Michkov,2026-11-27,VAN
 Matvei Michkov,2026-11-28,NYI
@@ -42,7 +44,6 @@ Logan Stankoven,2026-11-28,OTT
 Cole Hutson,2026-11-25,PHI
 Cole Hutson,2026-11-27,FLA
 Cole Hutson,2026-11-28,STL
-Luke Evangelista,2026-11-23,CBJ
 Luke Evangelista,2026-11-25,CBJ
 Luke Evangelista,2026-11-27,CGY
 Luke Evangelista,2026-11-28,WPG
@@ -50,7 +51,6 @@ Pyotr Kochetkov,2026-11-25,TBL
 Pyotr Kochetkov,2026-11-28,OTT
 Alexander Nikishin,2026-11-25,TBL
 Alexander Nikishin,2026-11-28,OTT
-Mikael Granlund,2026-11-23,SEA
 Mikael Granlund,2026-11-25,SJS
 Mikael Granlund,2026-11-27,LAK
 Mikael Granlund,2026-11-28,LAK
@@ -59,13 +59,13 @@ Jimmy Snuggerud,2026-11-27,DAL
 Jimmy Snuggerud,2026-11-28,WSH
 JJ Peterka,2026-11-25,WPG
 JJ Peterka,2026-11-27,TOR
+JJ Peterka,2026-11-29,VAN
 Fraser Minten,2026-11-25,WPG
 Fraser Minten,2026-11-27,TOR
-Shane Pinto,2026-11-23,CGY
+Fraser Minten,2026-11-29,VAN
 Shane Pinto,2026-11-25,FLA
 Shane Pinto,2026-11-27,TBL
 Shane Pinto,2026-11-28,CAR
-Neal Pionk,2026-11-23,UTA
 Neal Pionk,2026-11-25,BOS
 Neal Pionk,2026-11-27,NYI
 Neal Pionk,2026-11-28,NJD
