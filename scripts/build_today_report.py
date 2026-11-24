@@ -71,6 +71,26 @@ def join_goalie_roster(goalie_projections, own):
     return goalie
 
 
+def require_fantasy_forecast_coverage(own, goalie_projections, identity_sources):
+    eligible=own.has_game & ~own.blocked
+    skaters=own.loc[eligible & ~own.is_goalie]
+    goalies=own.loc[eligible & own.is_goalie]
+    baseline_goalies=goalie_projections[goalie_projections.model.eq('goalie_history_baseline')]
+    goalie_pairs=set(zip(baseline_goalies.game_id,baseline_goalies.player_id))
+    skaters_matched=int((skaters.player_id.notna() & skaters.game_id.eq(skaters.forecast_game_id)).sum())
+    goalies_matched=sum((row.game_id, row.nhl_player_id) in goalie_pairs
+                        for row in goalies.itertuples())
+    source_state='present' if identity_sources else 'missing'
+    summary=(f'Fantasy forecast coverage: skaters {skaters_matched}/{len(skaters)}; '
+             f'goalies {goalies_matched}/{len(goalies)}; NHL identity source {source_state}')
+    print(summary, flush=True)
+    if not identity_sources:
+        raise ValueError(summary + '; NHL identity source missing. Refresh the ESPN-to-NHL crosswalk before publishing.')
+    if (len(skaters) and not skaters_matched) or (len(goalies) and not goalies_matched):
+        raise ValueError(summary + '; no eligible roster forecasts matched. Check the ESPN-to-NHL crosswalk and forecast coverage before publishing.')
+    return summary
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bundle',required=True,type=Path)
@@ -154,6 +174,12 @@ def main():
     own.loc[own.locked,'decision_state']='game locked'
     own.loc[own.has_game & ~own.is_goalie & own.player_id.isna(),'decision_state']='forecast missing'
     own['start_local']=own.schedule_team.map(lambda t:pd.Timestamp(fixtures[t]['startTimeUTC']).tz_convert('America/New_York').strftime('%-I:%M %p') if t in fixtures else '')
+    goalie_projections=pd.read_csv(args.bundle/'goalie_projections.csv')
+    goalie_coverage=own.copy()
+    goalie_coverage['forecast_game_id']=goalie_coverage.game_id
+    goalie_coverage['game_id']=goalie_coverage.schedule_team.map(
+        lambda team: fixtures[team]['id'] if team in fixtures else None)
+    require_fantasy_forecast_coverage(goalie_coverage,goalie_projections,meta.get('crosswalk_nhl_sources',[]))
     # Locked active players consume their actual saved slot. Off-day or blocked,
     # unlocked players can be benched; this is a lineup scenario, not a transaction.
     baseline=[]
@@ -230,8 +256,7 @@ def main():
     watch['usable_starts_today']=watch.open_slot_fit.astype(int) if add_window else 0
     watch['action_status']='watchlist_only_transaction_timing_and_remaining_daily_allowance_unverified'
     watch=watch.sort_values(['open_slot_fit','expected_pp_points_if_plays','expected_assists_if_plays'],ascending=False)
-    goalie=pd.read_csv(args.bundle/'goalie_projections.csv')
-    goalie=join_goalie_roster(goalie,own)
+    goalie=join_goalie_roster(goalie_projections,own)
     acq=rules['acquisitionSettings']
     transaction_note=('This is a category league: there is no single fantasy-points total. '
         'Lineup changes lock at each NHL game. Check the next-period roster above before treating an acquisition as available today. '

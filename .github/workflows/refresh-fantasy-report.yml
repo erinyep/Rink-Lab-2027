@@ -151,6 +151,7 @@ jobs:
           last = next((line.strip() for line in reversed(log.splitlines()) if line.strip()), '')
           error_match = re.match(r'(?:[A-Za-z_][A-Za-z0-9_]*\.)*([A-Za-z_][A-Za-z0-9]*(?:Error|Exception))(?:[:(]|\b)', last)
           error_types = re.findall(r'(?m)^\s*([A-Za-z_][A-Za-z0-9_.]*(?:Error|Exception))(?=:|\b)', log)
+          coverage = re.search(r'Fantasy forecast coverage: skaters \d+/\d+; goalies \d+/\d+; NHL identity source (?:present|missing)', log)
           location = 'unknown source line'
           for path, line in reversed(frames):
               try:
@@ -163,10 +164,20 @@ jobs:
               location = f'{pathlib.Path(path).name}:{line}'
           kind = (error_types[-1].rsplit('.', 1)[-1] if error_types else
                   error_match.group(1) if error_match else 'UnknownError')
+          if coverage:
+              print(f'::error::{coverage.group(0)}. Check the NHL identity source and roster forecast matches before publishing.')
           print(f'::error::Fantasy report build failed ({kind} at {location}); private details were suppressed.')
           PY
             exit 1
           fi
+          python - "$private_temp/private-report-build.log" <<'PY'
+          import pathlib, re, sys
+          log = pathlib.Path(sys.argv[1]).read_text(errors='replace')
+          coverage = re.search(r'Fantasy forecast coverage: skaters \d+/\d+; goalies \d+/\d+; NHL identity source (?:present|missing)', log)
+          if not coverage:
+              raise SystemExit('Fantasy forecast coverage summary missing; refusing publication.')
+          print(coverage.group(0))
+          PY
       - name: Export and verify the public report fields
         shell: bash
         run: |

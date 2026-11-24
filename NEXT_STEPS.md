@@ -1,5 +1,19 @@
 # Rink Lab — Next Steps
 
+## November 24 — daily automation repair plan
+
+The November 23 scheduled fantasy workflow completed and refreshed ESPN status, but its published report had no skater projections for the 10 rostered skaters with games and no goalie projections. The hosted ESPN-to-NHL crosswalk searches ignored local processed identity files that are absent from a clean checkout; this is a likely cause, not a confirmed reconstruction of that run. The workflow publishes only the fantasy page, skips the direct-team model, and does not preserve its generated forecast bundle. The public game outlook is dated November 21. Consequently, no saved full-slate November 23 forecast is available for prospective scoring.
+
+Estimated effort for one developer familiar with the project, including a manual hosted run but excluding external outages and credential renewal:
+
+- [x] **Fantasy coverage guard — implemented November 24:** a missing NHL identity source or zero matched eligible skater or goalie forecasts now stops the report before publication. The workflow exposes aggregate coverage counts, excluding players without games and those blocked by injury status. The identity-source repair remains necessary to restore hosted projections; the guard does not establish the November 23 root cause. A real hosted run and edge-case verification remain outstanding.
+- [ ] **Reproducible identity matching — 1–2 hours:** acquire or bundle a documented, hash-checked NHL identity source on hosted runners; preserve NHL player IDs, review ambiguous matches, and verify roster and goalie coverage before building. Diagnose the November 23 failure where evidence permits.
+- [ ] **Daily game publishing and forecast archive — 2–4 hours:** issue the direct-team model and NHL bundle, enforce pregame and source-freshness checks, export a dated sanitized immutable bundle, and publish the game and team pages. Preserve separate versions if forecasts are revised.
+- [ ] **Postgame evaluation and reporting — 2–4 hours:** schedule final-result acquisition and score the saved pregame releases, with coverage, baselines, model policy, and a dated scorecard; handle unfinished or postponed games without inventing forecasts.
+- [ ] **Scheduling, diagnostics, and alerts — 1–2 hours:** add a backup or more dependable trigger, surface safe failure reasons, monitor stale reports and credential failures, and prevent concurrent publication conflicts. The configured 11:17 UTC job began at 22:42 UTC on November 23, so timing needs monitoring rather than an assumption that cron starts on time.
+
+Original estimate: roughly **6–12 hours** for implementation and a verified hosted run. The coverage guard is in place; the next priority is the identity-source fix. Only a successful clean-run match can restore the missing projections.
+
 ## November 21 — public pregame release and policy enforcement
 
 - Refreshed official schedule and boxscores through November 20; the latest completed games are November 19. Validated **358 completed games**, **12,887 positive-TOI skater-game rows**, and zero TOI/boxscore join discrepancies. MoneyPuck team and shot inputs also cover through November 19. Issued all **14 games pregame** at 11:38 a.m. Eastern: 4,452 player-model rows, 196 team-model rows, and 130 goalie scenarios. The report is public-only, with availability unknown and no ESPN ownership. [Game outlook and model evidence](docs/games/) · [Team goals and raw win probabilities](docs/team-model/) · [November review through Nov. 19](docs/history/november_model_review_2026-11-20/).
