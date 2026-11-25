@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-11-25T16:18:20.641429+00:00",
+  "snapshot": "data/processed/forecasts/hockey_20261125T161814276935Z",
+  "snapshot_sha256": "03930f3c7179d82cddc86aec862523e50d308bdc38f743538cd42c2fada5bd21",
+  "probabilities": "outputs/per_game_forecast/team_context_daily_2026-11-25_20261125T161021Z",
+  "probabilities_sha256": "22c9b3ef23ff0cbc91f9e0039786f4aed2aea583abc0a1a276277ac860711546",
+  "market_status": "read_only_benchmark_not_model_input",
+  "median_minutes_after_model_issue": 7.309537216666667,
+  "minimum_minutes_before_game": 461.7486305666667,
+  "median_spread": 0.01,
+  "code_sha256": {
+    "scripts/map_kalshi_winner_benchmark.py": "d8eff59094ab2df1ff29f35996536c2cbddfb96c7f2049fb55e9f494ff6481f5",
+    "scripts/evaluate_daily_forecasts.py": "f0a81e638e854e247c9842dcea9d1c7226449366d6786ab1813c161146c051ce"
+  },
+  "files": {
+    "index.html": "ae5f38141fc0d765a63e9d3b517170639430cdad85a13cd7fba2974a38c22c5d",
+    "README.md": "836af5a45439b698ece7a8b1349f1991bbdc98c28fac1ebf5886fc3a24e57b72",
+    "winner_benchmark.csv": "ab13c0836d9f888532aee34ccb7fa14caf1da028635aa87a25784464da53e1f9"
+  }
+}

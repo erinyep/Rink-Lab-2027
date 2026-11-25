@@ -5,8 +5,8 @@ project's HTTPS trust-store support. The local `rink-lab.venv` has now been
 created and populated; R and the required acquisition packages are available.
 Run commands from the repository root.
 
-ESPN connection was verified on October 17: the local `.env` now connects to
-Micro League (six teams). Keep that file local when moving between machines.
+ESPN read-only access to Micro League (six teams) was refreshed on November 25.
+Keep the local `.env` file out of chat and Git when moving between machines.
 
 ## What to transfer privately
 
@@ -26,18 +26,20 @@ but cannot recreate old pregame issuances after the games.
 
 ## Daily forecasts on this machine
 
-The October 22 refresh acquired official final game/scoring/TOI history through
-October 21, plus MoneyPuck history. The available validated template on this machine is:
+The November 25 refresh acquired official final game/scoring/TOI/PBP history and
+MoneyPuck data through November 24, refreshed the eight-day NHL schedule, and
+validated 13,859 positive-TOI rows against 385 official finals. The current
+player-season template on this machine is:
 
-`data/processed/forecasts/per_game_20262027_20261009T195052Z`
+`data/processed/forecasts/per_game_20262027_20261125T161648Z`
 
 After `.env` is transferred, this command refreshes ESPN, final games, ice time,
 MoneyPuck, schedule and rosters, then issues skaters, goalies and reading tables:
 
 ```sh
 rink-lab.venv/bin/python scripts/run_daily_forecasts.py \
-  --date 2026-10-22 \
-  --template-forecast data/processed/forecasts/per_game_20262027_20261009T195052Z
+  --date 2026-11-26 \
+  --template-forecast data/processed/forecasts/per_game_20262027_20261125T161648Z
 ```
 
 Set the target date explicitly for future slates. Each run stops on failure and

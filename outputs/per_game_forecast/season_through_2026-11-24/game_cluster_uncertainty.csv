@@ -1,0 +1,6 @@
+population,model,games,appearances,mae_delta_vs_default,lower_95,upper_95,games_improved
+daily_trial_all_players,calibrated_opponent_sog_trial,142,5094,-0.017261524411825716,-0.020915865396343655,-0.013603898153177675,108
+daily_trial_all_players,candidate,142,5094,-0.017339961991277655,-0.021002866714106273,-0.01370242392089508,106
+daily_trial_all_players,default,142,5094,0.0,0.0,0.0,0
+daily_trial_all_players,opponent_form_sog_trial,142,5094,0.00022534263507819588,-0.0012205464096137952,0.0016795656117420106,68
+daily_trial_all_players,usage_shot_context_trial,142,5094,-0.012820150704184057,-0.01909200801444727,-0.006754236624412898,84

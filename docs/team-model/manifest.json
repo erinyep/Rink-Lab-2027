@@ -1,27 +1,20 @@
 {
-  "created_at_utc": "2026-11-21T16:38:21.915452+00:00",
-  "date": "2026-11-21",
+  "created_at_utc": "2026-11-25T16:10:56.509861+00:00",
+  "date": "2026-11-25",
   "method": "team_goal_context_v2",
   "scheduled_games": 14,
   "excluded_games": [],
   "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
   "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
-  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261121T163148982730Z",
-  "moneypuck_sha256": "ec671c239e4bd5b96a8e565eb674c062a060c3d2a234209d2817f386378330bf",
-  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261121T163001Z",
-  "boxscores_sha256": "bad0e5fcdec9d9eac0184bd6f45d13d7a1c794a4e3a88799e7d61fbfa3d3e030",
-  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261121T163821915452Z",
-  "schedule_sha256": "c72a2e663e7e9d0deb0eeedcca7a72a964f44707af96f493168f3334cac2ec29",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261125T160915093467Z",
+  "moneypuck_sha256": "83bee5a3c2df8d0478dd77dd134ad02d1f2b572601e7761c3a51206051915cf4",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261125T155221Z",
+  "boxscores_sha256": "aeb4657978b049b3d690c6f34284e2bdc0387cbb6f05765ed48a9b49173bb9c5",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261125T161056509861Z",
+  "schedule_sha256": "3e05d2bbee3f9e85d469116742da71fe4b6e49e208c48d7ffed1febb443e6c75",
   "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
   "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
   "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
-  "files": {
-    "team_win_probabilities.csv": "6ce4df931fbeb34a3ba7a99d813647699a507f4e3d5082804753c13787face35",
-    "index.html": "ec7dbee263a7accfd147e309b78dcb4ff9d446986647db4161dc33d009dafed2",
-    "input_reconciliation.csv": "853dc1c578bab3141d2ce170cf44f8f187fd48186003c039b5252ce21603e5e9",
-    "README.md": "91650d11e0c6424de2f391274502b2af6baadef54ca650a5bda457476603197a",
-    "team_goal_forecasts.csv": "824d2f27521ea27ae0fc7df60348652dbc4c1f394444df8fa073c00f61799e77"
-  },
   "selected_probability_model": "raw_direct_team",
   "probability_calibration_status": "challenger_only",
   "code_sha256": {
@@ -29,5 +22,12 @@
     "src/fantasy/model_policy.py": "b34632c519591da9907ade78d886bafad65ee6517000320f5e164483f767983e",
     "src/fantasy/team_probability.py": "5e69d43071076a5145f81fd99fdc2821b2035e4bbf6dc18618ab29a205f947e0",
     "config/team_goal_model_active.json": "93d2431ee9218854c5601c45f492e993446fbdb6245f1c3e7d7dc80cdf0ebce6"
+  },
+  "files": {
+    "team_win_probabilities.csv": "b3628c1648ada0b2760d1ed3a8584980769c27aae48c76119c343193c8d38621",
+    "index.html": "965426b45b4e3e22551d2af0e88df79f6e954047c0bc5d44f42d964446fc12a6",
+    "input_reconciliation.csv": "2c75de8e3d838dc9d6f3a3f3d53fc548e4d44fcbbdef4a1a1869ef3a29c5676c",
+    "README.md": "54fdd10d3ca7322e17513edcca65f933b92e35fef50886b3497860aa9ec32bce",
+    "team_goal_forecasts.csv": "c7e0e49e8a7a4f83ca48943a5363bf2d29aa64c35012c654ee864e7b38810796"
   }
 }

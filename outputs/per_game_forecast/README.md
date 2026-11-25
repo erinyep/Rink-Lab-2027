@@ -1,9 +1,12 @@
-# Per-game forecast status — November 12, 2026
+# Per-game forecast status — November 25, 2026
 
-- [Tonight’s ten-game pregame release](2026-11-12_20261112T184820Z_pregame_readout.md) · [Public player/team/goalie projections](frozen/daily_2026-11-12_20261112T184820Z/README.md)
-- [Nov. 11 scored model results](results_2026-11-11/README.md) · [Interactive game outlook](../../docs/games/README.md) · [Fantasy report](../../docs/report/index.html) · [Direct team forecasts](../../docs/team-model/README.md) · [Model/data handoff](../../docs/history/pregame-2026-11-12.md)
-- Official history through November 11: 298 finals and 10,727 reconciled positive-TOI skater-games. Ten of 11 scheduled games were issued pregame; Seattle–Carolina was already underway and remains labeled late. ESPN roster/status was refreshed at 1:45 p.m. Eastern; MoneyPuck coverage reaches November 11.
-- Existing policies remain active: calibrated-opponent SOG for all-player shots, default for fantasy shots, usage-aware ATOI and PP opportunity as challengers, and raw direct-team probabilities selected with the Nov. 8 calibrator separate. Nov. 11 results were too small to justify a refit or promotion.
+- [Tonight’s 14-game pregame release](2026-11-25_20261125T161021Z_pregame_readout.md) · [Public player/team/goalie projections](frozen/daily_2026-11-25_20261125T161021Z/README.md) · [Season review through November 24](season_through_2026-11-24/README.md)
+- [Interactive game outlook](../../docs/games/README.md) · [Fantasy report](../../docs/report/index.html) · [Direct team forecasts](../../docs/team-model/README.md) · [Roadmap](../../NEXT_STEPS.md)
+- [Kalshi winner benchmark](../../docs/history/kalshi_benchmark_2026-11-25_1618/README.md): 28 two-sided contracts, median spread $0.01; quotes are a read-only pregame comparison, not model inputs.
+- Official history, MoneyPuck team data, play-by-play and shots cover through November 24: **385 finals**, **13,859 reconciled positive-TOI skater-games** and **43,929 PBP events**. All 14 November 25 games were issued pregame. ESPN roster/status was refreshed at 11:09 a.m. Eastern. NHL.com projected lineup articles were unavailable; lineup and goalie labels remain provisional.
+- The updated season review covers **385 final games** and **142 saved pregame games** for the daily model comparison. Calibrated-opponent SOG remains selected; the fantasy SOG policy, conditional ATOI policy and raw direct-team probability policy remain separate. No coefficients were refit. Today's results are pending and will only be scored after finalization.
+
+Archived status entries below are historical snapshots.
 
 Older forecast status entries below are historical snapshots.
 

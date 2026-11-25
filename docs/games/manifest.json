@@ -1,19 +1,19 @@
 {
-  "date": "2026-11-21",
-  "view_created_utc": "2026-11-21T16:57:52.875646+00:00",
-  "forecast_issued_utc": "2026-11-21T16:38:13.239535+00:00",
-  "frozen_bundle_manifest_sha256": "ce9490777d5062c87e38d254294ad5c645f26b9273ce64bcbb0111af011bb9cf",
-  "source_schedule_sha256": "c72a2e663e7e9d0deb0eeedcca7a72a964f44707af96f493168f3334cac2ec29",
+  "date": "2026-11-25",
+  "view_created_utc": "2026-11-25T16:18:24.884809+00:00",
+  "forecast_issued_utc": "2026-11-25T16:10:49.542422+00:00",
+  "frozen_bundle_manifest_sha256": "ecbadea1b03119ed5142a6e650a5c33720f67b6d1db3a964e4ac44adce8053ca",
+  "source_schedule_sha256": "3e05d2bbee3f9e85d469116742da71fe4b6e49e208c48d7ffed1febb443e6c75",
   "model_status": "frozen_all_player_sog_and_conditional_toi_selections",
   "primary_sog_model": "calibrated_opponent_sog_trial",
   "primary_toi_model": "usage_toi_only_trial",
   "model_review_manifest_sha256": "78015a7dfd054fc5e8fc66500f7b8c91055d1367c316a2974afbced17805bb2f",
-  "kalshi_benchmark_manifest_sha256": "abe824423bf2631faa777f1fb5c35a94d2d477cee3354a316e560f420a1a53df",
+  "kalshi_benchmark_manifest_sha256": "cbaa365695aea8a1d4eb8cf416800d63b5f95a90525e5901d9b050b881af14b6",
   "kalshi_benchmark": {
     "games": 14,
     "contracts": 28,
-    "median_minutes_after_model_issue": 17.122691533333334,
-    "minimum_minutes_before_game": 64.51205038333333,
+    "median_minutes_after_model_issue": 7.309537216666667,
+    "minimum_minutes_before_game": 461.7486305666667,
     "median_spread": 0.01,
     "market_status": "read_only_benchmark_not_model_input"
   },
@@ -28,11 +28,11 @@
     "scripts/map_kalshi_winner_benchmark.py": "d8eff59094ab2df1ff29f35996536c2cbddfb96c7f2049fb55e9f494ff6481f5"
   },
   "files": {
-    "index.html": "778bed8c1b7194216f06ba3068e2bbd7df110575a6c7959104d4cbeefe323c5f",
-    "goalie_scenarios.csv": "75468468a9172825648e052085815f55c25c3e35533e1a28dce83e1c4b731a49",
-    "outlook.json": "db5c215d0d19c45517e6087bf4d91f47c3c7a8468b40c92284a92c576821ec35",
-    "README.md": "b22eb42235f737a4136cc4741c0cb66e3fdacad69036ddf6b93a5c855ea1a00d",
-    "team_predictions.csv": "a3d3b6a11f7e27e6dfa6a70a92a991a8ec3dd79fe18ec3ada7d83a52447a522e",
-    "game_predictions.csv": "74e36455ef6a3031ee09f2f781cfc244d1f598ba57e1db2f1c19715164e72120"
+    "index.html": "188239b2f38d911b0a932ae6b63a6db11cc61fe6ae5f03031905962a3c939b0c",
+    "goalie_scenarios.csv": "6e68d619c309bd96888b0d4c723284566248962544ac5e11f0c30fcd75260a37",
+    "outlook.json": "adc59c1afa2e7e5cb724f0de379bd642bce726ea36d812bc57135eecc94e9ce6",
+    "README.md": "d05ddce24dc5cf4b175331f4d58bcc9b70b64add210e1db93e09e6009b3f12ce",
+    "team_predictions.csv": "f941066b0bda7a7c81d1bcffca76fe0fa7c60a184d9bfb51da4bdffe7342c4ac",
+    "game_predictions.csv": "f1fe999668774a624daef68fa89afe10b8c449ad358fe14103f9a95e6446a897"
   }
 }

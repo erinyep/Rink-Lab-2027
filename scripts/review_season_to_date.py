@@ -110,7 +110,14 @@ def main():
         z=g[g.eligible_for_conditional_count_scoring.eq(True) & g.actual_starter.eq(1)]
         m=summarize(z,['model'],c+'_if_full_start','actual_'+c); m['category']=c; m['level']='goalie'; model_metrics.append(m)
     metrics=pd.concat(model_metrics,ignore_index=True)
-    shot=p[p.category.eq('shots') & p.actual.notna()]
+    # The paired season bootstrap uses the SOG variants present throughout the
+    # full saved issue cohort. Newer PP/usage challengers were not issued on
+    # every date, so include them in their own descriptive metrics only.
+    paired_sog_models={'default','candidate','opponent_form_sog_trial',
+        'calibrated_opponent_sog_trial','usage_shot_context_trial'}
+    # Count errors only exist for positive-TOI appearances; use those shared
+    # scorable rows for paired game-level uncertainty.
+    shot=p[p.category.eq('shots') & p.absolute_error.notna() & p.model.isin(paired_sog_models)]
     uncertainty=clustered_difference(shot,'daily_trial_all_players')
     # October 9 issued simulations are retained as a distinct older trial cohort.
     archived=[]
@@ -190,7 +197,7 @@ def main():
         '## Issued daily trial comparison\n\n'+table(headline)+'\n\n'
         '[All categories, fantasy subgroup, RMSE and bias](model_metrics.csv). Same saved games/positive-TOI appearances per model; '
         'team errors use issued lineup scenarios, not postgame participant sums. '
-        '[Paired game-bootstrap deltas](game_cluster_uncertainty.csv) are exploratory; player rows are not independent games. '
+        '[Paired game-bootstrap deltas](game_cluster_uncertainty.csv) compare the SOG variants issued throughout the full cohort, using positive-TOI appearances with scored errors; newer challengers with fewer issue dates remain in the descriptive metrics only. Uncertainty is exploratory; player rows are not independent games. '
         'The full-player comparative dates and frozen sources are recorded in the manifest; missing dates are not reconstructed. The October 9 issued simulation cohort is exported '
         'separately; retrospective October 8 calibration reconstructions and October 9 combined-model reconstructions are excluded '
         'from prospective comparisons. Independently issued October 9 trials are refreshed against the same official actuals '

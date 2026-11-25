@@ -1,5 +1,16 @@
 # Rink Lab — Next Steps
 
+## November 25 — daily refresh completed
+
+- Refreshed the current NHL summary/TOI snapshot, official eight-day schedule, and player-season forecast inputs. Acquired official boxscores, scoring summaries, time-on-ice, play-by-play and MoneyPuck inputs through November 24: **385 final games**, **13,859 positive-TOI rows with zero TOI/boxscore join discrepancies**, **43,929 play-by-play events**, and MoneyPuck's latest source game date November 24. Six PBP team-game SOG discrepancies and 160 MoneyPuck shot games are retained/quarantined by source audits; no source values were repaired.
+- The current-season summary snapshot returned 789 skaters and 79 goalies. Five goalie rows fail the source identity `shots against = saves + goals against`; they remain preserved and flagged ineligible for valuation, with no manual correction.
+- Issued the November 25 slate before puck drop: **14/14 games pregame**, 4,501 player-model rows, 196 team-model rows and 124 goalie scenarios. The public frozen release, game outlook, direct team page and fantasy report were regenerated. ESPN refreshed 134 rostered players and 3 current matchups; forecast coverage is **17/17 rostered skaters and 3/3 rostered goalies**. NHL.com projected lineup articles were unavailable, so no projected lineups were applied. Goalie starts remain provisional.
+- Captured and exact-fixture-mapped Kalshi winner quotes for all 14 games: **28 two-sided contracts**, median spread **$0.01**, sampled a median of 7.3 minutes after team-model issue and at least 461.7 minutes before puck drop. Quotes remain a read-only benchmark and were not model inputs.
+- Generated a season-to-date actuals review through November 24. Saved forecasts remain limited to their original issue dates; no forecasts are reconstructed for dates without a frozen release. No model coefficients or selections changed.
+- Next: after today's games are final, refresh official actuals and score only the preserved November 25 pregame release. Revisit NHL.com projected-lineup retrieval and the ESPN identity crosswalk; the refreshed ESPN snapshot still reports 363 unmatched and two ambiguous identities overall, though today's rostered forecast coverage passed.
+
+## November 24 — daily automation repair plan
+
 ## November 24 — daily automation repair plan
 
 The November 23 scheduled fantasy workflow completed and refreshed ESPN status, but its published report had no skater projections for the 10 rostered skaters with games and no goalie projections. The hosted ESPN-to-NHL crosswalk searches ignored local processed identity files that are absent from a clean checkout; this is a likely cause, not a confirmed reconstruction of that run. The workflow publishes only the fantasy page, skips the direct-team model, and does not preserve its generated forecast bundle. The public game outlook is dated November 21. Consequently, no saved full-slate November 23 forecast is available for prospective scoring.

@@ -2,9 +2,11 @@
 
 ## Current prospective evidence
 
-[November 21 NHL outlook](../games/) records the 14-game public pregame release and links its model evidence. [November daily review through November 19, 2026](november_model_review_2026-11-20/) scores 96 saved pregame games and 3,443 matched positive-TOI player-games on one official actuals vintage. Calibrated-opponent SOG and usage-only conditional ATOI remain supported for their separate NHL-wide targets; fantasy SOG, direct-team probability calibration and other challengers did not establish a new promotion.
+[November 25 NHL outlook](../games/) records today's 14-game public pregame release. The [updated season-to-date review through November 24](../../outputs/per_game_forecast/season_through_2026-11-24/README.md) audits 385 official finals and scores saved daily forecasts across 142 pregame games and 5,094 matched positive-TOI player-games. Calibrated-opponent SOG MAE is 1.021 versus 1.038 for default; the paired game-cluster 95% interval for error change is −0.021 to −0.014, with lower error in 108/142 games. The [November model review through November 19](november_model_review_2026-11-20/) documents the original selection checks for calibrated-opponent SOG and usage-only conditional ATOI; no coefficients or policy were changed in the current refresh.
 
 [November 21 Kalshi benchmark](kalshi_benchmark_2026-11-21_1655/) maps 28 two-sided winner contracts to all 14 games. Its quotes were collected after forecast issuance and remain an independent, read-only comparison; they were not model inputs. Results are pending game settlement.
+
+[November 25 Kalshi benchmark](kalshi_benchmark_2026-11-25_1618/) maps today's 28 two-sided winner contracts to all 14 official fixtures. Median spread is $0.01; quotes were sampled 7.3 minutes after the team-model issue and at least 461.7 minutes before puck drop. They remain read-only and were not forecast inputs. Results are pending settlement.
 
 [Prior November review through November 18](november_model_review_2026-11-19/) is retained as the earlier evidence snapshot.
 

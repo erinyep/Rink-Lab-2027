@@ -5,15 +5,13 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
-## November 19 pregame update
+## November 25 pregame update
 
-[All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-19_20261119T183339Z/) · [November model review](docs/history/november_model_review_2026-11-19/) · [Fantasy report](docs/report/index.html).
+[All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-25_20261125T161021Z/) · [Fantasy report](docs/report/index.html) · [Season-to-date review](outputs/per_game_forecast/season_through_2026-11-24/) · [Kalshi winner benchmark](docs/history/kalshi_benchmark_2026-11-25_1618/).
 
-All 12 games were issued pregame at 1:34 p.m. Eastern using official NHL and MoneyPuck history through November 18 (346 completed games). The public release has 3,836 player-model rows, 168 team-model rows and 112 goalie scenarios. Complete NHL projected lineups were available for 9 of 24 teams and applied where all 18 skaters matched; other teams use the documented prior-game selection. Lineup and goalie labels remain provisional. ESPN injuries and fantasy ownership were unavailable in this public-only run.
+All 14 games were issued pregame at 11:10 a.m. Eastern using official NHL and MoneyPuck history through November 24 (**385 completed games**). The public release has **4,501 player-model rows, 196 team-model rows and 124 goalie scenarios**. The NHL time-on-ice data reconcile across **13,859 positive-TOI rows with zero boxscore discrepancies**. MoneyPuck team data and shot context also cover through November 24. Projected lineup articles were unavailable for today; lineup and goalie start labels remain provisional. ESPN roster/status and the league report were refreshed at 11:09 a.m. Eastern; the public forecast bundle excludes private ESPN identifiers and fantasy ownership.
 
-An initial 1:32 p.m. issue is preserved separately for same-game evaluation of the later lineup update: [early release](outputs/per_game_forecast/frozen/daily_2026-11-19_20261119T183128Z/).
-
-The latest November model review scores 84 saved pregame games and 3,013 matched positive-TOI player-games through November 18. Calibrated-opponent SOG and usage-only conditional ATOI remain supported; the review found no additional model change to make for tonight. The fantasy report is separately refreshed for November 19.
+The refreshed season review covers official results through November 24 and scores 142 saved pregame games across 5,094 matched positive-TOI player-games. Calibrated-opponent SOG MAE is 1.021 versus 1.038 for default; its paired game-cluster 95% interval for error change is −0.021 to −0.014, with lower error in 108/142 games. The SOG selection remains supported. The previously reviewed usage-only conditional ATOI selection also remains active; no coefficients or model policy were changed. No forecasts were reconstructed for dates without a saved pregame issue.
 
 ## Earlier projections — November 16
 
