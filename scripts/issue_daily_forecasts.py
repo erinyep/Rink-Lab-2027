@@ -60,7 +60,9 @@ def main():
         boxes=run('acquire_current_game_history.py',['--through',str(a.date-timedelta(days=1))],'Current history snapshot:')
         actuals=run('complete_fantasy_game_stats.py',['--boxscore-snapshots',boxes],'Fantasy game output:')
         toi=json.loads(run('acquire_game_toi.py',['--before',target,'--boxscore-snapshot',boxes]))['output']
-        espn=run('refresh_espn_snapshot.py',[],'Raw snapshot:')
+        identity=run('acquire_nhl_roster_identity.py',['--date',target],'NHL identity snapshot:')
+        espn=run('refresh_espn_snapshot.py',[
+            '--nhl-identity-source',str(Path(identity)/'identity.csv')], 'Raw snapshot:')
         # Each projection export is immutable and paired with this crosswalk.
         benchmark=Path(actuals)/'espn_benchmark.csv'
         run('export_espn_projection_benchmark.py',['--espn-snapshot',espn,'--out',benchmark])

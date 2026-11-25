@@ -25,6 +25,11 @@ def main() -> int:
         default=2000,
         help="Maximum FREEAGENT/WAIVERS players to retrieve (default: 2000).",
     )
+    parser.add_argument(
+        "--nhl-identity-source",
+        type=Path,
+        help="Repository-relative or absolute path inside the repository to an official NHL identity CSV.",
+    )
     args = parser.parse_args()
 
     try:
@@ -37,6 +42,7 @@ def main() -> int:
         result = create_espn_snapshot(
             config,
             available_limit=args.available_limit,
+            nhl_identity_source=args.nhl_identity_source,
         )
     except Exception as exc:
         print(f"SNAPSHOT FAILED: {type(exc).__name__}: {exc}", file=sys.stderr)

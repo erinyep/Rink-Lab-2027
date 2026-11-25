@@ -1,5 +1,10 @@
 # Rink Lab — Next Steps
 
+## November 25 — hosted ESPN identity-source repair
+
+- The daily workflow now acquires the NHL schedule and official current rosters for every team playing that date before creating the ESPN snapshot. The resulting ID/name/team/position table is passed explicitly into the crosswalk builder, with raw responses and SHA-256 provenance retained. This removes the hosted workflow's dependency on ignored local `data/processed/fantasy/` files.
+- The existing coverage guard remains fail-closed. Confirm that the next hosted run matches eligible roster skaters and goalies before treating the repair as complete.
+
 ## November 25 — daily refresh completed
 
 - Refreshed the current NHL summary/TOI snapshot, official eight-day schedule, and player-season forecast inputs. Acquired official boxscores, scoring summaries, time-on-ice, play-by-play and MoneyPuck inputs through November 24: **385 final games**, **13,859 positive-TOI rows with zero TOI/boxscore join discrepancies**, **43,929 play-by-play events**, and MoneyPuck's latest source game date November 24. Six PBP team-game SOG discrepancies and 160 MoneyPuck shot games are retained/quarantined by source audits; no source values were repaired.
@@ -18,12 +23,12 @@ The November 23 scheduled fantasy workflow completed and refreshed ESPN status, 
 Estimated effort for one developer familiar with the project, including a manual hosted run but excluding external outages and credential renewal:
 
 - [x] **Fantasy coverage guard — implemented November 24:** a missing NHL identity source or zero matched eligible skater or goalie forecasts now stops the report before publication. The workflow exposes aggregate coverage counts, excluding players without games and those blocked by injury status. The identity-source repair remains necessary to restore hosted projections; the guard does not establish the November 23 root cause. A real hosted run and edge-case verification remain outstanding.
-- [ ] **Reproducible identity matching — 1–2 hours:** acquire or bundle a documented, hash-checked NHL identity source on hosted runners; preserve NHL player IDs, review ambiguous matches, and verify roster and goalie coverage before building. Diagnose the November 23 failure where evidence permits.
+- [x] **Reproducible identity matching — implemented November 25:** the daily pipeline now acquires a hash-checked official NHL roster source on hosted runners and records its provenance in the ESPN snapshot. A successful hosted run is still required to confirm roster and goalie coverage.
 - [ ] **Daily game publishing and forecast archive — 2–4 hours:** issue the direct-team model and NHL bundle, enforce pregame and source-freshness checks, export a dated sanitized immutable bundle, and publish the game and team pages. Preserve separate versions if forecasts are revised.
 - [ ] **Postgame evaluation and reporting — 2–4 hours:** schedule final-result acquisition and score the saved pregame releases, with coverage, baselines, model policy, and a dated scorecard; handle unfinished or postponed games without inventing forecasts.
 - [ ] **Scheduling, diagnostics, and alerts — 1–2 hours:** add a backup or more dependable trigger, surface safe failure reasons, monitor stale reports and credential failures, and prevent concurrent publication conflicts. The configured 11:17 UTC job began at 22:42 UTC on November 23, so timing needs monitoring rather than an assumption that cron starts on time.
 
-Original estimate: roughly **6–12 hours** for implementation and a verified hosted run. The coverage guard is in place; the next priority is the identity-source fix. Only a successful clean-run match can restore the missing projections.
+Original estimate: roughly **6–12 hours** for implementation and a verified hosted run. The coverage guard and identity-source repair are in place; a successful clean-run match remains the validation gate.
 
 ## November 21 — public pregame release and policy enforcement
 

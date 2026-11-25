@@ -95,9 +95,18 @@ data/processed/espn/espn_<season>_<UTC timestamp>/espn_nhl_crosswalk.csv
 ```
 
 It uses the newest local `historical_skaters.csv` and `historical_goalies.csv`
-for each saved season under `data/processed/fantasy/`. Candidate identities are
-deduplicated by NHL ID and normalized name, preferring the most recent season.
-A partial current season therefore does not erase players absent from its table.
+for each saved season under `data/processed/fantasy/`, plus any explicitly
+supplied NHL identity CSV. The daily forecast pipeline acquires the official
+current rosters for teams playing that date before refreshing ESPN, then passes
+that timestamped identity snapshot into the crosswalk builder. This makes the
+hosted report independent of ignored local processed files. Candidate
+identities are deduplicated by NHL ID and normalized name; a partial current
+season therefore does not erase players absent from its table.
+
+The daily source is saved under `data/raw/nhl/snapshots/` with its schedule,
+roster responses, URLs, retrieval time, and SHA-256 hashes. Its derived
+`identity.csv` and manifest are written under `data/processed/nhl/` and remain
+recreatable from those raw responses.
 
 The first-pass match is conservative:
 

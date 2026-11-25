@@ -299,7 +299,7 @@ def _latest_file(pattern: str) -> Path | None:
     return max(candidates, key=lambda path: path.stat().st_mtime)
 
 
-def _nhl_index() -> tuple[dict[str, list[dict[str, str]]], list[str]]:
+def _nhl_index(extra_sources: Iterable[Path] = ()) -> tuple[dict[str, list[dict[str, str]]], list[str]]:
     # Keep the newest snapshot of each season. A partial current season cannot
     # replace the identity coverage of past seasons. Never count the same NHL ID
     # twice as two distinct candidates merely because it appears in two seasons.
@@ -310,6 +310,16 @@ def _nhl_index() -> tuple[dict[str, list[dict[str, str]]], list[str]]:
             if len(parts) == 3 and parts[0] == "fantasy":
                 latest_by_season[(parts[1], filename)] = path
     source_files = sorted(latest_by_season.values(), reverse=True)
+    for source in extra_sources:
+        resolved = Path(source).resolve()
+        try:
+            resolved.relative_to(REPO_ROOT.resolve())
+        except ValueError as exc:
+            raise ValueError("NHL identity source must be inside the repository") from exc
+        if not resolved.is_file():
+            raise FileNotFoundError(f"NHL identity source not found: {resolved}")
+        if resolved not in source_files:
+            source_files.append(resolved)
     index: dict[str, list[dict[str, str]]] = {}
     seen: set[tuple[str, str]] = set()
 
@@ -363,6 +373,7 @@ def _team_matches(espn_team: str | None, nhl_team_value: str | None) -> bool:
 def _crosswalk_rows(
     roster_rows: list[dict[str, Any]],
     available_rows: list[dict[str, Any]],
+    nhl_identity_sources: Iterable[Path] = (),
 ) -> tuple[list[dict[str, Any]], list[str]]:
     player_map: dict[int, dict[str, Any]] = {}
     for row in roster_rows + available_rows:
@@ -371,7 +382,7 @@ def _crosswalk_rows(
             continue
         player_map.setdefault(int(player_id), row)
 
-    nhl_index, source_files = _nhl_index()
+    nhl_index, source_files = _nhl_index(nhl_identity_sources)
     rows: list[dict[str, Any]] = []
 
     for espn_id in sorted(player_map):
@@ -473,6 +484,7 @@ def create_espn_snapshot(
     available_limit: int = 2000,
     raw_root: Path = DEFAULT_RAW_ROOT,
     processed_root: Path = DEFAULT_PROCESSED_ROOT,
+    nhl_identity_source: Path | None = None,
 ) -> SnapshotResult:
     """Fetch and persist a timestamped read-only ESPN league snapshot."""
 
@@ -487,7 +499,8 @@ def create_espn_snapshot(
     available = _available_rows(league, available_limit)
     matchups, categories = _matchup_rows(league)
     validations = _validate(teams, rosters, available)
-    crosswalk, crosswalk_sources = _crosswalk_rows(rosters, available)
+    identity_sources = [nhl_identity_source] if nhl_identity_source else []
+    crosswalk, crosswalk_sources = _crosswalk_rows(rosters, available, identity_sources)
 
     stamp = started.strftime("%Y%m%dT%H%M%SZ")
     snapshot_name = f"espn_{resolved.season_id}_{stamp}"
@@ -644,6 +657,9 @@ def create_espn_snapshot(
         "matchup_category_rows": len(categories),
         "crosswalk_status_counts": crosswalk_counts,
         "crosswalk_nhl_sources": crosswalk_sources,
+        "crosswalk_nhl_source_hashes": {
+            source: _sha256(REPO_ROOT / source) for source in crosswalk_sources
+        },
         "validation": validations,
         "privacy": {
             "authentication_cookies_persisted": False,
