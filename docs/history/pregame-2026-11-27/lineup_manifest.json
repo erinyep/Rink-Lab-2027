@@ -1,0 +1,223 @@
+{
+  "date": "2026-11-27",
+  "retrieved_at_utc": "2026-11-27T17:27:46.188453+00:00",
+  "raw_snapshot": "data/raw/nhl/snapshots/projected_lineups_20261127T172709Z",
+  "sources": [
+    {
+      "file": "schedule.json",
+      "url": "https://api-web.nhle.com/v1/schedule/2026-11-27",
+      "retrieved_at_utc": "2026-11-27T17:27:13.135157+00:00",
+      "sha256": "22f3fa4af5e3f059d0e030aa1a62768df1e73948bc3fd41761f93ec14f398988"
+    },
+    {
+      "file": "lineup_2026020400.html",
+      "url": "https://www.nhl.com/news/toronto-maple-leafs-boston-bruins-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:16.051382+00:00",
+      "sha256": "d615a93b55018b80992ec22b0951b91072e60e9581a36279816739a6c3dc0552"
+    },
+    {
+      "file": "roster_TOR.json",
+      "url": "https://api-web.nhle.com/v1/roster/TOR/current",
+      "retrieved_at_utc": "2026-11-27T17:27:21.779332+00:00",
+      "sha256": "037b1ef27a68e5a33ade9f31816114c94d6f8b2f9acf3337716dc866b9fafe23"
+    },
+    {
+      "file": "roster_BOS.json",
+      "url": "https://api-web.nhle.com/v1/roster/BOS/current",
+      "retrieved_at_utc": "2026-11-27T17:27:27.474571+00:00",
+      "sha256": "558aeb92094ff646f9e4537094279a39d70d6b3e940aba2323c192995dd58957"
+    },
+    {
+      "file": "lineup_2026020401.html",
+      "url": "https://www.nhl.com/news/calgary-flames-new-jersey-devils-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:16.078630+00:00",
+      "sha256": "dff0ea168fecf85ef1f2ac38603bca7649a461461fd2e429e771774f2d64f6ca"
+    },
+    {
+      "file": "roster_CGY.json",
+      "url": "https://api-web.nhle.com/v1/roster/CGY/current",
+      "retrieved_at_utc": "2026-11-27T17:27:21.771823+00:00",
+      "sha256": "98189262a58e91a047155417aa0fe13fadfd316afc7309f956d727f1f3deb9d7"
+    },
+    {
+      "file": "roster_NJD.json",
+      "url": "https://api-web.nhle.com/v1/roster/NJD/current",
+      "retrieved_at_utc": "2026-11-27T17:27:27.468062+00:00",
+      "sha256": "6f79818ecc31904ab3e0f9212c43ea895db2a11e3ef5ecd18b97c0d58879e935"
+    },
+    {
+      "file": "lineup_2026020402.html",
+      "url": "https://www.nhl.com/news/utah-mammoth-nashville-predators-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:16.106247+00:00",
+      "sha256": "ba1fcdeafab9ce64da3fdb34fd28099d551c41e6c1479ab7100c414ad7d242ea"
+    },
+    {
+      "file": "roster_UTA.json",
+      "url": "https://api-web.nhle.com/v1/roster/UTA/current",
+      "retrieved_at_utc": "2026-11-27T17:27:21.778708+00:00",
+      "sha256": "ba053481ed4d7a6cf53eaa9ad66c597cc6629efa8eda0f458a5030d38aff267c"
+    },
+    {
+      "file": "roster_NSH.json",
+      "url": "https://api-web.nhle.com/v1/roster/NSH/current",
+      "retrieved_at_utc": "2026-11-27T17:27:27.468106+00:00",
+      "sha256": "287bbda57036cee43f6e0fdae2ea97835a5dee9fffe7d03873d0bd68afd7670f"
+    },
+    {
+      "file": "lineup_2026020403.html",
+      "url": "https://www.nhl.com/news/dallas-stars-st-louis-blues-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:16.100583+00:00",
+      "sha256": "3bbed8c8198630a928a5ee9dc721b6622b850780f96afcb1dfec86df38753e4c"
+    },
+    {
+      "file": "roster_DAL.json",
+      "url": "https://api-web.nhle.com/v1/roster/DAL/current",
+      "retrieved_at_utc": "2026-11-27T17:27:21.772514+00:00",
+      "sha256": "f62c54fbaf010d3aab7539757b234e2ac85ef58c1b50d65256908f1967f86a52"
+    },
+    {
+      "file": "roster_STL.json",
+      "url": "https://api-web.nhle.com/v1/roster/STL/current",
+      "retrieved_at_utc": "2026-11-27T17:27:27.467220+00:00",
+      "sha256": "914b3840edfe8d70ec6de3904e2c346253589987df2baf816ec2464d38d121ef"
+    },
+    {
+      "file": "lineup_2026020404.html",
+      "url": "https://www.nhl.com/news/ottawa-senators-tampa-bay-lightning-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:16.064058+00:00",
+      "sha256": "aacb58d235623c55ce4f3c9104d764f6f3d9cfdc7037aa35dcab1e34acf76f91"
+    },
+    {
+      "file": "roster_OTT.json",
+      "url": "https://api-web.nhle.com/v1/roster/OTT/current",
+      "retrieved_at_utc": "2026-11-27T17:27:21.766658+00:00",
+      "sha256": "283c05befab53b62e2eb0aab71a1d75e8ee00287e9a7aba74133730a45d8a476"
+    },
+    {
+      "file": "roster_TBL.json",
+      "url": "https://api-web.nhle.com/v1/roster/TBL/current",
+      "retrieved_at_utc": "2026-11-27T17:27:27.462579+00:00",
+      "sha256": "fabe87b55732cdb3e20ea4005ec5056b29eca539919b377a676ed455197051f8"
+    },
+    {
+      "file": "lineup_2026020405.html",
+      "url": "https://www.nhl.com/news/vancouver-canucks-philadelphia-flyers-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:16.078798+00:00",
+      "sha256": "e9f895ccd351cf89b9c8492434450cd14aaa16d67b3985b2bb5c9660aab6749b"
+    },
+    {
+      "file": "roster_PHI.json",
+      "url": "https://api-web.nhle.com/v1/roster/PHI/current",
+      "retrieved_at_utc": "2026-11-27T17:27:21.826772+00:00",
+      "sha256": "cec4155237bc5e38f9fbafc21fed2717939995af43b6e34f876abe9c3ec50637"
+    },
+    {
+      "file": "lineup_2026020406.html",
+      "url": "https://www.nhl.com/news/florida-panthers-washington-capitals-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:24.739135+00:00",
+      "sha256": "a73dcfa8b3dc1fdd6c87c4a56d2f9f420f4106c0f4de6d771bf74044207da85d"
+    },
+    {
+      "file": "roster_FLA.json",
+      "url": "https://api-web.nhle.com/v1/roster/FLA/current",
+      "retrieved_at_utc": "2026-11-27T17:27:30.260164+00:00",
+      "sha256": "395b47cb2eb4d8db38c168ec0af2a6efb2044c5a62a18c2f64fe808ce12132a4"
+    },
+    {
+      "file": "roster_WSH.json",
+      "url": "https://api-web.nhle.com/v1/roster/WSH/current",
+      "retrieved_at_utc": "2026-11-27T17:27:36.023748+00:00",
+      "sha256": "dde693cc2473522b8388eb9404cbeee7f995f1e118d891c22b2985bc52bbd08c"
+    },
+    {
+      "file": "lineup_2026020407.html",
+      "url": "https://www.nhl.com/news/detroit-red-wings-columbus-blue-jackets-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:30.714981+00:00",
+      "sha256": "9aa892f35ee22de5cf4871fb1407e9dcb02e0ce52d2abfc557c613f0ba955b9d"
+    },
+    {
+      "file": "roster_DET.json",
+      "url": "https://api-web.nhle.com/v1/roster/DET/current",
+      "retrieved_at_utc": "2026-11-27T17:27:36.122695+00:00",
+      "sha256": "edb6f49772f4999578ce269fc9b16f2f973474d9a06abefd3ddc79f65fbd179d"
+    },
+    {
+      "file": "roster_CBJ.json",
+      "url": "https://api-web.nhle.com/v1/roster/CBJ/current",
+      "retrieved_at_utc": "2026-11-27T17:27:42.471229+00:00",
+      "sha256": "8a3346d70eed60b352f7402fd055fd685c7a85f8ef07a18e89213558e1cfdcf5"
+    },
+    {
+      "file": "lineup_2026020408.html",
+      "url": "https://www.nhl.com/news/colorado-avalanche-minnesota-wild-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:30.686783+00:00",
+      "sha256": "126bf25bc62bd34fdecffb566f6bbc3c40dddc4fa01b07644bd343fc3409c057"
+    },
+    {
+      "file": "roster_COL.json",
+      "url": "https://api-web.nhle.com/v1/roster/COL/current",
+      "retrieved_at_utc": "2026-11-27T17:27:36.062722+00:00",
+      "sha256": "45b16b8a9431a5ee2f58bced97db683649417c42f292d1bce7eb8f4c0f2525dc"
+    },
+    {
+      "file": "roster_MIN.json",
+      "url": "https://api-web.nhle.com/v1/roster/MIN/current",
+      "retrieved_at_utc": "2026-11-27T17:27:42.423256+00:00",
+      "sha256": "5cd157c51689567b6d540d68fa5ecc6e5d74383363bec0220989019061b20f76"
+    },
+    {
+      "file": "lineup_2026020409.html",
+      "url": "https://www.nhl.com/news/los-angeles-kings-anaheim-ducks-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:30.807037+00:00",
+      "sha256": "e8bbf7e9c2bc8887ab5c30fdc944513be809721aff29136949e445ff1eaa2f7c"
+    },
+    {
+      "file": "roster_LAK.json",
+      "url": "https://api-web.nhle.com/v1/roster/LAK/current",
+      "retrieved_at_utc": "2026-11-27T17:27:36.066786+00:00",
+      "sha256": "1764dd80b09149e2398143c2d9d184076e0d587807f1adc034a1e9bc3106f5ac"
+    },
+    {
+      "file": "lineup_2026020410.html",
+      "url": "https://www.nhl.com/news/vegas-golden-knights-san-jose-sharks-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:30.647095+00:00",
+      "sha256": "205e7a3f36d921506221a6953e4c175c4c162647b72c14410ca9a3bceee50096"
+    },
+    {
+      "file": "roster_VGK.json",
+      "url": "https://api-web.nhle.com/v1/roster/VGK/current",
+      "retrieved_at_utc": "2026-11-27T17:27:36.024334+00:00",
+      "sha256": "87fdae074813718a8bffbe05201e2891485a779e9de50855155036292d2a282c"
+    },
+    {
+      "file": "roster_SJS.json",
+      "url": "https://api-web.nhle.com/v1/roster/SJS/current",
+      "retrieved_at_utc": "2026-11-27T17:27:42.472329+00:00",
+      "sha256": "4359e48f8dcc5259c4bd757329e5b8ef56526127760469acc2859cec5fb291a8"
+    },
+    {
+      "file": "lineup_2026020411.html",
+      "url": "https://www.nhl.com/news/new-york-rangers-chicago-blackhawks-game-preview-november-27-2026",
+      "retrieved_at_utc": "2026-11-27T17:27:30.675768+00:00",
+      "sha256": "71ca26ded552d24f93281bf4b370192e1fb3d621136165f301f9b98f7b37af4a"
+    },
+    {
+      "file": "roster_NYR.json",
+      "url": "https://api-web.nhle.com/v1/roster/NYR/current",
+      "retrieved_at_utc": "2026-11-27T17:27:36.067391+00:00",
+      "sha256": "b2d71f5017068330717985a81fc5972523c659ee66cd89b8449ebcb8ac4f8350"
+    },
+    {
+      "file": "roster_CHI.json",
+      "url": "https://api-web.nhle.com/v1/roster/CHI/current",
+      "retrieved_at_utc": "2026-11-27T17:27:42.482659+00:00",
+      "sha256": "4b7c45a950dd4a739df208b0b4a3d90fdaafde02d606ade7e6519fda5964e36c"
+    }
+  ],
+  "interpretation": "Published projected lineups. First-listed goalies are projected, including any game-time decisions; ordering does not establish confirmation.",
+  "files": {
+    "projected_lineups.csv": "6749b332d34ab3a370b171f3f6c7fb40a699e272ad7690e88036d702a0dcf5ce",
+    "coverage.csv": "22afc1c1024d1ea59c83edaaba3d701722c9e2363a7fe947d9464e0893c60119"
+  },
+  "source_manifest_sha256": "c931659775fa622321323ca457e30796a093345b292a5e419f0331d108a3aa7b"
+}

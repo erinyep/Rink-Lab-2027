@@ -1,8 +1,8 @@
-# NHL game outlook — 2026-11-25
+# NHL game outlook — 2026-11-27
 
 [Interactive matchups](index.html) · [Game predictions CSV](game_predictions.csv)
 
-There are 14 games: 14 pregame forecasts and 0 late-issued.
+There are 15 games: 15 pregame forecasts and 0 late-issued.
 The goal numbers are projected means, not exact final scores. The side with the
 higher goal mean is the model scoring lean; no calibrated win odds are supplied.
 Simulation ranges and goalie start shares remain provisional. All saved
@@ -10,8 +10,7 @@ models can be compared without changing the frozen forecasts. Selected models
 are calibrated_opponent_sog_trial for all-player SOG and usage_toi_only_trial for
 conditional ATOI; fantasy category selection remains separate.
 This page also summarizes the November model review and links the scored evidence.
-The latest actuals update through November 24 is summarized in the [season-to-date review](../../outputs/per_game_forecast/season_through_2026-11-24/README.md): 385 final games were audited, and the daily SOG comparison covers 142 saved pregame games. Calibrated-opponent SOG remains lower error than default on the shared cohort; no model refit was made.
-Kalshi winner prices are shown as a separate read-only benchmark; they were sampled after the direct-team forecast was issued and were not model inputs. See the [mapped market report](../history/kalshi_benchmark_2026-11-25_1618/README.md).
+Kalshi winner prices are shown as a separate read-only benchmark; they were sampled after the direct-team forecast was issued and were not model inputs. See the [mapped market report](../history/kalshi_benchmark_2026-11-27_1732/README.md).
 
 Start by comparing each matchup's goal means and shot volume. Expand a card for
 assumed shot leaders and goalie full-start scenarios. Use the table to scan all

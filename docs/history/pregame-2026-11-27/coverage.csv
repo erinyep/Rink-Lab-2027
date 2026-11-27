@@ -1,0 +1,31 @@
+game_id,team,status,source_url,detail
+2026020400,TOR,projected_lineup_available,https://www.nhl.com/news/toronto-maple-leafs-boston-bruins-game-preview-november-27-2026,
+2026020400,BOS,projected_lineup_available,https://www.nhl.com/news/toronto-maple-leafs-boston-bruins-game-preview-november-27-2026,
+2026020401,CGY,projected_lineup_available,https://www.nhl.com/news/calgary-flames-new-jersey-devils-game-preview-november-27-2026,
+2026020401,NJD,projected_lineup_available,https://www.nhl.com/news/calgary-flames-new-jersey-devils-game-preview-november-27-2026,
+2026020402,UTA,projected_lineup_available,https://www.nhl.com/news/utah-mammoth-nashville-predators-game-preview-november-27-2026,
+2026020402,NSH,projected_lineup_available,https://www.nhl.com/news/utah-mammoth-nashville-predators-game-preview-november-27-2026,
+2026020403,DAL,projected_lineup_available,https://www.nhl.com/news/dallas-stars-st-louis-blues-game-preview-november-27-2026,
+2026020403,STL,projected_lineup_available,https://www.nhl.com/news/dallas-stars-st-louis-blues-game-preview-november-27-2026,
+2026020404,OTT,projected_lineup_available,https://www.nhl.com/news/ottawa-senators-tampa-bay-lightning-game-preview-november-27-2026,
+2026020404,TBL,projected_lineup_available,https://www.nhl.com/news/ottawa-senators-tampa-bay-lightning-game-preview-november-27-2026,
+2026020405,VAN,ambiguous_player_names_or_statuses,https://www.nhl.com/news/vancouver-canucks-philadelphia-flyers-game-preview-november-27-2026,
+2026020405,PHI,projected_lineup_available,https://www.nhl.com/news/vancouver-canucks-philadelphia-flyers-game-preview-november-27-2026,
+2026020406,FLA,projected_lineup_available,https://www.nhl.com/news/florida-panthers-washington-capitals-game-preview-november-27-2026,
+2026020406,WSH,projected_lineup_available,https://www.nhl.com/news/florida-panthers-washington-capitals-game-preview-november-27-2026,
+2026020407,DET,projected_lineup_available,https://www.nhl.com/news/detroit-red-wings-columbus-blue-jackets-game-preview-november-27-2026,
+2026020407,CBJ,projected_lineup_available,https://www.nhl.com/news/detroit-red-wings-columbus-blue-jackets-game-preview-november-27-2026,
+2026020408,COL,projected_lineup_available,https://www.nhl.com/news/colorado-avalanche-minnesota-wild-game-preview-november-27-2026,
+2026020408,MIN,projected_lineup_available,https://www.nhl.com/news/colorado-avalanche-minnesota-wild-game-preview-november-27-2026,
+2026020409,LAK,projected_lineup_available,https://www.nhl.com/news/los-angeles-kings-anaheim-ducks-game-preview-november-27-2026,
+2026020409,ANA,ambiguous_player_names_or_statuses,https://www.nhl.com/news/los-angeles-kings-anaheim-ducks-game-preview-november-27-2026,
+2026020410,VGK,projected_lineup_available,https://www.nhl.com/news/vegas-golden-knights-san-jose-sharks-game-preview-november-27-2026,
+2026020410,SJS,projected_lineup_available,https://www.nhl.com/news/vegas-golden-knights-san-jose-sharks-game-preview-november-27-2026,
+2026020411,NYR,projected_lineup_available,https://www.nhl.com/news/new-york-rangers-chicago-blackhawks-game-preview-november-27-2026,
+2026020411,CHI,projected_lineup_available,https://www.nhl.com/news/new-york-rangers-chicago-blackhawks-game-preview-november-27-2026,
+2026020412,WPG,source_unavailable,https://www.nhl.com/news/winnipeg-jets-new-york-islanders-game-preview-november-27-2026,Incomplete article lineup coverage
+2026020412,NYI,source_unavailable,https://www.nhl.com/news/winnipeg-jets-new-york-islanders-game-preview-november-27-2026,Incomplete article lineup coverage
+2026020413,PIT,source_unavailable,https://www.nhl.com/news/pittsburgh-penguins-buffalo-sabres-game-preview-november-27-2026,Incomplete article lineup coverage
+2026020413,BUF,source_unavailable,https://www.nhl.com/news/pittsburgh-penguins-buffalo-sabres-game-preview-november-27-2026,Incomplete article lineup coverage
+2026020414,SEA,source_unavailable,https://www.nhl.com/news/seattle-kraken-edmonton-oilers-game-preview-november-27-2026,Incomplete article lineup coverage
+2026020414,EDM,source_unavailable,https://www.nhl.com/news/seattle-kraken-edmonton-oilers-game-preview-november-27-2026,Incomplete article lineup coverage

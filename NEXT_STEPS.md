@@ -1,5 +1,13 @@
 # Rink Lab — Next Steps
 
+## November 27 — complete pregame refresh
+
+- Published all 15 games before puck drop: 4,837 player-model rows, 210 team-model rows and 136 goalie scenarios. Official history covers 399 finals, with 14,363 positive-TOI rows reconciled without discrepancies. [Release details](docs/history/pregame-2026-11-27/README.md).
+- Refreshed direct team probabilities and 30 exact-fixture Kalshi winner quotes. Retained existing coefficients and model policies.
+- Applied complete matched projected lineups to 16 teams. Fixed the importer so duplicate player names or conflicting source statuses quarantine the affected team, preserving other usable lineups. All 110 tests pass.
+- Hosted ESPN refresh and Pages deployment succeeded, with 16/16 eligible roster skaters and 3/3 goalies matched. Public NHL projections are a separate public-only issue with unknown ESPN injury labels.
+- Next: treat empty NHL slates as successful skips; November 26's scheduled failure was caused by the no-game holiday. Scheduled publication still covers the fantasy report only; broader game/team pages were updated separately today.
+
 ## November 25 — hosted ESPN identity-source repair
 
 - The daily workflow now acquires the NHL schedule and official current rosters for every team playing that date before creating the ESPN snapshot. The resulting ID/name/team/position table is passed explicitly into the crosswalk builder, with raw responses and SHA-256 provenance retained. This removes the hosted workflow's dependency on ignored local `data/processed/fantasy/` files.

@@ -5,6 +5,12 @@ Finding the signal in hockey performance.
 A hockey analytics research project using R and Python to explore player talent,
 repeatability, predictive value, NHL performance, and NCAA-to-NHL translation.
 
+## November 27 pregame update
+
+[All-game outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Fantasy report](docs/report/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-27_20261127T173735Z/) · [Release details](docs/history/pregame-2026-11-27/) · [Kalshi comparison](docs/history/kalshi_benchmark_2026-11-27_1732/).
+
+All **15 games** issued pregame at **12:39 p.m. Eastern**, using 399 official finals and MoneyPuck history through November 25 (no games November 26). Complete matched projected lineups were applied to 16 teams; other teams use provisional scenarios. The public bundle has unknown ESPN injury labels; the separate authenticated fantasy report refreshed at 12:26 p.m. with 16/16 eligible skaters and 3/3 goalies covered. Goalies remain unconfirmed. Existing model selections and coefficients are unchanged.
+
 ## November 25 pregame update
 
 [All-game player and goalie outlook](docs/games/) · [Team win probabilities](docs/team-model/) · [Frozen forecasts](outputs/per_game_forecast/frozen/daily_2026-11-25_20261125T161021Z/) · [Fantasy report](docs/report/index.html) · [Season-to-date review](outputs/per_game_forecast/season_through_2026-11-24/) · [Kalshi winner benchmark](docs/history/kalshi_benchmark_2026-11-25_1618/).

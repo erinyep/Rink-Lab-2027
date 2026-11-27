@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-27",
+  "released_at_utc": "2026-11-27T17:39:32.194319+00:00",
+  "forecast_issued_at_utc": "2026-11-27T17:39:27.561085+00:00",
+  "statistical_history_last_game_date": "2026-11-25",
+  "games": 15,
+  "pregame_games": 15,
+  "late_games": [],
+  "models": [
+    "default",
+    "candidate",
+    "opponent_form_sog_trial",
+    "calibrated_opponent_sog_trial",
+    "usage_shot_context_trial",
+    "usage_toi_only_trial",
+    "pp_opportunity_trial"
+  ],
+  "primary_sog_model": "calibrated_opponent_sog_trial",
+  "primary_toi_model": "usage_toi_only_trial",
+  "availability": "disabled_public_data_only",
+  "injuries_as_of_utc": null,
+  "moneypuck_latest_game_date": "2026-11-25",
+  "moneypuck_retrieved_at_utc": "2026-11-27T17:27:56.943226+00:00",
+  "source_bundle_manifest_sha256": "0cb9297d347507deaf21ce8c6caf048e6e04094dacd4bd060a7c8941c4a5408a",
+  "source_files_sha256": {
+    "player_projections.csv": "d4dc0fb84e21e1fd63a7fd662992ef743877cf2bdef64cab7200e1bbf7f91dcf",
+    "team_projections.csv": "a6e96a901e3007588783c9516beca1701ea55dcecb7a0a4fc19f56c89e031692",
+    "goalie_projections.csv": "dd34c4f43d1d7a8ca179422dfe3244fe885e510b3bc621a777a1195679e794fd",
+    "game_team_coverage.csv": "f6bd912b09920c2ef956148f621c0ee53cc0e48854ba2569ea3deb9d68029c55"
+  },
+  "rows": {
+    "player_projections.csv": 4837,
+    "team_projections.csv": 210,
+    "goalie_projections.csv": 136,
+    "game_team_coverage.csv": 30
+  },
+  "projected_lineup_teams": [
+    "BOS",
+    "CBJ",
+    "COL",
+    "DAL",
+    "FLA",
+    "LAK",
+    "MIN",
+    "NSH",
+    "NYR",
+    "PHI",
+    "SJS",
+    "STL",
+    "TBL",
+    "UTA",
+    "VGK",
+    "WSH"
+  ],
+  "privacy_note": "Public fields only; no private ESPN IDs, credentials or ownership.",
+  "files": {
+    "player_projections.csv": "c1853463d641bd3bbc49854c02599c5f296573c174eafcdfda7b2abcd7409285",
+    "game_team_coverage.csv": "f6bd912b09920c2ef956148f621c0ee53cc0e48854ba2569ea3deb9d68029c55",
+    "README.md": "5ed3ebb6713d07da74ed911ab1703318eb53e4a55be2744c7256f7d1c8639e5b",
+    "team_projections.csv": "f3bb069833cf7163fb33b84f3f4419881bba6a5ce7a1694686c1d982413cce8e",
+    "goalie_projections.csv": "8c1c101b55de97771ff452a6dc66c19e2528d21ca965bfc6774f686dd99044de"
+  }
+}
