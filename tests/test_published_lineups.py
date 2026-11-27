@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 from scripts.build_team_total_trial import select_lineup
-from scripts.snapshot_nhl_lineups import ArticleParagraphs, parse_lineups
+from scripts.snapshot_nhl_lineups import ArticleParagraphs, parse_lineups, partition_ambiguous_teams
 
 
 class PublishedLineupTests(unittest.TestCase):
@@ -33,6 +33,19 @@ class PublishedLineupTests(unittest.TestCase):
         rows=parse_lineups(parser.paragraphs, {'MIN':'Minnesota Wild'})
         self.assertEqual([r['player_name'] for r in rows],list('ABCDEF'))
         self.assertEqual(rows[-1]['projected_status'],'injured')
+
+    def test_ambiguous_team_does_not_discard_opponent_lineup(self):
+        rows = [dict(team='ANA', player_name='Beckett Sennecke', projected_status=status)
+                for status in ['projected_skater', 'injured']]
+        rows += [dict(team='ANA', player_name='Other Player', projected_status='projected_skater'),
+                 dict(team='LAK', player_name='Other Player', projected_status='projected_skater')]
+        valid, ambiguous = partition_ambiguous_teams(rows)
+        self.assertEqual(ambiguous, {'ANA'})
+        self.assertEqual(valid, [rows[-1]])
+
+    def test_same_name_on_different_teams_is_not_ambiguous(self):
+        rows = [dict(team=team, player_name='Same Name') for team in ['ANA', 'LAK']]
+        self.assertEqual(partition_ambiguous_teams(rows), (rows, set()))
 
 
 if __name__ == '__main__':

@@ -93,6 +93,22 @@ def parse_lineups(paragraphs, teams):
     return rows
 
 
+def partition_ambiguous_teams(rows):
+    """Keep other teams usable without guessing which duplicate name/status wins.
+
+    A repeated name may describe distinct players (Vancouver's Petterssons) or
+    conflicting availability. Preserve the source HTML and quarantine that team's
+    entire published scenario; downstream selection retains its usual fallback.
+    """
+    seen, ambiguous = set(), set()
+    for row in rows:
+        key = (row['team'], normalized_name(row['player_name']))
+        if key in seen:
+            ambiguous.add(row['team'])
+        seen.add(key)
+    return [row for row in rows if row['team'] not in ambiguous], ambiguous
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--date', required=True)
@@ -129,8 +145,11 @@ def main():
                 raise ValueError('Incomplete article lineup coverage')
         except Exception as error:
             return [], [dict(game_id=game['id'], team=team, status='source_unavailable', detail=str(error), source_url=url) for team in names], []
+        parsed, ambiguous_teams = partition_ambiguous_teams(parsed)
         game_sources = [article_source]
         for team in names:
+            if team in ambiguous_teams:
+                continue
             roster_data, roster_source = fetch(f'https://api-web.nhle.com/v1/roster/{team}/current', f'roster_{team}.json')
             game_sources.append(roster_source)
             roster = json.loads(roster_data)
@@ -148,7 +167,9 @@ def main():
                            match_status='matched' if len(matches) == 1 else 'unresolved', source_url=url,
                            identity_name=identity_name, match_method='explicit_roster_spelling_alias' if identity_name != row['player_name'] else 'normalized_exact_name',
                            retrieved_at_utc=article_source['retrieved_at_utc'], source_status='projected_not_confirmed')
-        return parsed, [dict(game_id=game['id'], team=team, status='projected_lineup_available', source_url=url) for team in names], game_sources
+        return parsed, [dict(game_id=game['id'], team=team,
+                            status='ambiguous_player_names_or_statuses' if team in ambiguous_teams else 'projected_lineup_available',
+                            source_url=url) for team in names], game_sources
 
     with ThreadPoolExecutor(max_workers=6) as pool:
         for game_rows, game_coverage, game_sources in pool.map(acquire_game, games):

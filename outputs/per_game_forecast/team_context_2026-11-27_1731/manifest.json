@@ -1,0 +1,34 @@
+{
+  "created_at_utc": "2026-11-27T17:31:10.258979+00:00",
+  "date": "2026-11-27",
+  "method": "team_goal_context_v2",
+  "scheduled_games": 15,
+  "excluded_games": [],
+  "model_release": "outputs/per_game_forecast/team_model_update_through_2026-10-26",
+  "model_release_sha256": "872d85803e972e98369907cd7d39e7125ff74ce740f038cf374b27114c4bc521",
+  "moneypuck": "data/raw/moneypuck/snapshots/team_games_20261127T172749220687Z",
+  "moneypuck_sha256": "ca3a38c1f0e268d082037b95e2555f76cedffd0c63a4e39083f81dbdd897afab",
+  "boxscores": "data/raw/nhl/snapshots/current_game_history_20262027_20261127T172501Z",
+  "boxscores_sha256": "e373de1fbf1db5e76311e4c54519f5e60cfd315ce40817cdf29f84536746e0e1",
+  "schedule_snapshot": "data/raw/nhl/snapshots/team_model_schedule_20261127T173110258979Z",
+  "schedule_sha256": "607cf68fa76ebeebfb4b6aaef2d579247c7e924d9f4844a762e68485f31a9e9c",
+  "probability_calibration_release": "outputs/per_game_forecast/model_challengers_2026-11-08",
+  "probability_calibration_manifest_sha256": "2c9ab26cfec36921d7a2089622ecab5c43c4a51b03c3fe5dd5bfde313cdafdbd",
+  "probability_calibration_code_sha256": "488b6fc73842ac69037317cbf1ef5cf45c61b45a3b2cc1b57e7ed16dfc768ab9",
+  "selected_probability_model": "raw_direct_team",
+  "probability_calibration_status": "challenger_only",
+  "code_sha256": {
+    "scripts/issue_team_context_forecasts.py": "16aec078e6c4a2948e4c3ac0d71192a3730e8df9e07f05c759c90ad9f489fb8e",
+    "src/fantasy/model_policy.py": "b34632c519591da9907ade78d886bafad65ee6517000320f5e164483f767983e",
+    "src/fantasy/team_probability.py": "5e69d43071076a5145f81fd99fdc2821b2035e4bbf6dc18618ab29a205f947e0",
+    "config/team_goal_model_active.json": "93d2431ee9218854c5601c45f492e993446fbdb6245f1c3e7d7dc80cdf0ebce6"
+  },
+  "files": {
+    "team_win_probabilities.csv": "ee998f0fa04a276975a53dbf3fd670b24e077b11b9b5b3766940c70bc1f43454",
+    "index.html": "a824de97d51e6faf891663b3318d808e370405f1dc78f20191eee62ae663538d",
+    "input_reconciliation.csv": "ff53a483386f8a9aba8d26f23d253d95066161f01aaa078ccaee1f30d74c4534",
+    "team_goal_forecasts.csv": "d08fd992e04593b8a0373adfbe3987d17a93ebb606139ee3585251fc3ef5a208",
+    "README.md": "ce206404a65099dcffd1a26ba2295d741b2e0f17010228a0ac714b3dcdc9c90f"
+  },
+  "source_manifest_sha256": "2a56249b498169a180a2d7da3618ce3a1325b8af72a0ad2ef3f41fc7e516ff12"
+}
