@@ -1,24 +1,24 @@
 player_name,lineup_slot,injury_status,decision_state,start_local,is_goalie,has_game,locked,blocked,expected_pp_points_if_plays,expected_toi_minutes_if_plays,expected_goals_if_plays,expected_shots_if_plays,expected_assists_if_plays,expected_plus_minus_if_plays,expected_hits_if_plays,expected_penalty_minutes_if_plays
-Quinn Hughes,Defense,INJURY_RESERVE,injury exclusion,4:00 PM,False,True,False,True,0.4655737705,26.702797233,0.1786885246,2.5950819672,0.9426229508,0.1409836066,0.1754098361,0.4196721311
-Tage Thompson,Forward,ACTIVE,upcoming,8:00 PM,False,True,False,False,0.2720247295,19.3558622791,0.5332302937,3.4095826893,0.4621329212,0.0355486862,0.9629057187,0.4652241113
-Kirill Kaprizov,Forward,ACTIVE,upcoming,4:00 PM,False,True,False,False,0.445407279,22.093326226,0.6100519931,3.4020797227,0.7071057192,0.3414211438,0.5944540728,0.3535528596
-Alex Tuch,Forward,ACTIVE,game locked,3:00 PM,False,True,True,False,0.1197511664,19.122042042,0.4447900467,2.4758942457,0.3903576983,0.2192846034,1.0046656299,0.6096423017
-Jesper Wallstedt,Goalie,ACTIVE,starter unconfirmed,4:00 PM,True,True,False,False,,,,,,,,
-Beckett Sennecke,IR,ACTIVE,upcoming,4:00 PM,False,True,False,False,0.2307692308,18.1078590786,0.3365384615,2.4038461538,0.4903846154,-0.0865384615,1.1153846154,0.8269230769
-Luke Hughes,Defense,ACTIVE,game locked,1:00 PM,False,True,True,False,0.2097315436,23.249874552,0.1258389262,2.0151006711,0.4362416107,-0.0318791946,0.3120805369,0.3959731544
-Logan Cooley,Forward,ACTIVE,game locked,1:00 PM,False,True,True,False,0.2833333333,18.401889881,0.4037037037,1.9018518519,0.4444444444,-0.0203703704,0.9703703704,0.4703703704
-Joel Eriksson Ek,Forward,ACTIVE,upcoming,4:00 PM,False,True,False,False,0.2531418312,19.5232863153,0.3123877917,3.0,0.4596050269,0.3518850987,1.6157989228,0.5745062837
-Matvei Michkov,Bench,OUT,game locked,3:00 PM,False,True,True,True,0.1858108108,15.7421763085,0.2972972973,2.0304054054,0.3952702703,-0.1554054054,0.402027027,0.7162162162
-Logan Stankoven,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
-Cole Hutson,Defense,ACTIVE,game locked,3:00 PM,False,True,True,False,0.3333333333,18.5003174603,0.25,2.0277777778,0.4722222222,-0.1388888889,1.2222222222,0.6666666667
-Pyotr Kochetkov,Bench,ACTIVE,no game today,,True,False,False,False,,,,,,,,
-Alexander Nikishin,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
-Mikael Granlund,Forward,ACTIVE,upcoming,4:00 PM,False,True,False,False,0.2839506173,20.2193956698,0.2892416226,2.024691358,0.5432098765,-0.1111111111,0.5643738977,0.3104056437
-Jimmy Snuggerud,Forward,INJURY_RESERVE,game locked,2:00 PM,False,True,True,True,0.1487179487,16.6159032502,0.3641025641,2.3282051282,0.3846153846,0.2564102564,0.9179487179,0.2461538462
-JJ Peterka,Util,ACTIVE,game locked,1:00 PM,False,True,True,False,0.1015151515,17.0795311269,0.3121212121,2.1151515152,0.3454545455,0.096969697,0.3136363636,0.3393939394
-Fraser Minten,Forward,ACTIVE,game locked,1:00 PM,False,True,True,False,0.0468085106,15.1220558526,0.2340425532,1.4957446809,0.2127659574,0.2,1.6765957447,0.3872340426
-Shane Pinto,Forward,ACTIVE,game locked,3:00 PM,False,True,True,False,0.0732984293,19.131817105,0.3193717277,2.0802792321,0.3036649215,0.0715532286,1.2862129145,0.5130890052
-Neal Pionk,Defense,ACTIVE,upcoming,7:30 PM,False,True,False,False,0.0909090909,22.2952830189,0.1003787879,1.8863636364,0.3068181818,0.1041666667,2.1609848485,0.6571969697
-Devon Levi,Goalie,ACTIVE,starter unconfirmed,8:00 PM,True,True,False,False,,,,,,,,
-Philip Broberg,Defense,ACTIVE,game locked,2:00 PM,False,True,True,False,0.0926573427,23.6460216573,0.1188811189,1.4055944056,0.3496503497,0.1940559441,0.4370629371,0.1958041958
-Filip Gustavsson,Bench,ACTIVE,starter unconfirmed,4:00 PM,True,True,False,False,,,,,,,,
+Quinn Hughes,Util,INJURY_RESERVE,no game today,,False,False,False,True,,,,,,,,
+Tage Thompson,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Kirill Kaprizov,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Alex Tuch,Forward,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.1190108192,19.4864864865,0.4420401855,2.4729520866,0.3879443586,0.2179289026,1.0046367852,0.6058732612
+Jesper Wallstedt,Bench,ACTIVE,no game today,,True,False,False,False,,,,,,,,
+Beckett Sennecke,IR,ACTIVE,upcoming,9:00 PM,False,True,False,False,0.2380952381,18.1611924119,0.3428571429,2.3904761905,0.4857142857,-0.1142857143,1.1047619048,0.819047619
+Luke Hughes,Defense,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.2083333333,23.3476523297,0.1383333333,2.015,0.4333333333,-0.0116666667,0.31,0.3933333333
+Logan Cooley,Forward,ACTIVE,upcoming,8:00 PM,False,True,False,False,0.28125,18.011889881,0.4007352941,1.8952205882,0.4485294118,-0.0055147059,0.9632352941,0.4669117647
+Joel Eriksson Ek,Forward,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Matvei Michkov,Forward,ACTIVE,upcoming,7:30 PM,False,True,False,False,0.1858108108,15.7421763085,0.2972972973,2.0304054054,0.3952702703,-0.1554054054,0.402027027,0.7162162162
+Logan Stankoven,Forward,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.1092715232,15.5558112875,0.2682119205,2.2897350993,0.3311258278,0.238410596,0.6291390728,0.2450331126
+Cole Hutson,Defense,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.3513513514,18.1847619048,0.2972972973,2.0810810811,0.4594594595,-0.1081081081,1.1891891892,0.6486486486
+Pyotr Kochetkov,Goalie,ACTIVE,starter unconfirmed,7:00 PM,True,True,False,False,,,,,,,,
+Alexander Nikishin,Defense,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.1264367816,17.5840192044,0.1609195402,1.5057471264,0.275862069,0.275862069,1.5862068966,0.4022988506
+Mikael Granlund,Forward,ACTIVE,upcoming,9:00 PM,False,True,False,False,0.288966725,19.9782845586,0.2872154116,2.0175131349,0.5534150613,-0.1103327496,0.5674255692,0.3082311734
+Jimmy Snuggerud,Forward,INJURY_RESERVE,injury exclusion,7:00 PM,False,True,False,True,0.1487179487,16.6159032502,0.3641025641,2.3282051282,0.3846153846,0.2564102564,0.9179487179,0.2461538462
+JJ Peterka,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Fraser Minten,Bench,ACTIVE,no game today,,False,False,False,False,,,,,,,,
+Shane Pinto,Forward,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.0727902946,19.1562615494,0.3171577123,2.0866551127,0.301559792,0.0710571924,1.2772963605,0.5095320624
+Neal Pionk,Defense,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.0902255639,21.9397274633,0.0996240602,1.8721804511,0.3045112782,0.0958646617,2.1447368421,0.6672932331
+Devon Levi,Goalie,ACTIVE,starter unconfirmed,10:00 PM,True,True,False,False,,,,,,,,
+Philip Broberg,Defense,ACTIVE,upcoming,7:00 PM,False,True,False,False,0.0920138889,23.883799435,0.125,1.4166666667,0.3472222222,0.1996527778,0.4340277778,0.2083333333
+Filip Gustavsson,Bench,ACTIVE,no game today,,True,False,False,False,,,,,,,,
